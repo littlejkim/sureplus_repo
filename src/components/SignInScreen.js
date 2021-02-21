@@ -5,10 +5,10 @@ import { View, Text } from 'react-native';
 // custom imports
 import styles from '../styles/container.styles';
 
-export default function HomeScreen() {
+export default function SignInScreen() {
   return (
     <View style={styles.container}>
-      <Text>HomeScreen</Text>
+      <Text>Sign In Screen</Text>
     </View>
   );
 }

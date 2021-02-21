@@ -10,8 +10,8 @@ const fetchAllTokens = async () => {
   }
 };
 
-// clear ALL stored tokens (for testing purposes ONLY)
-const clearAllTokens = async () => {
+// delete ALL stored tokens (for testing purposes ONLY)
+const deleteAllTokens = async () => {
   try {
     await AsyncStorage.clear();
     console.log('All token cleared');
@@ -36,10 +36,11 @@ const fetchUserToken = async () => {
   try {
     const user = await AsyncStorage.getItem('userToken');
     if (user !== null) {
-      // user token found
       const parsedUser = JSON.parse(user);
+      console.log('User token found: ', parsedUser);
       return parsedUser.name;
     } else {
+      console.log('User token not found');
       return null;
     }
   } catch (e) {
@@ -59,7 +60,7 @@ const deleteUserToken = async () => {
 
 export {
   fetchAllTokens,
-  clearAllTokens,
+  deleteAllTokens,
   storeUserToken,
   fetchUserToken,
   deleteUserToken,
