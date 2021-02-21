@@ -7,14 +7,7 @@ import { SplashScreen } from './src/screens';
 import { HomeContainer } from './src/navigation/HomeContainer';
 import { AuthContainer } from './src/navigation/AuthContainer';
 
-import {
-  fetchUserToken,
-  storeUserToken,
-  deleteUserToken,
-  fetchAllTokens,
-  deleteAllTokens,
-} from './src/utils/userUtils';
-import { testUserData } from './src/data/testUserData';
+import { fetchUserToken } from './src/utils/userUtils';
 
 export default function App() {
   const [user, setUser] = useState(undefined);

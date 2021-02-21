@@ -6,6 +6,7 @@ import { Portal } from 'react-native-portalize';
 
 // custom imports
 import styles from '../styles/container.styles';
+import { deleteUserToken } from '../utils/userUtils';
 
 export default function HomeScreen({ navigation }) {
   // set button for menu
@@ -21,9 +22,15 @@ export default function HomeScreen({ navigation }) {
     modalizeRef.current?.open();
   };
 
+  // test signout button
+  const onSignOut = () => {
+    deleteUserToken();
+  };
+
   return (
     <View style={styles.container}>
       <Text>HomeScreen</Text>
+      <Button title="Sign out" onPress={onSignOut} />
       <Portal>
         <Modalize
           ref={modalizeRef}
