@@ -1,14 +1,47 @@
 // public imports
 import React from 'react';
-import { Platform } from 'react-native';
+import { Button, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Host } from 'react-native-portalize';
 
 // custom imports
-import { HomeScreen, DiscoverScreen, GroupsScreen } from '../components';
+import { HomeScreen, DiscoverScreen, GroupsScreen } from '../screens';
 import { FONT_FAMILY_REGULAR } from '../styles/constants';
 
 const Tab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
+const DiscoverStack = createStackNavigator();
+const GroupsStack = createStackNavigator();
 
+// home stack
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+    </HomeStack.Navigator>
+  );
+}
+
+// discover stack
+function DiscoverStackScreen() {
+  return (
+    <DiscoverStack.Navigator>
+      <DiscoverStack.Screen name="Discover" component={DiscoverScreen} />
+    </DiscoverStack.Navigator>
+  );
+}
+
+// groups stack
+function GroupsStackScreen() {
+  return (
+    <GroupsStack.Navigator>
+      <GroupsStack.Screen name="Home" component={GroupsScreen} />
+    </GroupsStack.Navigator>
+  );
+}
+
+// bottom bar stying
 const barStyle = {
   activeTintColor: 'black',
   inactiveTintColor: 'gray',
@@ -29,10 +62,12 @@ const barStyle = {
 
 export const HomeContainer = () => {
   return (
-    <Tab.Navigator initialRouteName="Home" tabBarOptions={barStyle}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Discover" component={DiscoverScreen} />
-      <Tab.Screen name="Groups" component={GroupsScreen} />
-    </Tab.Navigator>
+    <Host>
+      <Tab.Navigator initialRouteName="Home" tabBarOptions={barStyle}>
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Discover" component={DiscoverStackScreen} />
+        <Tab.Screen name="Groups" component={GroupsStackScreen} />
+      </Tab.Navigator>
+    </Host>
   );
 };

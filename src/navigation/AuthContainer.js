@@ -3,7 +3,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // custom imports
-import { OnboardingScreen, RegisterScreen, SignInScreen } from '../components';
+import { OnboardingScreen, RegisterScreen, SignInScreen } from '../screens';
 
 const AuthStack = createStackNavigator();
 
