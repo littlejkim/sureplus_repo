@@ -1,24 +1,37 @@
 // public imports
 import React from 'react';
-import { Button, Platform } from 'react-native';
+import { Image, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Host } from 'react-native-portalize';
 
 // custom imports
 import { HomeScreen, DiscoverScreen, GroupsScreen } from '../screens';
-import { FONT_FAMILY_REGULAR } from '../styles/constants';
+import { TEXT_BOLD, TEXT_REGULAR } from '../styles/constants';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const DiscoverStack = createStackNavigator();
 const GroupsStack = createStackNavigator();
-
+const headerTitleSize = 17;
 // home stack
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+    <HomeStack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerStyle: { backgroundColor: 'white' },
+        headerTitleStyle: {
+          fontFamily: TEXT_BOLD,
+          color: 'black',
+          fontSize: headerTitleSize,
+        },
+      }}>
+      <HomeStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
     </HomeStack.Navigator>
   );
 }
@@ -26,7 +39,15 @@ function HomeStackScreen() {
 // discover stack
 function DiscoverStackScreen() {
   return (
-    <DiscoverStack.Navigator>
+    <DiscoverStack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: 'white' },
+        headerTitleStyle: {
+          fontFamily: TEXT_BOLD,
+          color: 'black',
+          fontSize: headerTitleSize,
+        },
+      }}>
       <DiscoverStack.Screen name="Discover" component={DiscoverScreen} />
     </DiscoverStack.Navigator>
   );
@@ -35,8 +56,16 @@ function DiscoverStackScreen() {
 // groups stack
 function GroupsStackScreen() {
   return (
-    <GroupsStack.Navigator>
-      <GroupsStack.Screen name="Home" component={GroupsScreen} />
+    <GroupsStack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: 'white' },
+        headerTitleStyle: {
+          fontFamily: TEXT_BOLD,
+          color: 'black',
+          fontSize: headerTitleSize,
+        },
+      }}>
+      <GroupsStack.Screen name="Groups" component={GroupsScreen} />
     </GroupsStack.Navigator>
   );
 }
@@ -46,7 +75,7 @@ const barStyle = {
   activeTintColor: 'black',
   inactiveTintColor: 'gray',
   labelStyle: {
-    fontFamily: FONT_FAMILY_REGULAR,
+    fontFamily: TEXT_REGULAR,
   },
   style: {
     borderTopLeftRadius: 20,
@@ -64,9 +93,48 @@ export const HomeContainer = () => {
   return (
     <Host>
       <Tab.Navigator initialRouteName="Home" tabBarOptions={barStyle}>
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Discover" component={DiscoverStackScreen} />
-        <Tab.Screen name="Groups" component={GroupsStackScreen} />
+        <Tab.Screen
+          name="Home"
+          component={HomeStackScreen}
+          options={{
+            tabBarIcon: ({ size, focused, color }) => {
+              return (
+                <Image
+                  style={{ width: size + 11, height: size + 11 }}
+                  source={require('../assets/images/home_focused.png')}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Discover"
+          component={DiscoverStackScreen}
+          options={{
+            tabBarIcon: ({ size, focused, color }) => {
+              return (
+                <Image
+                  style={{ width: size + 11, height: size + 11 }}
+                  source={require('../assets/images/home_focused.png')}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Groups"
+          component={GroupsStackScreen}
+          options={{
+            tabBarIcon: ({ size, focused, color }) => {
+              return (
+                <Image
+                  style={{ width: size + 11, height: size + 11 }}
+                  source={require('../assets/images/home_focused.png')}
+                />
+              );
+            },
+          }}
+        />
       </Tab.Navigator>
     </Host>
   );

@@ -1,44 +1,55 @@
 // public imports
-import React, { useRef, useLayoutEffect } from 'react';
-import { View, Text, Button } from 'react-native';
-import { Modalize } from 'react-native-modalize';
+import React, { useRef } from 'react';
+import { View, Button, Image, TouchableOpacity, Text } from 'react-native';
 import { Portal } from 'react-native-portalize';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // custom imports
-import styles from '../styles/container.styles';
+import styles from '../styles/home.styles';
 import { deleteUserToken } from '../utils/userUtils';
+import { BottomModal } from '../components/BottomModal';
 
 export default function HomeScreen({ navigation }) {
-  // set button for menu
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => <Button title="menu" onPress={onOpen} />,
-    });
-  }, [navigation]);
-
   // menu modal
   const modalizeRef = useRef(null);
   const onOpen = () => {
     modalizeRef.current?.open();
   };
 
-  // test signout button
+  // signout button (for testing)
   const onSignOut = () => {
     deleteUserToken();
   };
 
   return (
-    <View style={styles.container}>
-      <Text>HomeScreen</Text>
-      <Button title="Sign out" onPress={onSignOut} />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.headerLeft}>
+          <TouchableOpacity activeOpacity={0.7} onPress={onOpen}>
+            <Image
+              source={require('../assets/images/profile.png')}
+              style={styles.image}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.headerCenter}></View>
+        <View style={styles.headerRight}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => console.log('clicked right')}>
+            {/* <Image
+              source={require('../assets/images/profile.png')}
+              style={styles.image}
+            /> */}
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.body}>
+        <Button title="Sign out" onPress={onSignOut} />
+      </View>
       <Portal>
-        <Modalize
-          ref={modalizeRef}
-          modalHeight={500}
-          onOpen={() => console.log('modal opened')}
-          onClose={() => console.log('modal closed')}
-        />
+        <BottomModal modalizeRef={modalizeRef} height={500} />
       </Portal>
-    </View>
+    </SafeAreaView>
   );
 }
