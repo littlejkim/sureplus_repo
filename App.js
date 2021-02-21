@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 // custom imports
 import { SplashScreen } from './src/components/';
-import { BottomNavigator } from './src/navigation/BottomNavigator';
-import { AuthStackNavigator } from './src/navigation/AuthStackNavigator';
+import { HomeContainer } from './src/navigation/HomeContainer';
+import { AuthContainer } from './src/navigation/AuthContainer';
 
 import {
   fetchUserToken,
@@ -43,7 +43,7 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      {user == null ? <AuthStackNavigator /> : <BottomNavigator />}
+      {user == null ? <AuthContainer /> : <HomeContainer />}
     </NavigationContainer>
   );
 }

@@ -7,7 +7,7 @@ import { OnboardingScreen, RegisterScreen, SignInScreen } from '../components';
 
 const AuthStack = createStackNavigator();
 
-export const AuthStackNavigator = () => {
+export const AuthContainer = () => {
   return (
     <AuthStack.Navigator initialRouteName="Onboarding">
       <AuthStack.Screen name="Onboarding" component={OnboardingScreen} />
