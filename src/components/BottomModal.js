@@ -2,7 +2,7 @@
 import React from 'react';
 import { Modalize } from 'react-native-modalize';
 
-// bottom modal (need to customizea)
+// bottom modal (need to customize)
 export const BottomModal = (props) => {
   return (
     <Modalize

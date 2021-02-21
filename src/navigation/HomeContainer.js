@@ -7,13 +7,13 @@ import { Host } from 'react-native-portalize';
 
 // custom imports
 import { HomeScreen, DiscoverScreen, GroupsScreen } from '../screens';
-import { TEXT_BOLD, TEXT_REGULAR } from '../styles/constants';
+import { TEXT_BOLD, TEXT_REGULAR, HEADER_TEXT_SIZE } from '../styles/constants';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const DiscoverStack = createStackNavigator();
 const GroupsStack = createStackNavigator();
-const headerTitleSize = 17;
+
 // home stack
 function HomeStackScreen() {
   return (
@@ -23,8 +23,7 @@ function HomeStackScreen() {
         headerStyle: { backgroundColor: 'white' },
         headerTitleStyle: {
           fontFamily: TEXT_BOLD,
-          color: 'black',
-          fontSize: headerTitleSize,
+          fontSize: HEADER_TEXT_SIZE,
         },
       }}>
       <HomeStack.Screen
@@ -44,8 +43,7 @@ function DiscoverStackScreen() {
         headerStyle: { backgroundColor: 'white' },
         headerTitleStyle: {
           fontFamily: TEXT_BOLD,
-          color: 'black',
-          fontSize: headerTitleSize,
+          fontSize: HEADER_TEXT_SIZE,
         },
       }}>
       <DiscoverStack.Screen name="Discover" component={DiscoverScreen} />
@@ -61,8 +59,7 @@ function GroupsStackScreen() {
         headerStyle: { backgroundColor: 'white' },
         headerTitleStyle: {
           fontFamily: TEXT_BOLD,
-          color: 'black',
-          fontSize: headerTitleSize,
+          fontSize: HEADER_TEXT_SIZE,
         },
       }}>
       <GroupsStack.Screen name="Groups" component={GroupsScreen} />

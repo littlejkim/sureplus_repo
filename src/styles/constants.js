@@ -4,6 +4,7 @@ const BACKGROUND_COLOR = '#F1F2F4';
 const TEXT_REGULAR = 'AvenirNextCyr-Regular';
 const TEXT_DEMI = 'AvenirNextCyr-Demi';
 const TEXT_BOLD = 'AvenirNextCyr-Bold';
+const HEADER_TEXT_SIZE = 17;
 
 export {
   PRIMARY_COLOR,
@@ -12,4 +13,5 @@ export {
   TEXT_REGULAR,
   TEXT_DEMI,
   TEXT_BOLD,
+  HEADER_TEXT_SIZE,
 };
