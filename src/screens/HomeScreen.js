@@ -1,16 +1,25 @@
 // public imports
-import React, { useRef, useLayoutEffect } from 'react';
-import { View, Button, Image, TouchableOpacity, Text } from 'react-native';
+import React, { useState, useRef, useLayoutEffect, useCallback } from 'react';
+import {
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  RefreshControl,
+  Text,
+} from 'react-native';
 import { Portal } from 'react-native-portalize';
-import { useHeaderHeight } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // custom imports
 import styles from '../styles/home.styles';
 import { deleteUserToken } from '../utils/userUtils';
 import { BottomModal } from '../components/BottomModal';
+import { PRIMARY_COLOR } from '../styles/constants';
 
 export default function HomeScreen({ navigation }) {
+  const [refreshing, setRefreshing] = useState(false);
   // add buttons to top
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -26,8 +35,7 @@ export default function HomeScreen({ navigation }) {
       ),
       headerRight: () => (
         <View style={styles.headerRight}>
-          <Button title="search" onPress={() => alert('pressed search')} />
-          <Button title="search" onPress={() => alert('pressed search')} />
+          <Button title="signout" onPress={onSignOut} />
         </View>
       ),
     });
@@ -41,14 +49,34 @@ export default function HomeScreen({ navigation }) {
 
   // signout button (for testing)
   const onSignOut = () => {
+    alert('Signing out');
     deleteUserToken();
   };
 
+  // on refresh pulled
+  const onRefresh = useCallback(() => {
+    console.log('Refreshing data');
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.body}>
-        <Button title="Sign out" onPress={onSignOut} />
-      </View>
+      <ScrollView
+        contentContainerStyle={styles.body}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            tintColor={PRIMARY_COLOR}
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
+        <Text>Home Screen</Text>
+      </ScrollView>
       <Portal>
         <BottomModal modalizeRef={modalizeRef} height={500} />
       </Portal>

@@ -10,6 +10,7 @@ import { testUserData } from '../data/testUserData';
 export default function OnboardingScreen({ navigation }) {
   // test signin button
   const onSignIn = () => {
+    alert('Signing in');
     storeUserToken(testUserData);
   };
 
