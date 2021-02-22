@@ -13,8 +13,9 @@ export default StyleSheet.create({
 
   headerLeft: {
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
+    paddingLeft: 10,
   },
 
   headerCenter: {
@@ -25,9 +26,9 @@ export default StyleSheet.create({
 
   headerRight: {
     flex: 1,
-    flexDirection: 'row-reverse',
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
+    paddingRight: 10,
   },
 
   body: {
@@ -37,7 +38,9 @@ export default StyleSheet.create({
   },
 
   image: {
-    height: 35,
+    flex: 1,
     width: 35,
+    height: 35,
+    resizeMode: 'contain',
   },
 });

@@ -1,6 +1,6 @@
 // public imports
 import React from 'react';
-import { Image, Platform } from 'react-native';
+import { Image, Platform, Button } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Host } from 'react-native-portalize';
@@ -20,7 +20,7 @@ function HomeStackScreen() {
     <HomeStack.Navigator
       initialRouteName="Home"
       screenOptions={{
-        headerStyle: { backgroundColor: 'white' },
+        headerStyle: { backgroundColor: '#F1F2F4', shadowColor: 'transparent' },
         headerTitleStyle: {
           fontFamily: TEXT_BOLD,
           fontSize: HEADER_TEXT_SIZE,
@@ -29,7 +29,9 @@ function HomeStackScreen() {
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerTitle: '',
+        }}
       />
     </HomeStack.Navigator>
   );
@@ -73,12 +75,12 @@ const barStyle = {
   inactiveTintColor: 'gray',
   labelStyle: {
     fontFamily: TEXT_REGULAR,
+    fontSize: 13,
   },
   style: {
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: Platform.OS === 'ios' ? 100 : 70,
-    position: 'absolute',
     shadowOffset: { width: 5, height: 15 },
     shadowColor: 'black',
     shadowOpacity: 0.4,
@@ -95,10 +97,15 @@ export const HomeContainer = () => {
           component={HomeStackScreen}
           options={{
             tabBarIcon: ({ size, focused, color }) => {
+              const focusedOpacity = focused ? 1.0 : 0.5;
               return (
                 <Image
-                  style={{ width: size + 11, height: size + 11 }}
-                  source={require('../assets/images/home_focused.png')}
+                  style={{
+                    width: size + 11,
+                    height: size + 11,
+                    opacity: focusedOpacity,
+                  }}
+                  source={require('../assets/images/home.png')}
                 />
               );
             },
@@ -109,10 +116,15 @@ export const HomeContainer = () => {
           component={DiscoverStackScreen}
           options={{
             tabBarIcon: ({ size, focused, color }) => {
+              const focusedOpacity = focused ? 1.0 : 0.5;
               return (
                 <Image
-                  style={{ width: size + 11, height: size + 11 }}
-                  source={require('../assets/images/home_focused.png')}
+                  style={{
+                    width: size + 11,
+                    height: size + 11,
+                    opacity: focusedOpacity,
+                  }}
+                  source={require('../assets/images/subscription.png')}
                 />
               );
             },
@@ -123,10 +135,15 @@ export const HomeContainer = () => {
           component={GroupsStackScreen}
           options={{
             tabBarIcon: ({ size, focused, color }) => {
+              const focusedOpacity = focused ? 1.0 : 0.5;
               return (
                 <Image
-                  style={{ width: size + 11, height: size + 11 }}
-                  source={require('../assets/images/home_focused.png')}
+                  style={{
+                    width: size + 11,
+                    height: size + 11,
+                    opacity: focusedOpacity,
+                  }}
+                  source={require('../assets/images/groups.png')}
                 />
               );
             },
