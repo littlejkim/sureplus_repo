@@ -3,12 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 // custom imports
-import { SplashScreen } from './src/screens';
 import { HomeContainer } from './src/navigation/HomeContainer';
 import { AuthContainer } from './src/navigation/AuthContainer';
-
+import { SplashScreen } from './src/screens';
 import { fetchUserToken } from './src/utils/userUtils';
-import { BACKGROUND_COLOR } from './src/styles/constants';
 
 export default function App() {
   const [user, setUser] = useState(undefined);
