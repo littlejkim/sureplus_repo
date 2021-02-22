@@ -20,7 +20,10 @@ function HomeStackScreen() {
     <HomeStack.Navigator
       initialRouteName="Home"
       screenOptions={{
-        headerStyle: { backgroundColor: '#F1F2F4', shadowColor: 'transparent' },
+        headerStyle: {
+          backgroundColor: '#F1F2F4',
+          shadowColor: 'transparent',
+        },
         headerTitleStyle: {
           fontFamily: TEXT_BOLD,
           fontSize: HEADER_TEXT_SIZE,

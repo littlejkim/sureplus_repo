@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    marginLeft: 10,
+    marginRight: 10,
     flexDirection: 'column',
   },
 
@@ -15,26 +17,18 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: 10,
-  },
-
-  headerCenter: {
-    flex: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingLeft: 15,
   },
 
   headerRight: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: 10,
+    paddingRight: 15,
   },
 
   body: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 
   image: {

@@ -7,16 +7,25 @@ import {
   TouchableOpacity,
   ScrollView,
   RefreshControl,
-  Text,
+  Dimensions,
 } from 'react-native';
 import { Portal } from 'react-native-portalize';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 // custom imports
 import styles from '../styles/home.styles';
+import { ReportScreen, WalletScreen } from './index';
 import { deleteUserToken } from '../utils/userUtils';
 import { BottomModal } from '../components/BottomModal';
-import { PRIMARY_COLOR } from '../styles/constants';
+import {
+  BACKGROUND_COLOR,
+  PRIMARY_COLOR,
+  SECONDARY_COLOR,
+  TEXT_BOLD,
+} from '../styles/constants';
+
+const Tab = createMaterialTopTabNavigator();
 
 export default function HomeScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -59,15 +68,14 @@ export default function HomeScreen({ navigation }) {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
-    }, 1000);
+    }, 2000);
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.body}
         showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
         refreshControl={
           <RefreshControl
             tintColor={PRIMARY_COLOR}
@@ -75,11 +83,48 @@ export default function HomeScreen({ navigation }) {
             onRefresh={onRefresh}
           />
         }>
-        <Text>Home Screen</Text>
+        <Tab.Navigator
+          tabBarOptions={{
+            labelStyle: {
+              fontSize: 15,
+              fontFamily: TEXT_BOLD,
+              textTransform: 'none',
+            },
+            activeTintColor: SECONDARY_COLOR,
+            inactiveTintColor: 'gray',
+            upperCaseLabel: false,
+            style: {
+              marginTop: 5,
+              alignSelf: 'center',
+              width: '55%',
+              borderRadius: 100,
+              elevation: 5, // shadow on Android
+              shadowOpacity: 0.1, // shadow on iOS,
+              shadowRadius: 4, // shadow blur on iOS
+            },
+            pressOpacity: 0.6,
+            indicatorStyle: {
+              height: null,
+              top: '10%',
+              bottom: '10%',
+              width: '45%',
+              left: '2.5%',
+              borderRadius: 100,
+              backgroundColor: PRIMARY_COLOR,
+            },
+            tabStyle: {
+              borderRadius: 100,
+            },
+          }}
+          swipeVelocityImpact={0.4}
+          initialLayout={{ width: Dimensions.get('window').width }}>
+          <Tab.Screen name="Report" component={ReportScreen} />
+          <Tab.Screen name="Wallet" component={WalletScreen} />
+        </Tab.Navigator>
       </ScrollView>
       <Portal>
         <BottomModal modalizeRef={modalizeRef} height={500} />
       </Portal>
-    </SafeAreaView>
+    </View>
   );
 }
