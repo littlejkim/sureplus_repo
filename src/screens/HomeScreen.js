@@ -86,7 +86,7 @@ export default function HomeScreen({ navigation }) {
         <Tab.Navigator
           tabBarOptions={{
             labelStyle: {
-              fontSize: 15,
+              fontSize: 17,
               fontFamily: TEXT_BOLD,
               textTransform: 'none',
             },
@@ -94,13 +94,13 @@ export default function HomeScreen({ navigation }) {
             inactiveTintColor: 'gray',
             upperCaseLabel: false,
             style: {
-              marginTop: 5,
-              alignSelf: 'center',
+              backgroundColor: BACKGROUND_COLOR,
+              alignSelf: 'flex-start',
               width: '55%',
-              borderRadius: 100,
+              borderRadius: 70,
               elevation: 5, // shadow on Android
-              shadowOpacity: 0.1, // shadow on iOS,
-              shadowRadius: 4, // shadow blur on iOS
+              shadowOpacity: 0, // change to 0.1 for iOS shadow
+              shadowRadius: 0, // change to 4 for iOS shadow
             },
             pressOpacity: 0.6,
             indicatorStyle: {

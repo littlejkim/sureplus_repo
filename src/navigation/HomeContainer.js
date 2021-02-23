@@ -7,7 +7,12 @@ import { Host } from 'react-native-portalize';
 
 // custom imports
 import { HomeScreen, DiscoverScreen, GroupsScreen } from '../screens';
-import { TEXT_BOLD, TEXT_REGULAR, HEADER_TEXT_SIZE } from '../styles/constants';
+import {
+  TEXT_BOLD,
+  TEXT_REGULAR,
+  HEADER_TEXT_SIZE,
+  BACKGROUND_COLOR,
+} from '../styles/constants';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -21,7 +26,7 @@ function HomeStackScreen() {
       initialRouteName="Home"
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#F1F2F4',
+          backgroundColor: BACKGROUND_COLOR,
           shadowColor: 'transparent',
         },
         headerTitleStyle: {

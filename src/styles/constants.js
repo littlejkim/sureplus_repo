@@ -1,4 +1,4 @@
-const PRIMARY_COLOR = '#8610EB';
+const PRIMARY_COLOR = '#7610EB';
 const SECONDARY_COLOR = '#FFFFFF';
 const BACKGROUND_COLOR = '#F1F2F4';
 const TEXT_REGULAR = 'AvenirNextCyr-Regular';
