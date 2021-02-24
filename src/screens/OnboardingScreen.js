@@ -1,6 +1,6 @@
 // public imports
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Image } from 'react-native';
 
 // custom imports
 import styles from '../styles/container.styles';
@@ -15,13 +15,11 @@ export default function OnboardingScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Onboarding</Text>
-      <Button
-        title="Register"
-        onPress={() => navigation.navigate('Register')}
+    <View style={styles.onboardingContainer}>
+      <Image
+        source={require('../assets/images/logo_long.png')}
+        style={{ aspectRatio: 2.5, resizeMode: 'contain' }}
       />
-      <Button title="Sign In" onPress={onSignIn} />
     </View>
   );
 }

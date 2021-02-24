@@ -9,7 +9,11 @@ const AuthStack = createStackNavigator();
 
 export const AuthContainer = () => {
   return (
-    <AuthStack.Navigator initialRouteName="Onboarding">
+    <AuthStack.Navigator
+      initialRouteName="Onboarding"
+      screenOptions={{
+        headerShown: false,
+      }}>
       <AuthStack.Screen name="Onboarding" component={OnboardingScreen} />
       <AuthStack.Screen name="Register" component={RegisterScreen} />
       <AuthStack.Screen name="SignIn" component={SignInScreen} />

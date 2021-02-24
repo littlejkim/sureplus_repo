@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { HomeContainer } from './src/navigation/HomeContainer';
 import { AuthContainer } from './src/navigation/AuthContainer';
 import { SplashScreen } from './src/screens';
-import { fetchUserToken } from './src/utils/userUtils';
+import { fetchUserToken, deleteUserToken } from './src/utils/userUtils';
 
 export default function App() {
   const [user, setUser] = useState(undefined);
