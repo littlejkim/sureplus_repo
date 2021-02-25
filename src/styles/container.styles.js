@@ -8,12 +8,4 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: BACKGROUND_COLOR,
   },
-
-  onboardingContainer: {
-    flex: 1,
-    paddingHorizontal: 30,
-    justifyContent: 'center',
-    flexDirection: 'column',
-    backgroundColor: PRIMARY_COLOR,
-  },
 });

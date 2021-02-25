@@ -10,7 +10,6 @@ import {
   Dimensions,
 } from 'react-native';
 import { Portal } from 'react-native-portalize';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 // custom imports
