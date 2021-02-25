@@ -1,6 +1,13 @@
 // public imports
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 
 // custom imports
 import styles from '../styles/onboarding.styles';
@@ -17,7 +24,7 @@ export default function OnboardingScreen({ navigation }) {
   // log in action
   const onLogIn = () => {
     storeUserToken(testUserData);
-    alert('Logging in');
+    alert('Signing in');
   };
 
   return (
@@ -28,19 +35,19 @@ export default function OnboardingScreen({ navigation }) {
           source={require('../assets/images/logo_long.png')}
         />
       </View>
-      <View style={styles.footer}>
+      <View style={[styles.footer]}>
         <TouchableOpacity
-          style={styles.signUpButton}
+          style={styles.mainButton}
           onPress={onSignUp}
           activeOpacity={0.7}>
-          <Text style={styles.signUpButtonTitle}>Sign Up</Text>
+          <Text style={styles.mainButtonText}>Sign Up</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.loginButton}
+          style={styles.subButton}
           onPress={onLogIn}
           activeOpacity={0.5}>
-          <Text style={styles.loginButtonTitle}>Already a member? </Text>
-          <Text style={[styles.loginButtonTitle, { fontFamily: TEXT_BOLD }]}>
+          <Text style={styles.subButtonText}>Already a member? </Text>
+          <Text style={[styles.subButtonText, { fontFamily: TEXT_BOLD }]}>
             Log in
           </Text>
         </TouchableOpacity>

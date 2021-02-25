@@ -1,45 +1,41 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { PRIMARY_COLOR, TEXT_DEMI, TEXT_REGULAR } from './constants';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: PRIMARY_COLOR,
-    paddingHorizontal: 5,
   },
   body: {
-    flex: 9,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   footer: {
-    flex: 1.5,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginBottom: 20,
-    marginStart: 20,
-    marginEnd: 20,
+    justifyContent: 'space-between',
+    marginHorizontal: 15,
+    marginBottom: Platform.OS === 'ios' ? 50 : 20,
   },
-  signUpButton: {
-    flex: 1,
+  mainButton: {
+    marginBottom: 20,
+    height: 55,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
     borderRadius: 20,
   },
-  signUpButtonTitle: {
+  mainButtonText: {
     fontSize: 19,
     fontFamily: TEXT_DEMI,
     color: PRIMARY_COLOR,
   },
-  loginButton: {
-    flex: 1,
+  subButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
   },
-  loginButtonTitle: {
+  subButtonText: {
     fontSize: 17,
     fontFamily: TEXT_REGULAR,
     color: 'white',

@@ -5,9 +5,10 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import { TEXT_BOLD, TEXT_REGULAR } from '../styles/constants';
+
 // custom imports
 import styles from '../styles/onboarding.styles';
 
@@ -30,6 +31,7 @@ export default function SignUpScreen() {
             selectionColor="white"
             autoCompleteType="email"
             keyboardType="email-address"
+            textContentType="emailAddress"
             maxLength={320}
             autoCorrect={false}
             autoFocus={true}
@@ -37,16 +39,18 @@ export default function SignUpScreen() {
             onChangeText={(text) => setEmail(text)}
             onEndEditing={() => console.log(email)}
             textAlign="center"
-            textContentType="emailAddress"
           />
         </View>
       </View>
       <View style={styles.footer}>
         <TouchableOpacity
-          style={[styles.signUpButton, { flex: 0.5 }]}
-          onPress={() => console.log('hi')}
+          style={[
+            styles.mainButton,
+            { marginBottom: Platform.OS === 'ios' ? -10 : -40 }, // check android margin bottom for footer
+          ]}
+          onPress={() => console.log(email)}
           activeOpacity={0.7}>
-          <Text style={styles.signUpButtonTitle}>Next</Text>
+          <Text style={styles.mainButtonText}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
