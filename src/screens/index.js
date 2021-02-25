@@ -3,8 +3,8 @@ import OnboardingScreen from './OnboardingScreen';
 import DiscoverScreen from './DiscoverScreen';
 import GroupsScreen from './GroupsScreen';
 import SplashScreen from './SplashScreen';
-import RegisterScreen from './RegisterScreen';
-import SignInScreen from './SignInScreen';
+import SignUpScreen from './SignUpScreen';
+import LogInScreen from './LogInScreen';
 import ReportScreen from './ReportScreen';
 import WalletScreen from './WalletScreen';
 
@@ -14,8 +14,8 @@ export {
   DiscoverScreen,
   GroupsScreen,
   SplashScreen,
-  RegisterScreen,
-  SignInScreen,
+  SignUpScreen,
+  LogInScreen,
   ReportScreen,
   WalletScreen,
 };

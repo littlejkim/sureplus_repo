@@ -88,6 +88,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     marginHorizontal: 15,
   },
+
   subscriptionIcon: {
     width: 35,
     height: 35,

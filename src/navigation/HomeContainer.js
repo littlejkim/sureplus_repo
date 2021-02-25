@@ -1,6 +1,6 @@
 // public imports
 import React from 'react';
-import { Image, Platform, Button } from 'react-native';
+import { Image, Platform, Button, SafeAreaView } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Host } from 'react-native-portalize';
@@ -86,6 +86,10 @@ const barStyle = {
     fontSize: 13,
   },
   style: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    right: 0,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: Platform.OS === 'ios' ? 100 : 70,

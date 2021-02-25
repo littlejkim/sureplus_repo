@@ -1,6 +1,6 @@
 // public imports
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 // custom imports
 import styles from '../styles/onboarding.styles';
@@ -10,8 +10,8 @@ import { TEXT_BOLD } from '../styles/constants';
 
 export default function OnboardingScreen({ navigation }) {
   // sign in action
-  const onSignIn = () => {
-    alert('Signing in');
+  const onSignUp = () => {
+    navigation.navigate('SignUp');
   };
 
   // log in action
@@ -31,7 +31,7 @@ export default function OnboardingScreen({ navigation }) {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.signUpButton}
-          onPress={onSignIn}
+          onPress={onSignUp}
           activeOpacity={0.7}>
           <Text style={styles.signUpButtonTitle}>Sign Up</Text>
         </TouchableOpacity>
