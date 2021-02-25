@@ -4,6 +4,8 @@ import { PRIMARY_COLOR, TEXT_DEMI, TEXT_REGULAR } from './constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
+
     backgroundColor: PRIMARY_COLOR,
   },
   body: {
@@ -12,7 +14,6 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   footer: {
-    justifyContent: 'space-between',
     marginHorizontal: 15,
     marginBottom: Platform.OS === 'ios' ? 50 : 20,
   },
