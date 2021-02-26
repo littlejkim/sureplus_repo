@@ -46,7 +46,7 @@ export default function SignUpScreen() {
         <TouchableOpacity
           style={[
             styles.mainButton,
-            { marginBottom: Platform.OS === 'ios' ? -10 : -40 }, // check android margin bottom for footer
+            { marginBottom: Platform.OS === 'ios' ? 0 : -30 }, // check android margin bottom for footer
           ]}
           onPress={() => console.log(email)}
           activeOpacity={0.7}>

@@ -8,9 +8,11 @@ import {
   ScrollView,
   RefreshControl,
   Dimensions,
+  Alert,
 } from 'react-native';
 import { Portal } from 'react-native-portalize';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import RNRestart from 'react-native-restart'; // temporary restart module (might need to replace during production level)
 
 // custom imports
 import styles from '../styles/home.styles';
@@ -57,8 +59,22 @@ export default function HomeScreen({ navigation }) {
 
   // signout button (for testing)
   const onSignOut = () => {
-    alert('Signing out');
-    deleteUserToken();
+    Alert.alert(
+      'Sign out?',
+      '',
+      [
+        {
+          text: 'Yes',
+          onPress: () => deleteUserToken().then(RNRestart.Restart()),
+        },
+        {
+          text: 'No',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
   };
 
   // on refresh pulled

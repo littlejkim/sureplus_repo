@@ -1,13 +1,7 @@
 // public imports
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
+import RNRestart from 'react-native-restart'; // temporary restart module (might need to replace during production level)
 
 // custom imports
 import styles from '../styles/onboarding.styles';
@@ -23,8 +17,22 @@ export default function OnboardingScreen({ navigation }) {
 
   // log in action
   const onLogIn = () => {
-    storeUserToken(testUserData);
-    alert('Signing in');
+    Alert.alert(
+      'Log in?',
+      '',
+      [
+        {
+          text: 'Yes',
+          onPress: () => storeUserToken(testUserData).then(RNRestart.Restart()),
+        },
+        {
+          text: 'No',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
   };
 
   return (
