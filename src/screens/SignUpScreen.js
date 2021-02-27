@@ -1,5 +1,5 @@
 // public imports
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -8,14 +8,26 @@ import {
   Platform,
 } from 'react-native';
 import { TEXT_BOLD, TEXT_REGULAR } from '../styles/constants';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 // custom imports
 import styles from '../styles/onboarding.styles';
 
 export default function SignUpScreen() {
+  const [loading, setLoading] = useState(false); // used to show loading spinner
   const [email, setEmail] = useState();
+
+  // wait for email verification
+  const verifyEmail = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  };
+
   return (
     <View style={styles.container}>
+      <Spinner visible={loading} animation="fade" />
       <View style={styles.body}>
         <Text style={{ fontFamily: TEXT_BOLD, color: 'white', fontSize: 30 }}>
           Enter email address
@@ -48,7 +60,7 @@ export default function SignUpScreen() {
             styles.mainButton,
             { marginBottom: Platform.OS === 'ios' ? 0 : -30 }, // check android margin bottom for footer
           ]}
-          onPress={() => console.log(email)}
+          onPress={verifyEmail}
           activeOpacity={0.7}>
           <Text style={styles.mainButtonText}>Next</Text>
         </TouchableOpacity>
