@@ -2,8 +2,6 @@ const PRIMARY_COLOR = '#8610EB';
 const BACKGROUND_COLOR_LIGHT = '#F1F2F4';
 const BACKGROUND_COLOR_DARK = '#17171b';
 
-const HEADER_TEXT_SIZE = 17;
-
 const LightTheme = {
   dark: false,
   colors: {
@@ -28,8 +26,8 @@ const DarkTheme = {
 
 export {
   LightTheme,
+  DarkTheme,
+  PRIMARY_COLOR,
   BACKGROUND_COLOR_DARK,
   BACKGROUND_COLOR_LIGHT,
-  DarkTheme,
-  HEADER_TEXT_SIZE,
 };

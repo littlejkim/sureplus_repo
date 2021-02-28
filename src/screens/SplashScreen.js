@@ -1,10 +1,10 @@
 // public imports
 import React from 'react';
 import { View, Image } from 'react-native';
-import { PRIMARY_COLOR } from '../styles/constants';
 
 // custom imports
 import styles from '../styles/container.styles';
+import { PRIMARY_COLOR } from '../styles/constants';
 
 export default function SplashScreen() {
   return (
