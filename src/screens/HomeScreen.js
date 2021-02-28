@@ -17,10 +17,10 @@ import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../styles/home.styles';
+import { TEXT_BOLD } from '../styles/fonts';
 import { ReportScreen, WalletScreen } from './index';
 import { deleteUserToken } from '../utils/userUtils';
 import { BottomModal } from '../components/BottomModal';
-import { TEXT_BOLD } from '../styles/constants';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -135,7 +135,11 @@ export default function HomeScreen({ navigation }) {
         </Tab.Navigator>
       </ScrollView>
       <Portal>
-        <BottomModal modalizeRef={modalizeRef} height={500} />
+        <BottomModal
+          modalizeRef={modalizeRef}
+          height={500}
+          style={colors.background}
+        />
       </Portal>
     </View>
   );

@@ -6,6 +6,7 @@ import { Modalize } from 'react-native-modalize';
 export const BottomModal = (props) => {
   return (
     <Modalize
+      modalStyle={{ backgroundColor: props.style }}
       ref={props.modalizeRef}
       modalHeight={props.height}
       panGestureEnabled={false}

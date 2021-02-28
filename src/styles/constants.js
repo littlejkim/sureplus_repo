@@ -1,10 +1,7 @@
 const PRIMARY_COLOR = '#8610EB';
-const SECONDARY_COLOR = '#FFFFFF';
 const BACKGROUND_COLOR_LIGHT = '#F1F2F4';
 const BACKGROUND_COLOR_DARK = '#17171b';
-const TEXT_REGULAR = 'AvenirNextCyr-Regular';
-const TEXT_DEMI = 'AvenirNextCyr-Demi';
-const TEXT_BOLD = 'AvenirNextCyr-Bold';
+
 const HEADER_TEXT_SIZE = 17;
 
 const LightTheme = {
@@ -34,8 +31,5 @@ export {
   BACKGROUND_COLOR_DARK,
   BACKGROUND_COLOR_LIGHT,
   DarkTheme,
-  TEXT_REGULAR,
-  TEXT_BOLD,
-  TEXT_DEMI,
   HEADER_TEXT_SIZE,
 };

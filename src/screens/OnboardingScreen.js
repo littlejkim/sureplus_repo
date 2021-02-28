@@ -11,7 +11,7 @@ import { testUserData } from '../data/testUserData';
 import { TEXT_BOLD } from '../styles/constants';
 
 export default function OnboardingScreen({ navigation }) {
-  const { colors, dark } = useTheme();
+  const { colors } = useTheme();
   // sign in action
   const onSignUp = () => {
     navigation.navigate('SignUp');

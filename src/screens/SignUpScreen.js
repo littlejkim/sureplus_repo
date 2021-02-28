@@ -10,7 +10,6 @@ import {
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import { TEXT_BOLD, TEXT_REGULAR } from '../styles/constants';
 import styles from '../styles/onboarding.styles';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 export default function SignUpScreen() {

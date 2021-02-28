@@ -7,7 +7,7 @@ import { useTheme } from '@react-navigation/native';
 import styles from '../styles/container.styles';
 
 export default function WalletScreen() {
-  const { colors, dark } = useTheme();
+  const { colors } = useTheme();
 
   return (
     <View style={styles.container}>

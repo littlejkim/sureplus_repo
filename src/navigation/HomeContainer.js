@@ -1,6 +1,6 @@
 // public imports
 import React from 'react';
-import { Image, Platform, StatusBar } from 'react-native';
+import { Image, StatusBar } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Host } from 'react-native-portalize';
@@ -8,12 +8,9 @@ import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import { HomeScreen, DiscoverScreen, GroupsScreen } from '../screens';
-import {
-  TEXT_BOLD,
-  HEADER_TEXT_SIZE,
-  BACKGROUND_COLOR,
-} from '../styles/constants';
+import { TEXT_BOLD, HEADER_TEXT_SIZE } from '../styles/fonts';
 import { darkBarStyle, lightBarStyle } from '../styles/bottomBar.styles';
+
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const DiscoverStack = createStackNavigator();
