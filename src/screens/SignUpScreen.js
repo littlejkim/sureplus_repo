@@ -49,7 +49,7 @@ export default function SignUpScreen() {
             keyboardAppearance={dark ? 'dark' : 'light'}
             style={[styles.textInput, { color: colors.mainText }]}
             autoCapitalize="none"
-            selectionColor={colors.primary}
+            selectionColor={colors.mainText}
             autoCompleteType="email"
             keyboardType="email-address"
             textContentType="emailAddress"

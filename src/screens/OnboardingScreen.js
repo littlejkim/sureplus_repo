@@ -38,23 +38,22 @@ export default function OnboardingScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.primary }]}>
       <View style={styles.body}>
         <Image
           style={{
             aspectRatio: 2.5,
             resizeMode: 'contain',
-            tintColor: dark ? 'white' : colors.primary,
           }}
           source={require('../assets/images/logo_long.png')}
         />
       </View>
       <View style={styles.footer}>
         <TouchableOpacity
-          style={[styles.mainButton, { backgroundColor: colors.primary }]}
+          style={[styles.mainButton, { backgroundColor: 'white' }]}
           onPress={onSignUp}
           activeOpacity={0.7}>
-          <Text style={[styles.mainButtonText, { color: colors.text }]}>
+          <Text style={[styles.mainButtonText, { color: colors.primary }]}>
             Sign Up
           </Text>
         </TouchableOpacity>
@@ -62,13 +61,13 @@ export default function OnboardingScreen({ navigation }) {
           style={styles.subButton}
           onPress={onLogIn}
           activeOpacity={0.5}>
-          <Text style={[styles.subButtonText, { color: colors.mainText }]}>
+          <Text style={[styles.subButtonText, { color: 'white' }]}>
             Already a member?{' '}
           </Text>
           <Text
             style={[
               styles.subButtonText,
-              { color: colors.mainText, fontFamily: TEXT_BOLD },
+              { color: 'white', fontFamily: TEXT_BOLD },
             ]}>
             Log in
           </Text>

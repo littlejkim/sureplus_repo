@@ -13,23 +13,21 @@ import {
 import { Portal } from 'react-native-portalize';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import RNRestart from 'react-native-restart'; // temporary restart module (might need to replace during production level)
+import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../styles/home.styles';
 import { ReportScreen, WalletScreen } from './index';
 import { deleteUserToken } from '../utils/userUtils';
 import { BottomModal } from '../components/BottomModal';
-import {
-  BACKGROUND_COLOR,
-  PRIMARY_COLOR,
-  SECONDARY_COLOR,
-  TEXT_BOLD,
-} from '../styles/constants';
+import { TEXT_BOLD } from '../styles/constants';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function HomeScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
+  const { colors, dark } = useTheme();
+
   // add buttons to top
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -93,7 +91,7 @@ export default function HomeScreen({ navigation }) {
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
-            tintColor={PRIMARY_COLOR}
+            tintColor={colors.primary}
             refreshing={refreshing}
             onRefresh={onRefresh}
           />
@@ -105,11 +103,10 @@ export default function HomeScreen({ navigation }) {
               fontFamily: TEXT_BOLD,
               textTransform: 'none',
             },
-            activeTintColor: SECONDARY_COLOR,
+            activeTintColor: colors.text,
             inactiveTintColor: 'gray',
             upperCaseLabel: false,
             style: {
-              backgroundColor: BACKGROUND_COLOR,
               alignSelf: 'flex-start',
               width: '55%',
               borderRadius: 70,
@@ -125,7 +122,7 @@ export default function HomeScreen({ navigation }) {
               width: '45%',
               left: '2.5%',
               borderRadius: 100,
-              backgroundColor: PRIMARY_COLOR,
+              backgroundColor: colors.primary,
             },
             tabStyle: {
               borderRadius: 100,

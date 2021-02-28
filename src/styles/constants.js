@@ -31,11 +31,9 @@ const DarkTheme = {
 
 export {
   LightTheme,
-  DarkTheme,
-  PRIMARY_COLOR,
-  SECONDARY_COLOR,
   BACKGROUND_COLOR_DARK,
   BACKGROUND_COLOR_LIGHT,
+  DarkTheme,
   TEXT_REGULAR,
   TEXT_BOLD,
   TEXT_DEMI,
