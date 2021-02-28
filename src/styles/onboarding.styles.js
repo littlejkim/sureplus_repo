@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
-import { TEXT_BOLD, TEXT_DEMI, TEXT_REGULAR } from './constants';
+import { TEXT_BOLD, TEXT_DEMI, TEXT_REGULAR } from './fonts';
 
 export default StyleSheet.create({
   container: {

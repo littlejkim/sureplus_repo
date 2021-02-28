@@ -6,9 +6,9 @@ import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../styles/onboarding.styles';
+import { TEXT_BOLD } from '../styles/fonts';
 import { storeUserToken } from '../utils/userUtils';
 import { testUserData } from '../data/testUserData';
-import { TEXT_BOLD } from '../styles/constants';
 
 export default function OnboardingScreen({ navigation }) {
   const { colors } = useTheme();

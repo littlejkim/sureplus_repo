@@ -26,7 +26,7 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function HomeScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
-  const { colors, dark } = useTheme();
+  const { colors } = useTheme();
 
   // add buttons to top
   useLayoutEffect(() => {

@@ -60,7 +60,7 @@ function DiscoverStackScreen() {
         headerTitleStyle: {
           color: colors.mainText,
           fontFamily: TEXT_BOLD,
-          fontSize: HEADER_TEXT_SIZE,
+          fontSize: 17,
         },
       }}>
       <DiscoverStack.Screen name="Discover" component={DiscoverScreen} />
@@ -84,7 +84,7 @@ function GroupsStackScreen() {
         headerTitleStyle: {
           color: colors.mainText,
           fontFamily: TEXT_BOLD,
-          fontSize: HEADER_TEXT_SIZE,
+          fontSize: 17,
         },
       }}>
       <GroupsStack.Screen name="Groups" component={GroupsScreen} />

@@ -1,17 +1,12 @@
 // public imports
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Platform,
-} from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../styles/onboarding.styles';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+
 export default function SignUpScreen() {
   const { colors, dark } = useTheme();
 
