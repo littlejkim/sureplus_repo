@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import RNRestart from 'react-native-restart'; // temporary restart module (might need to replace during production level)
+import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../styles/onboarding.styles';
@@ -10,6 +11,7 @@ import { testUserData } from '../data/testUserData';
 import { TEXT_BOLD } from '../styles/constants';
 
 export default function OnboardingScreen({ navigation }) {
+  const { colors, dark } = useTheme();
   // sign in action
   const onSignUp = () => {
     navigation.navigate('SignUp');
@@ -39,23 +41,35 @@ export default function OnboardingScreen({ navigation }) {
     <View style={styles.container}>
       <View style={styles.body}>
         <Image
-          style={{ aspectRatio: 2.5, resizeMode: 'contain' }}
+          style={{
+            aspectRatio: 2.5,
+            resizeMode: 'contain',
+            tintColor: dark ? 'white' : colors.primary,
+          }}
           source={require('../assets/images/logo_long.png')}
         />
       </View>
-      <View style={[styles.footer]}>
+      <View style={styles.footer}>
         <TouchableOpacity
-          style={styles.mainButton}
+          style={[styles.mainButton, { backgroundColor: colors.primary }]}
           onPress={onSignUp}
           activeOpacity={0.7}>
-          <Text style={styles.mainButtonText}>Sign Up</Text>
+          <Text style={[styles.mainButtonText, { color: colors.text }]}>
+            Sign Up
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.subButton}
           onPress={onLogIn}
           activeOpacity={0.5}>
-          <Text style={styles.subButtonText}>Already a member? </Text>
-          <Text style={[styles.subButtonText, { fontFamily: TEXT_BOLD }]}>
+          <Text style={[styles.subButtonText, { color: colors.mainText }]}>
+            Already a member?{' '}
+          </Text>
+          <Text
+            style={[
+              styles.subButtonText,
+              { color: colors.mainText, fontFamily: TEXT_BOLD },
+            ]}>
             Log in
           </Text>
         </TouchableOpacity>

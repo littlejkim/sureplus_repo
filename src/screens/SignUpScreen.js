@@ -7,13 +7,15 @@ import {
   TextInput,
   Platform,
 } from 'react-native';
-import { TEXT_BOLD, TEXT_REGULAR } from '../styles/constants';
-import Spinner from 'react-native-loading-spinner-overlay';
+import { useTheme } from '@react-navigation/native';
 
 // custom imports
+import { TEXT_BOLD, TEXT_REGULAR } from '../styles/constants';
 import styles from '../styles/onboarding.styles';
-
+import { LoadingSpinner } from '../components/LoadingSpinner';
 export default function SignUpScreen() {
+  const { colors, dark } = useTheme();
+
   const [loading, setLoading] = useState(false); // used to show loading spinner
   const [email, setEmail] = useState();
 
@@ -27,9 +29,15 @@ export default function SignUpScreen() {
 
   return (
     <View style={styles.container}>
-      <Spinner visible={loading} animation="fade" />
+      <LoadingSpinner loading={loading} />
       <View style={styles.body}>
-        <Text style={{ fontFamily: TEXT_BOLD, color: 'white', fontSize: 30 }}>
+        <Text
+          style={[
+            styles.titleText,
+            {
+              color: colors.mainText,
+            },
+          ]}>
           Enter email address
         </Text>
         <View
@@ -38,9 +46,10 @@ export default function SignUpScreen() {
             marginTop: 30,
           }}>
           <TextInput
-            style={{ fontFamily: TEXT_REGULAR, fontSize: 25, color: 'white' }}
+            keyboardAppearance={dark ? 'dark' : 'light'}
+            style={[styles.textInput, { color: colors.mainText }]}
             autoCapitalize="none"
-            selectionColor="white"
+            selectionColor={colors.primary}
             autoCompleteType="email"
             keyboardType="email-address"
             textContentType="emailAddress"
@@ -58,11 +67,13 @@ export default function SignUpScreen() {
         <TouchableOpacity
           style={[
             styles.mainButton,
-            { marginBottom: Platform.OS === 'ios' ? 0 : -30 }, // check android margin bottom for footer
+            { backgroundColor: colors.primary }, // check android margin bottom for footer
           ]}
           onPress={verifyEmail}
           activeOpacity={0.7}>
-          <Text style={styles.mainButtonText}>Next</Text>
+          <Text style={[styles.mainButtonText, { color: colors.text }]}>
+            Next
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

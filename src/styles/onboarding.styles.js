@@ -1,11 +1,10 @@
 import { StyleSheet, Platform } from 'react-native';
-import { PRIMARY_COLOR, TEXT_DEMI, TEXT_REGULAR } from './constants';
+import { TEXT_BOLD, TEXT_DEMI, TEXT_REGULAR } from './constants';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: PRIMARY_COLOR,
   },
   body: {
     flex: 1,
@@ -16,18 +15,24 @@ export default StyleSheet.create({
     marginHorizontal: 15,
     marginBottom: Platform.OS === 'ios' ? 50 : 20,
   },
+  titleText: {
+    fontSize: 30,
+    fontFamily: TEXT_BOLD,
+  },
+  textInput: {
+    fontFamily: TEXT_REGULAR,
+    fontSize: 25,
+  },
   mainButton: {
     marginBottom: 20,
     height: 55,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
     borderRadius: 20,
   },
   mainButtonText: {
     fontSize: 19,
     fontFamily: TEXT_DEMI,
-    color: PRIMARY_COLOR,
   },
   subButton: {
     flexDirection: 'row',
