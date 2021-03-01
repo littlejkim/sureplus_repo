@@ -43,21 +43,21 @@ If you have global styles defined in your project you can put it over here like 
 
 You can put utils files over here.
 
-## Naming conventions
+# 2. Naming conventions
 
-### folders
+## folders
 
 /lowercase
 
-### files
+## files
 
 PascalCase.js
 
-### variables
+## variables
 
 const camelCase = "this is a string"
 
-### comments
+## comments
 
 // TODO: fix redux
 
