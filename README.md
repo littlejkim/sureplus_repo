@@ -51,7 +51,8 @@ You can put utils files over here.
 
 ## files
 
-PascalCase.js
+component files (e.g. screens, components) : PascalCase.js
+helper files (e.g. utils, styles) : camelCase.js
 
 ## variables
 
