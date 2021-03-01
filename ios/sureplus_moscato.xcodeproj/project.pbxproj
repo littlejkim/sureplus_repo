@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* sureplus_moscatoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* sureplus_moscatoTests.m */; };
-		01801BA1704F7550DCCA8628 /* libPods-sureplus_moscato-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3F8716DB3915DCB7283ABF /* libPods-sureplus_moscato-tvOS.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -16,13 +15,15 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* sureplus_moscatoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* sureplus_moscatoTests.m */; };
-		3B1241C9BE2B50B71A73A5A1 /* libPods-sureplus_moscato.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3419D3F3E3E1C4D99222B1CB /* libPods-sureplus_moscato.a */; };
-		4BC7F6C0EB7001E237A06782 /* libPods-sureplus_moscato-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BB753CDB648B9B733AC043 /* libPods-sureplus_moscato-tvOSTests.a */; };
-		68D4B1E862EA1545FCD09E76 /* libPods-sureplus_moscato-sureplus_moscatoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9168BA8EC25B986A3BEDAB /* libPods-sureplus_moscato-sureplus_moscatoTests.a */; };
+		331D6FEC8B91EE216C38EDEA /* libPods-sureplus_moscato.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C641C09F8673BCDC1093A9 /* libPods-sureplus_moscato.a */; };
+		3412B34225ECBADF00CAFE58 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3412B34125ECBADF00CAFE58 /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		83C3191A868F1B789AFE61D8 /* libPods-sureplus_moscato-sureplus_moscatoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ECDD478B8F42494E78899 /* libPods-sureplus_moscato-sureplus_moscatoTests.a */; };
 		A5AE3FB363904DF28689D385 /* AvenirNextCyr-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC128046C449C589F0A35F /* AvenirNextCyr-Regular.ttf */; };
-		DD9C41AC4B2340E8B8812410 /* AvenirNextCyr-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C94968D18643D8BE63EFED /* AvenirNextCyr-Bold.ttf */; };
 		BA4937D82EFF4212B09A4075 /* AvenirNextCyr-Demi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB81CBD37DD844C6BE58FC68 /* AvenirNextCyr-Demi.ttf */; };
+		DD9C41AC4B2340E8B8812410 /* AvenirNextCyr-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C94968D18643D8BE63EFED /* AvenirNextCyr-Bold.ttf */; };
+		DFB3571F75C096999747D0E0 /* libPods-sureplus_moscato-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70ECB31749AD897DF9EDD162 /* libPods-sureplus_moscato-tvOS.a */; };
+		EE694641FAA4E639BC047530 /* libPods-sureplus_moscato-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABBE25FB6A57342F69C91 /* libPods-sureplus_moscato-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,32 +48,33 @@
 		00E356EE1AD99517003FC87E /* sureplus_moscatoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sureplus_moscatoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* sureplus_moscatoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sureplus_moscatoTests.m; sourceTree = "<group>"; };
+		0DB4D5480D615D56F0308014 /* Pods-sureplus_moscato-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOS/Pods-sureplus_moscato-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* sureplus_moscato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sureplus_moscato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = sureplus_moscato/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = sureplus_moscato/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = sureplus_moscato/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = sureplus_moscato/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = sureplus_moscato/main.m; sourceTree = "<group>"; };
-		162D30971F018032DB82B18A /* Pods-sureplus_moscato.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* sureplus_moscato-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sureplus_moscato-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* sureplus_moscato-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sureplus_moscato-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3029F01DE7E747F2CDB7B27D /* Pods-sureplus_moscato-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOSTests/Pods-sureplus_moscato-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		3419D3F3E3E1C4D99222B1CB /* libPods-sureplus_moscato.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sureplus_moscato.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FA73886847936C7399DCBC4 /* Pods-sureplus_moscato-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOS/Pods-sureplus_moscato-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		422A416E9166EF874DE73F81 /* Pods-sureplus_moscato.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato.debug.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato.debug.xcconfig"; sourceTree = "<group>"; };
-		4466E2FECC9D8D97D487C7B1 /* Pods-sureplus_moscato-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOS.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOS/Pods-sureplus_moscato-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		4C3F8716DB3915DCB7283ABF /* libPods-sureplus_moscato-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sureplus_moscato-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3412B34125ECBADF00CAFE58 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		43C6708109000486D5E2D9AE /* Pods-sureplus_moscato-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOS.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOS/Pods-sureplus_moscato-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		4F481AE66A3790F33C631A63 /* Pods-sureplus_moscato.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato.release.xcconfig"; sourceTree = "<group>"; };
 		5DBC128046C449C589F0A35F /* AvenirNextCyr-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirNextCyr-Regular.ttf"; path = "../src/assets/fonts/AvenirNextCyr-Regular.ttf"; sourceTree = "<group>"; };
-		63BC9D4F58C99BB68F065A3B /* Pods-sureplus_moscato-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOSTests/Pods-sureplus_moscato-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		76BB753CDB648B9B733AC043 /* libPods-sureplus_moscato-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sureplus_moscato-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70ECB31749AD897DF9EDD162 /* libPods-sureplus_moscato-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sureplus_moscato-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75C641C09F8673BCDC1093A9 /* libPods-sureplus_moscato.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sureplus_moscato.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = sureplus_moscato/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8E5FAC4919A71B76DBE6083F /* Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-sureplus_moscatoTests/Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A2D6A11A48433BC2A7374953 /* Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-sureplus_moscatoTests/Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig"; sourceTree = "<group>"; };
-		CD9168BA8EC25B986A3BEDAB /* libPods-sureplus_moscato-sureplus_moscatoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sureplus_moscato-sureplus_moscatoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B8AB5B4832413B62F76554C /* Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-sureplus_moscatoTests/Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig"; sourceTree = "<group>"; };
+		BB81CBD37DD844C6BE58FC68 /* AvenirNextCyr-Demi.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirNextCyr-Demi.ttf"; path = "../src/assets/fonts/AvenirNextCyr-Demi.ttf"; sourceTree = "<group>"; };
+		D1AEAFC880FB9423E90E275E /* Pods-sureplus_moscato.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato.debug.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato.debug.xcconfig"; sourceTree = "<group>"; };
+		D3F5DAF035ABC51D626C1ED6 /* Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-sureplus_moscatoTests/Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DB41B758FB6012C32F41C515 /* Pods-sureplus_moscato-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOSTests/Pods-sureplus_moscato-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E53ABBE25FB6A57342F69C91 /* libPods-sureplus_moscato-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sureplus_moscato-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5C94968D18643D8BE63EFED /* AvenirNextCyr-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirNextCyr-Bold.ttf"; path = "../src/assets/fonts/AvenirNextCyr-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		E5C94968D18643D8BE63EFED /* AvenirNextCyr-Bold.ttf */ = {isa = PBXFileReference; name = "AvenirNextCyr-Bold.ttf"; path = "../src/assets/fonts/AvenirNextCyr-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BB81CBD37DD844C6BE58FC68 /* AvenirNextCyr-Demi.ttf */ = {isa = PBXFileReference; name = "AvenirNextCyr-Demi.ttf"; path = "../src/assets/fonts/AvenirNextCyr-Demi.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EF3ECDD478B8F42494E78899 /* libPods-sureplus_moscato-sureplus_moscatoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sureplus_moscato-sureplus_moscatoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD6BBFA0E4E7C28EC9A0E856 /* Pods-sureplus_moscato-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOSTests/Pods-sureplus_moscato-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68D4B1E862EA1545FCD09E76 /* libPods-sureplus_moscato-sureplus_moscatoTests.a in Frameworks */,
+				83C3191A868F1B789AFE61D8 /* libPods-sureplus_moscato-sureplus_moscatoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B1241C9BE2B50B71A73A5A1 /* libPods-sureplus_moscato.a in Frameworks */,
+				331D6FEC8B91EE216C38EDEA /* libPods-sureplus_moscato.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01801BA1704F7550DCCA8628 /* libPods-sureplus_moscato-tvOS.a in Frameworks */,
+				DFB3571F75C096999747D0E0 /* libPods-sureplus_moscato-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BC7F6C0EB7001E237A06782 /* libPods-sureplus_moscato-tvOSTests.a in Frameworks */,
+				EE694641FAA4E639BC047530 /* libPods-sureplus_moscato-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,14 +147,14 @@
 		226C5602B02FF5FFEFBF4B74 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				422A416E9166EF874DE73F81 /* Pods-sureplus_moscato.debug.xcconfig */,
-				162D30971F018032DB82B18A /* Pods-sureplus_moscato.release.xcconfig */,
-				8E5FAC4919A71B76DBE6083F /* Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig */,
-				A2D6A11A48433BC2A7374953 /* Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig */,
-				3FA73886847936C7399DCBC4 /* Pods-sureplus_moscato-tvOS.debug.xcconfig */,
-				4466E2FECC9D8D97D487C7B1 /* Pods-sureplus_moscato-tvOS.release.xcconfig */,
-				63BC9D4F58C99BB68F065A3B /* Pods-sureplus_moscato-tvOSTests.debug.xcconfig */,
-				3029F01DE7E747F2CDB7B27D /* Pods-sureplus_moscato-tvOSTests.release.xcconfig */,
+				D1AEAFC880FB9423E90E275E /* Pods-sureplus_moscato.debug.xcconfig */,
+				4F481AE66A3790F33C631A63 /* Pods-sureplus_moscato.release.xcconfig */,
+				D3F5DAF035ABC51D626C1ED6 /* Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig */,
+				9B8AB5B4832413B62F76554C /* Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig */,
+				0DB4D5480D615D56F0308014 /* Pods-sureplus_moscato-tvOS.debug.xcconfig */,
+				43C6708109000486D5E2D9AE /* Pods-sureplus_moscato-tvOS.release.xcconfig */,
+				DB41B758FB6012C32F41C515 /* Pods-sureplus_moscato-tvOSTests.debug.xcconfig */,
+				FD6BBFA0E4E7C28EC9A0E856 /* Pods-sureplus_moscato-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -162,10 +164,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				3419D3F3E3E1C4D99222B1CB /* libPods-sureplus_moscato.a */,
-				CD9168BA8EC25B986A3BEDAB /* libPods-sureplus_moscato-sureplus_moscatoTests.a */,
-				4C3F8716DB3915DCB7283ABF /* libPods-sureplus_moscato-tvOS.a */,
-				76BB753CDB648B9B733AC043 /* libPods-sureplus_moscato-tvOSTests.a */,
+				75C641C09F8673BCDC1093A9 /* libPods-sureplus_moscato.a */,
+				EF3ECDD478B8F42494E78899 /* libPods-sureplus_moscato-sureplus_moscatoTests.a */,
+				70ECB31749AD897DF9EDD162 /* libPods-sureplus_moscato-tvOS.a */,
+				E53ABBE25FB6A57342F69C91 /* libPods-sureplus_moscato-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -180,6 +182,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3412B34125ECBADF00CAFE58 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* sureplus_moscato */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* sureplus_moscatoTests */,
@@ -221,11 +224,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "sureplus_moscatoTests" */;
 			buildPhases = (
-				973FE130CA2D03E8A9AE5314 /* [CP] Check Pods Manifest.lock */,
+				B4AA12AC08D99B63B9B3354C /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				6AD2366F7854B64D13832DB4 /* [CP] Copy Pods Resources */,
+				2DF5E2E69EA19F4EDF4F5888 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -241,13 +244,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "sureplus_moscato" */;
 			buildPhases = (
-				8F3BA7BFB73829D56CDE5B39 /* [CP] Check Pods Manifest.lock */,
+				098B47825CC28F196CCFCC43 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				37B76C8EC4407D173401CE35 /* [CP] Copy Pods Resources */,
+				26CF6D27897A79FA7B0174BC /* [CP] Copy Pods Resources */,
+				6771D12F83688A1D057912C6 /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -262,7 +266,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "sureplus_moscato-tvOS" */;
 			buildPhases = (
-				00BCCA3DD8C0FD1C71ABC529 /* [CP] Check Pods Manifest.lock */,
+				2FD3C5EDF11BB79896113F3F /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -282,7 +286,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "sureplus_moscato-tvOSTests" */;
 			buildPhases = (
-				2E1D7792188E0C4AC5732711 /* [CP] Check Pods Manifest.lock */,
+				5D8928EC550EE6DFE86F8A18 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -362,6 +366,7 @@
 				A5AE3FB363904DF28689D385 /* AvenirNextCyr-Regular.ttf in Resources */,
 				DD9C41AC4B2340E8B8812410 /* AvenirNextCyr-Bold.ttf in Resources */,
 				BA4937D82EFF4212B09A4075 /* AvenirNextCyr-Demi.ttf in Resources */,
+				3412B34225ECBADF00CAFE58 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,28 +388,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00BCCA3DD8C0FD1C71ABC529 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-sureplus_moscato-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,79 +402,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		2E1D7792188E0C4AC5732711 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-sureplus_moscato-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		37B76C8EC4407D173401CE35 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6AD2366F7854B64D13832DB4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sureplus_moscato-sureplus_moscatoTests/Pods-sureplus_moscato-sureplus_moscatoTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sureplus_moscato-sureplus_moscatoTests/Pods-sureplus_moscato-sureplus_moscatoTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F3BA7BFB73829D56CDE5B39 /* [CP] Check Pods Manifest.lock */ = {
+		098B47825CC28F196CCFCC43 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -513,7 +424,111 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		973FE130CA2D03E8A9AE5314 /* [CP] Check Pods Manifest.lock */ = {
+		26CF6D27897A79FA7B0174BC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		2DF5E2E69EA19F4EDF4F5888 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sureplus_moscato-sureplus_moscatoTests/Pods-sureplus_moscato-sureplus_moscatoTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sureplus_moscato-sureplus_moscatoTests/Pods-sureplus_moscato-sureplus_moscatoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FD3C5EDF11BB79896113F3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sureplus_moscato-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D8928EC550EE6DFE86F8A18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sureplus_moscato-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6771D12F83688A1D057912C6 /* [CP-User] [RNFB] Core Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] [RNFB] Core Configuration";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\n\n  # config.admob_delay_app_measurement_init\n  _ADMOB_DELAY_APP_MEASUREMENT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"admob_delay_app_measurement_init\")\n  if [[ $_ADMOB_DELAY_APP_MEASUREMENT == \"true\" ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GADDelayAppMeasurementInit\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"YES\")\n  fi\n\n  # config.admob_ios_app_id\n  _ADMOB_IOS_APP_ID=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"admob_ios_app_id\")\n  if [[ $_ADMOB_IOS_APP_ID ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GADApplicationIdentifier\")\n    _PLIST_ENTRY_TYPES+=(\"string\")\n    _PLIST_ENTRY_VALUES+=(\"$_ADMOB_IOS_APP_ID\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
+		};
+		B4AA12AC08D99B63B9B3354C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -628,7 +643,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E5FAC4919A71B76DBE6083F /* Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig */;
+			baseConfigurationReference = D3F5DAF035ABC51D626C1ED6 /* Pods-sureplus_moscato-sureplus_moscatoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -651,7 +666,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2D6A11A48433BC2A7374953 /* Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig */;
+			baseConfigurationReference = 9B8AB5B4832413B62F76554C /* Pods-sureplus_moscato-sureplus_moscatoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -671,7 +686,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 422A416E9166EF874DE73F81 /* Pods-sureplus_moscato.debug.xcconfig */;
+			baseConfigurationReference = D1AEAFC880FB9423E90E275E /* Pods-sureplus_moscato.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -685,7 +700,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.sureplus;
 				PRODUCT_NAME = sureplus_moscato;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -695,7 +710,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 162D30971F018032DB82B18A /* Pods-sureplus_moscato.release.xcconfig */;
+			baseConfigurationReference = 4F481AE66A3790F33C631A63 /* Pods-sureplus_moscato.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -708,7 +723,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.sureplus;
 				PRODUCT_NAME = sureplus_moscato;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -717,7 +732,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FA73886847936C7399DCBC4 /* Pods-sureplus_moscato-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 0DB4D5480D615D56F0308014 /* Pods-sureplus_moscato-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -745,7 +760,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4466E2FECC9D8D97D487C7B1 /* Pods-sureplus_moscato-tvOS.release.xcconfig */;
+			baseConfigurationReference = 43C6708109000486D5E2D9AE /* Pods-sureplus_moscato-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -773,7 +788,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63BC9D4F58C99BB68F065A3B /* Pods-sureplus_moscato-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = DB41B758FB6012C32F41C515 /* Pods-sureplus_moscato-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -800,7 +815,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3029F01DE7E747F2CDB7B27D /* Pods-sureplus_moscato-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = FD6BBFA0E4E7C28EC9A0E856 /* Pods-sureplus_moscato-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -857,6 +872,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -917,6 +933,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
