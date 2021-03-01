@@ -1,4 +1,4 @@
-package com.sureplus_moscato;
+package io.sureplus;
 
 import android.app.Application;
 import android.content.Context;

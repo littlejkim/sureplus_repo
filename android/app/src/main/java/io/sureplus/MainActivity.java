@@ -1,4 +1,4 @@
-package com.sureplus_moscato;
+package io.sureplus;
 
 import com.facebook.react.ReactActivity;
 
