@@ -5,12 +5,12 @@ import RNRestart from 'react-native-restart'; // temporary restart module (might
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import styles from '../styles/onboarding.styles';
+import styles from '../styles/welcome.styles';
 import { TEXT_BOLD } from '../styles/fonts';
 import { storeUserToken } from '../utils/userUtils';
 import { testUserData } from '../data/testUserData';
 
-export default function OnboardingScreen({ navigation }) {
+export default function WelcomeScreen({ navigation }) {
   const { colors } = useTheme();
   // sign in action
   const onSignUp = () => {

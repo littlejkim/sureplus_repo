@@ -1,75 +1,57 @@
 // public imports
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState, createContext } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import styles from '../styles/onboarding.styles';
+import styles from '../styles/welcome.styles';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+import { EmailForm } from '../components/EmailForm';
+import { PhoneForm } from '../components/PhoneForm';
 
-export default function SignUpScreen() {
-  const { colors, dark } = useTheme();
+const SignUpStack = createStackNavigator(); // signup stack
+export const SignUpContext = createContext(); // signup context (used to store email, phonenumber, name, etc)
 
+export default function SignUpScreen({ navigation }) {
+  const theme = useTheme();
   const [loading, setLoading] = useState(false); // used to show loading spinner
-  const [email, setEmail] = useState();
+
+  const [email, setEmail] = useState(''); // set email
+  const [phone, setPhone] = useState('');
+  const value = { email, setEmail, phone, setPhone };
 
   // wait for email verification
-  const verifyEmail = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 4000);
+  const next = () => {
+    navigation.navigate('Phone');
   };
 
   return (
-    <View style={styles.container}>
-      <LoadingSpinner loading={loading} />
-      <View style={styles.body}>
-        <Text
-          style={[
-            styles.titleText,
-            {
-              color: colors.mainText,
-            },
-          ]}>
-          Enter email address
-        </Text>
-        <View
-          style={{
-            width: '80%',
-            marginTop: 30,
+    <SignUpContext.Provider value={value}>
+      <View style={styles.container}>
+        <LoadingSpinner loading={loading} />
+        <SignUpStack.Navigator
+          initialRouteName="Email"
+          screenOptions={{
+            headerShown: false,
           }}>
-          <TextInput
-            keyboardAppearance={dark ? 'dark' : 'light'}
-            style={[styles.textInput, { color: colors.mainText }]}
-            autoCapitalize="none"
-            selectionColor={colors.mainText}
-            autoCompleteType="email"
-            keyboardType="email-address"
-            textContentType="emailAddress"
-            maxLength={320}
-            autoCorrect={false}
-            autoFocus={true}
-            clearButtonMode="while-editing"
-            onChangeText={(text) => setEmail(text)}
-            onEndEditing={() => console.log(email)}
-            textAlign="center"
-          />
+          <SignUpStack.Screen name="Email" component={EmailForm} />
+          <SignUpStack.Screen name="Phone" component={PhoneForm} />
+        </SignUpStack.Navigator>
+        <View style={styles.footer}>
+          <TouchableOpacity
+            style={[
+              styles.mainButton,
+              { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
+            ]}
+            onPress={next}
+            activeOpacity={0.7}>
+            <Text style={[styles.mainButtonText, { color: theme.colors.text }]}>
+              Next
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={[
-            styles.mainButton,
-            { backgroundColor: colors.primary }, // check android margin bottom for footer
-          ]}
-          onPress={verifyEmail}
-          activeOpacity={0.7}>
-          <Text style={[styles.mainButtonText, { color: colors.text }]}>
-            Next
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </SignUpContext.Provider>
   );
 }

@@ -1,5 +1,5 @@
 import HomeScreen from './HomeScreen';
-import OnboardingScreen from './OnboardingScreen';
+import WelcomeScreen from './WelcomeScreen';
 import DiscoverScreen from './DiscoverScreen';
 import GroupsScreen from './GroupsScreen';
 import SplashScreen from './SplashScreen';
@@ -10,7 +10,7 @@ import WalletScreen from './WalletScreen';
 
 export {
   HomeScreen,
-  OnboardingScreen,
+  WelcomeScreen,
   DiscoverScreen,
   GroupsScreen,
   SplashScreen,
