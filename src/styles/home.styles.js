@@ -1,10 +1,5 @@
 import { StyleSheet } from 'react-native';
-import {
-  PRIMARY_COLOR,
-  TEXT_BOLD,
-  TEXT_DEMI,
-  TEXT_REGULAR,
-} from '../styles/constants';
+import { TEXT_BOLD, TEXT_REGULAR } from '../styles/constants';
 
 export default StyleSheet.create({
   container: {

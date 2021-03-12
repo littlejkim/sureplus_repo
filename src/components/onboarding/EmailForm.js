@@ -4,8 +4,8 @@ import { View, Text, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import styles from '../styles/welcome.styles';
-import { SignUpContext } from '../screens/SignUpScreen';
+import styles from '../../styles/welcome.styles';
+import { SignUpContext } from '../../screens/SignUpScreen';
 export function EmailForm() {
   const theme = useTheme();
 

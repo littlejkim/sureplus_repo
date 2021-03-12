@@ -7,8 +7,8 @@ import { useTheme } from '@react-navigation/native';
 // custom imports
 import styles from '../styles/welcome.styles';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import { EmailForm } from '../components/EmailForm';
-import { PhoneForm } from '../components/PhoneForm';
+import { EmailForm } from '../components/onboarding/EmailForm';
+import { MainModal } from '../components/MainModal';
 
 const SignUpStack = createStackNavigator(); // signup stack
 export const SignUpContext = createContext(); // signup context (used to store email, phonenumber, name, etc)
@@ -17,26 +17,25 @@ export default function SignUpScreen({ navigation }) {
   const theme = useTheme();
   const [loading, setLoading] = useState(false); // used to show loading spinner
 
-  const [email, setEmail] = useState(''); // set email
-  const [phone, setPhone] = useState('');
-  const value = { email, setEmail, phone, setPhone };
+  const [modal, setModal] = useState(false);
+  const [email, setEmail] = useState('');
+  const value = { email, setEmail };
 
-  // wait for email verification
-  const next = () => {
-    navigation.navigate('Phone');
+  const _modal = () => {
+    setModal(!modal);
   };
 
   return (
     <SignUpContext.Provider value={value}>
+      <MainModal visible={modal} hide={_modal} />
+      <LoadingSpinner loading={loading} />
       <View style={styles.container}>
-        <LoadingSpinner loading={loading} />
         <SignUpStack.Navigator
           initialRouteName="Email"
           screenOptions={{
             headerShown: false,
           }}>
           <SignUpStack.Screen name="Email" component={EmailForm} />
-          <SignUpStack.Screen name="Phone" component={PhoneForm} />
         </SignUpStack.Navigator>
         <View style={styles.footer}>
           <TouchableOpacity
@@ -44,7 +43,7 @@ export default function SignUpScreen({ navigation }) {
               styles.mainButton,
               { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
             ]}
-            onPress={next}
+            onPress={_modal}
             activeOpacity={0.7}>
             <Text style={[styles.mainButtonText, { color: theme.colors.text }]}>
               Next
