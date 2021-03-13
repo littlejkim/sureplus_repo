@@ -50,7 +50,10 @@ export default function WelcomeScreen({ navigation }) {
       </View>
       <View style={styles.footer}>
         <TouchableOpacity
-          style={[styles.mainButton, { backgroundColor: 'white' }]}
+          style={[
+            styles.mainButton,
+            { backgroundColor: 'white', marginVertical: 5 },
+          ]}
           onPress={onSignUp}
           activeOpacity={0.7}>
           <Text style={[styles.mainButtonText, { color: colors.primary }]}>

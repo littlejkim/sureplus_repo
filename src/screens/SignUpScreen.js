@@ -13,7 +13,7 @@ import { useTheme } from '@react-navigation/native';
 // custom imports
 import styles from '../styles/welcome.styles';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import { EmailForm, PasswordForm, PhoneForm } from '../components/onboarding';
+import { EmailForm, PasswordForm, PhoneForm, CompleteForm } from './onboarding';
 import { MainModal } from '../components/MainModal';
 
 const SignUpStack = createStackNavigator(); // signup stack
@@ -37,33 +37,16 @@ export default function SignUpScreen({ navigation }) {
     <SignUpContext.Provider value={value}>
       <MainModal visible={modal} hide={_modal} />
       <LoadingSpinner loading={loading} />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.container}>
-        <SignUpStack.Navigator
-          initialRouteName="Phone"
-          screenOptions={{
-            headerShown: false,
-          }}>
-          <SignUpStack.Screen name="Phone" component={PhoneForm} />
-
-          <SignUpStack.Screen name="Email" component={EmailForm} />
-          <SignUpStack.Screen name="Password" component={PasswordForm} />
-        </SignUpStack.Navigator>
-        <View style={styles.footer}>
-          <TouchableOpacity
-            style={[
-              styles.mainButton,
-              { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
-            ]}
-            onPress={_modal}
-            activeOpacity={0.7}>
-            <Text style={[styles.mainButtonText, { color: theme.colors.text }]}>
-              Next
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </KeyboardAvoidingView>
+      <SignUpStack.Navigator
+        initialRouteName="Phone"
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <SignUpStack.Screen name="Phone" component={PhoneForm} />
+        <SignUpStack.Screen name="Email" component={EmailForm} />
+        <SignUpStack.Screen name="Password" component={PasswordForm} />
+        <SignUpStack.Screen name="Complete" component={CompleteForm} />
+      </SignUpStack.Navigator>
     </SignUpContext.Provider>
   );
 }
