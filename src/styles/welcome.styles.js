@@ -4,7 +4,6 @@ import { TEXT_BOLD, TEXT_DEMI, TEXT_REGULAR } from './fonts';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
   },
   body: {
     flex: 1,
@@ -12,8 +11,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   footer: {
-    marginHorizontal: 15,
-    marginBottom: Platform.OS === 'ios' ? 50 : 20,
+    marginBottom: Platform.OS === 'ios' ? 20 : 0,
   },
   titleText: {
     fontSize: 30,
@@ -24,11 +22,11 @@ export default StyleSheet.create({
     fontSize: 25,
   },
   mainButton: {
-    marginBottom: 20,
-    height: 55,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 20,
+    height: 55,
+    borderRadius: 30,
+    marginHorizontal: 15,
   },
   mainButtonText: {
     fontSize: 19,
@@ -38,7 +36,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 20,
+    height: 55,
+    borderRadius: 30,
+    marginHorizontal: 15,
   },
   subButtonText: {
     fontSize: 17,

@@ -6,11 +6,10 @@ import { useTheme } from '@react-navigation/native';
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
-
-export default function EmailForm() {
+export default function PasswordForm() {
   const theme = useTheme();
 
-  const { email, setEmail } = useContext(SignUpContext);
+  const { password, setPassword } = useContext(SignUpContext);
 
   return (
     <View style={styles.body}>
@@ -21,7 +20,7 @@ export default function EmailForm() {
             color: theme.colors.mainText,
           },
         ]}>
-        Enter email address
+        Enter password
       </Text>
       <View
         style={{
@@ -33,15 +32,12 @@ export default function EmailForm() {
           style={[styles.textInput, { color: theme.colors.mainText }]}
           autoCapitalize="none"
           selectionColor={theme.colors.mainText}
-          autoCompleteType="email"
-          keyboardType="email-address"
-          textContentType="emailAddress"
           maxLength={320}
           autoCorrect={false}
           autoFocus={true}
           clearButtonMode="while-editing"
           onChangeText={(value) => {
-            setEmail(value);
+            setPassword(value);
           }}
           textAlign="center"
         />
