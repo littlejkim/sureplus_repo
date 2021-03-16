@@ -18,6 +18,7 @@ export default StyleSheet.create({
     fontFamily: TEXT_BOLD,
   },
   textInput: {
+    width: '85%',
     fontFamily: TEXT_REGULAR,
     fontSize: 25,
   },

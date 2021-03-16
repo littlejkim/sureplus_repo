@@ -24,9 +24,9 @@ export default function SignUpScreen({ navigation }) {
   const [loading, setLoading] = useState(false); // used to show loading spinner
 
   const [modal, setModal] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [phone, setPhone] = useState(null);
   const value = { email, setEmail, password, setPassword, phone, setPhone };
 
   const _modal = () => {
