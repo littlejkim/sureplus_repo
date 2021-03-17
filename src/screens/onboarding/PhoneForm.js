@@ -1,7 +1,14 @@
 // public imports
-import React, { useContext } from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import React, { useContext, useState } from 'react';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import SendSMS from 'react-native-sms';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -11,9 +18,31 @@ export default function PhoneForm({ navigation }) {
   const theme = useTheme();
 
   const { phone, setPhone } = useContext(SignUpContext);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const _share = () => {
-    console.log('share');
+  const _continue = () => {
+    setIsLoading(true);
+
+    // this module doesn't work on virtual device (must test on actual device)
+    SendSMS.send(
+      {
+        body: 'TODO: add hash to send to server', // add hash
+        recipients: ['1056634352'], // can send to multiple numbers
+        successTypes: ['sent', 'queued'], // for android
+        allowAndroidSendWithoutReadPermission: true, // for android
+      },
+      (completed, cancelled, error) => {
+        setIsLoading(false);
+        if (completed) {
+          console.log('Message successfully sent');
+          navigation.navigate('Email');
+        } else if (cancelled) {
+          Alert.alert('User cancelled');
+        } else {
+          Alert.alert('Error! Message not sent :(');
+        }
+      },
+    );
   };
 
   return (
@@ -28,20 +57,29 @@ export default function PhoneForm({ navigation }) {
           ]}>
           Send SMS
         </Text>
-        <Button title="Send Text" onPress={_share} />
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity
-          style={[
-            styles.mainButton,
-            { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
-          ]}
-          onPress={() => navigation.navigate('Email')}
-          activeOpacity={0.7}>
-          <Text style={[styles.mainButtonText, { color: theme.colors.text }]}>
-            Next
-          </Text>
-        </TouchableOpacity>
+        {!isLoading ? (
+          <TouchableOpacity
+            style={[
+              styles.mainButton,
+              { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
+            ]}
+            onPress={_continue}
+            activeOpacity={0.7}>
+            <Text style={[styles.mainButtonText, { color: theme.colors.text }]}>
+              Next
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <View
+            style={[
+              styles.mainButton,
+              { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
+            ]}>
+            <ActivityIndicator size="small" color="white" />
+          </View>
+        )}
       </View>
     </View>
   );

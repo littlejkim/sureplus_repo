@@ -10,6 +10,8 @@ target 'sureplus_moscato' do
 
   pod 'react-native-restart', :path => '../node_modules/react-native-restart'
 
+  pod 'react-native-sms', :path => '../node_modules/react-native-sms'
+
   target 'sureplus_moscatoTests' do
     inherit! :complete
     # Pods for testing

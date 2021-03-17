@@ -28,7 +28,8 @@
     "react-native-portalize": "^1.0.7",
     "react-native-reanimated": "^1.13.2",
     "react-native-restart": "^0.0.20",
-    "react-native-safe-area-context": "^3.1.9"
+    "react-native-safe-area-context": "^3.1.9",
+    "react-native-sms": "^1.11.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.17",
