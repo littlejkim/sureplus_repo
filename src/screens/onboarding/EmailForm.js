@@ -24,6 +24,8 @@ export default function EmailForm({ navigation }) {
   const _continue = async () => {
     setIsLoading(true);
     Keyboard.dismiss();
+
+    // Youngmi check this part for sending email (right now manual timeouts were set to show activityloader)
     await setTimeout(() => {
       setIsLoading(false);
       console.log('Email successfully sent');
@@ -32,6 +34,7 @@ export default function EmailForm({ navigation }) {
       navigation.navigate('Password');
     }, 3000);
   };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}

@@ -24,6 +24,7 @@ export default function PhoneForm({ navigation }) {
     setIsLoading(true);
 
     // this module doesn't work on virtual device (must test on actual device)
+    // Youngmi look at this for SMS callback
     SendSMS.send(
       {
         body: 'TODO: add hash to send to server', // add hash
