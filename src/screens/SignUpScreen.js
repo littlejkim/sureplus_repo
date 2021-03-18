@@ -30,14 +30,8 @@ export default function SignUpScreen({ navigation }) {
 
   // check for variation
   useEffect(() => {
-    const variation = remoteConfig().getValue('signup'); // retrieve remote config values for signup variation
-
+    const variation = remoteConfig().getValue('signup_variations'); // retrieve remote config values for signup variation
     console.log(variation.asString());
-    if (variation.asBoolean() === true) {
-      console.log('Variation is enabled');
-    } else {
-      console.log('Default variation is enabled');
-    }
   }, []);
   const _modal = () => {
     setModal(!modal);
