@@ -1,5 +1,5 @@
 // public imports
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,16 +11,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import styles from '../styles/welcome.styles';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { EmailForm, PasswordForm, PhoneForm, CompleteForm } from './onboarding';
 import { MainModal } from '../components/MainModal';
+import remoteConfig from '@react-native-firebase/remote-config';
 
 const SignUpStack = createStackNavigator(); // signup stack
 export const SignUpContext = createContext(); // signup context (used to store email, phonenumber, name, etc)
 
 export default function SignUpScreen({ navigation }) {
-  const theme = useTheme();
   const [loading, setLoading] = useState(false); // used to show loading spinner
 
   const [modal, setModal] = useState(false);
@@ -29,6 +28,17 @@ export default function SignUpScreen({ navigation }) {
   const [phone, setPhone] = useState(null);
   const value = { email, setEmail, password, setPassword, phone, setPhone };
 
+  // check for variation
+  useEffect(() => {
+    const variation = remoteConfig().getValue('signup'); // retrieve remote config values for signup variation
+
+    console.log(variation.asString());
+    if (variation.asBoolean() === true) {
+      console.log('Variation is enabled');
+    } else {
+      console.log('Default variation is enabled');
+    }
+  }, []);
   const _modal = () => {
     setModal(!modal);
   };

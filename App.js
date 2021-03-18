@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
+import remoteConfig from '@react-native-firebase/remote-config';
 
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
@@ -22,6 +23,23 @@ export default function App() {
 
   useEffect(() => {
     console.log('Initial data loading...');
+    // remote config default values
+    remoteConfig()
+      .setDefaults({
+        signup: 'false',
+      })
+      .then(() => remoteConfig().fetchAndActivate())
+      .then((fetchedRemotely) => {
+        if (fetchedRemotely) {
+          console.log('Configs were retrieved from the backend and activated.');
+        } else {
+          console.log(
+            'No configs were fetched from the backend, and the local configs were already activated',
+          );
+        }
+      });
+
+    // load user token
     if (isLoading === true) {
       initalDataLoad().then((response) => setUser(response));
       setTimeout(() => {
