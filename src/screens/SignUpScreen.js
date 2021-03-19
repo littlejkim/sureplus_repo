@@ -27,13 +27,16 @@ export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [phone, setPhone] = useState(null);
+  const [loginVariation, setLoginVariation] = useState();
   const value = { email, setEmail, password, setPassword, phone, setPhone };
 
   // check for variation
   useEffect(() => {
-    const variation = remoteConfig().getValue('signup_variation'); // retrieve remote config values for signup variation
-    console.log(variation.asString());
+    const variation = remoteConfig().getValue('signup_variation').asBoolean(); // retrieve remote config values for signup variation
+    console.log('Setting signup variation to ' + variation.toString());
+    variation ? setLoginVariation(true) : setLoginVariation(false);
   }, []);
+
   const _modal = () => {
     setModal(!modal);
   };
@@ -42,16 +45,31 @@ export default function SignUpScreen({ navigation }) {
     <SignUpContext.Provider value={value}>
       <MainModal visible={modal} hide={_modal} />
       <LoadingSpinner loading={loading} />
-      <SignUpStack.Navigator
-        initialRouteName="Phone"
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <SignUpStack.Screen name="Phone" component={PhoneForm} />
-        <SignUpStack.Screen name="Email" component={EmailForm} />
-        <SignUpStack.Screen name="Password" component={PasswordForm} />
-        <SignUpStack.Screen name="Complete" component={CompleteForm} />
-      </SignUpStack.Navigator>
+      {loginVariation ? (
+        // default variation
+        <SignUpStack.Navigator
+          initialRouteName="Email"
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <SignUpStack.Screen name="Phone" component={PhoneForm} />
+          <SignUpStack.Screen name="Email" component={EmailForm} />
+          <SignUpStack.Screen name="Password" component={PasswordForm} />
+          <SignUpStack.Screen name="Complete" component={CompleteForm} />
+        </SignUpStack.Navigator>
+      ) : (
+        // variation applied
+        <SignUpStack.Navigator
+          initialRouteName="Phone"
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <SignUpStack.Screen name="Phone" component={PhoneForm} />
+          <SignUpStack.Screen name="Email" component={EmailForm} />
+          <SignUpStack.Screen name="Password" component={PasswordForm} />
+          <SignUpStack.Screen name="Complete" component={CompleteForm} />
+        </SignUpStack.Navigator>
+      )}
     </SignUpContext.Provider>
   );
 }
