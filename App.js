@@ -23,16 +23,18 @@ export default function App() {
 
   useEffect(() => {
     console.log('Initial data loading...');
-    signUp();
-    // remote config default values
+    // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage
+    remoteConfig().setConfigSettings({
+      minimumFetchIntervalMillis: 30,
+    });
+    // set firebase remote config default values
     remoteConfig()
       .setDefaults({
-        signup_variations: 'false',
+        signup_variation: 'false',
       })
       .then(() => remoteConfig().fetchAndActivate())
       .then((fetchedRemotely) => {
         if (fetchedRemotely) {
-          remoteConfig().getValue('signup_variations');
           console.log('Configs were retrieved from the backend and activated.');
         } else {
           console.log(

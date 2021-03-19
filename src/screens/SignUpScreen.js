@@ -31,7 +31,7 @@ export default function SignUpScreen({ navigation }) {
 
   // check for variation
   useEffect(() => {
-    const variation = remoteConfig().getValue('signup_variations'); // retrieve remote config values for signup variation
+    const variation = remoteConfig().getValue('signup_variation'); // retrieve remote config values for signup variation
     console.log(variation.asString());
   }, []);
   const _modal = () => {
