@@ -9,12 +9,13 @@ import {
 } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme } from '@react-navigation/native';
+import remoteConfig from '@react-native-firebase/remote-config';
 
 // custom imports
+import styles from '../styles/welcome.styles';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { EmailForm, PasswordForm, PhoneForm, CompleteForm } from './onboarding';
 import { MainModal } from '../components/MainModal';
-import remoteConfig from '@react-native-firebase/remote-config';
 
 const SignUpStack = createStackNavigator(); // signup stack
 export const SignUpContext = createContext(); // signup context (used to store email, phonenumber, name, etc)
