@@ -3,11 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
+    "cleanstart": "npm run cleanup:all && npm install && npm run start",
+    "cleanup:all": "npm run cleanup:android && npm run cleanup:react && npm run cleanup:metrobundler && npm run cleanup:hastecache && npm run cleanup:ios",
+    "cleanup:react": "rm -rf node_modules/ && rm -rf $TMPDIR/react-* ~/.npm/ ~./rncache",
+    "postcleanup:react": "echo 'run `npm install` or `yarn install`'",
+    "cleanup:ios": "rm -rf ~/Library/Developer/Xcode/DerivedData/* ios/build ios/Pods",
+    "cleanup:android": "./scripts/cleanandroid.sh",
+    "cleanup:metrobundler": "rm -rf /tmp/metro-bundler-cache-*",
+    "cleanup:hastecache": "rm -rf /tmp/haste-map-react-native-packager-*",
+    "start": "node node_modules/react-native/local-cli/cli.js start -- --reset-cache",
+    "postinstall": "./scripts/post.sh && npm run ios:pod:install",
+    "ios:pod:install": "cd ios && pod install"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
