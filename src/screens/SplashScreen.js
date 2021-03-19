@@ -10,8 +10,8 @@ export default function SplashScreen() {
   return (
     <View style={[styles.container, { backgroundColor: PRIMARY_COLOR }]}>
       <Image
-        source={require('../assets/images/logo_long.png')}
-        style={{ aspectRatio: 2.5, resizeMode: 'contain' }}
+        source={require('../assets/images/logo_single.png')}
+        style={{ height: 80, width: 80 }}
       />
     </View>
   );

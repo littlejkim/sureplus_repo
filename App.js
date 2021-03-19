@@ -81,7 +81,7 @@ export default function App() {
         // Save the current route name for later comparision
         routeNameRef.current = currentScreenName;
       }}
-      theme={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+      theme={colorScheme === 'dark' ? LightTheme : LightTheme}>
       {user == null ? <AuthContainer /> : <HomeContainer />}
     </NavigationContainer>
   );
