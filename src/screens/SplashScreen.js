@@ -1,6 +1,7 @@
 // public imports
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Image } from 'react-native';
+import TouchID from 'react-native-touch-id';
 
 // custom imports
 import styles from '../styles/container.styles';

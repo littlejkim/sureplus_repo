@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import RNRestart from 'react-native-restart'; // temporary restart module (might need to replace during production level)
 import { useTheme } from '@react-navigation/native';
+import TouchID from 'react-native-touch-id';
 
 // custom imports
 import styles from '../styles/welcome.styles';
@@ -13,28 +14,20 @@ import { testUserData } from '../data/testUserData';
 export default function WelcomeScreen({ navigation }) {
   const { colors } = useTheme();
   // sign in action
-  const onSignUp = () => {
+  const _onSignUp = () => {
     navigation.navigate('SignUp');
   };
 
   // log in action
-  const onLogIn = () => {
-    Alert.alert(
-      'Log in?',
-      '',
-      [
-        {
-          text: 'Yes',
-          onPress: () => storeUserToken(testUserData).then(RNRestart.Restart()),
-        },
-        {
-          text: 'No',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-      ],
-      { cancelable: false },
-    );
+  const _onLogIn = () => {
+    TouchID.authenticate('to demo this react-native component')
+      .then((success) => {
+        console.log('Authenticated Successfully'),
+          storeUserToken(testUserData).then(RNRestart.Restart());
+      })
+      .catch((error) => {
+        Alert.alert('user not correct');
+      });
   };
 
   return (
@@ -54,7 +47,7 @@ export default function WelcomeScreen({ navigation }) {
             styles.mainButton,
             { backgroundColor: 'white', marginVertical: 5 },
           ]}
-          onPress={onSignUp}
+          onPress={_onSignUp}
           activeOpacity={0.7}>
           <Text style={[styles.mainButtonText, { color: colors.primary }]}>
             Sign Up
@@ -62,7 +55,7 @@ export default function WelcomeScreen({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.subButton}
-          onPress={onLogIn}
+          onPress={_onLogIn}
           activeOpacity={0.5}>
           <Text style={[styles.subButtonText, { color: 'white' }]}>
             Already a member?{' '}

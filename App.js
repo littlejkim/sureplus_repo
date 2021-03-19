@@ -48,7 +48,7 @@ export default function App() {
       initalDataLoad().then((response) => setUser(response));
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 2000);
     }
   }, []);
 
