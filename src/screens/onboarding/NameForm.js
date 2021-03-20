@@ -29,6 +29,7 @@ export default function NameForm({ navigation }) {
     lastNameRef.current.focus();
   };
   const _continue = () => {
+    setFocus(3);
     navigation.navigate('Bank');
   };
 
@@ -67,7 +68,7 @@ export default function NameForm({ navigation }) {
                 setFirstName(value);
               }}
               onSubmitEditing={_showNext}
-              onBlur={() => setFocus(1)}
+              onFocus={() => setFocus(0)}
             />
           </View>
           {step && (
@@ -95,7 +96,7 @@ export default function NameForm({ navigation }) {
                 onChangeText={(value) => {
                   setLastName(value);
                 }}
-                onBlur={() => setFocus(0)}
+                onFocus={() => setFocus(1)}
                 onSubmitEditing={_continue}
                 ref={lastNameRef}
               />
