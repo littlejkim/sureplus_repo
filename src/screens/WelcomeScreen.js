@@ -31,43 +31,29 @@ export default function WelcomeScreen({ navigation }) {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.primary }]}>
+    <View style={styles.container}>
       <View style={styles.body}>
-        <Image
-          style={{
-            aspectRatio: 2.5,
-            resizeMode: 'contain',
-          }}
-          source={require('../assets/images/logo_long.png')}
-        />
+        <Text style={styles.titleText}>Stress free subscription life</Text>
+        <Text style={styles.bodyText}>
+          Sureplus pays attention to your subscriptions so you don't have to
+        </Text>
       </View>
       <View style={styles.footer}>
         <TouchableOpacity
-          style={[
-            styles.mainButton,
-            { backgroundColor: 'white', marginVertical: 5 },
-          ]}
+          style={styles.mainButton}
           onPress={_onSignUp}
           activeOpacity={0.7}>
-          <Text style={[styles.mainButtonText, { color: colors.primary }]}>
-            Sign Up
-          </Text>
+          <Text style={styles.mainButtonText}>Get Started</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.subButton}
           onPress={_onLogIn}
           activeOpacity={0.5}>
-          <Text style={[styles.subButtonText, { color: 'white' }]}>
+          <Text style={[styles.subButtonText, { color: 'black' }]}>
             Already a member?{' '}
           </Text>
-          <Text
-            style={[
-              styles.subButtonText,
-              { color: 'white', fontFamily: TEXT_BOLD },
-            ]}>
-            Log in
-          </Text>
-        </TouchableOpacity>
+          <Text style={[styles.subButtonText, { color: 'black' }]}>Log in</Text>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

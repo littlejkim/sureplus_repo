@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Alert,
+  Image,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import SendSMS from 'react-native-sms';
@@ -27,7 +28,7 @@ export default function PhoneForm({ navigation }) {
     // Youngmi look at this for SMS callback
     SendSMS.send(
       {
-        body: 'TODO: add hash to send to server', // add hash
+        body: 'Sureplus Verification Code e8ce0df77a3abcca0a938d2e499c9daf', // add hash
         recipients: ['1056634352'], // can send to multiple numbers
         successTypes: ['sent', 'queued'], // for android
         allowAndroidSendWithoutReadPermission: true, // for android
@@ -36,7 +37,7 @@ export default function PhoneForm({ navigation }) {
         setIsLoading(false);
         if (completed) {
           console.log('Message successfully sent');
-          navigation.navigate('Email');
+          navigation.navigate('Name');
         } else if (cancelled) {
           Alert.alert('User cancelled');
         } else {
@@ -49,38 +50,34 @@ export default function PhoneForm({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.body}>
-        <Text
-          style={[
-            styles.titleText,
-            {
-              color: theme.colors.mainText,
-            },
-          ]}>
-          Send SMS
+        <Text style={styles.titleText}>Send us a message</Text>
+        <Text style={styles.bodyText}>
+          We use text messages to verify device ownership. Press send without
+          changing the code.
         </Text>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Image
+            source={require('../../assets/images/sms_verification.png')}
+            style={{
+              resizeMode: 'contain',
+              aspectRatio: 0.6,
+            }}
+          />
+        </View>
       </View>
       <View style={styles.footer}>
-        {!isLoading ? (
-          <TouchableOpacity
-            style={[
-              styles.mainButton,
-              { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
-            ]}
-            onPress={_continue}
-            activeOpacity={0.7}>
-            <Text style={[styles.mainButtonText, { color: theme.colors.text }]}>
-              Next
-            </Text>
-          </TouchableOpacity>
-        ) : (
-          <View
-            style={[
-              styles.mainButton,
-              { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
-            ]}>
-            <ActivityIndicator size="small" color="white" />
-          </View>
-        )}
+        <TouchableOpacity
+          style={[
+            styles.mainButton,
+            { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
+          ]}
+          onPress={_continue}
+          activeOpacity={0.7}>
+          <Text style={[styles.mainButtonText, { color: theme.colors.text }]}>
+            Agree and Verify
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -1,5 +1,5 @@
 const PRIMARY_COLOR = '#7610EB';
-const BACKGROUND_COLOR_LIGHT = '#F1F2F4';
+const BACKGROUND_COLOR_LIGHT = '#FFFFFF';
 const BACKGROUND_COLOR_DARK = '#17171b';
 
 const LightTheme = {

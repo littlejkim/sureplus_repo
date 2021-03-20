@@ -17,11 +17,11 @@ export const AuthContainer = () => {
       <StatusBar barStyle={dark ? 'light-content' : 'dark-content'} />
       <AuthStack.Navigator
         mode="modal"
-        initialRouteName="Onboarding"
+        initialRouteName="Welcome"
         screenOptions={{
           headerShown: false,
         }}>
-        <AuthStack.Screen name="Onboarding" component={WelcomeScreen} />
+        <AuthStack.Screen name="Welcome" component={WelcomeScreen} />
         <AuthStack.Screen name="SignUp" component={SignUpScreen} />
         <AuthStack.Screen name="LogIn" component={LogInScreen} />
       </AuthStack.Navigator>

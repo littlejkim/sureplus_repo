@@ -1,20 +1,11 @@
 // public imports
 import React, { useState, createContext, useEffect } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useTheme } from '@react-navigation/native';
 import remoteConfig from '@react-native-firebase/remote-config';
 
 // custom imports
-import styles from '../styles/welcome.styles';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import { EmailForm, PasswordForm, PhoneForm, CompleteForm } from './onboarding';
+import { PhoneForm, NameForm, BankForm } from './onboarding';
 import { MainModal } from '../components/MainModal';
 
 const SignUpStack = createStackNavigator(); // signup stack
@@ -48,14 +39,13 @@ export default function SignUpScreen({ navigation }) {
       {loginVariation ? (
         // default variation
         <SignUpStack.Navigator
-          initialRouteName="Email"
+          initialRouteName="Phone"
           screenOptions={{
             headerShown: false,
           }}>
           <SignUpStack.Screen name="Phone" component={PhoneForm} />
-          <SignUpStack.Screen name="Email" component={EmailForm} />
-          <SignUpStack.Screen name="Password" component={PasswordForm} />
-          <SignUpStack.Screen name="Complete" component={CompleteForm} />
+          <SignUpStack.Screen name="Name" component={NameForm} />
+          <SignUpStack.Screen name="Bank" component={BankForm} />
         </SignUpStack.Navigator>
       ) : (
         // variation applied
@@ -65,9 +55,8 @@ export default function SignUpScreen({ navigation }) {
             headerShown: false,
           }}>
           <SignUpStack.Screen name="Phone" component={PhoneForm} />
-          <SignUpStack.Screen name="Email" component={EmailForm} />
-          <SignUpStack.Screen name="Password" component={PasswordForm} />
-          <SignUpStack.Screen name="Complete" component={CompleteForm} />
+          <SignUpStack.Screen name="Name" component={NameForm} />
+          <SignUpStack.Screen name="Bank" component={BankForm} />
         </SignUpStack.Navigator>
       )}
     </SignUpContext.Provider>

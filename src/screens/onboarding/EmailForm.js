@@ -53,9 +53,8 @@ export default function EmailForm({ navigation }) {
         <TextInput
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
           style={[styles.textInput, { color: theme.colors.mainText }]}
-          autoCapitalize="none"
+          autoCapitalize="words"
           selectionColor={theme.colors.mainText}
-          autoCompleteType="email"
           keyboardType="email-address"
           textContentType="emailAddress"
           maxLength={320}
