@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
-import { TEXT_BOLD, TEXT_DEMI, TEXT_REGULAR } from './fonts';
+import { TEXT_REGULAR } from './fonts';
 import { PRIMARY_COLOR } from './constants';
 export default StyleSheet.create({
   container: {
@@ -19,7 +19,6 @@ export default StyleSheet.create({
     fontWeight: '500',
     lineHeight: 33,
     letterSpacing: 0.0041,
-    color: '#000000',
     fontFamily: TEXT_REGULAR,
     marginBottom: 24,
   },

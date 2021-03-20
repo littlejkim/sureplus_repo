@@ -7,7 +7,7 @@ const LightTheme = {
   colors: {
     primary: PRIMARY_COLOR,
     background: BACKGROUND_COLOR_LIGHT,
-    text: 'white',
+    title: 'black',
     mainText: 'black',
     subText: 'white',
   },
@@ -18,7 +18,7 @@ const DarkTheme = {
   colors: {
     primary: PRIMARY_COLOR,
     background: BACKGROUND_COLOR_DARK,
-    text: 'white',
+    title: 'white',
     mainText: 'white',
     subText: 'black',
   },

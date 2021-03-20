@@ -384,6 +384,8 @@ PODS:
     - React-Core
   - RNCMaskedView (0.1.10):
     - React
+  - RNDeviceInfo (8.0.6):
+    - React-Core
   - RNFBAnalytics (10.8.1):
     - Firebase/Analytics (~> 7.6.0)
     - React-Core
@@ -458,6 +460,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBAnalytics (from `../node_modules/@react-native-firebase/analytics`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBRemoteConfig (from `../node_modules/@react-native-firebase/remote-config`)"
@@ -556,6 +559,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNFBAnalytics:
     :path: "../node_modules/@react-native-firebase/analytics"
   RNFBApp:
@@ -626,6 +631,7 @@ SPEC CHECKSUMS:
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
+  RNDeviceInfo: a91ad51aaf8dc7079f56614045cf6f0a923237bb
   RNFBAnalytics: 454b17745d3824156cb906e2777d85f6848bf3e1
   RNFBApp: 02bde3edecf2e9694b908a5d3504e03449980f20
   RNFBRemoteConfig: 1adf37593b23dfec015a48016cd26982257889ba

@@ -7,12 +7,11 @@ import TouchID from 'react-native-touch-id';
 
 // custom imports
 import styles from '../styles/welcome.styles';
-import { TEXT_BOLD } from '../styles/fonts';
 import { storeUserToken } from '../utils/userUtils';
 import { testUserData } from '../data/testUserData';
 
 export default function WelcomeScreen({ navigation }) {
-  const { colors } = useTheme();
+  const theme = useTheme();
   // sign in action
   const _onSignUp = () => {
     navigation.navigate('SignUp');
@@ -31,9 +30,12 @@ export default function WelcomeScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.body}>
-        <Text style={styles.titleText}>Stress free subscription life</Text>
+        <Text style={[styles.titleText, { color: theme.colors.title }]}>
+          Stress free subscription life
+        </Text>
         <Text style={styles.bodyText}>
           Sureplus pays attention to your subscriptions so you don't have to
         </Text>
