@@ -7,6 +7,7 @@ import {
   TextInput,
   Platform,
   KeyboardAvoidingView,
+  Image,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -36,7 +37,8 @@ export default function NameForm({ navigation }) {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={-20}>
       <View style={styles.container}>
         <View style={[styles.body, { width: '100%' }]}>
           <Text style={[styles.titleText, { color: theme.colors.title }]}>
@@ -64,6 +66,7 @@ export default function NameForm({ navigation }) {
               autoFocus={true}
               clearButtonMode="while-editing"
               enablesReturnKeyAutomatically={true}
+              blurOnSubmit={false}
               onChangeText={(value) => {
                 setFirstName(value);
               }}
@@ -71,40 +74,43 @@ export default function NameForm({ navigation }) {
               onFocus={() => setFocus(0)}
             />
           </View>
-          {step && (
-            <View style={{ marginTop: 16 }}>
-              <Text style={styles.labelText}>Last Name</Text>
-              <TextInput
-                placeholder="Last Name"
-                keyboardAppearance={theme.dark ? 'dark' : 'light'}
-                style={[
-                  styles.textInput,
-                  {
-                    color: theme.colors.mainText,
-                    borderBottomColor: focus === 1 ? PRIMARY_COLOR : '#F1F2F4',
-                  },
-                ]}
-                autoCapitalize="words"
-                selectionColor={PRIMARY_COLOR}
-                autoCompleteType="off"
-                keyboardType="default"
-                textContentType="givenName"
-                maxLength={35}
-                autoCorrect={false}
-                clearButtonMode="while-editing"
-                enablesReturnKeyAutomatically={true}
-                onChangeText={(value) => {
-                  setLastName(value);
-                }}
-                onFocus={() => setFocus(1)}
-                onSubmitEditing={_continue}
-                ref={lastNameRef}
-              />
-            </View>
-          )}
+          <View
+            style={{
+              marginTop: 16,
+              width: step ? '100%' : 0,
+              height: step ? '100%' : 0,
+            }}>
+            <Text style={styles.labelText}>Last Name</Text>
+            <TextInput
+              placeholder="Last Name"
+              keyboardAppearance={theme.dark ? 'dark' : 'light'}
+              style={[
+                styles.textInput,
+                {
+                  color: theme.colors.mainText,
+                  borderBottomColor: focus === 1 ? PRIMARY_COLOR : '#F1F2F4',
+                },
+              ]}
+              autoCapitalize="words"
+              selectionColor={PRIMARY_COLOR}
+              autoCompleteType="off"
+              keyboardType="default"
+              textContentType="givenName"
+              maxLength={35}
+              autoCorrect={false}
+              clearButtonMode="while-editing"
+              enablesReturnKeyAutomatically={true}
+              onChangeText={(value) => {
+                setLastName(value);
+              }}
+              onFocus={() => setFocus(1)}
+              onSubmitEditing={_continue}
+              ref={lastNameRef}
+            />
+          </View>
         </View>
         <View style={styles.footer}>
-          {/* <View
+          <View
             style={{
               alignItems: 'flex-end',
             }}>
@@ -113,17 +119,23 @@ export default function NameForm({ navigation }) {
                 style={styles.roundButton}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Text style={styles.mainButtonText}>></Text>
+                <Image
+                  source={require('../../assets/images/next_arrow.png')}
+                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
+                />
               </TouchableOpacity>
             ) : (
               <View
                 style={[styles.roundButton, { opacity: 0.5 }]}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Text style={styles.mainButtonText}>></Text>
+                <Image
+                  source={require('../../assets/images/next_arrow.png')}
+                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
+                />
               </View>
             )}
-          </View> */}
+          </View>
         </View>
       </View>
     </KeyboardAvoidingView>
