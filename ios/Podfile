@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'sureplus_moscato' do
   config = use_native_modules!
@@ -11,6 +11,8 @@ target 'sureplus_moscato' do
   pod 'react-native-restart', :path => '../node_modules/react-native-restart'
 
   pod 'react-native-sms', :path => '../node_modules/react-native-sms'
+  pod 'Plaid', '~> 2.1.0'
+  pod 'react-native-plaid-link-sdk', :path => '../node_modules/react-native-plaid-link-sdk'
 
   target 'sureplus_moscatoTests' do
     inherit! :complete

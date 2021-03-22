@@ -1,6 +1,6 @@
 // public imports
 import React, { useContext } from 'react';
-import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import RNRestart from 'react-native-restart'; // temporary restart module (might need to replace during production level)
 import { useTheme } from '@react-navigation/native';
 

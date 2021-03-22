@@ -80,6 +80,7 @@ export default function SignUpScreen({ navigation }) {
           <SignUpStack.Screen name="Name" component={NameForm} />
           <SignUpStack.Screen name="Email" component={EmailForm} />
           <SignUpStack.Screen name="Username" component={UsernameForm} />
+          <SignUpStack.Screen name="Bank" component={BankForm} />
           <SignUpStack.Screen name="Complete" component={CompleteForm} />
         </SignUpStack.Navigator>
       )}

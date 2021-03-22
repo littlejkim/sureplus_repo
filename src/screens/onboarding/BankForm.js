@@ -1,20 +1,46 @@
 // public imports
-import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import RNRestart from 'react-native-restart'; // temporary restart module (might need to replace during production level)
+import { PlaidLink, openLink } from 'react-native-plaid-link-sdk';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
-import { storeUserToken } from '../../utils/userUtils';
-import { testUserData } from '../../data/testUserData';
 
 export default function BankForm({ navigation }) {
+  const [linkToken, setLinkToken] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
 
-  const _continue = () => {
-    storeUserToken(testUserData).then(RNRestart.Restart());
+  useEffect(() => {
+    _getLinkToken();
+  }, [setLinkToken]);
+
+  const _getLinkToken = () => {
+    setIsLoading(true);
+    fetch('https://sandbox.plaid.com/link/token/create', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        client_id: '5ea67c94e3979600119f263a',
+        secret: '224549ea96cf3829a1050652e6823a',
+        client_name: 'Sureplus',
+        country_codes: ['US'],
+        language: 'en',
+        user: {
+          client_user_id: 'unique_user_id',
+        },
+        products: ['auth'],
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => setLinkToken(json))
+      .catch((error) => console.log('Error: ' + error))
+      .finally(() => setIsLoading(false));
   };
   return (
     <View style={styles.container}>
@@ -27,15 +53,28 @@ export default function BankForm({ navigation }) {
         </Text>
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity
-          style={[
-            styles.mainButton,
-            { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
-          ]}
-          onPress={_continue}
-          activeOpacity={0.7}>
-          <Text style={styles.mainButtonText}>Connect my bank</Text>
-        </TouchableOpacity>
+        {isLoading ? (
+          <View
+            style={[
+              styles.mainButton,
+              { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
+            ]}>
+            <ActivityIndicator size="small" color="white" />
+          </View>
+        ) : (
+          <PlaidLink
+            tokenConfig={{ token: linkToken.link_token }}
+            onSuccess={(success) => console.log(success)}
+            onExit={(exit) => console.log(exit)}>
+            <View
+              style={[
+                styles.mainButton,
+                { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
+              ]}>
+              <Text style={styles.mainButtonText}>Connect my bank</Text>
+            </View>
+          </PlaidLink>
+        )}
       </View>
     </View>
   );
