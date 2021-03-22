@@ -17,17 +17,17 @@ import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
 import { PRIMARY_COLOR } from '../../styles/constants';
 
-export default function EmailForm({ navigation }) {
+export default function UsernameForm({ navigation }) {
   const theme = useTheme();
   const [isLoading, setIsLoading] = useState(false);
-  const { setEmail } = useContext(SignUpContext);
-  const [localEmail, setLocalEmail] = useState(null);
+  const { setUsername } = useContext(SignUpContext);
+  const [localUsername, setLocalUsername] = useState(null);
 
   const _continue = async () => {
-    setEmail(localEmail);
+    setUsername(localUsername);
     setIsLoading(true);
     Keyboard.dismiss();
-    navigation.navigate('Username');
+    navigation.navigate('Complete');
   };
 
   return (
@@ -38,11 +38,14 @@ export default function EmailForm({ navigation }) {
       <View style={styles.container}>
         <View style={[styles.body, { width: '100%' }]}>
           <Text style={[styles.titleText, { color: theme.colors.title }]}>
-            What is your email?
+            Choose a username
+          </Text>
+          <Text style={[styles.bodyText, { color: theme.colors.title }]}>
+            This will be your public handle.
           </Text>
           <View style={{ marginTop: 40 }}>
             <TextInput
-              placeholder="Email"
+              placeholder="@username"
               keyboardAppearance={theme.dark ? 'dark' : 'light'}
               style={[
                 styles.textInput,
@@ -54,15 +57,15 @@ export default function EmailForm({ navigation }) {
               autoCapitalize="none"
               selectionColor={theme.dark ? 'white' : PRIMARY_COLOR}
               autoCompleteType="off"
-              keyboardType="email-address"
-              textContentType="emailAddress"
+              keyboardType="ascii-capable"
+              textContentType="nickname"
               maxLength={35}
               autoCorrect={false}
               autoFocus={true}
               clearButtonMode="while-editing"
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={true}
-              onChangeText={(value) => setLocalEmail(value)}
+              onChangeText={(value) => setLocalUsername(value)}
               onSubmitEditing={_continue}
             />
           </View>

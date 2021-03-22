@@ -4,22 +4,45 @@ import { createStackNavigator } from '@react-navigation/stack';
 import remoteConfig from '@react-native-firebase/remote-config';
 
 // custom imports
-import { LoadingSpinner } from '../components/LoadingSpinner';
-import { PhoneForm, NameForm, BankForm } from './onboarding';
+import {
+  PhoneForm,
+  NameForm,
+  BankForm,
+  EmailForm,
+  UsernameForm,
+  CompleteForm,
+} from './onboarding';
 import { MainModal } from '../components/MainModal';
 
 const SignUpStack = createStackNavigator(); // signup stack
 export const SignUpContext = createContext(); // signup context (used to store email, phonenumber, name, etc)
 
 export default function SignUpScreen({ navigation }) {
-  const [loading, setLoading] = useState(false); // used to show loading spinner
-
   const [modal, setModal] = useState(false);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+
+  //  signup values (phone, name, email, password)
   const [phone, setPhone] = useState(null);
+  const [firstname, setFirstname] = useState(null);
+  const [lastname, setLastname] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+  const value = {
+    phone,
+    setPhone,
+    firstname,
+    setFirstname,
+    lastname,
+    setLastname,
+    email,
+    setEmail,
+    username,
+    setUsername,
+    password,
+    setPassword,
+  };
+
   const [loginVariation, setLoginVariation] = useState();
-  const value = { email, setEmail, password, setPassword, phone, setPhone };
 
   // check for variation
   useEffect(() => {
@@ -35,7 +58,6 @@ export default function SignUpScreen({ navigation }) {
   return (
     <SignUpContext.Provider value={value}>
       <MainModal visible={modal} hide={_modal} />
-      <LoadingSpinner loading={loading} />
       {loginVariation ? (
         // default variation
         <SignUpStack.Navigator
@@ -56,7 +78,9 @@ export default function SignUpScreen({ navigation }) {
           }}>
           <SignUpStack.Screen name="Phone" component={PhoneForm} />
           <SignUpStack.Screen name="Name" component={NameForm} />
-          <SignUpStack.Screen name="Bank" component={BankForm} />
+          <SignUpStack.Screen name="Email" component={EmailForm} />
+          <SignUpStack.Screen name="Username" component={UsernameForm} />
+          <SignUpStack.Screen name="Complete" component={CompleteForm} />
         </SignUpStack.Navigator>
       )}
     </SignUpContext.Provider>

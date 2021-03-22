@@ -1,8 +1,8 @@
-import EmailForm from './EmailForm';
-import PasswordForm from './PasswordForm';
 import PhoneForm from './PhoneForm';
-import CompleteForm from './CompleteForm';
 import NameForm from './NameForm';
+import EmailForm from './EmailForm';
+import UsernameForm from './UsernameForm';
 import BankForm from './BankForm';
+import CompleteForm from './CompleteForm';
 
-export { EmailForm, PasswordForm, PhoneForm, CompleteForm, NameForm, BankForm };
+export { EmailForm, PhoneForm, CompleteForm, NameForm, BankForm, UsernameForm };

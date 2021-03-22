@@ -1,5 +1,5 @@
 // public imports
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -18,20 +18,23 @@ import { PRIMARY_COLOR } from '../../styles/constants';
 
 export default function NameForm({ navigation }) {
   const theme = useTheme();
-
-  const [step, setStep] = useState(false);
+  const { setFirstname, setLastname } = useContext(SignUpContext);
+  const [localFirst, setLocalFirst] = useState(null);
+  const [localLast, setLocalLast] = useState(null);
+  // focus text inputs
+  const [showLast, setShowLast] = useState(false);
   const [focus, setFocus] = useState(0);
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
   const lastNameRef = useRef();
 
   const _showNext = async () => {
-    await setStep(true);
+    await setShowLast(true);
     lastNameRef.current.focus();
   };
   const _continue = () => {
+    setFirstname(localFirst);
+    setLastname(localLast);
     setFocus(3);
-    navigation.navigate('Bank');
+    navigation.navigate('Email');
   };
 
   return (
@@ -59,7 +62,7 @@ export default function NameForm({ navigation }) {
               autoCapitalize="words"
               selectionColor={theme.dark ? 'white' : PRIMARY_COLOR}
               autoCompleteType="off"
-              keyboardType="default"
+              keyboardType="ascii-capable"
               textContentType="givenName"
               maxLength={35}
               autoCorrect={false}
@@ -67,9 +70,7 @@ export default function NameForm({ navigation }) {
               clearButtonMode="while-editing"
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={false}
-              onChangeText={(value) => {
-                setFirstName(value);
-              }}
+              onChangeText={(value) => setLocalFirst(value)}
               onSubmitEditing={_showNext}
               onFocus={() => setFocus(0)}
             />
@@ -77,8 +78,8 @@ export default function NameForm({ navigation }) {
           <View
             style={{
               marginTop: 16,
-              width: step ? '100%' : 0,
-              height: step ? '100%' : 0,
+              width: showLast ? '100%' : 0,
+              height: showLast ? '100%' : 0,
             }}>
             <Text style={styles.labelText}>Last Name</Text>
             <TextInput
@@ -94,16 +95,14 @@ export default function NameForm({ navigation }) {
               autoCapitalize="words"
               selectionColor={PRIMARY_COLOR}
               autoCompleteType="off"
-              keyboardType="default"
+              keyboardType="ascii-capable"
               textContentType="givenName"
               maxLength={35}
               autoCorrect={false}
               clearButtonMode="while-editing"
               enablesReturnKeyAutomatically={true}
-              onChangeText={(value) => {
-                setLastName(value);
-              }}
               onFocus={() => setFocus(1)}
+              onChangeText={(value) => setLocalLast(value)}
               onSubmitEditing={_continue}
               ref={lastNameRef}
             />
@@ -114,7 +113,7 @@ export default function NameForm({ navigation }) {
             style={{
               alignItems: 'flex-end',
             }}>
-            {firstName && lastName ? (
+            {localFirst && localLast ? (
               <TouchableOpacity
                 style={styles.roundButton}
                 onPress={_continue}
@@ -125,14 +124,28 @@ export default function NameForm({ navigation }) {
                 />
               </TouchableOpacity>
             ) : (
-              <View
-                style={[styles.roundButton, { opacity: 0.5 }]}
-                onPress={_continue}
-                activeOpacity={0.7}>
-                <Image
-                  source={require('../../assets/images/next_arrow.png')}
-                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                />
+              <View>
+                {showLast || !localFirst ? (
+                  <View
+                    style={[styles.roundButton, { opacity: 0.5 }]}
+                    onPress={_continue}
+                    activeOpacity={0.7}>
+                    <Image
+                      source={require('../../assets/images/next_arrow.png')}
+                      style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
+                    />
+                  </View>
+                ) : (
+                  <TouchableOpacity
+                    style={styles.roundButton}
+                    onPress={_showNext}
+                    activeOpacity={0.7}>
+                    <Image
+                      source={require('../../assets/images/next_arrow.png')}
+                      style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
+                    />
+                  </TouchableOpacity>
+                )}
               </View>
             )}
           </View>
