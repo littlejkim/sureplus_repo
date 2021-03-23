@@ -8,17 +8,20 @@ import { useTheme } from '@react-navigation/native';
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
 
-import { storeUserToken } from '../../utils/userUtils';
-import { testUserData } from '../../data/testUserData';
-
 export default function LinkBankCompleteForm({ navigation }) {
   const theme = useTheme();
+  const { institutions } = useContext(SignUpContext);
 
   return (
     <View style={styles.container}>
       <View style={styles.body}>
         <Text style={[styles.titleText, { color: theme.colors.title }]}>
           Link Complete!
+        </Text>
+        <Text style={styles.bodyText}>
+          institution id: {institutions[0].institution_id} {'\n'}
+          institution name: {institutions[0].institution_name} {'\n'}
+          public token: {institutions[0].publicToken}
         </Text>
       </View>
       <View style={styles.footer}>
