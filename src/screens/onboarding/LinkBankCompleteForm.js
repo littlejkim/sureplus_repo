@@ -1,6 +1,6 @@
 // public imports
 import React, { useContext } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
