@@ -61,7 +61,6 @@ export default function SignUpScreen({ navigation }) {
 
   return (
     <SignUpContext.Provider value={value}>
-      <MainModal visible={modal} hide={_modal} />
       {loginVariation ? (
         // default variation
         <SignUpStack.Navigator
@@ -82,13 +81,13 @@ export default function SignUpScreen({ navigation }) {
           }}>
           <SignUpStack.Screen name="Phone" component={PhoneForm} />
           <SignUpStack.Screen name="Name" component={NameForm} />
-          <SignUpStack.Screen name="Email" component={EmailForm} />
-          <SignUpStack.Screen name="Username" component={UsernameForm} />
           <SignUpStack.Screen name="LinkBank" component={LinkBankForm} />
           <SignUpStack.Screen
             name="LinkBankComplete"
             component={LinkBankComplete}
           />
+          <SignUpStack.Screen name="Email" component={EmailForm} />
+          <SignUpStack.Screen name="Username" component={UsernameForm} />
           <SignUpStack.Screen name="Complete" component={CompleteForm} />
         </SignUpStack.Navigator>
       )}

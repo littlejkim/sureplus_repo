@@ -30,11 +30,12 @@ export default function NameForm({ navigation }) {
     await setShowLast(true);
     lastNameRef.current.focus();
   };
+
   const _continue = () => {
     setFirstname(localFirst);
     setLastname(localLast);
     setFocus(3);
-    navigation.navigate('Email');
+    navigation.navigate('LinkBank');
   };
 
   return (

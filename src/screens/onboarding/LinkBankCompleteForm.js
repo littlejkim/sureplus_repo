@@ -1,7 +1,6 @@
 // public imports
 import React, { useContext } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import RNRestart from 'react-native-restart'; // temporary restart module (might need to replace during production level)
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
@@ -11,6 +10,10 @@ import { SignUpContext } from '../../screens/SignUpScreen';
 export default function LinkBankCompleteForm({ navigation }) {
   const theme = useTheme();
   const { institutions } = useContext(SignUpContext);
+
+  const _continue = () => {
+    navigation.navigate('Email');
+  };
 
   return (
     <View style={styles.container}>
@@ -27,7 +30,7 @@ export default function LinkBankCompleteForm({ navigation }) {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.mainButton}
-          onPress={() => console.log('pressed link another bank')}
+          onPress={_continue}
           activeOpacity={0.7}>
           <Text style={styles.mainButtonText}>Create Account</Text>
         </TouchableOpacity>

@@ -23,7 +23,7 @@ export default function EmailForm({ navigation }) {
   const { setEmail } = useContext(SignUpContext);
   const [localEmail, setLocalEmail] = useState(null);
 
-  const _continue = async () => {
+  const _continue = () => {
     setEmail(localEmail);
     setIsLoading(true);
     Keyboard.dismiss();

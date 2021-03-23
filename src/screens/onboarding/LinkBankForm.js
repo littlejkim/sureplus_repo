@@ -2,18 +2,26 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { PlaidLink, openLink } from 'react-native-plaid-link-sdk';
+import { PlaidLink } from 'react-native-plaid-link-sdk';
+import DeviceInfo from 'react-native-device-info';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../SignUpScreen';
+import { MainModal } from '../../components/MainModal';
 
 export default function LinkBankForm({ navigation }) {
   const { institutions, setInstitutions } = useContext(SignUpContext);
-
   const [linkToken, setLinkToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
+
+  // error message constants for modal
+  const [modal, setModal] = useState(false);
+  const contents = {
+    title: 'Error',
+    body: 'Unsuccessful linking bank. Please try again.',
+  };
 
   useEffect(() => {
     _getLinkToken();
@@ -50,7 +58,7 @@ export default function LinkBankForm({ navigation }) {
         country_codes: ['US'],
         language: 'en',
         user: {
-          client_user_id: 'unique_user_id',
+          client_user_id: DeviceInfo.getUniqueId(),
         },
         products: ['transactions'],
       }),
@@ -61,39 +69,47 @@ export default function LinkBankForm({ navigation }) {
       .finally(() => setIsLoading(false));
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.body}>
-        <Text style={[styles.titleText, { color: theme.colors.title }]}>
-          Connect your bank to view subscriptions.
-        </Text>
-        <Text style={styles.bodyText}>
-          We analyze your bank statement to track down subscriptions.
-        </Text>
-      </View>
-      <View style={styles.footer}>
-        {isLoading ? (
-          <View
-            style={[
-              styles.mainButton,
-              { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
-            ]}>
-            <ActivityIndicator size="small" color="white" />
-          </View>
-        ) : (
-          <PlaidLink
-            tokenConfig={{ token: linkToken.link_token }}
-            onSuccess={(success) => _setInstitutions(success)}
-            onExit={(exit) => console.log(exit)}>
+    <>
+      <MainModal
+        visible={modal}
+        hide={() => setModal(!modal)}
+        contents={contents}
+      />
+
+      <View style={styles.container}>
+        <View style={styles.body}>
+          <Text style={[styles.titleText, { color: theme.colors.title }]}>
+            Connect your bank to view subscriptions.
+          </Text>
+          <Text style={styles.bodyText}>
+            We analyze your bank statement to track down subscriptions.
+          </Text>
+        </View>
+        <View style={styles.footer}>
+          {isLoading ? (
             <View
               style={[
                 styles.mainButton,
                 { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
               ]}>
-              <Text style={styles.mainButtonText}>Connect my bank</Text>
+              <ActivityIndicator size="small" color="white" />
             </View>
-          </PlaidLink>
-        )}
+          ) : (
+            <PlaidLink
+              tokenConfig={{ token: linkToken.link_token }}
+              onSuccess={(success) => _setInstitutions(success)}
+              onExit={() => setModal(true)}>
+              <View
+                style={[
+                  styles.mainButton,
+                  { backgroundColor: theme.colors.primary }, // check android margin bottom for footer
+                ]}>
+                <Text style={styles.mainButtonText}>Connect my bank</Text>
+              </View>
+            </PlaidLink>
+          )}
+        </View>
       </View>
-    </View>
+    </>
   );
 }

@@ -27,7 +27,7 @@ export default function UsernameForm({ navigation }) {
     setUsername(localUsername);
     setIsLoading(true);
     Keyboard.dismiss();
-    navigation.navigate('LinkBank');
+    navigation.navigate('Complete');
   };
 
   return (
