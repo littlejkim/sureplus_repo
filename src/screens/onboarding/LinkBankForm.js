@@ -1,14 +1,16 @@
 // public imports
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { PlaidLink, openLink } from 'react-native-plaid-link-sdk';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
-import { SignUpContext } from '../../screens/SignUpScreen';
+import { SignUpContext } from '../SignUpScreen';
 
-export default function BankForm({ navigation }) {
+export default function LinkBankForm({ navigation }) {
+  const { institutions, setInstitutions } = useContext(SignUpContext);
+
   const [linkToken, setLinkToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
@@ -16,6 +18,22 @@ export default function BankForm({ navigation }) {
   useEffect(() => {
     _getLinkToken();
   }, [setLinkToken]);
+
+  const _continue = () => {
+    navigation.navigate('LinkBankComplete');
+  };
+
+  const _setInstitutions = (value) => {
+    setInstitutions([
+      ...institutions,
+      {
+        institution_id: value.metadata.institution.id,
+        institution_name: value.metadata.institution.name,
+        publicToken: value.publicToken,
+      },
+    ]);
+    _continue();
+  };
 
   const _getLinkToken = () => {
     setIsLoading(true);
@@ -34,7 +52,7 @@ export default function BankForm({ navigation }) {
         user: {
           client_user_id: 'unique_user_id',
         },
-        products: ['auth'],
+        products: ['transactions'],
       }),
     })
       .then((response) => response.json())
@@ -64,7 +82,7 @@ export default function BankForm({ navigation }) {
         ) : (
           <PlaidLink
             tokenConfig={{ token: linkToken.link_token }}
-            onSuccess={(success) => console.log(success)}
+            onSuccess={(success) => _setInstitutions(success)}
             onExit={(exit) => console.log(exit)}>
             <View
               style={[

@@ -7,7 +7,8 @@ import remoteConfig from '@react-native-firebase/remote-config';
 import {
   PhoneForm,
   NameForm,
-  BankForm,
+  LinkBankForm,
+  LinkBankComplete,
   EmailForm,
   UsernameForm,
   CompleteForm,
@@ -24,6 +25,7 @@ export default function SignUpScreen({ navigation }) {
   const [phone, setPhone] = useState(null);
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
+  const [institutions, setInstitutions] = useState([]);
   const [email, setEmail] = useState(null);
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
@@ -34,6 +36,8 @@ export default function SignUpScreen({ navigation }) {
     setFirstname,
     lastname,
     setLastname,
+    institutions,
+    setInstitutions,
     email,
     setEmail,
     username,
@@ -67,7 +71,7 @@ export default function SignUpScreen({ navigation }) {
           }}>
           <SignUpStack.Screen name="Phone" component={PhoneForm} />
           <SignUpStack.Screen name="Name" component={NameForm} />
-          <SignUpStack.Screen name="Bank" component={BankForm} />
+          <SignUpStack.Screen name="Bank" component={LinkBankForm} />
         </SignUpStack.Navigator>
       ) : (
         // variation applied
@@ -80,7 +84,11 @@ export default function SignUpScreen({ navigation }) {
           <SignUpStack.Screen name="Name" component={NameForm} />
           <SignUpStack.Screen name="Email" component={EmailForm} />
           <SignUpStack.Screen name="Username" component={UsernameForm} />
-          <SignUpStack.Screen name="Bank" component={BankForm} />
+          <SignUpStack.Screen name="LinkBank" component={LinkBankForm} />
+          <SignUpStack.Screen
+            name="LinkBankComplete"
+            component={LinkBankComplete}
+          />
           <SignUpStack.Screen name="Complete" component={CompleteForm} />
         </SignUpStack.Navigator>
       )}

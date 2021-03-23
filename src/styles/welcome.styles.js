@@ -46,6 +46,7 @@ export default StyleSheet.create({
     paddingVertical: 4,
   },
   mainButton: {
+    marginBottom: 5,
     backgroundColor: PRIMARY_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
@@ -67,9 +68,10 @@ export default StyleSheet.create({
     marginHorizontal: 15,
   },
   subButtonText: {
-    fontSize: 17,
-    fontFamily: TEXT_REGULAR,
     color: 'white',
+    fontSize: 17,
+    fontWeight: '500',
+    fontFamily: TEXT_REGULAR,
   },
   roundButton: {
     alignItems: 'center',
