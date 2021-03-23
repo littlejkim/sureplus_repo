@@ -7,6 +7,7 @@ import SignUpScreen from './SignUpScreen';
 import LogInScreen from './LogInScreen';
 import ReportScreen from './ReportScreen';
 import WalletScreen from './WalletScreen';
+import PasswordScreen from './PasswordScreen';
 
 export {
   HomeScreen,
@@ -18,4 +19,5 @@ export {
   LogInScreen,
   ReportScreen,
   WalletScreen,
+  PasswordScreen,
 };

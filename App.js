@@ -9,7 +9,8 @@ import remoteConfig from '@react-native-firebase/remote-config';
 import { HomeContainer } from './src/navigation/HomeContainer';
 import { AuthContainer } from './src/navigation/AuthContainer';
 import { SplashScreen } from './src/screens';
-import { fetchUserToken, deleteUserToken } from './src/utils/userUtils';
+import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
+import { testUserData } from './src/data/testUserData';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
   const routeNameRef = useRef();
 
   useEffect(() => {
+    // storeUserToken(testUserData);
     console.log('Initial data loading...');
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage
     remoteConfig().setConfigSettings({

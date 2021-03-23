@@ -1,15 +1,24 @@
 // public imports
-import React from 'react';
-import { Image, StatusBar } from 'react-native';
+import React, { useState } from 'react';
+import { Text, Image, StatusBar } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Host } from 'react-native-portalize';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import { HomeScreen, DiscoverScreen, GroupsScreen } from '../screens';
+import {
+  HomeScreen,
+  DiscoverScreen,
+  GroupsScreen,
+  PasswordScreen,
+} from '../screens';
 import { TEXT_BOLD, HEADER_TEXT_SIZE } from '../styles/fonts';
-import { darkBarStyle, lightBarStyle } from '../styles/bottomBar.styles';
+import {
+  darkBarStyle,
+  lightBarStyle,
+  iconImageStyle,
+} from '../styles/bottomBar.styles';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -93,13 +102,17 @@ function GroupsStackScreen() {
 }
 
 export const HomeContainer = () => {
-  const { dark } = useTheme();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const theme = useTheme();
+  if (isAuthenticated === false) {
+    return <PasswordScreen authentication={() => setIsAuthenticated(true)} />;
+  }
   return (
     <Host>
-      <StatusBar barStyle={dark ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
       <Tab.Navigator
         initialRouteName="Home"
-        tabBarOptions={dark ? darkBarStyle : lightBarStyle}>
+        tabBarOptions={theme.dark ? darkBarStyle : lightBarStyle}>
         <Tab.Screen
           name="Home"
           component={HomeStackScreen}
@@ -112,7 +125,7 @@ export const HomeContainer = () => {
                     width: size + 11,
                     height: size + 11,
                     opacity: focusedOpacity,
-                    tintColor: dark ? 'white' : 'black',
+                    tintColor: theme.dark ? 'white' : 'black',
                   }}
                   source={require('../assets/images/home.png')}
                 />
@@ -132,7 +145,7 @@ export const HomeContainer = () => {
                     width: size + 11,
                     height: size + 11,
                     opacity: focusedOpacity,
-                    tintColor: dark ? 'white' : 'black',
+                    tintColor: theme.dark ? 'white' : 'black',
                   }}
                   source={require('../assets/images/subscription.png')}
                 />
@@ -152,7 +165,7 @@ export const HomeContainer = () => {
                     width: size + 11,
                     height: size + 11,
                     opacity: focusedOpacity,
-                    tintColor: dark ? 'white' : 'black',
+                    tintColor: theme.dark ? 'white' : 'black',
                   }}
                   source={require('../assets/images/groups.png')}
                 />
