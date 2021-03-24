@@ -33,33 +33,31 @@ export default function PasswordScreen(props) {
   ];
 
   const _addPassword = (item) => {
-    if (password.length !== savedPassword.length) {
+    if (password.length < savedPassword.length) {
       const temp = [...password, item];
       setPassword(temp);
-    }
-    if (password.length === savedPassword.length) {
-      password.every((val, index) => val === savedPassword[index])
-        ? _logIn()
-        : setPassword([]);
     }
   };
 
   const _deletePassword = () => {
-    const temp = [...password];
-    temp.splice(-1, 1);
-    setPassword(temp);
-  };
-
-  const _logIn = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      props.authentication();
-    }, 2000);
+    if (password.length != 0) {
+      const temp = [...password];
+      temp.splice(-1, 1);
+      setPassword(temp);
+    }
   };
 
   useEffect(() => {
+    if (password.length === savedPassword.length) {
+      password.every((val, index) => val === savedPassword[index])
+        ? (setIsLoading(true),
+          setTimeout(() => {
+            props.authentication();
+          }, 2000))
+        : setPassword([]);
+    }
     return () => setIsLoading(false);
-  }, []);
+  }, [props, password, savedPassword]);
 
   return (
     <>
