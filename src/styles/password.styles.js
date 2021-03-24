@@ -4,16 +4,17 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2F0459',
-    paddingHorizontal: 24,
+    padding: 24,
   },
   topContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  bottomContainer: {
+  middleContainer: {
     flex: 1,
   },
+  bottomContainer: {},
   titleText: {
     textAlign: 'center',
     color: 'white',
@@ -33,6 +34,21 @@ export default StyleSheet.create({
     letterSpacing: 0.0041,
     fontFamily: TEXT_REGULAR,
     marginBottom: 40,
+  },
+  footerButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 55,
+  },
+  footerText: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 17,
+    fontWeight: '400',
+    lineHeight: 23,
+    letterSpacing: 0.0041,
+    fontFamily: TEXT_REGULAR,
   },
 
   item: {
