@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { TEXT_REGULAR } from './fonts';
 export default StyleSheet.create({
   container: {
@@ -6,7 +6,6 @@ export default StyleSheet.create({
     backgroundColor: '#2F0459',
     paddingHorizontal: 24,
   },
-
   topContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -14,8 +13,6 @@ export default StyleSheet.create({
   },
   bottomContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   titleText: {
     textAlign: 'center',
@@ -36,5 +33,19 @@ export default StyleSheet.create({
     letterSpacing: 0.0041,
     fontFamily: TEXT_REGULAR,
     marginBottom: 40,
+  },
+
+  item: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    margin: 3,
+    height: Dimensions.get('window').width / 5, // approximate a square
+  },
+  itemText: {
+    fontWeight: '400',
+    color: 'white',
+    fontSize: 25,
+    lineHeight: 29.83,
   },
 });
