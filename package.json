@@ -31,6 +31,7 @@
     "amazon-cognito-identity-js": "^4.6.0",
     "aws-amplify": "^3.3.25",
     "aws-amplify-react-native": "^4.3.2",
+    "crypto-js": "^3.3.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-device-info": "^8.0.6",
