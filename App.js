@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
+import { API, graphqlOperation } from 'aws-amplify'
+import { listMoscatoUsers } from './src/graphql/queries'
 
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
@@ -22,9 +24,19 @@ export default function App() {
   const navigationRef = useRef();
   const routeNameRef = useRef();
 
+  // testing appsync api call without any @auth directive -> works
+  async function testAmplifyApi() {
+    try {
+      const userData = await API.graphql(graphqlOperation(listMoscatoUsers))
+      console.log("userData", userData.data.listMoscatoUsers)
+    } catch (err) { console.log('error fetching todos', err) }
+  }
+
   useEffect(() => {
     //storeUserToken(testUserData);
+    //testAmplifyApi()
     console.log('Initial data loading...');
+
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage
     remoteConfig().setConfigSettings({
       minimumFetchIntervalMillis: 30,
