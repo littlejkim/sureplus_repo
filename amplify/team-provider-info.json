@@ -1,0 +1,15 @@
+{
+  "moscatodev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sureplusmoscato-moscatodev-202240-authRole",
+      "UnauthRoleArn": "arn:aws:iam::785666055111:role/amplify-sureplusmoscato-moscatodev-202240-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::785666055111:role/amplify-sureplusmoscato-moscatodev-202240-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-sureplusmoscato-moscatodev-202240-deployment",
+      "UnauthRoleName": "amplify-sureplusmoscato-moscatodev-202240-unauthRole",
+      "StackName": "amplify-sureplusmoscato-moscatodev-202240",
+      "StackId": "arn:aws:cloudformation:us-east-2:785666055111:stack/amplify-sureplusmoscato-moscatodev-202240/6bbd5550-8d5c-11eb-bada-0600f1d4ce0c",
+      "AmplifyAppId": "d1nk1dx3mucshh"
+    }
+  }
+}
