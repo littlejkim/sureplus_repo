@@ -8,8 +8,9 @@ export const createMoscatoUser = /* GraphQL */ `
   ) {
     createMoscatoUser(input: $input, condition: $condition) {
       id
-      name
-      phonenumber
+      phoneNumber
+      firstName
+      lastName
       deviceId
       createdAt
       updatedAt
@@ -23,8 +24,9 @@ export const updateMoscatoUser = /* GraphQL */ `
   ) {
     updateMoscatoUser(input: $input, condition: $condition) {
       id
-      name
-      phonenumber
+      phoneNumber
+      firstName
+      lastName
       deviceId
       createdAt
       updatedAt
@@ -38,8 +40,9 @@ export const deleteMoscatoUser = /* GraphQL */ `
   ) {
     deleteMoscatoUser(input: $input, condition: $condition) {
       id
-      name
-      phonenumber
+      phoneNumber
+      firstName
+      lastName
       deviceId
       createdAt
       updatedAt

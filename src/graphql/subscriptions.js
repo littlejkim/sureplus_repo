@@ -5,8 +5,9 @@ export const onCreateMoscatoUser = /* GraphQL */ `
   subscription OnCreateMoscatoUser {
     onCreateMoscatoUser {
       id
-      name
-      phonenumber
+      phoneNumber
+      firstName
+      lastName
       deviceId
       createdAt
       updatedAt
@@ -17,8 +18,9 @@ export const onUpdateMoscatoUser = /* GraphQL */ `
   subscription OnUpdateMoscatoUser {
     onUpdateMoscatoUser {
       id
-      name
-      phonenumber
+      phoneNumber
+      firstName
+      lastName
       deviceId
       createdAt
       updatedAt
@@ -29,8 +31,9 @@ export const onDeleteMoscatoUser = /* GraphQL */ `
   subscription OnDeleteMoscatoUser {
     onDeleteMoscatoUser {
       id
-      name
-      phonenumber
+      phoneNumber
+      firstName
+      lastName
       deviceId
       createdAt
       updatedAt

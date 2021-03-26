@@ -5,8 +5,9 @@ export const getMoscatoUser = /* GraphQL */ `
   query GetMoscatoUser($id: ID!) {
     getMoscatoUser(id: $id) {
       id
-      name
-      phonenumber
+      phoneNumber
+      firstName
+      lastName
       deviceId
       createdAt
       updatedAt
@@ -22,8 +23,9 @@ export const listMoscatoUsers = /* GraphQL */ `
     listMoscatoUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        phonenumber
+        phoneNumber
+        firstName
+        lastName
         deviceId
         createdAt
         updatedAt

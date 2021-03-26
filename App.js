@@ -35,7 +35,9 @@ export default function App() {
     }
   }
 
-  //test device id encryption and decryption
+  // test device id encryption and decryption
+  // need to store the key from both frontend and backend -> perhaps store it as env variable
+  // env var ENCRYPT_KEY during production
   function testEncryption() {
     var ciphertext = CryptoJS.AES.encrypt(
       'deviceID',
