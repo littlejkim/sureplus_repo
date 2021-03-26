@@ -39,6 +39,7 @@ app.get('/item/*', function (req, res) {
 /****************************
  * Example post method *
  ****************************/
+const encryptionKey = 'jioy7A!Y&h9ha90AJkJA872';
 app.post('/sms', (req, res) => {
   console.log('INCOMING', req);
   res.writeHead(200, { 'Content-Type': 'text/xml' });
