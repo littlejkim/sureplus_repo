@@ -1,6 +1,6 @@
 {
   "function": {
-    "twiliosms": {
+    "twilioHandler": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

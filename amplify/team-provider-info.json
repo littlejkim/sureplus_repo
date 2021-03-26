@@ -16,9 +16,9 @@
         "sureplusmoscato39e92d10": {}
       },
       "function": {
-        "twiliosms": {
+        "twilioHandler": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
-          "s3Key": "amplify-builds/twiliosms-424e6c50326861474348-build.zip"
+          "s3Key": "amplify-builds/twilioHandler-4b3349694b6f73426253-build.zip"
         }
       }
     }

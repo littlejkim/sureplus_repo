@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "twiliosms",
+            "twilioHandler",
             {
               "Fn::Join": [
                 "",
                 [
-                  "twiliosms",
+                  "twilioHandler",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "sureplusmoscatoLambdaRolea3bc1efa",
+            "sureplusmoscatoLambdaRolee3acfa8a",
             {
               "Fn::Join": [
                 "",
                 [
-                  "sureplusmoscatoLambdaRolea3bc1efa",
+                  "sureplusmoscatoLambdaRolee3acfa8a",
                   "-",
                   {
                     "Ref": "env"

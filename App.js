@@ -55,7 +55,7 @@ export default function App() {
 
   useEffect(() => {
     //storeUserToken(testUserData);
-    //testAmplifyApi()
+    testAmplifyApi();
     //testEncryption();
     console.log('Initial data loading...');
 
