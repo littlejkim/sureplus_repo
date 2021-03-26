@@ -26,7 +26,6 @@ export default function EmailForm({ navigation }) {
   const _continue = () => {
     setEmail(localEmail);
     setIsLoading(true);
-    Keyboard.dismiss();
     navigation.navigate('Username');
   };
 
@@ -64,6 +63,7 @@ export default function EmailForm({ navigation }) {
               blurOnSubmit={true}
               onChangeText={(value) => setLocalEmail(value)}
               onSubmitEditing={_continue}
+              returnKeyType="next"
             />
           </View>
         </View>

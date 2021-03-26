@@ -4,12 +4,12 @@ import EmailForm from './EmailForm';
 import UsernameForm from './UsernameForm';
 import LinkBankForm from './LinkBankForm';
 import LinkBankComplete from './LinkBankCompleteForm';
-import CompleteForm from './CompleteForm';
+import ConfirmForm from './ConfirmForm';
 
 export {
   EmailForm,
   PhoneForm,
-  CompleteForm,
+  ConfirmForm,
   NameForm,
   LinkBankForm,
   LinkBankComplete,

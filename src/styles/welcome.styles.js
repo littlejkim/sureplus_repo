@@ -4,15 +4,14 @@ import { PRIMARY_COLOR } from './constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 24,
   },
   body: {
     flex: 1,
     marginTop: 114,
-    marginHorizontal: 24,
   },
   footer: {
     marginBottom: Platform.OS === 'ios' ? 35 : 5,
-    marginHorizontal: 20,
   },
   titleText: {
     fontSize: 24,
@@ -38,11 +37,10 @@ export default StyleSheet.create({
     letterSpacing: 0.0012,
   },
   textInput: {
-    width: '85%',
     fontFamily: TEXT_REGULAR,
     fontSize: 25,
-    borderBottomColor: '#F1F2F4', // Add this to specify bottom border color
-    borderBottomWidth: 2, // Add this to specify bottom border thickness
+    borderBottomColor: '#F1F2F4',
+    borderBottomWidth: 2,
     paddingVertical: 4,
   },
   mainButton: {
@@ -52,6 +50,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     height: 55,
     borderRadius: 27.5,
+    marginTop: 10,
   },
   mainButtonText: {
     color: 'white',
@@ -65,7 +64,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     height: 55,
     borderRadius: 30,
-    marginHorizontal: 15,
   },
   subButtonText: {
     color: 'white',
@@ -80,5 +78,38 @@ export default StyleSheet.create({
     borderRadius: 100,
     width: 64,
     height: 64,
+  },
+  linkedBankContainer: {
+    justifyContent: 'space-between',
+    height: 62,
+    borderRadius: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 14,
+    marginBottom: 40,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+  },
+  linkedBankText: {
+    flex: 1,
+    fontFamily: TEXT_REGULAR,
+    fontWeight: '400',
+    fontSize: 17,
+    lineHeight: 23,
+    letterSpacing: -0.041,
+  },
+  subscriptionsFoundText: {
+    flex: 1,
+    fontFamily: TEXT_REGULAR,
+    fontWeight: '400',
+    fontSize: 17,
+    lineHeight: 23,
+    letterSpacing: -0.041,
   },
 });

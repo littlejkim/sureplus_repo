@@ -11,24 +11,23 @@ import {
   LinkBankComplete,
   EmailForm,
   UsernameForm,
-  CompleteForm,
+  ConfirmForm,
 } from './onboarding';
-import { MainModal } from '../components/MainModal';
 
 const SignUpStack = createStackNavigator(); // signup stack
 export const SignUpContext = createContext(); // signup context (used to store email, phonenumber, name, etc)
 
-export default function SignUpScreen({ navigation }) {
+export default function SignUpScreen() {
   const [modal, setModal] = useState(false);
 
   //  signup values (phone, name, email, password)
-  const [phone, setPhone] = useState(null);
-  const [firstname, setFirstname] = useState(null);
-  const [lastname, setLastname] = useState(null);
+  const [phone, setPhone] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
   const [institutions, setInstitutions] = useState([]);
-  const [email, setEmail] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const value = {
     phone,
     setPhone,
@@ -55,29 +54,17 @@ export default function SignUpScreen({ navigation }) {
     variation ? setLoginVariation(true) : setLoginVariation(false);
   }, []);
 
-  const _modal = () => {
-    setModal(!modal);
-  };
-
   return (
     <SignUpContext.Provider value={value}>
-      {loginVariation ? (
-        // default variation
-        <SignUpStack.Navigator
-          initialRouteName="Phone"
-          screenOptions={{
-            headerShown: false,
-          }}>
-          <SignUpStack.Screen name="Phone" component={PhoneForm} />
-          <SignUpStack.Screen name="Name" component={NameForm} />
-          <SignUpStack.Screen name="Bank" component={LinkBankForm} />
-        </SignUpStack.Navigator>
-      ) : (
+      {loginVariation ? null : (
         // variation applied
         <SignUpStack.Navigator
           initialRouteName="Phone"
+          headerMode="float"
           screenOptions={{
-            headerShown: false,
+            headerTitle: '',
+            headerBackTitleVisible: false,
+            headerTransparent: true,
           }}>
           <SignUpStack.Screen name="Phone" component={PhoneForm} />
           <SignUpStack.Screen name="Name" component={NameForm} />
@@ -88,7 +75,7 @@ export default function SignUpScreen({ navigation }) {
           />
           <SignUpStack.Screen name="Email" component={EmailForm} />
           <SignUpStack.Screen name="Username" component={UsernameForm} />
-          <SignUpStack.Screen name="Complete" component={CompleteForm} />
+          <SignUpStack.Screen name="Confirm" component={ConfirmForm} />
         </SignUpStack.Navigator>
       )}
     </SignUpContext.Provider>

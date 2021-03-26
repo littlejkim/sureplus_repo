@@ -10,11 +10,11 @@ import { WelcomeScreen, LogInScreen, SignUpScreen } from '../screens';
 const AuthStack = createStackNavigator();
 
 export const AuthContainer = () => {
-  const { dark } = useTheme();
+  const theme = useTheme();
 
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar barStyle={dark ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
       <AuthStack.Navigator
         mode="modal"
         initialRouteName="Welcome"

@@ -8,6 +8,7 @@ import {
   Platform,
   KeyboardAvoidingView,
   Image,
+  Keyboard,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -34,6 +35,7 @@ export default function NameForm({ navigation }) {
   const _continue = () => {
     setFirstname(localFirst);
     setLastname(localLast);
+    Keyboard.dismiss();
     setFocus(3);
     navigation.navigate('LinkBank');
   };
@@ -44,7 +46,7 @@ export default function NameForm({ navigation }) {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={-20}>
       <View style={styles.container}>
-        <View style={[styles.body, { width: '100%' }]}>
+        <View style={styles.body}>
           <Text style={[styles.titleText, { color: theme.colors.title }]}>
             What is your full legal name?
           </Text>
@@ -74,6 +76,7 @@ export default function NameForm({ navigation }) {
               onChangeText={(value) => setLocalFirst(value)}
               onSubmitEditing={_showNext}
               onFocus={() => setFocus(0)}
+              returnKeyType="next"
             />
           </View>
           <View
@@ -106,6 +109,7 @@ export default function NameForm({ navigation }) {
               onChangeText={(value) => setLocalLast(value)}
               onSubmitEditing={_continue}
               ref={lastNameRef}
+              returnKeyType="next"
             />
           </View>
         </View>

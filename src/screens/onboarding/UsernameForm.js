@@ -27,7 +27,7 @@ export default function UsernameForm({ navigation }) {
     setUsername(localUsername);
     setIsLoading(true);
     Keyboard.dismiss();
-    navigation.navigate('Complete');
+    navigation.navigate('Confirm');
   };
 
   return (
@@ -36,7 +36,7 @@ export default function UsernameForm({ navigation }) {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={-20}>
       <View style={styles.container}>
-        <View style={[styles.body, { width: '100%' }]}>
+        <View style={styles.body}>
           <Text style={[styles.titleText, { color: theme.colors.title }]}>
             Choose a username
           </Text>
@@ -67,6 +67,7 @@ export default function UsernameForm({ navigation }) {
               blurOnSubmit={true}
               onChangeText={(value) => setLocalUsername(value)}
               onSubmitEditing={_continue}
+              returnKeyType="next"
             />
           </View>
         </View>
