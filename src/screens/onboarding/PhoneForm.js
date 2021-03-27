@@ -46,11 +46,20 @@ export default function PhoneForm({ navigation }) {
     await setTimeout(() => {
       setIsLoading(false);
       console.log('Text successfully sent');
-    }, 3000).then(
+    }, 3000).then(() => {
       // Youngmi look at this for SMS callback
+
+      //1. Get device unique Id
+      let uniqueId = DeviceInfo.getUniqueId();
+      let encryptionKey = 'jioy7A!Y&h9ha90AJkJA872';
+      //2. append "auth" string for server side validation after decryption
+      let idString = uniqueId + 'auth';
+      //3. encrypt string
+      var ciphertext = CryptoJS.AES.encrypt(idString, encryptionKey);
+
       SendSMS.send(
         {
-          body: 'Sureplus Verification Code e8ce0df77a3abcca0a938d2e499c9daf', // add hash
+          body: ciphertext, // add hash
           recipients: [twilio_number],
           successTypes: ['sent', 'queued'], // for android
           allowAndroidSendWithoutReadPermission: true, // for android
@@ -59,8 +68,8 @@ export default function PhoneForm({ navigation }) {
           setIsLoading(false);
           completed ? navigation.navigate('Name') : setModal(true);
         },
-      ),
-    );
+      );
+    });
   };
 
   return (

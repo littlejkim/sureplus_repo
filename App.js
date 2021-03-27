@@ -5,7 +5,6 @@ import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
-import { getUniqueId } from 'react-native-device-info';
 
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
@@ -43,27 +42,6 @@ export default function App() {
     } catch (err) {
       console.log('error fetching todos', err);
     }
-  }
-
-  // test device id encryption and decryption
-  // need to store the key from both frontend and backend -> perhaps store it as env variable
-  // env var ENCRYPT_KEY during production
-  function testEncryption() {
-    let uniqueId = getUniqueId();
-    console.log('DEVICE_ID: ', uniqueId);
-
-    var ciphertext = CryptoJS.AES.encrypt(
-      'deviceID',
-      'jioy7A!Y&h9ha90AJkJA872',
-    );
-    console.log('encrypted text', ciphertext.toString());
-
-    var bytes = CryptoJS.AES.decrypt(
-      ciphertext.toString(),
-      'jioy7A!Y&h9ha90AJkJA872',
-    );
-    var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-    console.log('decrypted text', plaintext);
   }
 
   useEffect(() => {

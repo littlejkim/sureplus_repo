@@ -7,13 +7,14 @@ See the License for the specific language governing permissions and limitations 
 */
 
 var express = require('express');
-var bodyParser = require('body-parser');
+var { urlencoded } = require('body-parser');
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
+var CryptoJS = require('crypto-js');
 
 // declare a new express app
 var app = express();
-app.use(bodyParser.json());
+app.use(urlencoded({ extended: false }));
 app.use(awsServerlessExpressMiddleware.eventContext());
 
 // Enable CORS for all methods
@@ -29,10 +30,15 @@ app.use(function (req, res, next) {
 
 const encryptionKey = 'jioy7A!Y&h9ha90AJkJA872';
 app.post('/sms', (req, res) => {
+  var decryptedByte = CryptoJS.AES.decrypt(req.body.Body, encryptionKey);
+  var deviceID = decryptedByte.toString(CryptoJS.enc.Utf8);
+
   const twiml = new MessagingResponse();
 
   twiml.message('I am Youngmi, your authenticator!');
-  console.log(`Incoming message from ${req.body.From}: ${req.body.Body}`);
+
+  console.log('DeviceID: ', deviceID);
+  console.log('PhoneNumber: ', req.body.From);
 
   res.writeHead(200, { 'Content-Type': 'text/xml' });
   res.end(twiml.toString());
