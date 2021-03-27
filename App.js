@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
-import { API, graphqlOperation } from 'aws-amplify';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
 var CryptoJS = require('crypto-js');
 
 // custom imports
@@ -25,6 +25,14 @@ export default function App() {
   const navigationRef = useRef();
   const routeNameRef = useRef();
 
+  //check authenticated/ unauthenticated user from Auth object
+  async function checkAuthUser() {
+    const user = await Auth.currentAuthenticatedUser().catch((e) =>
+      console.log('user ERR', e),
+    );
+    console.log('USER', user);
+  }
+
   // testing appsync api call without any @auth directive -> works
   async function testAmplifyApi() {
     try {
@@ -33,6 +41,14 @@ export default function App() {
     } catch (err) {
       console.log('error fetching todos', err);
     }
+  }
+
+  async function testAmplifyFunction() {
+    await API.get('moscatolambdarest', '/item', {})
+      .then((response) => {
+        console.log('API CALL', response);
+      })
+      .catch((err) => console.log('function api ERR', err));
   }
 
   // test device id encryption and decryption
@@ -57,6 +73,8 @@ export default function App() {
     //storeUserToken(testUserData);
     testAmplifyApi();
     //testEncryption();
+    testAmplifyFunction();
+    checkAuthUser();
     console.log('Initial data loading...');
 
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage

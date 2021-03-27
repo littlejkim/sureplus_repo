@@ -1,10 +1,10 @@
 {
     "identityPoolName": "sureplusmoscato39e92d10_identitypool_39e92d10",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "surepl39e92d10",
     "userPoolName": "sureplusmoscato39e92d10_userpool_39e92d10",
     "autoVerifiedAttributes": [
-        "email"
+        "phone_number"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
@@ -14,8 +14,8 @@
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": false,
-    "passwordPolicyMinLength": 8,
+    "defaultPasswordPolicy": true,
+    "passwordPolicyMinLength": "6",
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
         "email"
@@ -23,13 +23,18 @@
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
+        "family_name",
+        "given_name",
+        "phone_number",
         "email"
     ],
     "userpoolClientReadAttributes": [
-        "email"
+        "family_name",
+        "given_name",
+        "phone_number"
     ],
     "userpoolClientLambdaRole": "surepl39e92d10_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "39e92d10",
     "resourceName": "sureplusmoscato39e92d10",
     "authSelections": "identityPoolAndUserPool",
@@ -45,9 +50,22 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
-    "userPoolGroupList": [],
+    "useDefault": "manual",
+    "userPoolGroupList": [
+        "moscatouserpool"
+    ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "dependsOn": []
+    "dependsOn": [],
+    "thirdPartyAuth": false,
+    "userPoolGroups": true,
+    "adminQueries": true,
+    "triggers": "{}",
+    "hostedUI": false,
+    "adminQueryGroup": "admin",
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "authProviders": []
 }

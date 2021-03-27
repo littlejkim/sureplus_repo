@@ -1,3 +1,19 @@
 {
-  "lambdaLayers": []
+  "lambdaLayers": [],
+  "permissions": {
+    "auth": {
+      "sureplusmoscato39e92d10": [
+        "create",
+        "read",
+        "update"
+      ]
+    },
+    "api": {
+      "moscatoapi": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  }
 }

@@ -18,7 +18,11 @@
       "function": {
         "twilioHandler": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
-          "s3Key": "amplify-builds/twilioHandler-4b3349694b6f73426253-build.zip"
+          "s3Key": "amplify-builds/twilioHandler-614e69484e466d6c6571-build.zip"
+        },
+        "AdminQueries595e84a2": {
+          "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
+          "s3Key": "amplify-builds/AdminQueries595e84a2-6c3843614468536d5937-build.zip"
         }
       }
     }

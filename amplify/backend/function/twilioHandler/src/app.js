@@ -1,4 +1,10 @@
-/*
+/* Amplify Params - DO NOT EDIT
+	API_MOSCATOAPI_GRAPHQLAPIENDPOINTOUTPUT
+	API_MOSCATOAPI_GRAPHQLAPIIDOUTPUT
+	AUTH_SUREPLUSMOSCATO39E92D10_USERPOOLID
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT *//*
 Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
     http://aws.amazon.com/apache2.0/
