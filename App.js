@@ -15,8 +15,6 @@ import { testUserData } from './src/data/testUserData';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers } from './src/graphql/queries';
 
-var CryptoJS = require('crypto-js');
-
 export default function App() {
   const colorScheme = useColorScheme(); // used to find user color scheme (dark/light)
   const [user, setUser] = useState(undefined);
@@ -47,7 +45,6 @@ export default function App() {
   useEffect(() => {
     //storeUserToken(testUserData);
     testAmplifyApi();
-    testEncryption();
     checkAuthUser();
     console.log('Initial data loading...');
 
