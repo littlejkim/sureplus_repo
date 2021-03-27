@@ -22,7 +22,7 @@
         },
         "twiliosms": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
-          "s3Key": "amplify-builds/twiliosms-6e4e30345878722f7767-build.zip"
+          "s3Key": "amplify-builds/twiliosms-37445955567337387275-build.zip"
         },
         "authhandler": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",

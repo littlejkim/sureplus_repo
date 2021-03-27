@@ -27,16 +27,18 @@ export default function App() {
   //check authenticated/ unauthenticated user from Auth object
   async function checkAuthUser() {
     //console.log('USER', user);
-    const signupUser = await Auth.signUp({
+    Auth.signUp({
       username: 'hello',
-      password: 'hello733!',
-      attributes: { email: 'test@test.com' },
-    }).catch((e) => console.log('SIGNUP ERR', e));
-    console.log('USER: ', signupUser);
+      password: 'hello7331!',
+    })
+      .then((data) => {
+        console.log('Signup Success: ', data);
+      })
+      .catch((e) => console.log('Signup err', e));
 
-    const user = await Auth.currentAuthenticatedUser().catch((e) =>
-      console.log('user ERR', e),
-    );
+    // const user = await Auth.currentAuthenticatedUser().catch((e) =>
+    //   console.log('user ERR', e),
+    // );
   }
 
   // testing appsync api call without any @auth directive -> works
