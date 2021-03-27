@@ -11,7 +11,7 @@ import { useTheme } from '@react-navigation/native';
 import SendSMS from 'react-native-sms';
 import DeviceInfo from 'react-native-device-info';
 import remoteConfig from '@react-native-firebase/remote-config';
-import CryptoJS from 'crypto-js';
+var CryptoJS = require('crypto-js');
 
 // custom imports
 import styles from '../../styles/welcome.styles';
