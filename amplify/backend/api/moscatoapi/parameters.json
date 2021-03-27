@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "moscatoapi",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authsureplusmoscato39e92d10",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

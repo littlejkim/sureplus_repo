@@ -1,0 +1,26 @@
+{
+  "moscatodev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sureplusmoscato-moscatodev-175838-authRole",
+      "UnauthRoleArn": "arn:aws:iam::686623262594:role/amplify-sureplusmoscato-moscatodev-175838-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::686623262594:role/amplify-sureplusmoscato-moscatodev-175838-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
+      "UnauthRoleName": "amplify-sureplusmoscato-moscatodev-175838-unauthRole",
+      "StackName": "amplify-sureplusmoscato-moscatodev-175838",
+      "StackId": "arn:aws:cloudformation:us-east-2:686623262594:stack/amplify-sureplusmoscato-moscatodev-175838/77197f40-8e11-11eb-b26d-02e95aaa8e48",
+      "AmplifyAppId": "d8odj77hztenc"
+    },
+    "categories": {
+      "auth": {
+        "sureplusmoscato39e92d10": {}
+      },
+      "function": {
+        "twilioHandler": {
+          "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
+          "s3Key": "amplify-builds/twilioHandler-4b3349694b6f73426253-build.zip"
+        }
+      }
+    }
+  }
+}

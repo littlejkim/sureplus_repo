@@ -1,0 +1,7 @@
+type MoscatoUser @model {
+  id: ID!
+  phoneNumber: String!
+  firstName: String
+  lastName: String
+  deviceId: String
+}
