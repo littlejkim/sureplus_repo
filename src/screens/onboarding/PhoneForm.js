@@ -11,13 +11,12 @@ import { useTheme } from '@react-navigation/native';
 import SendSMS from 'react-native-sms';
 import DeviceInfo from 'react-native-device-info';
 import remoteConfig from '@react-native-firebase/remote-config';
+import CryptoJS from 'crypto-js';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
 import { MainModal } from '../../components/MainModal';
-
-var CryptoJS = require('crypto-js');
 
 export default function PhoneForm({ navigation }) {
   const theme = useTheme();
@@ -34,6 +33,12 @@ export default function PhoneForm({ navigation }) {
   const { phone, setPhone } = useContext(SignUpContext);
   const [isLoading, setIsLoading] = useState(false);
 
+  // hashing device id
+  const hash = CryptoJS.AES.encrypt(
+    DeviceInfo.getUniqueId() + 'auth',
+    'h9ha90AJkJA872',
+  ).toString();
+
   const _continue = () => {
     setIsLoading(true);
     // bypass SMS auth if virtual device (emulator)
@@ -48,30 +53,20 @@ export default function PhoneForm({ navigation }) {
     await setTimeout(() => {
       setIsLoading(false);
       console.log('Text successfully sent');
-    }, 3000).then(() => {
-      // Youngmi look at this for SMS callback
-
-      //1. Get device unique Id
-      let uniqueId = DeviceInfo.getUniqueId();
-      let encryptionKey = 'jioy7A!Y&h9ha90AJkJA872';
-      //2. append "auth" string for server side validation after decryption
-      let idString = uniqueId + 'auth';
-      //3. encrypt string
-      var ciphertext = CryptoJS.AES.encrypt(idString, encryptionKey);
-
-      SendSMS.send(
-        {
-          body: ciphertext, // add hash
-          recipients: [twilio_number],
-          successTypes: ['sent', 'queued'], // for android
-          allowAndroidSendWithoutReadPermission: true, // for android
-        },
-        (completed, cancelled, error) => {
-          setIsLoading(false);
-          completed ? navigation.navigate('Name') : setModal(true);
-        },
-      );
-    });
+    }, 3000);
+    // Youngmi look at this for SMS callback
+    await SendSMS.send(
+      {
+        body: hash, // add hash
+        recipients: [twilio_number],
+        successTypes: ['sent', 'queued'], // for android
+        allowAndroidSendWithoutReadPermission: true, // for android
+      },
+      (completed, cancelled, error) => {
+        setIsLoading(false);
+        completed ? navigation.navigate('Name') : setModal(true);
+      },
+    );
   };
 
   return (
