@@ -5,7 +5,7 @@ import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
-var CryptoJS = require('crypto-js');
+import { getUniqueId } from 'react-native-device-info';
 
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
@@ -15,6 +15,8 @@ import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
 import { testUserData } from './src/data/testUserData';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers } from './src/graphql/queries';
+
+var CryptoJS = require('crypto-js');
 
 export default function App() {
   const colorScheme = useColorScheme(); // used to find user color scheme (dark/light)
@@ -43,18 +45,13 @@ export default function App() {
     }
   }
 
-  async function testAmplifyFunction() {
-    await API.get('moscatolambdarest', '/item', {})
-      .then((response) => {
-        console.log('API CALL', response);
-      })
-      .catch((err) => console.log('function api ERR', err));
-  }
-
   // test device id encryption and decryption
   // need to store the key from both frontend and backend -> perhaps store it as env variable
   // env var ENCRYPT_KEY during production
   function testEncryption() {
+    let uniqueId = getUniqueId();
+    console.log('DEVICE_ID: ', uniqueId);
+
     var ciphertext = CryptoJS.AES.encrypt(
       'deviceID',
       'jioy7A!Y&h9ha90AJkJA872',
@@ -72,8 +69,7 @@ export default function App() {
   useEffect(() => {
     //storeUserToken(testUserData);
     testAmplifyApi();
-    //testEncryption();
-    testAmplifyFunction();
+    testEncryption();
     checkAuthUser();
     console.log('Initial data loading...');
 
