@@ -32,10 +32,6 @@ export default function PhoneForm({ navigation }) {
   const { phone, setPhone } = useContext(SignUpContext);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    console.log('Setting twillio number to : ' + twilio_number);
-  }, []);
-
   const _continue = () => {
     setIsLoading(true);
     // bypass SMS auth if virtual device (emulator)

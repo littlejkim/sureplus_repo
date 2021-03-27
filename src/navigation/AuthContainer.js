@@ -5,12 +5,7 @@ import { View, StatusBar } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import {
-  WelcomeScreen,
-  LogInScreen,
-  SignUpScreen,
-  PasswordScreen,
-} from '../screens';
+import { WelcomeScreen, LogInScreen, SignUpScreen } from '../screens';
 
 const AuthStack = createStackNavigator();
 
