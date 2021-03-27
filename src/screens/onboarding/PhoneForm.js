@@ -1,5 +1,5 @@
 // public imports
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
 import { useTheme } from '@react-navigation/native';
 import SendSMS from 'react-native-sms';
 import DeviceInfo from 'react-native-device-info';
+import remoteConfig from '@react-native-firebase/remote-config';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -18,6 +19,7 @@ import { MainModal } from '../../components/MainModal';
 
 export default function PhoneForm({ navigation }) {
   const theme = useTheme();
+  const twilio_number = remoteConfig().getString('twilio_number');
 
   // error message constants for modal
   const [modal, setModal] = useState(false);
@@ -29,6 +31,10 @@ export default function PhoneForm({ navigation }) {
   // set and get phone number
   const { phone, setPhone } = useContext(SignUpContext);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    console.log('Setting twillio number to : ' + twilio_number);
+  }, []);
 
   const _continue = () => {
     setIsLoading(true);
@@ -49,7 +55,7 @@ export default function PhoneForm({ navigation }) {
       SendSMS.send(
         {
           body: 'Sureplus Verification Code e8ce0df77a3abcca0a938d2e499c9daf', // add hash
-          recipients: ['1056634352'],
+          recipients: [twilio_number],
           successTypes: ['sent', 'queued'], // for android
           allowAndroidSendWithoutReadPermission: true, // for android
         },
