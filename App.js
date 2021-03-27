@@ -33,7 +33,7 @@ export default function App() {
     remoteConfig()
       .setDefaults({
         signup_variation: 'false',
-        twilio_number: '1056634352',
+        twilio_number: '+14158180934',
       })
       .then(() => remoteConfig().fetchAndActivate())
       .then((fetchedRemotely) => {
