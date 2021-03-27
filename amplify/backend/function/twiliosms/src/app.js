@@ -34,6 +34,13 @@ app.post('/sms', (req, res) => {
   var decryptedByte = CryptoJS.AES.decrypt(req.body.Body, encryptionKey);
   var deviceID = decryptedByte.toString(CryptoJS.enc.Utf8);
 
+  //TODO
+  // 1. remove response message body
+  // 2. check for valid deviceID via "auth" tail string
+  // 3. temporarily call gql for deviceID (Secondary Key=) and phonenumber (Primary key)
+  // 4. return values back to client -> phoneNumber and isExistingUser through checking with dynamoDB
+  // 5. create a webhook that calls client upon successful response back
+
   const twiml = new MessagingResponse();
 
   twiml.message('I am Youngmi, your authenticator!');

@@ -5,7 +5,6 @@ import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
-import CryptoJS from 'crypto-js';
 
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
