@@ -30,6 +30,7 @@ app.use(function (req, res, next) {
 
 const encryptionKey = 'jioy7A!Y&h9ha90AJkJA872';
 app.post('/sms', (req, res) => {
+  console.log('Request Body: ', request.body);
   var decryptedByte = CryptoJS.AES.decrypt(req.body.Body, encryptionKey);
   var deviceID = decryptedByte.toString(CryptoJS.enc.Utf8);
 

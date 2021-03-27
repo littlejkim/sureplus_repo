@@ -26,10 +26,17 @@ export default function App() {
 
   //check authenticated/ unauthenticated user from Auth object
   async function checkAuthUser() {
+    //console.log('USER', user);
+    const signupUser = await Auth.signUp({
+      username: 'hello',
+      password: 'hello733!',
+      attributes: { email: 'test@test.com' },
+    }).catch((e) => console.log('SIGNUP ERR', e));
+    console.log('USER: ', signupUser);
+
     const user = await Auth.currentAuthenticatedUser().catch((e) =>
       console.log('user ERR', e),
     );
-    console.log('USER', user);
   }
 
   // testing appsync api call without any @auth directive -> works
@@ -45,7 +52,7 @@ export default function App() {
   useEffect(() => {
     //storeUserToken(testUserData);
     testAmplifyApi();
-    checkAuthUser();
+    //checkAuthUser();
     console.log('Initial data loading...');
 
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage
