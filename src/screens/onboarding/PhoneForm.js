@@ -17,6 +17,8 @@ import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
 import { MainModal } from '../../components/MainModal';
 
+var CryptoJS = require('crypto-js');
+
 export default function PhoneForm({ navigation }) {
   const theme = useTheme();
   const twilio_number = remoteConfig().getString('twilio_number');
