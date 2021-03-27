@@ -47,6 +47,11 @@ export default function PhoneForm({ navigation }) {
     });
   };
 
+  const _checkForUser = () => {
+    // YOUNGMI CHECK
+    navigation.navigate('Name');
+  };
+
   // not called if run by emulator (virtual device)
   const _sendText = async () => {
     // this is temporary timeout
@@ -64,7 +69,7 @@ export default function PhoneForm({ navigation }) {
       },
       (completed, cancelled, error) => {
         setIsLoading(false);
-        completed ? navigation.navigate('Name') : setModal(true);
+        completed ? _checkForUser : setModal(true);
       },
     );
   };
