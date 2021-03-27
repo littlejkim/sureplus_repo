@@ -36,7 +36,7 @@ export default function PhoneForm({ navigation }) {
   // hashing device id
   const hash = CryptoJS.AES.encrypt(
     DeviceInfo.getUniqueId() + 'auth',
-    'h9ha90AJkJA872',
+    'jioy7A!Y&h9ha90AJkJA872',
   ).toString();
 
   const _continue = () => {
