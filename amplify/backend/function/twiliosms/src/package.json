@@ -1,14 +1,14 @@
 {
-  "name": "twilioHandler",
+  "name": "twiliosms",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
     "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.17.1",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "twilio": "^3.59.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

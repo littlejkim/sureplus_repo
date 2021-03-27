@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
-import { API, graphqlOperation } from 'aws-amplify';
-var CryptoJS = require('crypto-js');
+import { API, Auth, graphqlOperation } from 'aws-amplify';
+import { getUniqueId } from 'react-native-device-info';
 
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
@@ -16,6 +16,8 @@ import { testUserData } from './src/data/testUserData';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers } from './src/graphql/queries';
 
+var CryptoJS = require('crypto-js');
+
 export default function App() {
   const colorScheme = useColorScheme(); // used to find user color scheme (dark/light)
   const [user, setUser] = useState(undefined);
@@ -24,6 +26,14 @@ export default function App() {
   // firebase navigation references
   const navigationRef = useRef();
   const routeNameRef = useRef();
+
+  //check authenticated/ unauthenticated user from Auth object
+  async function checkAuthUser() {
+    const user = await Auth.currentAuthenticatedUser().catch((e) =>
+      console.log('user ERR', e),
+    );
+    console.log('USER', user);
+  }
 
   // testing appsync api call without any @auth directive -> works
   async function testAmplifyApi() {
@@ -39,6 +49,9 @@ export default function App() {
   // need to store the key from both frontend and backend -> perhaps store it as env variable
   // env var ENCRYPT_KEY during production
   function testEncryption() {
+    let uniqueId = getUniqueId();
+    console.log('DEVICE_ID: ', uniqueId);
+
     var ciphertext = CryptoJS.AES.encrypt(
       'deviceID',
       'jioy7A!Y&h9ha90AJkJA872',
@@ -56,7 +69,8 @@ export default function App() {
   useEffect(() => {
     //storeUserToken(testUserData);
     testAmplifyApi();
-    //testEncryption();
+    testEncryption();
+    checkAuthUser();
     console.log('Initial data loading...');
 
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage

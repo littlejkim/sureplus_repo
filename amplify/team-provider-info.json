@@ -16,9 +16,17 @@
         "sureplusmoscato39e92d10": {}
       },
       "function": {
-        "twilioHandler": {
+        "AdminQueries595e84a2": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
-          "s3Key": "amplify-builds/twilioHandler-4b3349694b6f73426253-build.zip"
+          "s3Key": "amplify-builds/AdminQueries595e84a2-6c3843614468536d5937-build.zip"
+        },
+        "twiliosms": {
+          "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
+          "s3Key": "amplify-builds/twiliosms-4f516d596a7762783845-build.zip"
+        },
+        "authhandler": {
+          "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
+          "s3Key": "amplify-builds/authhandler-594a554242656f74742f-build.zip"
         }
       }
     }

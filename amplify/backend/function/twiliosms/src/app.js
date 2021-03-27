@@ -9,6 +9,7 @@ See the License for the specific language governing permissions and limitations 
 var express = require('express');
 var bodyParser = require('body-parser');
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 // declare a new express app
 var app = express();
@@ -22,28 +23,20 @@ app.use(function (req, res, next) {
   next();
 });
 
-/**********************
- * Example get method *
- **********************/
-
-app.get('/item', function (req, res) {
-  // Add your code here
-  res.json({ success: 'get call succeed!', url: req.url });
-});
-
-app.get('/item/*', function (req, res) {
-  // Add your code here
-  res.json({ success: 'get call succeed!', url: req.url });
-});
-
 /****************************
  * Example post method *
  ****************************/
+
 const encryptionKey = 'jioy7A!Y&h9ha90AJkJA872';
 app.post('/sms', (req, res) => {
-  console.log('INCOMING', req);
+  const twiml = new MessagingResponse();
+
+  twiml.message('I am Youngmi, your authenticator!');
+  console.log(`Incoming message from ${req.body.From}: ${req.body.Body}`);
+
   res.writeHead(200, { 'Content-Type': 'text/xml' });
-  res.json({ verified: true });
+  res.end(twiml.toString());
+  //res.json({ verified: true });
 });
 
 app.listen(3000, function () {

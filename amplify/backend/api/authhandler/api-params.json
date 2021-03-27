@@ -1,0 +1,47 @@
+{
+    "paths": [
+        {
+            "name": "/authenticate/{deviceid}",
+            "lambdaFunction": "authhandler",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH"
+                ],
+                "unauth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH"
+                ]
+            },
+            "policyResourceName": "/authenticate/*"
+        }
+    ],
+    "resourceName": "authhandler",
+    "apiName": "authhandler",
+    "functionArns": [
+        {
+            "lambdaFunction": "authhandler"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-sureplusmoscato-moscatodev-175838-authRole",
+        "unAuthRoleName": "amplify-sureplusmoscato-moscatodev-175838-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "authhandler",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

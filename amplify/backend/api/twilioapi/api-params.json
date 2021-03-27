@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/sms",
+            "lambdaFunction": "twiliosms",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/sms"
+        }
+    ],
+    "resourceName": "twilioapi",
+    "apiName": "twilioapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "twiliosms"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-sureplusmoscato-moscatodev-175838-authRole",
+        "unAuthRoleName": "amplify-sureplusmoscato-moscatodev-175838-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "twiliosms",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
