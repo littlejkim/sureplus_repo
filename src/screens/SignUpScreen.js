@@ -6,6 +6,7 @@ import remoteConfig from '@react-native-firebase/remote-config';
 // custom imports
 import {
   PhoneForm,
+  PhoneTempForm,
   NameForm,
   LinkBankForm,
   LinkBankComplete,
@@ -79,14 +80,14 @@ export default function SignUpScreen() {
       ) : (
         // variation applied
         <SignUpStack.Navigator
-          initialRouteName="Phone"
+          initialRouteName="PhoneTemp"
           headerMode="float"
           screenOptions={{
             headerTitle: '',
             headerBackTitleVisible: false,
             headerTransparent: true,
           }}>
-          <SignUpStack.Screen name="Phone" component={PhoneForm} />
+          <SignUpStack.Screen name="PhoneTemp" component={PhoneTempForm} />
           <SignUpStack.Screen name="Name" component={NameForm} />
           <SignUpStack.Screen name="LinkBank" component={LinkBankForm} />
           <SignUpStack.Screen
