@@ -12,22 +12,18 @@
       "AmplifyAppId": "d8odj77hztenc"
     },
     "categories": {
-      "auth": {
-        "sureplusmoscato39e92d10": {}
-      },
       "function": {
-        "AdminQueries595e84a2": {
-          "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
-          "s3Key": "amplify-builds/AdminQueries595e84a2-6c3843614468536d5937-build.zip"
-        },
         "twiliosms": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
-          "s3Key": "amplify-builds/twiliosms-37445955567337387275-build.zip"
+          "s3Key": "amplify-builds/twiliosms-556c7755584248394259-build.zip"
         },
-        "authhandler": {
+        "AdminQueries3c22cfa4": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
-          "s3Key": "amplify-builds/authhandler-594a554242656f74742f-build.zip"
+          "s3Key": "amplify-builds/AdminQueries3c22cfa4-6c3843614468536d5937-build.zip"
         }
+      },
+      "auth": {
+        "moscatoauth": {}
       }
     }
   }

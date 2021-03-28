@@ -1,7 +1,15 @@
+type PlaidItem {
+  bankName: String
+  token: String
+}
+
 type MoscatoUser @model {
   id: ID!
   phoneNumber: String!
   firstName: String
   lastName: String
   deviceId: String
+  plaidToken: [PlaidItem]
+  updatedAt: AWSDateTime
+  createdAt: AWSDateTime
 }
