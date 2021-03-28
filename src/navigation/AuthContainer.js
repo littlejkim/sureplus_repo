@@ -5,12 +5,7 @@ import { View, StatusBar } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import {
-  WelcomeScreen,
-  LogInScreen,
-  SignUpScreen,
-  PasswordScreen,
-} from '../screens';
+import { WelcomeScreen, LogInScreen, SignUpScreen } from '../screens';
 
 const AuthStack = createStackNavigator();
 
@@ -22,11 +17,10 @@ export const AuthContainer = () => {
       <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
       <AuthStack.Navigator
         mode="modal"
-        initialRouteName="Passowrd"
+        initialRouteName="Welcome"
         screenOptions={{
           headerShown: false,
         }}>
-        <AuthStack.Screen name="Password" component={PasswordScreen} />
         <AuthStack.Screen name="Welcome" component={WelcomeScreen} />
         <AuthStack.Screen name="SignUp" component={SignUpScreen} />
         <AuthStack.Screen name="LogIn" component={LogInScreen} />
