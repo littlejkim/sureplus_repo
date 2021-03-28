@@ -10,14 +10,18 @@ import {
 } from 'react-native';
 
 // custom imports
-import styles from '../styles/password.styles';
-import { MainModal } from '../components/MainModal';
-import { LoadingSpinner } from '../components/LoadingSpinner';
+import styles from '../../styles/password.styles';
+import { MainModal } from '../../components/MainModal';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
-export default function PasswordScreen(props) {
+export default function SetPasswordForm(props) {
+  const [title, setTitle] = useState(
+    'Welcome to Sureplus!\nCreate your password.',
+  );
   const [isLoading, setIsLoading] = useState(false);
-  const savedPassword = [1, 2, 3, 4]; // temporary password check
-  const [password, setPassword] = useState([]);
+  const [initialPassword, setInitialPassword] = useState([]);
+  const [verifyPassword, setVerifyPassword] = useState([]);
+  const [maskCount, setMaskCount] = useState(0);
   const keyboardNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 0, 'DEL'];
   // error message constants for modal
   const [modal, setModal] = useState(false);
@@ -33,31 +37,34 @@ export default function PasswordScreen(props) {
   ];
 
   const _addPassword = (item) => {
-    if (password.length < savedPassword.length) {
-      const temp = [...password, item];
-      setPassword(temp);
+    if (initialPassword.length < 4) {
+      setMaskCount(maskCount + 1);
+      const temp = [...initialPassword, item];
+      setInitialPassword(temp);
+    } else if (verifyPassword.length < 4) {
+      setMaskCount(maskCount + 1);
+      const temp = [...verifyPassword, item];
+      setVerifyPassword(temp);
     }
   };
 
   const _deletePassword = () => {
-    if (password.length !== 0) {
-      const temp = [...password];
+    if (initialPassword.length < 4 && initialPassword.length !== 0) {
+      const temp = [...initialPassword];
       temp.splice(-1, 1);
-      setPassword(temp);
+      setInitialPassword(temp);
+    } else if (verifyPassword.length < 4 && verifyPassword.length !== 0) {
+      const temp = [...verifyPassword];
+      temp.splice(-1, 1);
+      setVerifyPassword(temp);
     }
   };
 
   useEffect(() => {
-    if (password.length === savedPassword.length) {
-      password.every((val, index) => val === savedPassword[index])
-        ? (setIsLoading(true),
-          setTimeout(() => {
-            props.authentication();
-          }, 2000))
-        : setModal(true);
+    if ((initialPassword.length + verifyPassword.length) % 4 === 0) {
+      setMaskCount(0);
     }
-    return () => setIsLoading(false);
-  }, [props, password, savedPassword]);
+  }, [initialPassword, verifyPassword]);
 
   return (
     <>
@@ -67,15 +74,12 @@ export default function PasswordScreen(props) {
         visible={modal}
         hide={() => {
           setModal(!modal);
-          setPassword([]);
         }}
         contents={contents[1]}
       />
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={styles.titleText}>
-            Welcome back Jinjae! {'\n'}Please enter your password.
-          </Text>
+          <Text style={styles.titleText}>{title}</Text>
           <Text style={styles.bodyText}>4 numeric digits</Text>
           <View
             style={{
@@ -89,7 +93,7 @@ export default function PasswordScreen(props) {
               style={[
                 styles.passwordDot,
                 {
-                  opacity: password.length >= 1 ? 1 : 0.3,
+                  opacity: maskCount >= 1 ? 1 : 0.3,
                 },
               ]}
             />
@@ -97,7 +101,7 @@ export default function PasswordScreen(props) {
               style={[
                 styles.passwordDot,
                 {
-                  opacity: password.length >= 2 ? 1 : 0.3,
+                  opacity: maskCount >= 2 ? 1 : 0.3,
                 },
               ]}
             />
@@ -105,7 +109,7 @@ export default function PasswordScreen(props) {
               style={[
                 styles.passwordDot,
                 {
-                  opacity: password.length >= 3 ? 1 : 0.3,
+                  opacity: maskCount >= 3 ? 1 : 0.3,
                 },
               ]}
             />
@@ -113,7 +117,7 @@ export default function PasswordScreen(props) {
               style={[
                 styles.passwordDot,
                 {
-                  opacity: password.length >= 4 ? 1 : 0.3,
+                  opacity: maskCount >= 4 ? 1 : 0.3,
                 },
               ]}
             />
@@ -128,7 +132,7 @@ export default function PasswordScreen(props) {
               ) : index === 11 ? (
                 <TouchableOpacity style={styles.item} onPress={_deletePassword}>
                   <Image
-                    source={require('../assets/images/delete.png')}
+                    source={require('../../assets/images/delete.png')}
                     style={{ aspectRatio: 0.3, resizeMode: 'contain' }}
                   />
                 </TouchableOpacity>
@@ -153,7 +157,7 @@ export default function PasswordScreen(props) {
           activeOpacity={0.7}
           onPress={() => console.log('Pressed Face ID')}>
           <Image
-            source={require('../assets/images/check.png')}
+            source={require('../../assets/images/check.png')}
             style={{
               height: '20%',
               resizeMode: 'contain',

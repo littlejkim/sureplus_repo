@@ -80,14 +80,14 @@ export default function SignUpScreen() {
       ) : (
         // variation applied
         <SignUpStack.Navigator
-          initialRouteName="PhoneTemp"
+          initialRouteName="Phone"
           headerMode="float"
           screenOptions={{
             headerTitle: '',
             headerBackTitleVisible: false,
             headerTransparent: true,
           }}>
-          <SignUpStack.Screen name="PhoneTemp" component={PhoneTempForm} />
+          <SignUpStack.Screen name="Phone" component={PhoneForm} />
           <SignUpStack.Screen name="Name" component={NameForm} />
           <SignUpStack.Screen name="LinkBank" component={LinkBankForm} />
           <SignUpStack.Screen
