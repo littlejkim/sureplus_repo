@@ -14,23 +14,23 @@
         },
         
         
-          "authsureplusmoscato39e92d10UserPoolId": {
+          "authmoscatoauthUserPoolId": {
             "Type": "String",
-            "Default": "authsureplusmoscato39e92d10UserPoolId"
+            "Default": "authmoscatoauthUserPoolId"
           },
         
           
           
         
-          "functionAdminQueries595e84a2Arn": {
+          "functionAdminQueries3c22cfa4Arn": {
             "Type": "String",
-            "Default": "functionAdminQueries595e84a2Arn"
+            "Default": "functionAdminQueries3c22cfa4Arn"
           },
         
           
-          "functionAdminQueries595e84a2Name": {
+          "functionAdminQueries3c22cfa4Name": {
             "Type": "String",
-            "Default": "functionAdminQueries595e84a2Name"
+            "Default": "functionAdminQueries3c22cfa4Name"
           }
         
           
@@ -176,7 +176,7 @@
                                 ":lambda:path/2015-03-31/functions/",
                                 {
                                     
-                                    "Ref": "functionAdminQueries595e84a2Arn"
+                                    "Ref": "functionAdminQueries3c22cfa4Arn"
                                 },
                                 "/invocations"
                               ]
@@ -217,7 +217,7 @@
                                   ":userpool/",
                                   {
                                                   
-                                    "Ref": "authsureplusmoscato39e92d10UserPoolId"
+                                    "Ref": "authmoscatoauthUserPoolId"
                                   }
 
                                 ]
@@ -268,7 +268,7 @@
         "Properties": {
             "FunctionName": 
                 {
-                  "Ref": "functionAdminQueries595e84a2Name"
+                  "Ref": "functionAdminQueries3c22cfa4Name"
                 },
                 
                 "Action": "lambda:InvokeFunction",

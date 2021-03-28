@@ -54,7 +54,7 @@ export default function App() {
   useEffect(() => {
     //storeUserToken(testUserData);
     testAmplifyApi();
-    //checkAuthUser();
+    checkAuthUser();
     console.log('Initial data loading...');
 
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage

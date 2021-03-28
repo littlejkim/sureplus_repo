@@ -1,0 +1,71 @@
+{
+    "resourceNameTruncated": "surepl80949fad",
+    "userPoolName": "moscatouserpool",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OPTIONAL",
+    "mfaTypes": [
+        "TOTP"
+    ],
+    "smsAuthenticationMessage": "{####}",
+    "smsVerificationMessage": "{####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": true,
+    "passwordPolicyMinLength": "6",
+    "passwordPolicyCharacters": [
+        "Requires Numbers"
+    ],
+    "requiredAttributes": [
+        "family_name",
+        "given_name"
+    ],
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientRefreshTokenValidity": "60",
+    "userpoolClientWriteAttributes": [
+        "email",
+        "phone_number",
+        "family_name",
+        "given_name"
+    ],
+    "userpoolClientReadAttributes": [
+        "email",
+        "phone_number"
+    ],
+    "userpoolClientLambdaRole": "moscat80949fad_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": true,
+    "sharedId": "80949fad",
+    "resourceName": "moscatoauth",
+    "authSelections": "userPoolOnly",
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "manual",
+    "usernameAttributes": [
+        "phone_number"
+    ],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": "{}",
+    "hostedUI": false,
+    "userPoolGroupList": [],
+    "adminQueryGroup": "moscatoqueriesadmin",
+    "serviceName": "Cognito",
+    "usernameCaseSensitive": false,
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "dependsOn": [],
+    "authProviders": []
+}
