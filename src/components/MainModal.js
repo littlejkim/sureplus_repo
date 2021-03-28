@@ -16,9 +16,9 @@ export const MainModal = (props) => {
       <Modal
         isVisible={props.visible}
         animationIn="fadeIn"
-        animationInTiming={150}
+        animationInTiming={100}
         animationOut="fadeOut"
-        animationOutTiming={150}>
+        animationOutTiming={100}>
         <View
           style={[
             styles.container,

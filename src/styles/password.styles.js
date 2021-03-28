@@ -50,7 +50,6 @@ export default StyleSheet.create({
     letterSpacing: 0.0041,
     fontFamily: TEXT_REGULAR,
   },
-
   item: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -63,5 +62,11 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 25,
     lineHeight: 29.83,
+  },
+  passwordDot: {
+    height: 18,
+    width: 18,
+    borderRadius: 100,
+    backgroundColor: 'white',
   },
 });
