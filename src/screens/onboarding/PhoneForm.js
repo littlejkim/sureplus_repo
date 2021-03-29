@@ -69,7 +69,7 @@ export default function PhoneForm({ navigation }) {
       },
       (completed, cancelled, error) => {
         setIsLoading(false);
-        completed ? _checkForUser : setModal(true);
+        completed ? navigation.navigate('Name') : setModal(true);
       },
     );
   };
