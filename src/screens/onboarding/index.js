@@ -6,14 +6,16 @@ import UsernameForm from './UsernameForm';
 import LinkBankForm from './LinkBankForm';
 import LinkBankComplete from './LinkBankCompleteForm';
 import ConfirmForm from './ConfirmForm';
+import SetPasswordForm from './SetPasswordForm';
 
 export {
   EmailForm,
   PhoneForm,
   PhoneTempForm,
-  ConfirmForm,
   NameForm,
   LinkBankForm,
   LinkBankComplete,
   UsernameForm,
+  ConfirmForm,
+  SetPasswordForm,
 };

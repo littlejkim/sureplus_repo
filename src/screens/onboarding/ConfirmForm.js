@@ -25,7 +25,7 @@ export default function CompleteForm({ navigation }) {
   } = useContext(SignUpContext);
 
   const _continue = () => {
-    console.log('next');
+    navigation.navigate('SetPassword');
   };
 
   return (

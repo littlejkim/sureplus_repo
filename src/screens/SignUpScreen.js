@@ -6,13 +6,13 @@ import remoteConfig from '@react-native-firebase/remote-config';
 // custom imports
 import {
   PhoneForm,
-  PhoneTempForm,
   NameForm,
   LinkBankForm,
   LinkBankComplete,
   EmailForm,
   UsernameForm,
   ConfirmForm,
+  SetPasswordForm,
 } from './onboarding';
 
 const SignUpStack = createStackNavigator(); // signup stack
@@ -57,27 +57,7 @@ export default function SignUpScreen() {
 
   return (
     <SignUpContext.Provider value={value}>
-      {loginVariation ? (
-        <SignUpStack.Navigator
-          initialRouteName="Phone"
-          headerMode="float"
-          screenOptions={{
-            headerTitle: '',
-            headerBackTitleVisible: false,
-            headerTransparent: true,
-          }}>
-          <SignUpStack.Screen name="Phone" component={PhoneForm} />
-          <SignUpStack.Screen name="Name" component={NameForm} />
-          <SignUpStack.Screen name="LinkBank" component={LinkBankForm} />
-          <SignUpStack.Screen
-            name="LinkBankComplete"
-            component={LinkBankComplete}
-          />
-          <SignUpStack.Screen name="Email" component={EmailForm} />
-          <SignUpStack.Screen name="Username" component={UsernameForm} />
-          <SignUpStack.Screen name="Confirm" component={ConfirmForm} />
-        </SignUpStack.Navigator>
-      ) : (
+      {loginVariation ? null : (
         // variation applied
         <SignUpStack.Navigator
           initialRouteName="Phone"
@@ -97,6 +77,7 @@ export default function SignUpScreen() {
           <SignUpStack.Screen name="Email" component={EmailForm} />
           <SignUpStack.Screen name="Username" component={UsernameForm} />
           <SignUpStack.Screen name="Confirm" component={ConfirmForm} />
+          <SignUpStack.Screen name="SetPassword" component={SetPasswordForm} />
         </SignUpStack.Navigator>
       )}
     </SignUpContext.Provider>

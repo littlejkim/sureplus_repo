@@ -14,11 +14,13 @@ import styles from '../../styles/password.styles';
 import { MainModal } from '../../components/MainModal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 
-export default function SetPasswordForm(props) {
+export default function SetPasswordForm({ navigation }) {
   const [title, setTitle] = useState(
     'Welcome to Sureplus!\nCreate your password.',
   );
+
   const [isLoading, setIsLoading] = useState(false);
+  const [isInitial, setIsInitial] = useState(true);
   const [initialPassword, setInitialPassword] = useState([]);
   const [verifyPassword, setVerifyPassword] = useState([]);
   const [maskCount, setMaskCount] = useState(0);
@@ -37,11 +39,11 @@ export default function SetPasswordForm(props) {
   ];
 
   const _addPassword = (item) => {
-    if (initialPassword.length < 4) {
+    if (isInitial) {
       setMaskCount(maskCount + 1);
       const temp = [...initialPassword, item];
       setInitialPassword(temp);
-    } else if (verifyPassword.length < 4) {
+    } else if (!isInitial && verifyPassword.length < 4) {
       setMaskCount(maskCount + 1);
       const temp = [...verifyPassword, item];
       setVerifyPassword(temp);
@@ -49,22 +51,45 @@ export default function SetPasswordForm(props) {
   };
 
   const _deletePassword = () => {
-    if (initialPassword.length < 4 && initialPassword.length !== 0) {
+    if (isInitial) {
+      setMaskCount(maskCount - 1);
       const temp = [...initialPassword];
       temp.splice(-1, 1);
       setInitialPassword(temp);
-    } else if (verifyPassword.length < 4 && verifyPassword.length !== 0) {
+    } else {
+      setMaskCount(maskCount - 1);
       const temp = [...verifyPassword];
       temp.splice(-1, 1);
       setVerifyPassword(temp);
     }
   };
 
+  const _resetPasswords = () => {
+    setInitialPassword([]);
+    setVerifyPassword([]);
+    setTitle('Welcome to Sureplus!\nCreate your password.');
+    setIsInitial(true);
+  };
+
   useEffect(() => {
-    if ((initialPassword.length + verifyPassword.length) % 4 === 0) {
-      setMaskCount(0);
+    console.log(initialPassword);
+    console.log(verifyPassword);
+    if (initialPassword.length === 4 && verifyPassword.length === 4) {
+      initialPassword.every((val, index) => val === verifyPassword[index])
+        ? console.log('matched')
+        : _resetPasswords();
+    } else {
+      if (initialPassword.length === 4) {
+        setIsInitial(false);
+        setTitle('Please confirm\nyour password.');
+      }
+      if ((initialPassword.length + verifyPassword.length) % 4 === 0) {
+        setMaskCount(0);
+      }
     }
-  }, [initialPassword, verifyPassword]);
+
+    return () => setIsLoading(false);
+  }, [initialPassword, verifyPassword, maskCount, isLoading]);
 
   return (
     <>
