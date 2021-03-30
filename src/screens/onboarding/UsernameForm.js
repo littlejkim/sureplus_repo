@@ -7,8 +7,8 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Platform,
-  Keyboard,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -19,15 +19,34 @@ import { PRIMARY_COLOR } from '../../styles/constants';
 
 export default function UsernameForm({ navigation }) {
   const theme = useTheme();
-  const [isLoading, setIsLoading] = useState(false);
   const { setUsername } = useContext(SignUpContext);
   const [localUsername, setLocalUsername] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
+  const [isAvailable, setIsAvailable] = useState(null);
+  const [borderColor, setBorderColor] = useState(PRIMARY_COLOR);
+  const initialBorderColor = '#EFEFF4';
 
-  const _continue = async () => {
-    setUsername(localUsername);
+  const _continue = () => {
     setIsLoading(true);
-    Keyboard.dismiss();
-    navigation.navigate('Confirm');
+    _checkUsername();
+  };
+
+  // YOUNGMI add logic for checking username exists
+  const _checkUsername = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+      if (localUsername === 'johnkim') {
+        setBorderColor(initialBorderColor);
+        setIsAvailable(true);
+        console.log('Username is available');
+        setUsername(localUsername);
+        // navigation.navigate('Confirm');
+      } else {
+        setIsAvailable(false);
+        setBorderColor('#FF3B30');
+        console.log('Username is unavailable');
+      }
+    }, 2000);
   };
 
   return (
@@ -41,17 +60,19 @@ export default function UsernameForm({ navigation }) {
             Choose a username
           </Text>
           <Text style={[styles.bodyText, { color: theme.colors.title }]}>
-            This will be your public handle.
+            Choose a username for your new account. You can always change it
+            later.
           </Text>
-          <View style={{ marginTop: 40 }}>
+          <View
+            style={[styles.inputContainer, { borderBottomColor: borderColor }]}>
             <TextInput
-              placeholder="@username"
+              placeholder="Username"
               keyboardAppearance={theme.dark ? 'dark' : 'light'}
               style={[
                 styles.textInput,
                 {
                   color: theme.colors.mainText,
-                  borderBottomColor: theme.dark ? PRIMARY_COLOR : '#F1F2F4',
+                  borderBottomColor: borderColor,
                 },
               ]}
               autoCapitalize="none"
@@ -62,21 +83,52 @@ export default function UsernameForm({ navigation }) {
               maxLength={35}
               autoCorrect={false}
               autoFocus={true}
-              clearButtonMode="while-editing"
+              clearButtonMode="never"
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={true}
-              onChangeText={(value) => setLocalUsername(value)}
-              onSubmitEditing={_continue}
+              value={localUsername}
+              onChangeText={(value) => {
+                // regex for replacing special characters implemented on here due to copy/paste issues
+                setLocalUsername(value.replace(/[^.A-Za-z0-9_-]/gi, '')),
+                  setIsAvailable(null);
+                setIsLoading(null);
+              }}
+              onKeyPress={({ nativeEvent }) => {
+                nativeEvent.key === 'Backspace'
+                  ? setBorderColor(initialBorderColor)
+                  : setBorderColor(PRIMARY_COLOR);
+              }}
+              onSubmitEditing={(value) => {
+                _continue(value), setBorderColor(initialBorderColor);
+              }}
               returnKeyType="next"
             />
+            {isLoading === null ? null : isLoading ? (
+              <ActivityIndicator size="small" color="gray" />
+            ) : isAvailable ? (
+              <Image
+                source={require('../../assets/images/available.png')}
+                style={styles.availablityIcon}
+              />
+            ) : (
+              <Image
+                source={require('../../assets/images/unavailable.png')}
+                style={styles.availablityIcon}
+              />
+            )}
           </View>
+          {isAvailable === false ? (
+            <Text style={styles.feedbackText}>
+              A user with that username already exists.
+            </Text>
+          ) : null}
         </View>
         <View style={styles.footer}>
           <View
             style={{
               alignItems: 'flex-end',
             }}>
-            {true ? (
+            {localUsername && localUsername.length > 5 ? (
               <TouchableOpacity
                 style={styles.roundButton}
                 onPress={_continue}

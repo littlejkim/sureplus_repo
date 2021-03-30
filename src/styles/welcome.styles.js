@@ -36,12 +36,30 @@ export default StyleSheet.create({
     lineHeight: 19,
     letterSpacing: 0.0012,
   },
-  textInput: {
-    fontFamily: TEXT_REGULAR,
-    fontSize: 25,
-    borderBottomColor: '#F1F2F4',
+  inputContainer: {
+    marginTop: 40,
+    flexDirection: 'row',
     borderBottomWidth: 2,
     paddingVertical: 4,
+  },
+  availablityIcon: {
+    resizeMode: 'contain',
+    flex: 0.07,
+    height: null,
+    width: null,
+  },
+  feedbackText: {
+    color: '#FF3B30',
+    marginTop: 8,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 19,
+    letterSpacing: 0.0012,
+  },
+  textInput: {
+    flex: 1,
+    fontFamily: TEXT_REGULAR,
+    fontSize: 25,
   },
   mainButton: {
     marginBottom: 5,

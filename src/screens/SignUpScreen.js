@@ -19,8 +19,6 @@ const SignUpStack = createStackNavigator(); // signup stack
 export const SignUpContext = createContext(); // signup context (used to store email, phonenumber, name, etc)
 
 export default function SignUpScreen() {
-  const [modal, setModal] = useState(false);
-
   //  signup values (phone, name, email, password)
   const [phone, setPhone] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -46,13 +44,13 @@ export default function SignUpScreen() {
     setPassword,
   };
 
-  const [loginVariation, setLoginVariation] = useState();
+  const [loginVariation, setLoginVariation] = useState(false);
 
   // check for variation
   useEffect(() => {
-    const variation = remoteConfig().getValue('signup_variation').asBoolean(); // retrieve remote config values for signup variation
-    console.log('Setting signup variation to ' + variation.toString());
-    variation ? setLoginVariation(true) : setLoginVariation(false);
+    // const variation = remoteConfig().getValue('signup_variation').asBoolean(); // retrieve remote config values for signup variation
+    // console.log('Setting signup variation to ' + variation.toString());
+    // variation ? setLoginVariation(true) : setLoginVariation(false);
   }, []);
 
   return (
