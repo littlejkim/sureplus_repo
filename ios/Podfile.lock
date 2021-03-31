@@ -409,6 +409,8 @@ PODS:
     - React-Core
   - RNReanimated (1.13.2):
     - React-Core
+  - RNSVG (12.1.0):
+    - React
   - TouchID (4.4.1):
     - React
   - Yoga (1.14.0)
@@ -478,6 +480,7 @@ DEPENDENCIES:
   - "RNFBRemoteConfig (from `../node_modules/@react-native-firebase/remote-config`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - TouchID (from `../node_modules/react-native-touch-id`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -590,6 +593,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   TouchID:
     :path: "../node_modules/react-native-touch-id"
   Yoga:
@@ -660,6 +665,7 @@ SPEC CHECKSUMS:
   RNFBRemoteConfig: 1adf37593b23dfec015a48016cd26982257889ba
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
+  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   TouchID: ba4c656d849cceabc2e4eef722dea5e55959ecf4
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

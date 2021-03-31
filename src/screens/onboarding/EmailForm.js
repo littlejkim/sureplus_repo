@@ -35,7 +35,7 @@ export default function EmailForm({ navigation }) {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={-20}>
       <View style={styles.container}>
-        <View style={[styles.body, { width: '100%' }]}>
+        <View style={styles.body}>
           <Text style={[styles.titleText, { color: theme.colors.title }]}>
             What is your email?
           </Text>
@@ -51,18 +51,18 @@ export default function EmailForm({ navigation }) {
                 },
               ]}
               autoCapitalize="none"
-              selectionColor={theme.dark ? 'white' : PRIMARY_COLOR}
+              selectionColor={PRIMARY_COLOR}
               autoCompleteType="off"
               keyboardType="email-address"
               textContentType="emailAddress"
               maxLength={35}
               autoCorrect={false}
               autoFocus={true}
-              clearButtonMode="while-editing"
+              clearButtonMode="never"
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={true}
               onChangeText={(value) => setLocalEmail(value)}
-              onSubmitEditing={_continue}
+              onSubmitEditing={() => _continue}
               returnKeyType="next"
             />
           </View>
@@ -74,23 +74,17 @@ export default function EmailForm({ navigation }) {
             }}>
             {true ? (
               <TouchableOpacity
-                style={styles.roundButton}
+                style={styles.nextButton}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Image
-                  source={require('../../assets/images/next_arrow.png')}
-                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                />
+                <Text style={styles.nextButtonText}>Next</Text>
               </TouchableOpacity>
             ) : (
               <View
-                style={[styles.roundButton, { opacity: 0.5 }]}
+                style={[styles.nextButton, { opacity: 0.5 }]}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Image
-                  source={require('../../assets/images/next_arrow.png')}
-                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                />
+                <Text style={styles.nextButtonText}>Next</Text>
               </View>
             )}
           </View>

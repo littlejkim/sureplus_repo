@@ -4,14 +4,15 @@ import { PRIMARY_COLOR } from './constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
   },
   body: {
     flex: 1,
+    paddingHorizontal: 24,
     marginTop: 114,
   },
   footer: {
     marginBottom: Platform.OS === 'ios' ? 35 : 5,
+    paddingHorizontal: 16,
   },
   titleText: {
     fontSize: 24,
@@ -89,13 +90,28 @@ export default StyleSheet.create({
     fontWeight: '500',
     fontFamily: TEXT_REGULAR,
   },
-  roundButton: {
+  nextButton: {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: PRIMARY_COLOR,
     borderRadius: 100,
-    width: 64,
+    width: 134,
     height: 64,
+    elevation: 5, // shadow on Android
+    shadowColor: '#2f0057',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  nextButtonText: {
+    color: 'white',
+    fontFamily: TEXT_REGULAR,
+    fontWeight: '600',
+    fontSize: 17,
+    lineHeight: 22,
   },
   linkedBankContainer: {
     justifyContent: 'space-between',

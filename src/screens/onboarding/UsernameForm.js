@@ -7,8 +7,8 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Platform,
-  Image,
   ActivityIndicator,
+  Keyboard,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -16,17 +16,20 @@ import { useTheme } from '@react-navigation/native';
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
 import { PRIMARY_COLOR } from '../../styles/constants';
-
+import AvailableIcon from '../../assets/images/available.svg';
+import ClearButton from '../../assets/images/unavailable.svg';
 export default function UsernameForm({ navigation }) {
   const theme = useTheme();
   const { setUsername } = useContext(SignUpContext);
   const [localUsername, setLocalUsername] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const [isAvailable, setIsAvailable] = useState(null);
+  const [isValidUsername, setIsValidUsername] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const [borderColor, setBorderColor] = useState(PRIMARY_COLOR);
   const initialBorderColor = '#EFEFF4';
 
   const _continue = () => {
+    Keyboard.dismiss();
     setIsLoading(true);
     _checkUsername();
   };
@@ -37,13 +40,13 @@ export default function UsernameForm({ navigation }) {
       setIsLoading(false);
       if (localUsername === 'johnkim') {
         setBorderColor(initialBorderColor);
-        setIsAvailable(true);
+        setIsValidUsername(true);
         console.log('Username is available');
         setUsername(localUsername);
         // navigation.navigate('Confirm');
       } else {
-        setIsAvailable(false);
         setBorderColor('#FF3B30');
+        setIsValidUsername(false);
         console.log('Username is unavailable');
       }
     }, 2000);
@@ -76,48 +79,45 @@ export default function UsernameForm({ navigation }) {
                 },
               ]}
               autoCapitalize="none"
-              selectionColor={theme.dark ? 'white' : PRIMARY_COLOR}
+              selectionColor={PRIMARY_COLOR}
               autoCompleteType="off"
               keyboardType="ascii-capable"
               textContentType="nickname"
               maxLength={35}
               autoCorrect={false}
               autoFocus={true}
+              onFocus={() => {
+                setIsValidUsername(null);
+                setIsEditing(true);
+                setBorderColor(PRIMARY_COLOR);
+              }}
+              onBlur={() => {
+                setIsEditing(false);
+                setBorderColor(initialBorderColor);
+              }}
               clearButtonMode="never"
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={true}
               value={localUsername}
               onChangeText={(value) => {
                 // regex for replacing special characters implemented on here due to copy/paste issues
-                setLocalUsername(value.replace(/[^.A-Za-z0-9_-]/gi, '')),
-                  setIsAvailable(null);
-                setIsLoading(null);
-              }}
-              onKeyPress={({ nativeEvent }) => {
-                nativeEvent.key === 'Backspace'
-                  ? setBorderColor(initialBorderColor)
-                  : setBorderColor(PRIMARY_COLOR);
+                setLocalUsername(value.replace(/[^.A-Za-z0-9_-]/gi, ''));
               }}
               onSubmitEditing={(value) => {
-                _continue(value), setBorderColor(initialBorderColor);
+                _continue(value);
               }}
-              returnKeyType="next"
+              returnKeyType="done"
             />
-            {isLoading === null ? null : isLoading ? (
+            {isEditing ? (
+              <ClearButton height={'100%'} width={21} />
+            ) : isLoading ? (
               <ActivityIndicator size="small" color="gray" />
-            ) : isAvailable ? (
-              <Image
-                source={require('../../assets/images/available.png')}
-                style={styles.availablityIcon}
-              />
-            ) : (
-              <Image
-                source={require('../../assets/images/unavailable.png')}
-                style={styles.availablityIcon}
-              />
-            )}
+            ) : null}
+            {!isEditing && !isLoading && isValidUsername ? (
+              <AvailableIcon height={'100%'} width={21} />
+            ) : null}
           </View>
-          {isAvailable === false ? (
+          {isValidUsername === false ? (
             <Text style={styles.feedbackText}>
               A user with that username already exists.
             </Text>
@@ -130,23 +130,17 @@ export default function UsernameForm({ navigation }) {
             }}>
             {localUsername && localUsername.length > 5 ? (
               <TouchableOpacity
-                style={styles.roundButton}
+                style={styles.nextButton}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Image
-                  source={require('../../assets/images/next_arrow.png')}
-                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                />
+                <Text style={styles.nextButtonText}>Next</Text>
               </TouchableOpacity>
             ) : (
               <View
-                style={[styles.roundButton, { opacity: 0.5 }]}
+                style={[styles.nextButton, { opacity: 0.5 }]}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Image
-                  source={require('../../assets/images/next_arrow.png')}
-                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                />
+                <Text style={styles.nextButtonText}>Next</Text>
               </View>
             )}
           </View>
