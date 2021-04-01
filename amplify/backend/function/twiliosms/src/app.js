@@ -6,6 +6,10 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
+/* eslint-disable no-console */
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
 var express = require('express');
 var { urlencoded } = require('body-parser');
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
@@ -18,11 +22,13 @@ var CryptoJS = require('crypto-js');
 
 //configuration for admin gql queries and mutation
 const aws = require('aws-sdk');
+aws.config.update({ region: process.env.REGION });
 
-const cognitoidentityserviceprovider = new aws.CognitoIdentityServiceProvider({
-  apiVersion: '2016-04-18',
-});
+// const cognitoidentityserviceprovider = new aws.CognitoIdentityServiceProvider({
+//   apiVersion: '2016-04-18',
+// });
 const cognitoSP = new aws.CognitoIdentityServiceProvider({
+  apiVersion: '2016-04-18',
   region: process.env.REGION,
 });
 
@@ -64,6 +70,7 @@ const initiateAuthParams = {
 // Get an Id Token (JWT) for the user
 function getCredentials() {
   return new Promise((resolve, reject) => {
+    console.log('Initializing Auth Params: ', initiateAuthParams);
     cognitoSP.adminInitiateAuth(initiateAuthParams, (authErr, authData) => {
       if (authErr) {
         console.log(authErr);
@@ -91,6 +98,7 @@ function getAppSyncClient() {
         if (!cred || credExpirationDate < new Date()) {
           // get new credentials
           cred = await getCredentials();
+          console.log('getCredentials() return: ', cred);
           // give ourselves a 10 minute leeway here
           credExpirationDate = new Date(
             +new Date() + (cred.AuthenticationResult.ExpiresIn - 600) * 1000,
@@ -107,6 +115,7 @@ const client = getAppSyncClient();
 
 async function createOnboardingDevice(deviceId, phoneNumber) {
   await client.hydrated();
+  console.log('Appsync Client: ', client);
   try {
     const transactionComplete = await client.mutate({
       mutation: gql`
@@ -122,7 +131,7 @@ async function createOnboardingDevice(deviceId, phoneNumber) {
     });
     return transactionComplete.data.createUserDevice;
   } catch (err) {
-    console.log(err);
+    console.log('client mutate error: ', err);
   }
 }
 

@@ -32,7 +32,6 @@ export default function App() {
     // } catch (err) {
     //   console.log('error fetching todos', err);
     // }
-
     await API.post('twilioapi', '/update/devicelist', {
       body: {
         data: 'test',
