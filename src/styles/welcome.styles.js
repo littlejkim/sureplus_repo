@@ -58,9 +58,10 @@ export default StyleSheet.create({
     letterSpacing: 0.0012,
   },
   textInput: {
-    flex: 1,
     fontFamily: TEXT_REGULAR,
     fontSize: 25,
+    borderBottomWidth: 2,
+    paddingVertical: 4,
   },
   mainButton: {
     marginBottom: 5,
@@ -88,6 +89,7 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 17,
     fontWeight: '500',
+    lineHeight: 22,
     fontFamily: TEXT_REGULAR,
   },
   nextButton: {
@@ -114,21 +116,21 @@ export default StyleSheet.create({
     lineHeight: 22,
   },
   linkedBankContainer: {
+    paddingHorizontal: 14,
     justifyContent: 'space-between',
     height: 62,
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 14,
-    marginBottom: 40,
-    shadowColor: '#000',
+    marginBottom: 24,
+    elevation: 5, // shadow on Android
+    shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 4,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
   },
   linkedBankText: {
     flex: 1,
@@ -139,11 +141,20 @@ export default StyleSheet.create({
     letterSpacing: -0.041,
   },
   subscriptionsFoundText: {
-    flex: 1,
     fontFamily: TEXT_REGULAR,
     fontWeight: '400',
     fontSize: 17,
     lineHeight: 23,
     letterSpacing: -0.041,
+    marginBottom: 24,
+  },
+  linkCompleteTopContainer: {
+    flex: 1,
+    paddingHorizontal: 24,
+    marginTop: 114,
+  },
+  linkCompleteBottomContainer: {
+    flex: 1,
+    marginTop: 32,
   },
 });

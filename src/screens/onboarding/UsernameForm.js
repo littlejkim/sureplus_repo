@@ -1,5 +1,5 @@
 // public imports
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   View,
   Text,
@@ -18,6 +18,7 @@ import { SignUpContext } from '../../screens/SignUpScreen';
 import { PRIMARY_COLOR } from '../../styles/constants';
 import AvailableIcon from '../../assets/images/available.svg';
 import ClearButton from '../../assets/images/unavailable.svg';
+
 export default function UsernameForm({ navigation }) {
   const theme = useTheme();
   const { setUsername } = useContext(SignUpContext);
@@ -74,6 +75,7 @@ export default function UsernameForm({ navigation }) {
               style={[
                 styles.textInput,
                 {
+                  flex: 1,
                   color: theme.colors.mainText,
                   borderBottomColor: borderColor,
                 },
