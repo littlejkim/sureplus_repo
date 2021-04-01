@@ -20,6 +20,10 @@ export default function LinkBankCompleteForm({ navigation }) {
     'hello',
     'abode',
     'adobe',
+    'adobe',
+    'adobe',
+    'adobe',
+    'adobe',
   ];
 
   const _continue = () => {
@@ -62,25 +66,30 @@ export default function LinkBankCompleteForm({ navigation }) {
           <Text style={[styles.titleText, { color: theme.colors.title }]}>
             Link Complete!
           </Text>
-          <View
-            style={[
-              styles.linkedBankContainer,
-              {
-                backgroundColor: theme.colors.background,
-                borderWidth: 0.5,
-                borderColor: '#E5E6E8',
-              },
-            ]}>
-            <Image
-              source={require('../../assets/images/banks/bankofamerica.png')}
-              style={{ height: 40, width: 40, marginRight: 20 }}
-            />
-            <Text
-              style={[styles.linkedBankText, { color: theme.colors.mainText }]}
-              numberOfLines={1}>
-              {institutions[0].institution_name}
-            </Text>
-            <AvailableIcon height={20} width={20} r />
+          <View>
+            <View
+              style={[
+                styles.linkedBankContainer,
+                {
+                  backgroundColor: theme.colors.background,
+                  borderWidth: 0.5,
+                  borderColor: '#E5E6E8',
+                },
+              ]}>
+              <Image
+                source={require('../../assets/images/banks/bankofamerica.png')}
+                style={{ height: 40, width: 40, marginRight: 20 }}
+              />
+              <Text
+                style={[
+                  styles.linkedBankText,
+                  { color: theme.colors.mainText },
+                ]}
+                numberOfLines={1}>
+                {institutions[0].institution_name}
+              </Text>
+              <AvailableIcon height={20} width={20} r />
+            </View>
           </View>
         </View>
         <View
@@ -95,15 +104,19 @@ export default function LinkBankCompleteForm({ navigation }) {
               styles.subscriptionsFoundText,
               { color: theme.colors.mainText, paddingHorizontal: 24 },
             ]}>
-            We found {subscriptionData.length} subscriptions
+            <Text>We found</Text>
+            <Text style={{ fontWeight: '500' }}>
+              {' '}
+              {subscriptionData.length}
+            </Text>
+            <Text> subscriptions</Text>
           </Text>
-
           <FlatList
             scrollEnabled={false}
             style={{ paddingHorizontal: 24 }}
             data={subscriptionData}
             renderItem={_renderItem}
-            keyExtractor={(item) => item.toString()}
+            keyExtractor={(item, index) => index.toString()}
           />
           <LinearGradient
             colors={['rgba(255,255,255,0)', 'rgba(255,255,255,1)']}

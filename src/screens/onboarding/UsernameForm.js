@@ -77,7 +77,7 @@ export default function UsernameForm({ navigation }) {
                 {
                   flex: 1,
                   color: theme.colors.mainText,
-                  borderBottomColor: borderColor,
+                  borderBottomWidth: 0,
                 },
               ]}
               autoCapitalize="none"

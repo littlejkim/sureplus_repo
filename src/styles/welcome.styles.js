@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   titleText: {
     fontSize: 24,
-    fontWeight: '500',
+    fontWeight: '600',
     lineHeight: 33,
     letterSpacing: 0.0041,
     fontFamily: TEXT_REGULAR,
@@ -64,13 +64,11 @@ export default StyleSheet.create({
     paddingVertical: 4,
   },
   mainButton: {
-    marginBottom: 5,
     backgroundColor: PRIMARY_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
     height: 55,
     borderRadius: 27.5,
-    marginTop: 10,
   },
   mainButtonText: {
     color: 'white',
@@ -127,10 +125,10 @@ export default StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 6,
     },
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
+    shadowOpacity: 0.09,
+    shadowRadius: 5,
   },
   linkedBankText: {
     flex: 1,
