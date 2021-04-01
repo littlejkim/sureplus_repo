@@ -22,7 +22,7 @@ type UserDevice
       { allow: owner, mutations: [create], queries: [get, list] }
     ]
   ) {
-  deviceId: String!
+  deviceId: ID!
   phoneNumber: String
   userId: String
   isVerified: Boolean

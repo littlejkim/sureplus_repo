@@ -12,8 +12,12 @@ export const createMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
-      createdAt
+      plaidToken {
+        bankName
+        token
+      }
       updatedAt
+      createdAt
     }
   }
 `;
@@ -28,8 +32,12 @@ export const updateMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
-      createdAt
+      plaidToken {
+        bankName
+        token
+      }
       updatedAt
+      createdAt
     }
   }
 `;
@@ -44,8 +52,63 @@ export const deleteMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
+      plaidToken {
+        bankName
+        token
+      }
+      updatedAt
+      createdAt
+    }
+  }
+`;
+export const createUserDevice = /* GraphQL */ `
+  mutation CreateUserDevice(
+    $input: CreateUserDeviceInput!
+    $condition: ModelUserDeviceConditionInput
+  ) {
+    createUserDevice(input: $input, condition: $condition) {
+      id
+      deviceId
+      phoneNumber
+      userId
+      isVerified
       createdAt
       updatedAt
+      owner
+    }
+  }
+`;
+export const updateUserDevice = /* GraphQL */ `
+  mutation UpdateUserDevice(
+    $input: UpdateUserDeviceInput!
+    $condition: ModelUserDeviceConditionInput
+  ) {
+    updateUserDevice(input: $input, condition: $condition) {
+      id
+      deviceId
+      phoneNumber
+      userId
+      isVerified
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteUserDevice = /* GraphQL */ `
+  mutation DeleteUserDevice(
+    $input: DeleteUserDeviceInput!
+    $condition: ModelUserDeviceConditionInput
+  ) {
+    deleteUserDevice(input: $input, condition: $condition) {
+      id
+      deviceId
+      phoneNumber
+      userId
+      isVerified
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;

@@ -9,11 +9,16 @@ See the License for the specific language governing permissions and limitations 
 var express = require('express');
 var { urlencoded } = require('body-parser');
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
+
+const gql = require('graphql-tag');
+const { createUserDevice } = require('./mutations.js');
+
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 var CryptoJS = require('crypto-js');
 
 //configuration for admin gql queries and mutation
 const aws = require('aws-sdk');
+
 const cognitoidentityserviceprovider = new aws.CognitoIdentityServiceProvider({
   apiVersion: '2016-04-18',
 });
@@ -21,7 +26,7 @@ const cognitoSP = new aws.CognitoIdentityServiceProvider({
   region: process.env.REGION,
 });
 
-//const AWSAppSyncClient = require('aws-appsync').default;
+const AWSAppSyncClient = require('aws-appsync').default;
 
 let cred;
 let credExpirationDate = new Date('01-01-1970'); // to keep track of if credentials are out of date
@@ -73,34 +78,62 @@ function getCredentials() {
   });
 }
 
-// function getAppSyncClient() {
-//   return new AWSAppSyncClient({
-//     disableOffline: true,
-//     url:
-//       'https://4t3zqgal2bfhriegqziwd3ft24.appsync-api.us-east-2.amazonaws.com/graphql',
-//     region: process.env.REGION,
-//     auth: {
-//       type: 'AMAZON_COGNITO_USER_POOLS',
-//       jwtToken: async () => {
-//         // check if we already have credentials or if credentials are expired
-//         if (!cred || credExpirationDate < new Date()) {
-//           // get new credentials
-//           cred = await getCredentials();
-//           // give ourselves a 10 minute leeway here
-//           credExpirationDate = new Date(
-//             +new Date() + (cred.AuthenticationResult.ExpiresIn - 600) * 1000,
-//           );
-//         }
-//         return cred.AuthenticationResult.IdToken;
-//       },
-//     },
-//   });
-// }
+function getAppSyncClient() {
+  return new AWSAppSyncClient({
+    disableOffline: true,
+    url:
+      'https://4t3zqgal2bfhriegqziwd3ft24.appsync-api.us-east-2.amazonaws.com/graphql',
+    region: process.env.REGION,
+    auth: {
+      type: 'AMAZON_COGNITO_USER_POOLS',
+      jwtToken: async () => {
+        // check if we already have credentials or if credentials are expired
+        if (!cred || credExpirationDate < new Date()) {
+          // get new credentials
+          cred = await getCredentials();
+          // give ourselves a 10 minute leeway here
+          credExpirationDate = new Date(
+            +new Date() + (cred.AuthenticationResult.ExpiresIn - 600) * 1000,
+          );
+        }
+        return cred.AuthenticationResult.IdToken;
+      },
+    },
+  });
+}
+
+//calling the actual device save mutation
+const client = getAppSyncClient();
+
+async function createOnboardingDevice(deviceId, phoneNumber) {
+  await client.hydrated();
+  try {
+    const transactionComplete = await client.mutate({
+      mutation: gql`
+        ${createUserDevice}
+      `,
+      variables: {
+        input: {
+          deviceId: deviceId,
+          phoneNumber: phoneNumber,
+        },
+      },
+      fetchPolicy: 'no-cache',
+    });
+    return transactionComplete.data.createUserDevice;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 // Handling Requests
 
-app.post('/update/devicelist', (req, res) => {
+app.post('/update/devicelist', async (req, res) => {
   console.log('FUNCTION CALLED!', req.body);
+
+  let mutationResult = await createOnboardingDevice('deviceid', 'phonenumber');
+  console.log('mutationResult', mutationResult);
+
   res.json({ verified: true });
 });
 

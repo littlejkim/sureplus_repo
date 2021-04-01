@@ -9,8 +9,12 @@ export const onCreateMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
-      createdAt
+      plaidToken {
+        bankName
+        token
+      }
       updatedAt
+      createdAt
     }
   }
 `;
@@ -22,8 +26,12 @@ export const onUpdateMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
-      createdAt
+      plaidToken {
+        bankName
+        token
+      }
       updatedAt
+      createdAt
     }
   }
 `;
@@ -35,8 +43,54 @@ export const onDeleteMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
+      plaidToken {
+        bankName
+        token
+      }
+      updatedAt
+      createdAt
+    }
+  }
+`;
+export const onCreateUserDevice = /* GraphQL */ `
+  subscription OnCreateUserDevice {
+    onCreateUserDevice {
+      id
+      deviceId
+      phoneNumber
+      userId
+      isVerified
       createdAt
       updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateUserDevice = /* GraphQL */ `
+  subscription OnUpdateUserDevice {
+    onUpdateUserDevice {
+      id
+      deviceId
+      phoneNumber
+      userId
+      isVerified
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteUserDevice = /* GraphQL */ `
+  subscription OnDeleteUserDevice {
+    onDeleteUserDevice {
+      id
+      deviceId
+      phoneNumber
+      userId
+      isVerified
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
