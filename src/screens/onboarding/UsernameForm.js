@@ -7,8 +7,8 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Platform,
+  ActivityIndicator,
   Keyboard,
-  Image,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -16,18 +16,40 @@ import { useTheme } from '@react-navigation/native';
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
 import { PRIMARY_COLOR } from '../../styles/constants';
-
+import AvailableIcon from '../../assets/images/available.svg';
+import ClearButton from '../../assets/images/unavailable.svg';
 export default function UsernameForm({ navigation }) {
   const theme = useTheme();
-  const [isLoading, setIsLoading] = useState(false);
   const { setUsername } = useContext(SignUpContext);
   const [localUsername, setLocalUsername] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
+  const [isValidUsername, setIsValidUsername] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [borderColor, setBorderColor] = useState(PRIMARY_COLOR);
+  const initialBorderColor = '#EFEFF4';
 
-  const _continue = async () => {
-    setUsername(localUsername);
-    setIsLoading(true);
+  const _continue = () => {
     Keyboard.dismiss();
-    navigation.navigate('Confirm');
+    setIsLoading(true);
+    _checkUsername();
+  };
+
+  // YOUNGMI add logic for checking username exists
+  const _checkUsername = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+      if (localUsername === 'johnkim') {
+        setBorderColor(initialBorderColor);
+        setIsValidUsername(true);
+        console.log('Username is available');
+        setUsername(localUsername);
+        // navigation.navigate('Confirm');
+      } else {
+        setBorderColor('#FF3B30');
+        setIsValidUsername(false);
+        console.log('Username is unavailable');
+      }
+    }, 2000);
   };
 
   return (
@@ -41,60 +63,84 @@ export default function UsernameForm({ navigation }) {
             Choose a username
           </Text>
           <Text style={[styles.bodyText, { color: theme.colors.title }]}>
-            This will be your public handle.
+            Choose a username for your new account. You can always change it
+            later.
           </Text>
-          <View style={{ marginTop: 40 }}>
+          <View
+            style={[styles.inputContainer, { borderBottomColor: borderColor }]}>
             <TextInput
-              placeholder="@username"
+              placeholder="Username"
               keyboardAppearance={theme.dark ? 'dark' : 'light'}
               style={[
                 styles.textInput,
                 {
                   color: theme.colors.mainText,
-                  borderBottomColor: theme.dark ? PRIMARY_COLOR : '#F1F2F4',
+                  borderBottomColor: borderColor,
                 },
               ]}
               autoCapitalize="none"
-              selectionColor={theme.dark ? 'white' : PRIMARY_COLOR}
+              selectionColor={PRIMARY_COLOR}
               autoCompleteType="off"
               keyboardType="ascii-capable"
               textContentType="nickname"
               maxLength={35}
               autoCorrect={false}
               autoFocus={true}
-              clearButtonMode="while-editing"
+              onFocus={() => {
+                setIsValidUsername(null);
+                setIsEditing(true);
+                setBorderColor(PRIMARY_COLOR);
+              }}
+              onBlur={() => {
+                setIsEditing(false);
+                setBorderColor(initialBorderColor);
+              }}
+              clearButtonMode="never"
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={true}
-              onChangeText={(value) => setLocalUsername(value)}
-              onSubmitEditing={_continue}
-              returnKeyType="next"
+              value={localUsername}
+              onChangeText={(value) => {
+                // regex for replacing special characters implemented on here due to copy/paste issues
+                setLocalUsername(value.replace(/[^.A-Za-z0-9_-]/gi, ''));
+              }}
+              onSubmitEditing={(value) => {
+                _continue(value);
+              }}
+              returnKeyType="done"
             />
+            {isEditing ? (
+              <ClearButton height={'100%'} width={21} />
+            ) : isLoading ? (
+              <ActivityIndicator size="small" color="gray" />
+            ) : null}
+            {!isEditing && !isLoading && isValidUsername ? (
+              <AvailableIcon height={'100%'} width={21} />
+            ) : null}
           </View>
+          {isValidUsername === false ? (
+            <Text style={styles.feedbackText}>
+              A user with that username already exists.
+            </Text>
+          ) : null}
         </View>
         <View style={styles.footer}>
           <View
             style={{
               alignItems: 'flex-end',
             }}>
-            {true ? (
+            {localUsername && localUsername.length > 5 ? (
               <TouchableOpacity
-                style={styles.roundButton}
+                style={styles.nextButton}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Image
-                  source={require('../../assets/images/next_arrow.png')}
-                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                />
+                <Text style={styles.nextButtonText}>Next</Text>
               </TouchableOpacity>
             ) : (
               <View
-                style={[styles.roundButton, { opacity: 0.5 }]}
+                style={[styles.nextButton, { opacity: 0.5 }]}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Image
-                  source={require('../../assets/images/next_arrow.png')}
-                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                />
+                <Text style={styles.nextButtonText}>Next</Text>
               </View>
             )}
           </View>

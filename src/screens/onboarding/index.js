@@ -1,5 +1,4 @@
 import PhoneForm from './PhoneForm';
-import PhoneTempForm from './PhoneTempForm';
 import NameForm from './NameForm';
 import EmailForm from './EmailForm';
 import UsernameForm from './UsernameForm';
@@ -11,7 +10,6 @@ import SetPasswordForm from './SetPasswordForm';
 export {
   EmailForm,
   PhoneForm,
-  PhoneTempForm,
   NameForm,
   LinkBankForm,
   LinkBankComplete,

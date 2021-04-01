@@ -63,7 +63,7 @@ export default function NameForm({ navigation }) {
                 },
               ]}
               autoCapitalize="words"
-              selectionColor={theme.dark ? 'white' : PRIMARY_COLOR}
+              selectionColor={PRIMARY_COLOR}
               autoCompleteType="off"
               keyboardType="ascii-capable"
               textContentType="givenName"
@@ -72,7 +72,7 @@ export default function NameForm({ navigation }) {
               autoFocus={true}
               clearButtonMode="while-editing"
               enablesReturnKeyAutomatically={true}
-              blurOnSubmit={false}
+              blurOnSubmit={true}
               onChangeText={(value) => setLocalFirst(value)}
               onSubmitEditing={_showNext}
               onFocus={() => setFocus(0)}
@@ -120,35 +120,26 @@ export default function NameForm({ navigation }) {
             }}>
             {localFirst && localLast ? (
               <TouchableOpacity
-                style={styles.roundButton}
+                style={styles.nextButton}
                 onPress={_continue}
                 activeOpacity={0.7}>
-                <Image
-                  source={require('../../assets/images/next_arrow.png')}
-                  style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                />
+                <Text style={styles.nextButtonText}>Next</Text>
               </TouchableOpacity>
             ) : (
               <View>
                 {showLast || !localFirst ? (
                   <View
-                    style={[styles.roundButton, { opacity: 0.5 }]}
+                    style={[styles.nextButton, { opacity: 0.5 }]}
                     onPress={_continue}
                     activeOpacity={0.7}>
-                    <Image
-                      source={require('../../assets/images/next_arrow.png')}
-                      style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                    />
+                    <Text style={styles.nextButtonText}>Next</Text>
                   </View>
                 ) : (
                   <TouchableOpacity
-                    style={styles.roundButton}
+                    style={styles.nextButton}
                     onPress={_showNext}
                     activeOpacity={0.7}>
-                    <Image
-                      source={require('../../assets/images/next_arrow.png')}
-                      style={{ resizeMode: 'contain', aspectRatio: 0.5 }}
-                    />
+                    <Text style={styles.nextButtonText}>Next</Text>
                   </TouchableOpacity>
                 )}
               </View>

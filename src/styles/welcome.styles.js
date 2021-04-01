@@ -4,14 +4,15 @@ import { PRIMARY_COLOR } from './constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
   },
   body: {
     flex: 1,
+    paddingHorizontal: 24,
     marginTop: 114,
   },
   footer: {
     marginBottom: Platform.OS === 'ios' ? 35 : 5,
+    paddingHorizontal: 16,
   },
   titleText: {
     fontSize: 24,
@@ -36,12 +37,30 @@ export default StyleSheet.create({
     lineHeight: 19,
     letterSpacing: 0.0012,
   },
-  textInput: {
-    fontFamily: TEXT_REGULAR,
-    fontSize: 25,
-    borderBottomColor: '#F1F2F4',
+  inputContainer: {
+    marginTop: 40,
+    flexDirection: 'row',
     borderBottomWidth: 2,
     paddingVertical: 4,
+  },
+  availablityIcon: {
+    resizeMode: 'contain',
+    flex: 0.07,
+    height: null,
+    width: null,
+  },
+  feedbackText: {
+    color: '#FF3B30',
+    marginTop: 8,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 19,
+    letterSpacing: 0.0012,
+  },
+  textInput: {
+    flex: 1,
+    fontFamily: TEXT_REGULAR,
+    fontSize: 25,
   },
   mainButton: {
     marginBottom: 5,
@@ -71,13 +90,28 @@ export default StyleSheet.create({
     fontWeight: '500',
     fontFamily: TEXT_REGULAR,
   },
-  roundButton: {
+  nextButton: {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: PRIMARY_COLOR,
     borderRadius: 100,
-    width: 64,
+    width: 134,
     height: 64,
+    elevation: 5, // shadow on Android
+    shadowColor: '#2f0057',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  nextButtonText: {
+    color: 'white',
+    fontFamily: TEXT_REGULAR,
+    fontWeight: '600',
+    fontSize: 17,
+    lineHeight: 22,
   },
   linkedBankContainer: {
     justifyContent: 'space-between',
