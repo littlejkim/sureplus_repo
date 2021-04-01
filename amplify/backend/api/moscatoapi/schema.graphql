@@ -13,3 +13,17 @@ type MoscatoUser @model {
   updatedAt: AWSDateTime
   createdAt: AWSDateTime
 }
+
+type UserDevice
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["admin"] }
+      { allow: owner, mutations: [create], queries: [get, list] }
+    ]
+  ) {
+  deviceId: String!
+  phoneNumber: String
+  userId: String
+  isVerified: Boolean
+}

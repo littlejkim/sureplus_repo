@@ -7,6 +7,14 @@
                 "open": true
             },
             "policyResourceName": "/sms"
+        },
+        {
+            "name": "/update/devicelist",
+            "lambdaFunction": "twiliosms",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/update/devicelist"
         }
     ],
     "resourceName": "twilioapi",
@@ -31,5 +39,6 @@
                 "Arn"
             ]
         }
-    ]
+    ],
+    "uuid": "a55ee832"
 }
