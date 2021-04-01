@@ -49,6 +49,8 @@ export default function PhoneForm({ navigation }) {
 
   const _checkForUser = () => {
     // YOUNGMI CHECK
+    // 1. pubsub through appsync
+
     navigation.navigate('Name');
   };
 

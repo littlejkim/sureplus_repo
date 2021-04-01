@@ -43,7 +43,7 @@ app.post('/sms', (req, res) => {
 
   const twiml = new MessagingResponse();
 
-  twiml.message('I am Youngmi, your authenticator!');
+  //twiml.message('I am Youngmi, your authenticator!');
 
   console.log('DeviceID: ', deviceID);
   console.log('PhoneNumber: ', req.body.From);
