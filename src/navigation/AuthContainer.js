@@ -6,6 +6,7 @@ import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import { WelcomeScreen, LogInScreen, SignUpScreen } from '../screens';
+import { EmailForm } from '../screens/onboarding';
 
 const AuthStack = createStackNavigator();
 
@@ -21,6 +22,8 @@ export const AuthContainer = () => {
         screenOptions={{
           headerShown: false,
         }}>
+        <AuthStack.Screen name="Email" component={EmailForm} />
+
         <AuthStack.Screen name="Welcome" component={WelcomeScreen} />
         <AuthStack.Screen name="SignUp" component={SignUpScreen} />
         <AuthStack.Screen name="LogIn" component={LogInScreen} />

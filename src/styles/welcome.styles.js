@@ -41,7 +41,7 @@ export default StyleSheet.create({
     marginTop: 40,
     flexDirection: 'row',
     borderBottomWidth: 2,
-    paddingVertical: 4,
+    paddingVertical: 0,
   },
   availablityIcon: {
     resizeMode: 'contain',

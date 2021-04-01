@@ -1,5 +1,5 @@
 // public imports
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -22,11 +22,28 @@ export default function EmailForm({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
   const { setEmail } = useContext(SignUpContext);
   const [localEmail, setLocalEmail] = useState(null);
+  const [isValidEmail, setIsValidEmail] = useState();
+  const [borderColor, setBorderColor] = useState(PRIMARY_COLOR);
 
   const _continue = () => {
-    setEmail(localEmail);
     setIsLoading(true);
-    navigation.navigate('Username');
+    const response = _validateEmail();
+    setEmail(localEmail);
+    response ? navigation.navigate('Username') : null;
+  };
+
+  const _validateEmail = () => {
+    setIsLoading(false);
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const isValid = re.test(localEmail);
+    setIsValidEmail(isValid);
+    if (isValid) {
+      setBorderColor(PRIMARY_COLOR);
+      return true;
+    } else {
+      setBorderColor('#FF3B30');
+      return false;
+    }
   };
 
   return (
@@ -47,7 +64,7 @@ export default function EmailForm({ navigation }) {
                 styles.textInput,
                 {
                   color: theme.colors.mainText,
-                  borderBottomColor: theme.dark ? PRIMARY_COLOR : '#F1F2F4',
+                  borderBottomColor: borderColor,
                 },
               ]}
               autoCapitalize="none"
@@ -58,21 +75,30 @@ export default function EmailForm({ navigation }) {
               maxLength={35}
               autoCorrect={false}
               autoFocus={true}
-              clearButtonMode="never"
+              clearButtonMode="while-editing"
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={true}
-              onChangeText={(value) => setLocalEmail(value)}
+              onChangeText={(value) => {
+                setLocalEmail(value),
+                  setBorderColor(PRIMARY_COLOR),
+                  setIsValidEmail(null);
+              }}
               onSubmitEditing={() => _continue}
-              returnKeyType="next"
+              returnKeyType="done"
             />
           </View>
+          {isValidEmail === false ? (
+            <Text style={styles.feedbackText}>
+              Please enter a valid email address.
+            </Text>
+          ) : null}
         </View>
         <View style={styles.footer}>
           <View
             style={{
               alignItems: 'flex-end',
             }}>
-            {true ? (
+            {localEmail && localEmail.length > 6 ? (
               <TouchableOpacity
                 style={styles.nextButton}
                 onPress={_continue}

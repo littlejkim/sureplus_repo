@@ -1,5 +1,5 @@
 // public imports
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -27,30 +27,29 @@ export default function UsernameForm({ navigation }) {
   const [isValidUsername, setIsValidUsername] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [borderColor, setBorderColor] = useState(PRIMARY_COLOR);
-  const initialBorderColor = '#EFEFF4';
+  const errorBorderColor = '#FF3B30';
+  const inputRef = useRef();
 
   const _continue = () => {
     Keyboard.dismiss();
     setIsLoading(true);
-    _checkUsername();
+    const response = _checkUsername();
+    response ? navigation.navigate('Confirm') : null;
   };
 
   // YOUNGMI add logic for checking username exists
   const _checkUsername = () => {
-    setTimeout(() => {
-      setIsLoading(false);
-      if (localUsername === 'johnkim') {
-        setBorderColor(initialBorderColor);
-        setIsValidUsername(true);
-        console.log('Username is available');
-        setUsername(localUsername);
-        // navigation.navigate('Confirm');
-      } else {
-        setBorderColor('#FF3B30');
-        setIsValidUsername(false);
-        console.log('Username is unavailable');
-      }
-    }, 2000);
+    setIsLoading(false);
+    if (localUsername === 'johnkim') {
+      setBorderColor('#EFEFF4');
+      setIsValidUsername(true);
+      setUsername(localUsername);
+      return true;
+    } else {
+      setBorderColor('#FF3B30');
+      setIsValidUsername(false);
+      return false;
+    }
   };
 
   return (
@@ -88,27 +87,24 @@ export default function UsernameForm({ navigation }) {
               maxLength={35}
               autoCorrect={false}
               autoFocus={true}
-              onFocus={() => {
-                setIsValidUsername(null);
-                setIsEditing(true);
-                setBorderColor(PRIMARY_COLOR);
-              }}
               onBlur={() => {
                 setIsEditing(false);
-                setBorderColor(initialBorderColor);
+                setBorderColor(errorBorderColor);
               }}
               clearButtonMode="never"
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={true}
               value={localUsername}
               onChangeText={(value) => {
+                setIsValidUsername(null);
+                setIsEditing(true);
+                setBorderColor(PRIMARY_COLOR);
                 // regex for replacing special characters implemented on here due to copy/paste issues
                 setLocalUsername(value.replace(/[^.A-Za-z0-9_-]/gi, ''));
               }}
-              onSubmitEditing={(value) => {
-                _continue(value);
-              }}
+              onSubmitEditing={() => _continue}
               returnKeyType="done"
+              ref={inputRef}
             />
             {isEditing ? (
               <ClearButton height={'100%'} width={21} />
