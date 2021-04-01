@@ -46,8 +46,9 @@ export default function UsernameForm({ navigation }) {
       setUsername(localUsername);
       return true;
     } else {
-      setBorderColor('#FF3B30');
+      setBorderColor(errorBorderColor);
       setIsValidUsername(false);
+      inputRef.current.focus();
       return false;
     }
   };
@@ -89,7 +90,6 @@ export default function UsernameForm({ navigation }) {
               autoFocus={true}
               onBlur={() => {
                 setIsEditing(false);
-                setBorderColor(errorBorderColor);
               }}
               clearButtonMode="never"
               enablesReturnKeyAutomatically={true}
