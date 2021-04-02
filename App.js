@@ -14,6 +14,7 @@ import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
 import { testUserData } from './src/data/testUserData';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers } from './src/graphql/queries';
+import CarouselForm from './src/screens/onboarding/CarouselForm';
 
 export default function App() {
   const colorScheme = useColorScheme(); // used to find user color scheme (dark/light)
@@ -81,25 +82,26 @@ export default function App() {
     return <SplashScreen />;
   }
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      onReady={() =>
-        (routeNameRef.current = navigationRef.current.getCurrentRoute()?.name)
-      }
-      onStateChange={() => {
-        const previousScreenName = routeNameRef.current;
-        const currentScreenName = navigationRef.current.getCurrentRoute().name;
-        if (previousScreenName !== currentScreenName) {
-          analytics().logScreenView({
-            screen_name: currentScreenName,
-            screen_class: currentScreenName,
-          });
-        }
-        // Save the current route name for later comparision
-        routeNameRef.current = currentScreenName;
-      }}
-      theme={colorScheme === 'light' ? LightTheme : DarkTheme}>
-      {user == null ? <AuthContainer /> : <HomeContainer />}
-    </NavigationContainer>
+    <CarouselForm></CarouselForm>
+    // <NavigationContainer
+    //   ref={navigationRef}
+    //   onReady={() =>
+    //     (routeNameRef.current = navigationRef.current.getCurrentRoute()?.name)
+    //   }
+    //   onStateChange={() => {
+    //     const previousScreenName = routeNameRef.current;
+    //     const currentScreenName = navigationRef.current.getCurrentRoute().name;
+    //     if (previousScreenName !== currentScreenName) {
+    //       analytics().logScreenView({
+    //         screen_name: currentScreenName,
+    //         screen_class: currentScreenName,
+    //       });
+    //     }
+    //     // Save the current route name for later comparision
+    //     routeNameRef.current = currentScreenName;
+    //   }}
+    //   theme={colorScheme === 'light' ? LightTheme : DarkTheme}>
+    //   {user == null ? <AuthContainer /> : <HomeContainer />}
+    // </NavigationContainer>
   );
 }
