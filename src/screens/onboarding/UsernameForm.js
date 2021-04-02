@@ -30,6 +30,7 @@ export default function UsernameForm({ navigation }) {
   const inputRef = useRef();
 
   const _continue = () => {
+    Keyboard.dismiss();
     setIsLoading(true);
     const response = _checkUsername();
     response ? navigation.navigate('Confirm') : null;

@@ -23,12 +23,10 @@ export default function NameForm({ navigation }) {
   const [localFirst, setLocalFirst] = useState(null);
   const [localLast, setLocalLast] = useState(null);
   // focus text inputs
-  const [showLast, setShowLast] = useState(false);
   const [focus, setFocus] = useState(0);
   const lastNameRef = useRef();
 
   const _showNext = async () => {
-    await setShowLast(true);
     lastNameRef.current.focus();
   };
 
@@ -82,8 +80,6 @@ export default function NameForm({ navigation }) {
           <View
             style={{
               marginTop: 16,
-              width: showLast ? '100%' : 0,
-              height: showLast ? '100%' : 0,
             }}>
             <Text style={styles.labelText}>Last Name</Text>
             <TextInput
@@ -127,7 +123,7 @@ export default function NameForm({ navigation }) {
               </TouchableOpacity>
             ) : (
               <View>
-                {showLast || !localFirst ? (
+                {!localFirst ? (
                   <View
                     style={[styles.nextButton, { opacity: 0.5 }]}
                     onPress={_continue}
