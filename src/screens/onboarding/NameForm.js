@@ -63,7 +63,7 @@ export default function NameForm({ navigation }) {
               selectionColor={PRIMARY_COLOR}
               autoCompleteType="off"
               keyboardType="ascii-capable"
-              textContentType="givenName"
+              textContentType="none"
               maxLength={35}
               autoCorrect={false}
               autoFocus={true}
@@ -95,7 +95,7 @@ export default function NameForm({ navigation }) {
               selectionColor={PRIMARY_COLOR}
               autoCompleteType="off"
               keyboardType="ascii-capable"
-              textContentType="givenName"
+              textContentType="none"
               maxLength={35}
               autoCorrect={false}
               clearButtonMode="while-editing"

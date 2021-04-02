@@ -45,7 +45,7 @@ export default function LinkBankCompleteForm({ navigation }) {
           styles.linkedBankContainer,
           {
             backgroundColor: theme.colors.background,
-            marginBottom: 8,
+            marginBottom: 12,
             shadowColor: theme.dark ? '#787878' : '#000000',
           },
         ]}>
