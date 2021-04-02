@@ -26,24 +26,23 @@ export default function NameForm({ navigation }) {
   const [focus, setFocus] = useState(0);
   const lastNameRef = useRef();
 
-  const _showNext = async () => {
+  const _showNext = () => {
     lastNameRef.current.focus();
   };
 
   const _continue = () => {
     setFirstname(localFirst);
     setLastname(localLast);
-    Keyboard.dismiss();
     setFocus(3);
     navigation.navigate('LinkBank');
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={-20}>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={-20}>
         <View style={styles.body}>
           <Text style={[styles.titleText, { color: theme.colors.title }]}>
             What is your full legal name?
@@ -70,7 +69,7 @@ export default function NameForm({ navigation }) {
               autoFocus={true}
               clearButtonMode="while-editing"
               enablesReturnKeyAutomatically={true}
-              blurOnSubmit={true}
+              blurOnSubmit={false}
               onChangeText={(value) => setLocalFirst(value)}
               onSubmitEditing={_showNext}
               onFocus={() => setFocus(0)}
@@ -105,44 +104,27 @@ export default function NameForm({ navigation }) {
               onChangeText={(value) => setLocalLast(value)}
               onSubmitEditing={_continue}
               ref={lastNameRef}
-              returnKeyType="next"
+              returnKeyType="done"
             />
           </View>
         </View>
-        <View style={styles.footer}>
-          <View
-            style={{
+        <View
+          style={[
+            styles.footer,
+            {
               alignItems: 'flex-end',
-            }}>
-            {localFirst && localLast ? (
-              <TouchableOpacity
-                style={styles.nextButton}
-                onPress={_continue}
-                activeOpacity={0.7}>
-                <Text style={styles.nextButtonText}>Next</Text>
-              </TouchableOpacity>
-            ) : (
-              <View>
-                {!localFirst ? (
-                  <View
-                    style={[styles.nextButton, { opacity: 0.5 }]}
-                    onPress={_continue}
-                    activeOpacity={0.7}>
-                    <Text style={styles.nextButtonText}>Next</Text>
-                  </View>
-                ) : (
-                  <TouchableOpacity
-                    style={styles.nextButton}
-                    onPress={_showNext}
-                    activeOpacity={0.7}>
-                    <Text style={styles.nextButtonText}>Next</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
-            )}
-          </View>
+              opacity: localFirst && localLast ? 1 : 0.5,
+            },
+          ]}>
+          <TouchableOpacity
+            style={styles.nextButton}
+            disabled={localFirst && localLast ? false : true}
+            onPress={focus === 0 ? _showNext : _continue}
+            activeOpacity={0.7}>
+            <Text style={styles.nextButtonText}>Next</Text>
+          </TouchableOpacity>
         </View>
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </View>
   );
 }
