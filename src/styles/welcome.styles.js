@@ -113,6 +113,21 @@ export default StyleSheet.create({
     fontSize: 17,
     lineHeight: 22,
   },
+  previousButton: {
+    height: 64,
+    width: 64,
+    backgroundColor: '#F7F7F7',
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5, // shadow on Android
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.09,
+    shadowRadius: 5,
+  },
   linkedBankContainer: {
     paddingHorizontal: 14,
     justifyContent: 'space-between',
@@ -122,7 +137,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
     elevation: 5, // shadow on Android
-
     shadowOffset: {
       width: 0,
       height: 6,
