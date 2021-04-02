@@ -135,22 +135,13 @@ async function createOnboardingDevice(deviceId, phoneNumber) {
   }
 }
 
-// Handling Requests
-
-app.post('/update/devicelist', async (req, res) => {
-  console.log('FUNCTION CALLED!', req.body);
-
-  let mutationResult = await createOnboardingDevice('deviceid', 'phonenumber');
-  console.log('mutationResult', mutationResult);
-
-  res.json({ verified: true });
-});
 
 const encryptionKey = 'jioy7A!Y&h9ha90AJkJA872';
 app.post('/sms', (req, res) => {
   console.log('Request Body: ', req.body);
   var decryptedByte = CryptoJS.AES.decrypt(req.body.Body, encryptionKey);
   var deviceID = decryptedByte.toString(CryptoJS.enc.Utf8);
+  var phoneNumber = req.body.From;
 
   //TODO
   // 1. remove response message body
@@ -161,10 +152,13 @@ app.post('/sms', (req, res) => {
 
   const twiml = new MessagingResponse();
 
-  //twiml.message('I am Youngmi, your authenticator!');
+  twiml.message('You have registered with Sureplus!');
 
   console.log('DeviceID: ', deviceID);
-  console.log('PhoneNumber: ', req.body.From);
+  console.log('PhoneNumber: ', phoneNumber);
+
+  let mutationResult = await createOnboardingDevice(deviceID, phoneNumber);
+  console.log('mutationResult', mutationResult);
 
   res.writeHead(200, { 'Content-Type': 'text/xml' });
   res.end(twiml.toString());

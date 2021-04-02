@@ -26,21 +26,12 @@ export default function App() {
 
   // testing appsync api call without any @auth directive -> works
   async function testAmplifyApi() {
-    // try {
-    //   const userData = await API.graphql(graphqlOperation(listMoscatoUsers));
-    //   console.log('userData', userData.data.listMoscatoUsers);
-    // } catch (err) {
-    //   console.log('error fetching todos', err);
-    // }
-    await API.post('twilioapi', '/update/devicelist', {
-      body: {
-        data: 'test',
-      },
-    })
-      .then((response) => {
-        console.log('update response', response);
-      })
-      .catch((err) => console.log('/update/devicelist error: ', err));
+    try {
+      const userData = await API.graphql(graphqlOperation(listMoscatoUsers));
+      console.log('userData', userData.data.listMoscatoUsers);
+    } catch (err) {
+      console.log('error fetching todos', err);
+    }
   }
 
   useEffect(() => {
