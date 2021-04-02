@@ -22,8 +22,6 @@ export const AuthContainer = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        <AuthStack.Screen name="Email" component={EmailForm} />
-
         <AuthStack.Screen name="Welcome" component={WelcomeScreen} />
         <AuthStack.Screen name="SignUp" component={SignUpScreen} />
         <AuthStack.Screen name="LogIn" component={LogInScreen} />

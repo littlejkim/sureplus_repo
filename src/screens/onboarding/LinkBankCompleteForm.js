@@ -11,6 +11,8 @@ import AvailableIcon from '../../assets/images/available.svg';
 
 export default function LinkBankCompleteForm({ navigation }) {
   const theme = useTheme();
+  const lightGradient = ['rgba(255,255,255,0)', 'rgba(255,255,255,1)'];
+  const darkGradient = ['rgba(23,23,27,0)', 'rgba(23,23,27,1)'];
   const { institutions } = useContext(SignUpContext);
 
   const subscriptionData = [
@@ -44,6 +46,7 @@ export default function LinkBankCompleteForm({ navigation }) {
           {
             backgroundColor: theme.colors.background,
             marginBottom: 8,
+            shadowColor: theme.dark ? '#787878' : '#000000',
           },
         ]}>
         <Image
@@ -73,7 +76,8 @@ export default function LinkBankCompleteForm({ navigation }) {
                 {
                   backgroundColor: theme.colors.background,
                   borderWidth: 0.5,
-                  borderColor: '#E5E6E8',
+                  borderColor: theme.dark ? '#585858' : '#E5E6E8',
+                  shadowColor: theme.dark ? '#787878' : '#000000',
                 },
               ]}>
               <Image
@@ -94,7 +98,7 @@ export default function LinkBankCompleteForm({ navigation }) {
         </View>
         <View
           style={{
-            backgroundColor: '#F2F2F7',
+            backgroundColor: theme.dark ? '#1c171c' : '#F2F2F7',
             height: 12,
           }}
         />
@@ -119,7 +123,7 @@ export default function LinkBankCompleteForm({ navigation }) {
             keyExtractor={(item, index) => index.toString()}
           />
           <LinearGradient
-            colors={['rgba(255,255,255,0)', 'rgba(255,255,255,1)']}
+            colors={theme.dark ? darkGradient : lightGradient}
             style={{
               position: 'absolute',
               left: 0,

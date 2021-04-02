@@ -7,15 +7,13 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Platform,
-  Keyboard,
-  Image,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
-import { PRIMARY_COLOR } from '../../styles/constants';
+import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
 
 export default function EmailForm({ navigation }) {
   const theme = useTheme();
@@ -41,7 +39,7 @@ export default function EmailForm({ navigation }) {
       setBorderColor(PRIMARY_COLOR);
       return true;
     } else {
-      setBorderColor('#FF3B30');
+      setBorderColor(ERROR_COLOR);
       return false;
     }
   };

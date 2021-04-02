@@ -15,7 +15,7 @@ import { useTheme } from '@react-navigation/native';
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
-import { PRIMARY_COLOR } from '../../styles/constants';
+import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
 import AvailableIcon from '../../assets/images/available.svg';
 import ClearButton from '../../assets/images/unavailable.svg';
 
@@ -27,11 +27,9 @@ export default function UsernameForm({ navigation }) {
   const [isValidUsername, setIsValidUsername] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [borderColor, setBorderColor] = useState(PRIMARY_COLOR);
-  const errorBorderColor = '#FF3B30';
   const inputRef = useRef();
 
   const _continue = () => {
-    Keyboard.dismiss();
     setIsLoading(true);
     const response = _checkUsername();
     response ? navigation.navigate('Confirm') : null;
@@ -46,7 +44,7 @@ export default function UsernameForm({ navigation }) {
       setUsername(localUsername);
       return true;
     } else {
-      setBorderColor(errorBorderColor);
+      setBorderColor(ERROR_COLOR);
       setIsValidUsername(false);
       inputRef.current.focus();
       return false;

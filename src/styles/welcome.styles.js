@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 import { TEXT_REGULAR } from './fonts';
-import { PRIMARY_COLOR } from './constants';
+import { ERROR_COLOR, PRIMARY_COLOR } from './constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -50,7 +50,7 @@ export default StyleSheet.create({
     width: null,
   },
   feedbackText: {
-    color: '#FF3B30',
+    color: ERROR_COLOR,
     marginTop: 8,
     fontSize: 14,
     fontWeight: '400',
@@ -122,7 +122,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
     elevation: 5, // shadow on Android
-    shadowColor: '#000000',
+
     shadowOffset: {
       width: 0,
       height: 6,
