@@ -10,6 +10,16 @@ const createUserDevice = /* GraphQL */ `
   }
 `;
 
+const onCreateUserDevice = /* GraphQL */ `
+  subscription OnCreateUserDevice($owner: String) {
+    onCreateUserDevice(owner: $owner) {
+      deviceId
+      phoneNumber
+    }
+  }
+`;
+
 module.exports = {
   createUserDevice,
+  onCreateUserDevice,
 };

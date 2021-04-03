@@ -15,7 +15,7 @@ var { urlencoded } = require('body-parser');
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
 
 const gql = require('graphql-tag');
-const { createUserDevice } = require('./mutations.js');
+const { createUserDevice, onCreateUserDevice } = require('./mutations.js');
 
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 var CryptoJS = require('crypto-js');
@@ -58,7 +58,7 @@ app.use(function (req, res, next) {
 //3. client is subscribed to the mutation event. If the deviceId is the same, it will take action
 
 const initiateAuthParams = {
-  AuthFlow: 'ADMIN_NO_SRP_AUTH',
+  AuthFlow: 'ADMIN_USER_PASSWORD_AUTH',
   ClientId: process.env.COGNITO_CLIENT_ID, // use env variables or SSM parameters
   UserPoolId: process.env.COGNITO_USER_POOL_ID, // use env variables or SSM parameters
   AuthParameters: {
@@ -98,7 +98,7 @@ function getAppSyncClient() {
         if (!cred || credExpirationDate < new Date()) {
           // get new credentials
           cred = await getCredentials();
-          console.log('getCredentials() return: ', cred);
+          // console.log('getCredentials() return: ', cred);
           // give ourselves a 10 minute leeway here
           credExpirationDate = new Date(
             +new Date() + (cred.AuthenticationResult.ExpiresIn - 600) * 1000,
@@ -125,6 +125,7 @@ async function createOnboardingDevice(deviceId, phoneNumber) {
         input: {
           deviceId: deviceId,
           phoneNumber: phoneNumber,
+          isVerified: false,
         },
       },
       fetchPolicy: 'no-cache',
@@ -135,10 +136,58 @@ async function createOnboardingDevice(deviceId, phoneNumber) {
   }
 }
 
+//Subscribe to device info addition via mutation
+let subscription;
+// async function listenToDeviceCreate(deviceId) {
+//   await client.hydrated();
+
+//   subscription = client
+//     .subscribe({ query: gql(onCreateUserDevice) })
+//     .subscribe({
+//       next: (data) => {
+//         console.log('SUBSCRIBED Data: ', data.data.onCreateUserDevice);
+//         return data.data.onCreateUserDevice;
+//       },
+//       error: (error) => {
+//         console.log('SUBSCRIPTION ERR: ', error);
+//         return error;
+//       },
+//     });
+// }
+
+app.post('/test/sms', async (req, res) => {
+  await client.hydrated();
+
+  subscription = client
+    .subscribe({ query: gql(onCreateUserDevice) })
+    .subscribe({
+      next: (data) => {
+        console.log('SUBSCRIBED Data: ', data.data.onCreateUserDevice);
+        res.json({
+          statuscode: 200,
+          data: data.data.onCreateUserDevice,
+          message: 'returned device data',
+        });
+        //return data.data.onCreateUserDevice;
+      },
+      error: (error) => {
+        console.log('SUBSCRIPTION ERR: ', error);
+        res.json({ statuscode: 401, data: [], message: 'server error' });
+        //return error;
+      },
+    });
+
+  setTimeout(() => {
+    subscription.unsubscribe();
+    console.log('UNSUBSCRIBING');
+    res.json({ statuscode: 402, data: [], message: 'timeout' });
+  }, 20000);
+});
 
 const encryptionKey = 'jioy7A!Y&h9ha90AJkJA872';
-app.post('/sms', (req, res) => {
+app.post('/sms', async (req, res) => {
   console.log('Request Body: ', req.body);
+
   var decryptedByte = CryptoJS.AES.decrypt(req.body.Body, encryptionKey);
   var deviceID = decryptedByte.toString(CryptoJS.enc.Utf8);
   var phoneNumber = req.body.From;

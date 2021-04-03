@@ -53,8 +53,8 @@ export const onDeleteMoscatoUser = /* GraphQL */ `
   }
 `;
 export const onCreateUserDevice = /* GraphQL */ `
-  subscription OnCreateUserDevice {
-    onCreateUserDevice {
+  subscription OnCreateUserDevice($owner: String) {
+    onCreateUserDevice(owner: $owner) {
       id
       deviceId
       phoneNumber
@@ -67,8 +67,8 @@ export const onCreateUserDevice = /* GraphQL */ `
   }
 `;
 export const onUpdateUserDevice = /* GraphQL */ `
-  subscription OnUpdateUserDevice {
-    onUpdateUserDevice {
+  subscription OnUpdateUserDevice($owner: String) {
+    onUpdateUserDevice(owner: $owner) {
       id
       deviceId
       phoneNumber
@@ -81,8 +81,8 @@ export const onUpdateUserDevice = /* GraphQL */ `
   }
 `;
 export const onDeleteUserDevice = /* GraphQL */ `
-  subscription OnDeleteUserDevice {
-    onDeleteUserDevice {
+  subscription OnDeleteUserDevice($owner: String) {
+    onDeleteUserDevice(owner: $owner) {
       id
       deviceId
       phoneNumber

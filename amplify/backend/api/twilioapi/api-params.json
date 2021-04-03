@@ -7,6 +7,14 @@
                 "open": true
             },
             "policyResourceName": "/sms"
+        },
+        {
+            "name": "/test/sms",
+            "lambdaFunction": "twiliosms",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/test/sms"
         }
     ],
     "resourceName": "twilioapi",
@@ -32,5 +40,5 @@
             ]
         }
     ],
-    "uuid": "95af29f0"
+    "uuid": "d304ce40"
 }

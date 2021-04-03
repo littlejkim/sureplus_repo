@@ -19,7 +19,7 @@ type UserDevice
   @auth(
     rules: [
       { allow: groups, groups: ["admin"] }
-      { allow: owner, mutations: [create], queries: [get, list] }
+      { allow: owner, mutations: [create] }
     ]
   ) {
   deviceId: ID!
