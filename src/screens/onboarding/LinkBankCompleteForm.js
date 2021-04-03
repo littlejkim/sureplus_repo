@@ -29,7 +29,7 @@ export default function LinkBankCompleteForm({ navigation }) {
   ];
 
   const _continue = () => {
-    navigation.navigate('Email');
+    navigation.navigate('AdditionalForm');
   };
 
   //  <Text style={styles.bodyText}>

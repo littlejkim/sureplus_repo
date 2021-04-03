@@ -8,10 +8,8 @@ import {
   PhoneForm,
   NameForm,
   LinkBankForm,
-  LinkBankComplete,
-  EmailForm,
-  UsernameForm,
-  ConfirmForm,
+  LinkBankCompleteForm,
+  AdditionalForm,
   SetPasswordForm,
 } from './onboarding';
 
@@ -70,11 +68,12 @@ export default function SignUpScreen() {
           <SignUpStack.Screen name="LinkBank" component={LinkBankForm} />
           <SignUpStack.Screen
             name="LinkBankComplete"
-            component={LinkBankComplete}
+            component={LinkBankCompleteForm}
           />
-          <SignUpStack.Screen name="Email" component={EmailForm} />
-          <SignUpStack.Screen name="Username" component={UsernameForm} />
-          <SignUpStack.Screen name="Confirm" component={ConfirmForm} />
+          <SignUpStack.Screen
+            name="AdditionalForm"
+            component={AdditionalForm}
+          />
           <SignUpStack.Screen name="SetPassword" component={SetPasswordForm} />
         </SignUpStack.Navigator>
       )}
