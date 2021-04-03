@@ -13,6 +13,7 @@ import { SplashScreen } from './src/screens';
 import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers } from './src/graphql/queries';
+import CarouselForm from './src/screens/onboarding/CarouselForm';
 
 export default function App() {
   const colorScheme = useColorScheme(); // used to find user color scheme (dark/light)
