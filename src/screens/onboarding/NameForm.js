@@ -16,8 +16,12 @@ import { useTheme } from '@react-navigation/native';
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
 import { PRIMARY_COLOR } from '../../styles/constants';
+import { FloatingTextInput } from '../../components/FloatingTextInput';
 
 export default function NameForm({ navigation }) {
+  useEffect(() => {
+    console.log(localFirst);
+  });
   const theme = useTheme();
   const { setFirstname, setLastname } = useContext(SignUpContext);
   const [localFirst, setLocalFirst] = useState(null);
@@ -48,7 +52,12 @@ export default function NameForm({ navigation }) {
             What is your full legal name?
           </Text>
           <View style={{ marginTop: 40 }}>
-            <Text style={styles.labelText}>First Name</Text>
+            <FloatingTextInput
+              label="Email"
+              value={localFirst}
+              onChangeText={(value) => setLocalFirst(value)}
+            />
+            {/* <Text style={styles.labelText}>First Name</Text>
             <TextInput
               placeholder="First Name"
               keyboardAppearance={theme.dark ? 'dark' : 'light'}
@@ -105,7 +114,7 @@ export default function NameForm({ navigation }) {
               onSubmitEditing={_continue}
               ref={lastNameRef}
               returnKeyType="done"
-            />
+            /> */}
           </View>
         </View>
         <View
