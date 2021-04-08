@@ -52,69 +52,20 @@ export default function NameForm({ navigation }) {
             What is your full legal name?
           </Text>
           <View style={{ marginTop: 40 }}>
+            <View style={{ paddingBottom: 30 }}>
+              <FloatingTextInput
+                autoFocus={true}
+                label="First Name"
+                value={localFirst}
+                onChangeText={(value) => setLocalFirst(value)}
+              />
+            </View>
             <FloatingTextInput
-              label="Email"
-              value={localFirst}
+              autoFocus={false}
+              label="Last Name"
+              value={localLast}
               onChangeText={(value) => setLocalFirst(value)}
             />
-            {/* <Text style={styles.labelText}>First Name</Text>
-            <TextInput
-              placeholder="First Name"
-              keyboardAppearance={theme.dark ? 'dark' : 'light'}
-              style={[
-                styles.textInput,
-                {
-                  color: theme.colors.mainText,
-                  borderBottomColor: focus === 0 ? PRIMARY_COLOR : '#F1F2F4',
-                },
-              ]}
-              autoCapitalize="words"
-              selectionColor={PRIMARY_COLOR}
-              autoCompleteType="off"
-              keyboardType="ascii-capable"
-              textContentType="none"
-              maxLength={35}
-              autoCorrect={false}
-              autoFocus={true}
-              clearButtonMode="while-editing"
-              enablesReturnKeyAutomatically={true}
-              blurOnSubmit={false}
-              onChangeText={(value) => setLocalFirst(value)}
-              onSubmitEditing={_showNext}
-              onFocus={() => setFocus(0)}
-              returnKeyType="next"
-            />
-          </View>
-          <View
-            style={{
-              marginTop: 16,
-            }}>
-            <Text style={styles.labelText}>Last Name</Text>
-            <TextInput
-              placeholder="Last Name"
-              keyboardAppearance={theme.dark ? 'dark' : 'light'}
-              style={[
-                styles.textInput,
-                {
-                  color: theme.colors.mainText,
-                  borderBottomColor: focus === 1 ? PRIMARY_COLOR : '#F1F2F4',
-                },
-              ]}
-              autoCapitalize="words"
-              selectionColor={PRIMARY_COLOR}
-              autoCompleteType="off"
-              keyboardType="ascii-capable"
-              textContentType="none"
-              maxLength={35}
-              autoCorrect={false}
-              clearButtonMode="while-editing"
-              enablesReturnKeyAutomatically={true}
-              onFocus={() => setFocus(1)}
-              onChangeText={(value) => setLocalLast(value)}
-              onSubmitEditing={_continue}
-              ref={lastNameRef}
-              returnKeyType="done"
-            /> */}
           </View>
         </View>
         <View
