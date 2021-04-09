@@ -9,12 +9,13 @@ import { PRIMARY_COLOR } from '../styles/constants.js';
 
 // main modal (need to customize)
 export const FloatingTextInput = ({ label, ...props }) => {
+  const theme = useTheme();
   const textInputPosition = useRef(new Animated.ValueXY({ x: 0, y: 20 }))
     .current;
-  const textSize = useRef(new Animated.Value(14)).current;
+  const textSize = useRef(new Animated.Value(24)).current;
   const [isFocused, setIsFocused] = useState(false);
   useEffect(() => {
-    if (isFocused) {
+    if (isFocused && props.value && props.value.length > 0) {
       Animated.parallel([
         Animated.timing(textSize, {
           toValue: 14,
@@ -27,7 +28,7 @@ export const FloatingTextInput = ({ label, ...props }) => {
           useNativeDriver: false,
         }),
       ]).start();
-    } else {
+    } else if (!isFocused && !props.value) {
       Animated.parallel([
         Animated.timing(textSize, {
           toValue: 24,
@@ -64,13 +65,16 @@ export const FloatingTextInput = ({ label, ...props }) => {
       </Animated.Text>
       <TextInput
         {...props}
-        autoCorrect={false}
+        keyboardAppearance={theme.dark ? 'dark' : 'light'}
+        ref={props.inputRef}
         style={[
           styles.textInputStyle,
           {
             borderBottomColor: isFocused ? PRIMARY_COLOR : '#EFEFF4',
           },
         ]}
+        blurOnSubmit={false}
+        autoCorrect={false}
         selectionColor={PRIMARY_COLOR}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
