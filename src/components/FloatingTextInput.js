@@ -1,6 +1,6 @@
 // public imports
-import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, TextInput, Animated, StyleSheet } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, TextInput, Animated, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
@@ -14,38 +14,43 @@ export const FloatingTextInput = ({ label, ...props }) => {
     .current;
   const textSize = useRef(new Animated.Value(24)).current;
   const [isFocused, setIsFocused] = useState(false);
-  useEffect(() => {
-    if (isFocused && props.value && props.value.length > 0) {
-      Animated.parallel([
-        Animated.timing(textSize, {
-          toValue: 14,
-          duration: 300,
-          useNativeDriver: false,
-        }),
-        Animated.spring(textInputPosition, {
-          toValue: { x: 0, y: 0 },
-          duration: 300,
-          useNativeDriver: false,
-        }),
-      ]).start();
-    } else if (!isFocused && !props.value) {
+  const _focus = () => {
+    setIsFocused(true);
+
+    Animated.parallel([
+      Animated.timing(textSize, {
+        toValue: 14,
+        duration: 300,
+        useNativeDriver: false,
+      }),
+      Animated.timing(textInputPosition, {
+        toValue: { x: 0, y: 0 },
+        duration: 300,
+        useNativeDriver: false,
+      }),
+    ]).start();
+  };
+
+  const _blur = () => {
+    setIsFocused(false);
+    if (!props.value) {
       Animated.parallel([
         Animated.timing(textSize, {
           toValue: 24,
           duration: 300,
           useNativeDriver: false,
         }),
-        Animated.spring(textInputPosition, {
+        Animated.timing(textInputPosition, {
           toValue: { x: 0, y: 24 },
           duration: 300,
           useNativeDriver: false,
         }),
       ]).start();
     }
-  }, [textSize, isFocused, textInputPosition, props]);
+  };
 
   return (
-    <Animated.View
+    <View
       style={{
         paddingTop: 18,
       }}>
@@ -76,10 +81,11 @@ export const FloatingTextInput = ({ label, ...props }) => {
         blurOnSubmit={false}
         autoCorrect={false}
         selectionColor={PRIMARY_COLOR}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        on
+        onFocus={_focus}
+        onBlur={_blur}
       />
-    </Animated.View>
+    </View>
   );
 };
 
@@ -87,7 +93,6 @@ export const styles = StyleSheet.create({
   labelStyle: {
     fontFamily: TEXT_REGULAR,
     position: 'absolute',
-    left: 0,
     fontSize: 14,
     color: '#ACB5BE',
   },
