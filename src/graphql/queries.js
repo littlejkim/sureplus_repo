@@ -48,11 +48,9 @@ export const getUserDevice = /* GraphQL */ `
       id
       deviceId
       phoneNumber
-      userId
       isVerified
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -67,11 +65,9 @@ export const listUserDevices = /* GraphQL */ `
         id
         deviceId
         phoneNumber
-        userId
         isVerified
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

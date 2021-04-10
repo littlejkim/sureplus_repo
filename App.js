@@ -41,6 +41,12 @@ export default function App() {
     })
       .then((res) => console.log('/test/sms: ', res))
       .catch((err) => console.log('/test/sms err: ', err));
+
+    // await API.graphql(graphqlOperation(onCreateUserDevice)).subscribe({
+    //   next: ({ provider, value }) =>
+    //     console.log('SUBSCRIPTION: ', { provider, value }),
+    //   error: (error) => console.log('ERROR: ', error),
+    // });
   }
 
   useEffect(() => {

@@ -70,11 +70,9 @@ export const createUserDevice = /* GraphQL */ `
       id
       deviceId
       phoneNumber
-      userId
       isVerified
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -87,11 +85,9 @@ export const updateUserDevice = /* GraphQL */ `
       id
       deviceId
       phoneNumber
-      userId
       isVerified
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -104,11 +100,9 @@ export const deleteUserDevice = /* GraphQL */ `
       id
       deviceId
       phoneNumber
-      userId
       isVerified
       createdAt
       updatedAt
-      owner
     }
   }
 `;

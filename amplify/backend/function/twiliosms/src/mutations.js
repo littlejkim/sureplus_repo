@@ -11,10 +11,37 @@ const createUserDevice = /* GraphQL */ `
 `;
 
 const onCreateUserDevice = /* GraphQL */ `
-  subscription OnCreateUserDevice($owner: String) {
-    onCreateUserDevice(owner: $owner) {
+  subscription OnCreateUserDevice {
+    onCreateUserDevice {
       deviceId
       phoneNumber
+    }
+  }
+`;
+
+const listUserDevices = /* GraphQL */ `
+  query ListUserDevices(
+    $filter: ModelUserDeviceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserDevices(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        deviceId
+        phoneNumber
+        isVerified
+      }
+      nextToken
+    }
+  }
+`;
+
+const onUpdateUserDevice = /* GraphQL */ `
+  subscription OnUpdateUserDevice {
+    onUpdateUserDevice {
+      deviceId
+      phoneNumber
+      isVerified
     }
   }
 `;
@@ -22,4 +49,6 @@ const onCreateUserDevice = /* GraphQL */ `
 module.exports = {
   createUserDevice,
   onCreateUserDevice,
+  listUserDevices,
+  onUpdateUserDevice,
 };

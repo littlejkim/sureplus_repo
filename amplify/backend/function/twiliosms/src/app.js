@@ -7,6 +7,30 @@ See the License for the specific language governing permissions and limitations 
 */
 
 /* eslint-disable no-console */
+
+// POLYFILLS
+global.WebSocket = require('ws');
+global.window = global.window || {
+  setTimeout: setTimeout,
+  clearTimeout: clearTimeout,
+  WebSocket: global.WebSocket,
+  ArrayBuffer: global.ArrayBuffer,
+  addEventListener: function () {},
+  navigator: { onLine: true },
+};
+global.localStorage = {
+  store: {},
+  getItem: function (key) {
+    return this.store[key];
+  },
+  setItem: function (key, value) {
+    this.store[key] = value;
+  },
+  removeItem: function (key) {
+    delete this.store[key];
+  },
+};
+
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -15,7 +39,12 @@ var { urlencoded } = require('body-parser');
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
 
 const gql = require('graphql-tag');
-const { createUserDevice, onCreateUserDevice } = require('./mutations.js');
+const {
+  createUserDevice,
+  onCreateUserDevice,
+  listUserDevices,
+  onUpdateUserDevice,
+} = require('./mutations.js');
 
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 var CryptoJS = require('crypto-js');
@@ -136,46 +165,33 @@ async function createOnboardingDevice(deviceId, phoneNumber) {
   }
 }
 
-//Subscribe to device info addition via mutation
-let subscription;
-// async function listenToDeviceCreate(deviceId) {
-//   await client.hydrated();
-
-//   subscription = client
-//     .subscribe({ query: gql(onCreateUserDevice) })
-//     .subscribe({
-//       next: (data) => {
-//         console.log('SUBSCRIBED Data: ', data.data.onCreateUserDevice);
-//         return data.data.onCreateUserDevice;
-//       },
-//       error: (error) => {
-//         console.log('SUBSCRIPTION ERR: ', error);
-//         return error;
-//       },
-//     });
-// }
-
 app.post('/test/sms', async (req, res) => {
-  await client.hydrated();
-
-  subscription = client
-    .subscribe({ query: gql(onCreateUserDevice) })
-    .subscribe({
-      next: (data) => {
-        console.log('SUBSCRIBED Data: ', data.data.onCreateUserDevice);
-        res.json({
-          statuscode: 200,
-          data: data.data.onCreateUserDevice,
-          message: 'returned device data',
-        });
-        //return data.data.onCreateUserDevice;
-      },
-      error: (error) => {
-        console.log('SUBSCRIPTION ERR: ', error);
-        res.json({ statuscode: 401, data: [], message: 'server error' });
-        //return error;
-      },
-    });
+  let subscription;
+  //immediate invocation
+  // suspicions
+  // 1. hydrated client is faulty -> check if it works with a query instead (works)
+  (async () => {
+    await client.hydrated();
+    subscription = await client
+      .subscribe({
+        query: gql(onCreateUserDevice),
+      })
+      .subscribe({
+        next: (data) => {
+          console.log('SUBSCRIBED Data: ', data.data.onCreateUserDevice);
+          res.json({
+            statuscode: 200,
+            data: data.data.onCreateUserDevice,
+            message: 'returned device data',
+          });
+        },
+        error: (error) => {
+          console.log('SUBSCRIPTION ERR: ', error);
+          res.json({ statuscode: 401, data: [], message: 'server error' });
+        },
+      });
+    console.log('SUBSCRIPTION object: ', subscription);
+  })();
 
   setTimeout(() => {
     subscription.unsubscribe();

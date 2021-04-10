@@ -53,44 +53,38 @@ export const onDeleteMoscatoUser = /* GraphQL */ `
   }
 `;
 export const onCreateUserDevice = /* GraphQL */ `
-  subscription OnCreateUserDevice($owner: String) {
-    onCreateUserDevice(owner: $owner) {
+  subscription OnCreateUserDevice {
+    onCreateUserDevice {
       id
       deviceId
       phoneNumber
-      userId
       isVerified
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateUserDevice = /* GraphQL */ `
-  subscription OnUpdateUserDevice($owner: String) {
-    onUpdateUserDevice(owner: $owner) {
+  subscription OnUpdateUserDevice {
+    onUpdateUserDevice {
       id
       deviceId
       phoneNumber
-      userId
       isVerified
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteUserDevice = /* GraphQL */ `
-  subscription OnDeleteUserDevice($owner: String) {
-    onDeleteUserDevice(owner: $owner) {
+  subscription OnDeleteUserDevice {
+    onDeleteUserDevice {
       id
       deviceId
       phoneNumber
-      userId
       isVerified
       createdAt
       updatedAt
-      owner
     }
   }
 `;

@@ -13,17 +13,12 @@ type MoscatoUser @model {
   updatedAt: AWSDateTime
   createdAt: AWSDateTime
 }
-
+# (subscriptions: { level: public })
+# @auth(rules: [{ allow: groups, groups: ["admin"], mutations: [create] }])
 type UserDevice
-  @model
-  @auth(
-    rules: [
-      { allow: groups, groups: ["admin"] }
-      { allow: owner, mutations: [create] }
-    ]
-  ) {
+  @model(subscriptions: { level: public })
+  @auth(rules: [{ allow: groups, groups: ["admin"] }]) {
   deviceId: ID!
   phoneNumber: String
-  userId: String
   isVerified: Boolean
 }
