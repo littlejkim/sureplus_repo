@@ -4,10 +4,12 @@ import { View, Text, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
+import { SignUpContext } from '../../screens/SignUpScreen';
 import styles from '../../styles/welcome.styles';
 import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
 
 export default function EmailForm({ screenHeight }) {
+  const { firstname } = useContext(SignUpContext);
   const theme = useTheme();
 
   return (
@@ -15,7 +17,7 @@ export default function EmailForm({ screenHeight }) {
       <Text style={[styles.bodyText, { color: '#000000', marginBottom: 52 }]}>
         <Text>Hi </Text>
         <Text style={{ color: PRIMARY_COLOR, fontWeight: '600' }}>
-          Jinjae, {'\n'}
+          {firstname}, {'\n'}
         </Text>
         <Text>Please complete your sign up to review your subscriptions!</Text>
       </Text>
