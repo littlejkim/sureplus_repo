@@ -6,6 +6,7 @@ import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import { WelcomeScreen, LogInScreen, SignUpScreen } from '../screens';
+import { EmailForm } from '../screens/onboarding';
 
 const AuthStack = createStackNavigator();
 

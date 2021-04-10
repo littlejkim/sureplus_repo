@@ -11,7 +11,6 @@ import { HomeContainer } from './src/navigation/HomeContainer';
 import { AuthContainer } from './src/navigation/AuthContainer';
 import { SplashScreen } from './src/screens';
 import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
-import { testUserData } from './src/data/testUserData';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers, listUserDevices } from './src/graphql/queries';
 import { onCreateUserDevice } from './src/graphql/subscriptions';
@@ -82,7 +81,7 @@ export default function App() {
         setIsLoading(false);
       }, 1000);
     }
-  }, []);
+  }, [isLoading]);
 
   // loads initial user token from async storage (userUtils.js)
   const initalDataLoad = async () => {

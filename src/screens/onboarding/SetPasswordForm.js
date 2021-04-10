@@ -72,8 +72,6 @@ export default function SetPasswordForm({ navigation }) {
   };
 
   useEffect(() => {
-    console.log(initialPassword);
-    console.log(verifyPassword);
     if (initialPassword.length === 4 && verifyPassword.length === 4) {
       initialPassword.every((val, index) => val === verifyPassword[index])
         ? console.log('matched')

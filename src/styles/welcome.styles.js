@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 import { TEXT_REGULAR } from './fonts';
-import { PRIMARY_COLOR } from './constants';
+import { ERROR_COLOR, PRIMARY_COLOR } from './constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   titleText: {
     fontSize: 24,
-    fontWeight: '500',
+    fontWeight: '600',
     lineHeight: 33,
     letterSpacing: 0.0041,
     fontFamily: TEXT_REGULAR,
@@ -41,7 +41,7 @@ export default StyleSheet.create({
     marginTop: 40,
     flexDirection: 'row',
     borderBottomWidth: 2,
-    paddingVertical: 4,
+    paddingVertical: 0,
   },
   availablityIcon: {
     resizeMode: 'contain',
@@ -50,7 +50,7 @@ export default StyleSheet.create({
     width: null,
   },
   feedbackText: {
-    color: '#FF3B30',
+    color: ERROR_COLOR,
     marginTop: 8,
     fontSize: 14,
     fontWeight: '400',
@@ -58,18 +58,17 @@ export default StyleSheet.create({
     letterSpacing: 0.0012,
   },
   textInput: {
-    flex: 1,
     fontFamily: TEXT_REGULAR,
     fontSize: 25,
+    borderBottomWidth: 2,
+    paddingVertical: 4,
   },
   mainButton: {
-    marginBottom: 5,
     backgroundColor: PRIMARY_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
     height: 55,
     borderRadius: 27.5,
-    marginTop: 10,
   },
   mainButtonText: {
     color: 'white',
@@ -88,6 +87,7 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 17,
     fontWeight: '500',
+    lineHeight: 22,
     fontFamily: TEXT_REGULAR,
   },
   nextButton: {
@@ -113,22 +113,36 @@ export default StyleSheet.create({
     fontSize: 17,
     lineHeight: 22,
   },
+  previousButton: {
+    height: 64,
+    width: 64,
+    backgroundColor: '#F7F7F7',
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5, // shadow on Android
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.09,
+    shadowRadius: 5,
+  },
   linkedBankContainer: {
+    paddingHorizontal: 14,
     justifyContent: 'space-between',
     height: 62,
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 14,
-    marginBottom: 40,
-    shadowColor: '#000',
+    marginBottom: 24,
+    elevation: 5, // shadow on Android
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 6,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+    shadowOpacity: 0.09,
+    shadowRadius: 5,
   },
   linkedBankText: {
     flex: 1,
@@ -139,11 +153,20 @@ export default StyleSheet.create({
     letterSpacing: -0.041,
   },
   subscriptionsFoundText: {
-    flex: 1,
     fontFamily: TEXT_REGULAR,
     fontWeight: '400',
     fontSize: 17,
     lineHeight: 23,
     letterSpacing: -0.041,
+    marginBottom: 24,
+  },
+  linkCompleteTopContainer: {
+    flex: 1,
+    paddingHorizontal: 24,
+    marginTop: 114,
+  },
+  linkCompleteBottomContainer: {
+    flex: 1,
+    marginTop: 32,
   },
 });
