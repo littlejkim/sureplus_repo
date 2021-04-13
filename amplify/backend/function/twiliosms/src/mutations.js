@@ -4,7 +4,7 @@ const createUserDevice = /* GraphQL */ `
     $condition: ModelUserDeviceConditionInput
   ) {
     createUserDevice(input: $input, condition: $condition) {
-      deviceId
+      id
       phoneNumber
     }
   }
@@ -13,7 +13,7 @@ const createUserDevice = /* GraphQL */ `
 const onCreateUserDevice = /* GraphQL */ `
   subscription OnCreateUserDevice {
     onCreateUserDevice {
-      deviceId
+      id
       phoneNumber
     }
   }
@@ -27,7 +27,7 @@ const listUserDevices = /* GraphQL */ `
   ) {
     listUserDevices(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        deviceId
+        id
         phoneNumber
         isVerified
       }
@@ -39,7 +39,7 @@ const listUserDevices = /* GraphQL */ `
 const onUpdateUserDevice = /* GraphQL */ `
   subscription OnUpdateUserDevice {
     onUpdateUserDevice {
-      deviceId
+      id
       phoneNumber
       isVerified
     }

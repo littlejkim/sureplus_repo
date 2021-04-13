@@ -18,7 +18,7 @@ type MoscatoUser @model {
 type UserDevice
   @model(subscriptions: { level: public })
   @auth(rules: [{ allow: groups, groups: ["admin"] }]) {
-  deviceId: ID!
+  id: ID!
   phoneNumber: String
   isVerified: Boolean
 }

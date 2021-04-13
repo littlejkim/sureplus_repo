@@ -152,7 +152,7 @@ async function createOnboardingDevice(deviceId, phoneNumber) {
       `,
       variables: {
         input: {
-          deviceId: deviceId,
+          id: deviceId,
           phoneNumber: phoneNumber,
           isVerified: false,
         },
@@ -167,9 +167,7 @@ async function createOnboardingDevice(deviceId, phoneNumber) {
 
 app.post('/test/sms', async (req, res) => {
   let subscription;
-  //immediate invocation
-  // suspicions
-  // 1. hydrated client is faulty -> check if it works with a query instead (works)
+
   (async () => {
     await client.hydrated();
     subscription = await client
@@ -179,6 +177,7 @@ app.post('/test/sms', async (req, res) => {
       .subscribe({
         next: (data) => {
           console.log('SUBSCRIBED Data: ', data.data.onCreateUserDevice);
+
           res.json({
             statuscode: 200,
             data: data.data.onCreateUserDevice,
