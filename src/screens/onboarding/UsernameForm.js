@@ -1,20 +1,10 @@
 // public imports
-import React, { useContext, useState, useRef } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-  Platform,
-  ActivityIndicator,
-  Keyboard,
-} from 'react-native';
+import React from 'react';
+import { View, Text, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
-import { SignUpContext } from '../../screens/SignUpScreen';
 import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
 import AvailableIcon from '../../assets/images/available.svg';
 import ClearButton from '../../assets/images/unavailable.svg';
