@@ -84,7 +84,7 @@ export default function PhoneForm({ navigation }) {
     await SendSMS.send(
       {
         body: hash, // add hash
-        recipients: [twilio_number],
+        recipients: ['+14158180934'],
         successTypes: ['sent', 'queued'], // for android
         allowAndroidSendWithoutReadPermission: true, // for android
       },
