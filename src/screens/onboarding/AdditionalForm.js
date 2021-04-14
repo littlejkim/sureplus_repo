@@ -19,8 +19,26 @@ export default function AdditionalForm({ navigation }) {
   const [viewHeight, setViewHeight] = useState();
   const [showPrev, setShowPrev] = useState(false);
   const [step, setStep] = useState(0);
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [usernameVerified, setUsernameVerified] = useState(false);
+  const [displayError, setDisplayError] = useState(false);
   const scrollRef = useRef();
   const theme = useTheme();
+  const _validEmail = () => {
+    setEmailVerified(true);
+  };
+
+  const _invalidEmail = () => {
+    setEmailVerified(false);
+  };
+
+  const _validUsername = () => {
+    setUsernameVerified(true);
+  };
+
+  const _invalidUsername = () => {
+    setUsernameVerified(false);
+  };
 
   const _showNext = () => {
     scrollRef.current.scrollTo({ y: viewHeight, animated: true });
@@ -34,9 +52,18 @@ export default function AdditionalForm({ navigation }) {
     setStep(0);
   };
 
+  const _displayError = () => {
+    setDisplayError(true);
+  };
+
+  const _eraseError = () => {
+    setDisplayError(false);
+  };
+
   const _continue = () => {
     navigation.navigate('SetPassword');
   };
+
   return (
     <View style={styles.container}>
       <View
@@ -53,8 +80,22 @@ export default function AdditionalForm({ navigation }) {
           showsVerticalScrollIndicator={false}
           snapToInterval={viewHeight}
           snapToAlignment={'center'}>
-          <EmailForm screenHeight={viewHeight} theme={theme} />
-          <UsernameForm screenHeight={viewHeight} theme={theme} />
+          <EmailForm
+            screenHeight={viewHeight}
+            theme={theme}
+            displayError={displayError}
+            eraseError={_eraseError}
+            validEmail={_validEmail}
+            invalidEmail={_invalidEmail}
+          />
+          <UsernameForm
+            screenHeight={viewHeight}
+            theme={theme}
+            displayError={displayError}
+            eraseError={_eraseError}
+            validUsername={_validUsername}
+            invalidUsername={_invalidUsername}
+          />
         </ScrollView>
       </View>
       <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={-20}>
@@ -76,12 +117,22 @@ export default function AdditionalForm({ navigation }) {
           ) : (
             <View />
           )}
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={step === 0 ? _showNext : _continue}
-            activeOpacity={0.7}>
-            <Text style={styles.nextButtonText}>Next</Text>
-          </TouchableOpacity>
+          {/*configured button so you cant go to next stage without writing a verified email addr*/}
+          {step ? (
+            <TouchableOpacity
+              style={styles.nextButton}
+              onPress={usernameVerified ? _continue : _displayError}
+              activeOpacity={0.7}>
+              <Text style={styles.nextButtonText}>Next</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.nextButton}
+              onPress={emailVerified ? _showNext : _displayError}
+              activeOpacity={0.7}>
+              <Text style={styles.nextButtonText}>Next</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </KeyboardAvoidingView>
     </View>
