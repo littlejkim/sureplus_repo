@@ -14,7 +14,11 @@ export default function EmailForm({ screenHeight }) {
 
   return (
     <View style={{ height: screenHeight }}>
-      <Text style={[styles.bodyText, { color: '#000000', marginBottom: 52 }]}>
+      <Text
+        style={[
+          styles.bodyText,
+          { color: theme.dark ? 'white' : 'black', marginBottom: 52 },
+        ]}>
         <Text>Hi </Text>
         <Text style={{ color: PRIMARY_COLOR, fontWeight: '600' }}>
           {firstname}, {'\n'}

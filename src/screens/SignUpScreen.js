@@ -46,9 +46,9 @@ export default function SignUpScreen() {
 
   // check for variation
   useEffect(() => {
-    // const variation = remoteConfig().getValue('signup_variation').asBoolean(); // retrieve remote config values for signup variation
-    // console.log('Setting signup variation to ' + variation.toString());
-    // variation ? setLoginVariation(true) : setLoginVariation(false);
+    const variation = remoteConfig().getValue('signup_variation').asBoolean(); // retrieve remote config values for signup variation
+    console.log('Setting signup variation to ' + variation.toString());
+    variation ? setLoginVariation(true) : setLoginVariation(false);
   }, []);
 
   return (

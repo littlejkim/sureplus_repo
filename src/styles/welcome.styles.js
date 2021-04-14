@@ -84,9 +84,9 @@ export default StyleSheet.create({
     borderRadius: 30,
   },
   subButtonText: {
-    color: 'white',
+    color: '#6B7583',
     fontSize: 17,
-    fontWeight: '500',
+    fontWeight: '400',
     lineHeight: 22,
     fontFamily: TEXT_REGULAR,
   },

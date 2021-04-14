@@ -5,8 +5,7 @@ import { View, StatusBar } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import { WelcomeScreen, LogInScreen, SignUpScreen } from '../screens';
-import { EmailForm } from '../screens/onboarding';
+import { WelcomeScreen, ChangedNumberScreen, SignUpScreen } from '../screens';
 
 const AuthStack = createStackNavigator();
 
@@ -24,7 +23,10 @@ export const AuthContainer = () => {
         }}>
         <AuthStack.Screen name="Welcome" component={WelcomeScreen} />
         <AuthStack.Screen name="SignUp" component={SignUpScreen} />
-        <AuthStack.Screen name="LogIn" component={LogInScreen} />
+        <AuthStack.Screen
+          name="ChangedNumber"
+          component={ChangedNumberScreen}
+        />
       </AuthStack.Navigator>
     </View>
   );

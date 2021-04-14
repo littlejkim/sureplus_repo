@@ -53,8 +53,8 @@ export default function AdditionalForm({ navigation }) {
           showsVerticalScrollIndicator={false}
           snapToInterval={viewHeight}
           snapToAlignment={'center'}>
-          <EmailForm screenHeight={viewHeight} theme={theme} />
-          <UsernameForm screenHeight={viewHeight} theme={theme} />
+          <EmailForm screenHeight={viewHeight} />
+          <UsernameForm screenHeight={viewHeight} />
         </ScrollView>
       </View>
       <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={-20}>
