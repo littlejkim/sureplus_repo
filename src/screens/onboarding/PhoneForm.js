@@ -63,13 +63,16 @@ export default function PhoneForm({ navigation }) {
           // setLoading false once this res has been returned
           // check statuscode to see which one has been
           setIsLoading(false);
+          navigation.navigate('Name');
         }
       })
       .catch((err) => {
         console.log('/test/sms err: ', err);
+        setIsLoading(false);
+        navigation.navigate('Name');
       });
 
-    navigation.navigate('Name');
+    //navigation.navigate('Name');
   };
 
   // not called if run by emulator (virtual device)
@@ -84,13 +87,13 @@ export default function PhoneForm({ navigation }) {
     await SendSMS.send(
       {
         body: hash, // add hash
-        recipients: ['+14158180934'],
+        recipients: [twilio_number],
         successTypes: ['sent', 'queued'], // for android
         allowAndroidSendWithoutReadPermission: true, // for android
       },
       (completed, cancelled, error) => {
-        setIsLoading(false);
-        completed ? navigation.navigate('Name') : setModal(true);
+        //setIsLoading(false);
+        //completed ? navigation.navigate('Name') : setModal(true);
       },
     );
   };
