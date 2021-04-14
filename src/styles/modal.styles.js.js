@@ -4,39 +4,40 @@ import { TEXT_BOLD, TEXT_REGULAR } from './fonts';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    borderRadius: 25,
-    padding: 20,
-    height: '30%',
+    borderRadius: 14,
+    height: 200,
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
-
   title: {
+    paddingBottom: 5,
     textAlign: 'center',
     fontSize: 20,
-    paddingTop: 10,
-    fontFamily: TEXT_BOLD,
+    fontFamily: TEXT_REGULAR,
+    lineHeight: 27.32,
+    fontWeight: '600',
   },
   body: {
-    paddingHorizontal: 10,
     textAlign: 'center',
     fontFamily: TEXT_REGULAR,
-    fontSize: 15,
+    fontSize: 17,
+    fontWeight: '400',
+    lineHeight: 23,
   },
-
   button: {
-    borderRadius: 30,
+    borderBottomLeftRadius: 14,
+    borderBottomRightRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
+    height: 58,
     width: '100%',
     backgroundColor: PRIMARY_COLOR,
   },
 
   buttonText: {
-    fontFamily: TEXT_BOLD,
+    fontFamily: TEXT_REGULAR,
+    fontWeight: '600',
     color: 'white',
-    fontSize: 15,
+    lineHeight: 22,
+    fontSize: 17,
   },
 });

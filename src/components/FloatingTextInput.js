@@ -8,7 +8,7 @@ import { TEXT_REGULAR } from '../styles/fonts';
 import { PRIMARY_COLOR } from '../styles/constants.js';
 
 // main modal (need to customize)
-export const FloatingTextInput = ({ label, ...props }) => {
+export const FloatingTextInput = ({ label, textColor, ...props }) => {
   const theme = useTheme();
   const textInputPosition = useRef(new Animated.ValueXY({ x: 0, y: 20 }))
     .current;
@@ -16,7 +16,6 @@ export const FloatingTextInput = ({ label, ...props }) => {
   const [isFocused, setIsFocused] = useState(false);
   const _focus = () => {
     setIsFocused(true);
-
     Animated.parallel([
       Animated.timing(textSize, {
         toValue: 14,
@@ -76,6 +75,7 @@ export const FloatingTextInput = ({ label, ...props }) => {
           styles.textInputStyle,
           {
             borderBottomColor: isFocused ? PRIMARY_COLOR : '#EFEFF4',
+            color: textColor ? 'white' : 'black',
           },
         ]}
         blurOnSubmit={false}

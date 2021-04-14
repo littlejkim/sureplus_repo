@@ -9,7 +9,9 @@ import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
 import AvailableIcon from '../../assets/images/available.svg';
 import ClearButton from '../../assets/images/unavailable.svg';
 
-export default function UsernameForm({ theme, screenHeight }) {
+export default function UsernameForm({ screenHeight }) {
+  const theme = useTheme();
+
   return (
     <View style={{ height: screenHeight }}>
       <Text style={[styles.titleText, { color: theme.colors.title }]}>

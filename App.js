@@ -39,25 +39,25 @@ export default function App() {
     console.log('Initial data loading...');
 
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage
-    // remoteConfig().setConfigSettings({
-    //   minimumFetchIntervalMillis: 30,
-    // });
-    // // set firebase remote config default values
-    // remoteConfig()
-    //   .setDefaults({
-    //     signup_variation: 'false',
-    //     twilio_number: '+14158180934',
-    //   })
-    //   .then(() => remoteConfig().fetchAndActivate())
-    //   .then((fetchedRemotely) => {
-    //     if (fetchedRemotely) {
-    //       console.log('Configs were retrieved from the backend and activated.');
-    //     } else {
-    //       console.log(
-    //         'No configs were fetched from the backend, and the local configs were already activated',
-    //       );
-    //     }
-    //   });
+    remoteConfig().setConfigSettings({
+      minimumFetchIntervalMillis: 30,
+    });
+    // set firebase remote config default values
+    remoteConfig()
+      .setDefaults({
+        signup_variation: 'false',
+        twilio_number: '+14158180934',
+      })
+      .then(() => remoteConfig().fetchAndActivate())
+      .then((fetchedRemotely) => {
+        if (fetchedRemotely) {
+          console.log('Configs were retrieved from the backend and activated.');
+        } else {
+          console.log(
+            'No configs were fetched from the backend, and the local configs were already activated',
+          );
+        }
+      });
 
     // load user token
     if (isLoading === true) {
@@ -97,7 +97,7 @@ export default function App() {
         // Save the current route name for later comparision
         routeNameRef.current = currentScreenName;
       }}
-      theme={colorScheme === 'light' ? LightTheme : DarkTheme}>
+      theme={colorScheme === 'dark' ? LightTheme : DarkTheme}>
       {user == null ? <AuthContainer /> : <HomeContainer />}
     </NavigationContainer>
   );

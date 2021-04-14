@@ -40,6 +40,7 @@ export default function NameForm({ navigation }) {
           <View style={{ marginTop: 40 }}>
             <View style={{ paddingBottom: 30 }}>
               <FloatingTextInput
+                textColor={theme.dark}
                 label="First Name"
                 returnKeyType="next"
                 value={localFirst}
@@ -54,6 +55,7 @@ export default function NameForm({ navigation }) {
               />
             </View>
             <FloatingTextInput
+              textColor={theme.dark}
               label="Last Name"
               returnKeyType="done"
               value={localLast}
