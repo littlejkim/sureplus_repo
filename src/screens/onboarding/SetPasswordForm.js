@@ -13,6 +13,7 @@ import {
 import styles from '../../styles/password.styles';
 import { MainModal } from '../../components/MainModal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
+import { string } from 'yup';
 
 export default function SetPasswordForm({ navigation }) {
   const [title, setTitle] = useState(
@@ -78,14 +79,29 @@ export default function SetPasswordForm({ navigation }) {
         : _resetPasswords();
     } else {
       if (initialPassword.length === 4) {
-        setIsInitial(false);
-        setTitle('Please confirm\nyour password.');
+        let token = false;
+        initialPassword[0] === initialPassword[1]
+          ? (token = true)
+          : (token = false);
+        initialPassword[1] === initialPassword[2]
+          ? (token = true)
+          : (token = false);
+        initialPassword[2] === initialPassword[3]
+          ? (token = true)
+          : (token = false);
+        if (token) {
+          setIsInitial(true);
+          setTitle('There is repetiton\n in your password.');
+          setInitialPassword([]);
+        } else {
+          setIsInitial(false);
+          setTitle('Please confirm\nyour password.');
+        }
       }
       if ((initialPassword.length + verifyPassword.length) % 4 === 0) {
         setMaskCount(0);
       }
     }
-
     return () => setIsLoading(false);
   }, [initialPassword, verifyPassword, maskCount, isLoading]);
 
@@ -145,6 +161,7 @@ export default function SetPasswordForm({ navigation }) {
               ]}
             />
           </View>
+          <Text>randomtext</Text>
         </View>
         <View style={styles.middleContainer}>
           <FlatList
