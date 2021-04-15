@@ -63,13 +63,17 @@ export default function PhoneForm({ navigation }) {
           // setLoading false once this res has been returned
           // check statuscode to see which one has been
           setIsLoading(false);
+          navigation.navigate('Name');
         }
       })
       .catch((err) => {
         console.log('/test/sms err: ', err);
+        setIsLoading(false);
+        // this shouldnt navigate to Name but show a error prompt based on the err message
+        navigation.navigate('Name');
       });
 
-    navigation.navigate('Name');
+    //navigation.navigate('Name');
   };
 
   // not called if run by emulator (virtual device)
@@ -89,8 +93,8 @@ export default function PhoneForm({ navigation }) {
         allowAndroidSendWithoutReadPermission: true, // for android
       },
       (completed, cancelled, error) => {
-        setIsLoading(false);
-        completed ? navigation.navigate('Name') : setModal(true);
+        //setIsLoading(false);
+        //completed ? navigation.navigate('Name') : setModal(true);
       },
     );
   };
