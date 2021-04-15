@@ -69,6 +69,7 @@ export default function PhoneForm({ navigation }) {
       .catch((err) => {
         console.log('/test/sms err: ', err);
         setIsLoading(false);
+        // this shouldnt navigate to Name but show a error prompt based on the err message
         navigation.navigate('Name');
       });
 
