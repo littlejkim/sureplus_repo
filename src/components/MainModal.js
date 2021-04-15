@@ -12,32 +12,34 @@ export const MainModal = (props) => {
   const theme = useTheme();
 
   return (
-    <View>
-      <Modal
-        isVisible={props.visible}
-        animationIn="fadeIn"
-        animationInTiming={100}
-        animationOut="fadeOut"
-        animationOutTiming={100}>
+    <Modal
+      isVisible={props.visible}
+      animationIn="fadeIn"
+      animationInTiming={100}
+      animationOut="fadeOut"
+      animationOutTiming={100}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: theme.colors.background },
+        ]}>
         <View
-          style={[
-            styles.container,
-            { backgroundColor: theme.colors.background },
-          ]}>
+          style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 32 }}>
           <Text style={[styles.title, { color: theme.colors.title }]}>
             {props.contents.title}
           </Text>
           <Text style={[styles.body, { color: theme.colors.title }]}>
             {props.contents.body}
           </Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={props.hide}
-            activeOpacity={0.7}>
-            <Text style={styles.buttonText}>Dismiss</Text>
-          </TouchableOpacity>
         </View>
-      </Modal>
-    </View>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={props.hide}
+          activeOpacity={0.7}>
+          <Text style={styles.buttonText}>Try Again</Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
   );
 };

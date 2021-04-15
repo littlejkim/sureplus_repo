@@ -1,8 +1,10 @@
 {
+    "identityPoolName": "sureplusmoscatodccab9f3_identitypool_dccab9f3",
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "surepl80949fad",
     "userPoolName": "moscatouserpool",
     "autoVerifiedAttributes": [
-        "email"
+        "phone_number"
     ],
     "mfaConfiguration": "OPTIONAL",
     "mfaTypes": [
@@ -12,7 +14,7 @@
     "smsVerificationMessage": "{####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": true,
+    "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": "6",
     "passwordPolicyCharacters": [
         "Requires Numbers"
@@ -34,10 +36,10 @@
         "phone_number"
     ],
     "userpoolClientLambdaRole": "moscat80949fad_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": true,
+    "userpoolClientSetAttributes": false,
     "sharedId": "80949fad",
     "resourceName": "moscatoauth",
-    "authSelections": "userPoolOnly",
+    "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -67,5 +69,6 @@
     },
     "permissions": [],
     "dependsOn": [],
-    "authProviders": []
+    "authProviders": [],
+    "thirdPartyAuth": false
 }

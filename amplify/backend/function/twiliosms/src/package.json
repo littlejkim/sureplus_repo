@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "aws-appsync": "^4.0.3",
+    "aws-sdk": "^2.877.0",
     "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.17.1",
     "crypto-js": "^4.0.0",
+    "es6-promise": "^4.2.8",
     "express": "^4.15.2",
-    "twilio": "^3.59.0"
+    "graphql-tag": "^2.11.0",
+    "isomorphic-fetch": "^3.0.0",
+    "twilio": "^3.59.0",
+    "ws": "^6.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -12,7 +12,10 @@ import { AuthContainer } from './src/navigation/AuthContainer';
 import { SplashScreen } from './src/screens';
 import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
 import { LightTheme, DarkTheme } from './src/styles/constants';
-import { listMoscatoUsers } from './src/graphql/queries';
+import { listMoscatoUsers, listUserDevices } from './src/graphql/queries';
+import { onCreateUserDevice } from './src/graphql/subscriptions';
+
+//guest client routine
 
 export default function App() {
   const colorScheme = useColorScheme(); // used to find user color scheme (dark/light)
@@ -26,38 +29,49 @@ export default function App() {
   // testing appsync api call without any @auth directive -> works
   async function testAmplifyApi() {
     try {
-      const userData = await API.graphql(graphqlOperation(listMoscatoUsers));
-      console.log('userData', userData.data.listMoscatoUsers);
+      const deviceData = await API.graphql(graphqlOperation(listUserDevices));
+      console.log('deviceData', deviceData.data.listUserDevices);
     } catch (err) {
-      console.log('error fetching todos', err);
+      console.log('error fetching devices', err);
     }
+
+    API.post('twilioapi', '/test/sms', {
+      body: { data: 'message' },
+    })
+      .then((res) => console.log('/test/sms: ', res))
+      .catch((err) => console.log('/test/sms err: ', err));
+
+    // await API.graphql(graphqlOperation(onCreateUserDevice)).subscribe({
+    //   next: ({ provider, value }) =>
+    //     console.log('SUBSCRIPTION: ', { provider, value }),
+    //   error: (error) => console.log('ERROR: ', error),
+    // });
   }
 
   useEffect(() => {
     // storeUserToken(testUserData);
-    // testAmplifyApi();
     console.log('Initial data loading...');
 
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage
-    // remoteConfig().setConfigSettings({
-    //   minimumFetchIntervalMillis: 30,
-    // });
-    // // set firebase remote config default values
-    // remoteConfig()
-    //   .setDefaults({
-    //     signup_variation: 'false',
-    //     twilio_number: '+14158180934',
-    //   })
-    //   .then(() => remoteConfig().fetchAndActivate())
-    //   .then((fetchedRemotely) => {
-    //     if (fetchedRemotely) {
-    //       console.log('Configs were retrieved from the backend and activated.');
-    //     } else {
-    //       console.log(
-    //         'No configs were fetched from the backend, and the local configs were already activated',
-    //       );
-    //     }
-    //   });
+    remoteConfig().setConfigSettings({
+      minimumFetchIntervalMillis: 30,
+    });
+    // set firebase remote config default values
+    remoteConfig()
+      .setDefaults({
+        signup_variation: 'false',
+        twilio_number: '+14158180934',
+      })
+      .then(() => remoteConfig().fetchAndActivate())
+      .then((fetchedRemotely) => {
+        if (fetchedRemotely) {
+          console.log('Configs were retrieved from the backend and activated.');
+        } else {
+          console.log(
+            'No configs were fetched from the backend, and the local configs were already activated',
+          );
+        }
+      });
 
     // load user token
     if (isLoading === true) {

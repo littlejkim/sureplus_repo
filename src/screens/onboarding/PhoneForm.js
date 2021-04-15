@@ -11,6 +11,7 @@ import { useTheme } from '@react-navigation/native';
 import SendSMS from 'react-native-sms';
 import DeviceInfo from 'react-native-device-info';
 import remoteConfig from '@react-native-firebase/remote-config';
+import { API } from 'aws-amplify';
 var CryptoJS = require('crypto-js');
 
 // custom imports
@@ -47,18 +48,38 @@ export default function PhoneForm({ navigation }) {
     });
   };
 
-  const _checkForUser = () => {
+  const _checkForUser = async () => {
     // YOUNGMI CHECK
+    // 1. pubsub through appsync
+
+    await API.post('twilioapi', '/test/sms', {
+      body: { data: 'message' },
+    })
+      .then((res) => {
+        console.log('/test/sms: ', res);
+        if (res.statuscode == 200) {
+          console.log('move to rest of onboarding');
+          // BUZZ
+          // setLoading false once this res has been returned
+          // check statuscode to see which one has been
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.log('/test/sms err: ', err);
+      });
+
     navigation.navigate('Name');
   };
 
   // not called if run by emulator (virtual device)
   const _sendText = async () => {
     // this is temporary timeout
-    await setTimeout(() => {
-      setIsLoading(false);
-      console.log('Text successfully sent');
-    }, 3000);
+    // await setTimeout(() => {
+    //   setIsLoading(false);
+    //   console.log('Text successfully sent');
+    // }, 3000);
+    _checkForUser();
     // Youngmi look at this for SMS callback
     await SendSMS.send(
       {

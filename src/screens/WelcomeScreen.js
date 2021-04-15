@@ -1,6 +1,6 @@
 // public imports
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
@@ -8,10 +8,6 @@ import styles from '../styles/welcome.styles';
 
 export default function WelcomeScreen({ navigation }) {
   const theme = useTheme();
-
-  const _onSignUp = () => {
-    navigation.navigate('SignUp');
-  };
 
   return (
     <View
@@ -23,23 +19,29 @@ export default function WelcomeScreen({ navigation }) {
         <Text style={styles.bodyText}>
           Sureplus pays attention to your subscriptions so you don't have to
         </Text>
+        <Image
+          source={require('../assets/images/get_started.png')}
+          style={{
+            width: '100%',
+            resizeMode: 'contain',
+          }}
+        />
       </View>
       <View style={styles.footer}>
         <TouchableOpacity
+          style={styles.subButton}
+          onPress={() => navigation.navigate('ChangedNumber')}
+          activeOpacity={0.5}>
+          <Text style={styles.subButtonText}>
+            I’m logging in using a new number &gt;
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           style={styles.mainButton}
-          onPress={_onSignUp}
+          onPress={() => navigation.navigate('SignUp')}
           activeOpacity={0.7}>
           <Text style={styles.mainButtonText}>Get Started</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          style={styles.subButton}
-          onPress={_onLogIn}
-          activeOpacity={0.5}>
-          <Text style={[styles.subButtonText, { color: 'black' }]}>
-            Already a member?{' '}
-          </Text>
-          <Text style={[styles.subButtonText, { color: 'black' }]}>Log in</Text>
-        </TouchableOpacity> */}
       </View>
     </View>
   );
