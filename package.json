@@ -18,7 +18,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
-    "@react-native-community/netinfo": "^6.0.0",
+    "@react-native-community/netinfo": "^5.0.0",
     "@react-native-community/viewpager": "^5.0.11",
     "@react-native-firebase/analytics": "^10.8.1",
     "@react-native-firebase/app": "^10.8.1",
@@ -29,7 +29,6 @@
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
     "amazon-cognito-identity-js": "^4.6.0",
-    "aws": "*",
     "aws-amplify": "^3.3.25",
     "aws-amplify-react-native": "^4.3.2",
     "aws-appsync": "^4.0.3",
@@ -58,18 +57,9 @@
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^12.1.0",
     "react-native-svg-transformer": "^0.14.3",
-<<<<<<< HEAD
-    "react-native-touch-id": "^4.4.1",
-    "yup": "^0.32.9"
-=======
-<<<<<<< HEAD
     "react-native-tab-view": "^3.0.1",
-    "react-native-touch-id": "^4.4.1"
-=======
     "react-native-touch-id": "^4.4.1",
     "yup": "^0.32.9"
->>>>>>> maro_branch
->>>>>>> master
   },
   "devDependencies": {
     "@babel/core": "7.12.17",
