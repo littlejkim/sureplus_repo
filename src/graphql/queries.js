@@ -9,6 +9,8 @@ export const getMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
+      nickName
+      passCode
       plaidToken {
         bankName
         token
@@ -31,6 +33,8 @@ export const listMoscatoUsers = /* GraphQL */ `
         firstName
         lastName
         deviceId
+        nickName
+        passCode
         plaidToken {
           bankName
           token
@@ -46,9 +50,9 @@ export const getUserDevice = /* GraphQL */ `
   query GetUserDevice($id: ID!) {
     getUserDevice(id: $id) {
       id
-      deviceId
       phoneNumber
       isVerified
+      nickname
       createdAt
       updatedAt
     }
@@ -63,9 +67,9 @@ export const listUserDevices = /* GraphQL */ `
     listUserDevices(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        deviceId
         phoneNumber
         isVerified
+        nickname
         createdAt
         updatedAt
       }

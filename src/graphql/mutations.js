@@ -12,6 +12,8 @@ export const createMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
+      nickName
+      passCode
       plaidToken {
         bankName
         token
@@ -32,6 +34,8 @@ export const updateMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
+      nickName
+      passCode
       plaidToken {
         bankName
         token
@@ -52,6 +56,8 @@ export const deleteMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
+      nickName
+      passCode
       plaidToken {
         bankName
         token
@@ -68,9 +74,9 @@ export const createUserDevice = /* GraphQL */ `
   ) {
     createUserDevice(input: $input, condition: $condition) {
       id
-      deviceId
       phoneNumber
       isVerified
+      nickname
       createdAt
       updatedAt
     }
@@ -83,9 +89,9 @@ export const updateUserDevice = /* GraphQL */ `
   ) {
     updateUserDevice(input: $input, condition: $condition) {
       id
-      deviceId
       phoneNumber
       isVerified
+      nickname
       createdAt
       updatedAt
     }
@@ -98,9 +104,9 @@ export const deleteUserDevice = /* GraphQL */ `
   ) {
     deleteUserDevice(input: $input, condition: $condition) {
       id
-      deviceId
       phoneNumber
       isVerified
+      nickname
       createdAt
       updatedAt
     }

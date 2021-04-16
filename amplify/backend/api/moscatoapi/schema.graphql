@@ -3,22 +3,27 @@ type PlaidItem {
   token: String
 }
 
+# Need to store hashed version of the passcode
 type MoscatoUser @model {
   id: ID!
   phoneNumber: String!
   firstName: String
   lastName: String
   deviceId: String
+  nickName: String
+  passCode: String
   plaidToken: [PlaidItem]
   updatedAt: AWSDateTime
   createdAt: AWSDateTime
 }
 # (subscriptions: { level: public })
 # @auth(rules: [{ allow: groups, groups: ["admin"], mutations: [create] }])
+
 type UserDevice
   @model(subscriptions: { level: public })
   @auth(rules: [{ allow: groups, groups: ["admin"] }]) {
   id: ID!
   phoneNumber: String
   isVerified: Boolean
+  nickname: String
 }
