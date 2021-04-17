@@ -5,15 +5,11 @@ import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
 
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
-import { AuthContainer } from './src/navigation/AuthContainer';
-import { SplashScreen } from './src/screens';
+import { OnboardingContainer } from './src/navigation/OnboardingContainer';
+import { SplashScreen, WelcomeScreen } from './src/screens';
 import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers, listUserDevices } from './src/graphql/queries';
@@ -116,7 +112,7 @@ export default function App() {
         routeNameRef.current = currentScreenName;
       }}
       theme={colorScheme === 'light' ? LightTheme : DarkTheme}>
-      {user == null ? <AuthContainer /> : <HomeContainer />}
+      {user == null ? <OnboardingContainer /> : <HomeContainer />}
     </NavigationContainer>
   );
 }

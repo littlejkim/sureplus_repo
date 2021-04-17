@@ -7,11 +7,11 @@ import DeviceInfo from 'react-native-device-info';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
-import { SignUpContext } from '../SignUpScreen';
+import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import { MainModal } from '../../components/MainModal';
 
 export default function LinkBankForm({ navigation }) {
-  const { institutions, setInstitutions } = useContext(SignUpContext);
+  const { institutions, setInstitutions } = useContext(OnboardingContext);
   const [linkToken, setLinkToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
