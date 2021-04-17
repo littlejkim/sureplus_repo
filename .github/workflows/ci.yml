@@ -9,12 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm dependencies
+      - name: Install npm dependencies & Install Pods
         run: |
           npm install
-      - name: Install Pods
-        run: |
-          cd ios && pod install
       - name: Run iOS build
         run: |
           react-native run-ios
