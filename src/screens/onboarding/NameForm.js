@@ -8,12 +8,14 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import { TextField } from 'react-native-material-textfield';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { SignUpContext } from '../../screens/SignUpScreen';
 import { FloatingTextInput } from '../../components/FloatingTextInput';
 import { string } from 'yup';
+import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
 
 export default function NameForm({ navigation }) {
   const theme = useTheme();
@@ -22,13 +24,18 @@ export default function NameForm({ navigation }) {
   const [localLast, setLocalLast] = useState(null);
   const [validFirst, setValidFirst] = useState(false);
   const [validLast, setValidLast] = useState(false);
+  const [displayError, setDisplayError] = useState(false);
   const lastNameRef = useRef();
 
   {
     /* current implementation only checks if it is an alphabet. We might want to add more*/
   }
+  const _displayError = () => {
+    setDisplayError(true);
+  };
+
   const handleOnChangeFirst = (localFirstValue) => {
-    console.log(localFirstValue);
+    setDisplayError(false);
     setLocalFirst(localFirstValue);
     if (
       !string()
@@ -42,7 +49,8 @@ export default function NameForm({ navigation }) {
     setValidFirst(true);
   };
   const handleOnChangeLast = (localLastValue) => {
-    console.log(localLastValue);
+    setDisplayError(false);
+
     setLocalLast(localLastValue);
     if (
       !string()
@@ -74,11 +82,15 @@ export default function NameForm({ navigation }) {
           </Text>
           <View style={{ marginTop: 40 }}>
             <View style={{ paddingBottom: 30 }}>
-              <FloatingTextInput
+              <TextField
+                tintColor={
+                  displayError && !validFirst ? ERROR_COLOR : PRIMARY_COLOR
+                }
                 textColor={theme.dark}
+                labelFontSize={20}
+                fontSize={25}
                 label="First Name"
                 returnKeyType="next"
-                value={localFirst}
                 autoFocus={true}
                 autoCapitalize="words"
                 autoCompleteType="off"
@@ -92,13 +104,18 @@ export default function NameForm({ navigation }) {
               <Text style={styles.feedbackText}>
                 {validFirst
                   ? ''
-                  : localFirst
+                  : displayError
                   ? 'Invalid First name format'
                   : ''}
               </Text>
             </View>
-            <FloatingTextInput
+            <TextField
+              tintColor={
+                displayError && !validLast ? ERROR_COLOR : PRIMARY_COLOR
+              }
               textColor={theme.dark}
+              labelFontSize={20}
+              fontSize={25}
               label="Last Name"
               returnKeyType="done"
               value={localLast}
@@ -114,7 +131,7 @@ export default function NameForm({ navigation }) {
               inputRef={lastNameRef}
             />
             <Text style={styles.feedbackText}>
-              {validLast ? '' : localLast ? 'Invalid Last name format' : ''}
+              {validLast ? '' : displayError ? 'Invalid Last name format' : ''}
             </Text>
           </View>
         </View>
@@ -128,8 +145,7 @@ export default function NameForm({ navigation }) {
           ]}>
           <TouchableOpacity
             style={styles.nextButton}
-            disabled={validFirst && validLast ? false : true}
-            onPress={_continue}
+            onPress={validFirst && validLast ? _continue : _displayError}
             activeOpacity={0.7}>
             <Text style={styles.nextButtonText}>Next</Text>
           </TouchableOpacity>

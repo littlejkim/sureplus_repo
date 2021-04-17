@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { useTheme, HeaderBackButton } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';

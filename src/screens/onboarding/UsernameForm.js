@@ -2,6 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import { TextField } from 'react-native-material-textfield';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -79,16 +80,12 @@ export default function UsernameForm({
         Choose a username for your new account. You can always change it later.
       </Text>
       <View style={{ marginTop: 40 }}>
-        <TextInput
-          placeholder="Username"
+        <TextField
+          label="Username"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
-          style={[
-            styles.textInput,
-            {
-              color: theme.colors.mainText,
-              borderBottomColor: displayError ? ERROR_COLOR : PRIMARY_COLOR,
-            },
-          ]}
+          tintColor={errorMsg && displayError ? ERROR_COLOR : PRIMARY_COLOR}
+          labelFontSize={20}
+          fontSize={25}
           autoCapitalize="none"
           selectionColor={PRIMARY_COLOR}
           autoCompleteType="off"
