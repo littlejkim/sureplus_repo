@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - amplify
+      - maro_branch
 jobs:
   install-and-test:
     runs-on: macos-latest
