@@ -21,7 +21,7 @@ jobs:
         name: Install pod dependencies
       - name: Build iOS (debug)
         run: "xcodebuild \
-          -workspace sureplus_moscato.xcworkspace \
+          -workspace ios/sureplus_moscato.xcworkspace \
           -configuration Debug \
           -scheme sureplus_moscato \
           -destination id=DB4C617D-5251-4BE7-BA79-0ADADB0D903D"
