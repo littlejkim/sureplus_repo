@@ -23,7 +23,7 @@ jobs:
         working-directory: ios
         name: Install pod dependencies
       - name: Build iOS (debug)
-        run: "xcodebuild \
+        run: "xcodebuild -allowProvisioningUpdates\
           -workspace ios/sureplus_moscato.xcworkspace \
           -configuration Debug \
           -scheme sureplus_moscato"
