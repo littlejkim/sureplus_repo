@@ -17,7 +17,7 @@ var CryptoJS = require('crypto-js');
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
-import { MainModal } from '../../components/MainModal';
+import { OneButtonModal } from '../../components/OneButtonModal';
 
 export default function PhoneForm({ navigation }) {
   const theme = useTheme();
@@ -97,7 +97,7 @@ export default function PhoneForm({ navigation }) {
 
   return (
     <>
-      <MainModal
+      <OneButtonModal
         visible={modal}
         hide={() => setModal(!modal)}
         contents={contents}

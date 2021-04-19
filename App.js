@@ -9,7 +9,7 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
 import { OnboardingContainer } from './src/navigation/OnboardingContainer';
-import { SplashScreen, WelcomeScreen } from './src/screens';
+import { SplashScreen } from './src/screens';
 import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers, listUserDevices } from './src/graphql/queries';

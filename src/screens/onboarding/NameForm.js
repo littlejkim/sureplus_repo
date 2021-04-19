@@ -26,9 +26,9 @@ export default function NameForm({ navigation }) {
   const [lastNameError, setLastNameError] = useState();
   const lastNameRef = useRef();
 
+  // MARU we need to add ability for users to use spaces (not only alphabets)
   /* current implementation only checks if it is an alphabet. We might want to add more*/
   const _validateFirstName = () => {
-    // check first name
     string()
       .matches(/^[A-Za-z]*$/)
       .required()
@@ -37,7 +37,6 @@ export default function NameForm({ navigation }) {
       : setFirstNameError('Cannot contain special characters');
   };
 
-  // check last name
   const _validateLastName = () => {
     string()
       .matches(/^[A-Za-z]*$/)

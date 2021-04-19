@@ -8,7 +8,7 @@ import DeviceInfo from 'react-native-device-info';
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
-import { MainModal } from '../../components/MainModal';
+import { OneButtonModal } from '../../components/OneButtonModal';
 
 export default function LinkBankForm({ navigation }) {
   const { institutions, setInstitutions } = useContext(OnboardingContext);
@@ -70,12 +70,11 @@ export default function LinkBankForm({ navigation }) {
   };
   return (
     <>
-      <MainModal
+      <OneButtonModal
         visible={modal}
         hide={() => setModal(!modal)}
         contents={contents}
       />
-
       <View style={styles.container}>
         <View style={styles.body}>
           <Text style={[styles.titleText, { color: theme.colors.title }]}>
