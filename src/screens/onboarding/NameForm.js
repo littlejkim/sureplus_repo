@@ -8,60 +8,52 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { TextField } from 'react-native-material-textfield';
+import { TextField } from 'rn-material-ui-textfield';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
-import { SignUpContext } from '../../screens/SignUpScreen';
-import { FloatingTextInput } from '../../components/FloatingTextInput';
+import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import { string } from 'yup';
-import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
+import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
+import { TEXT_REGULAR } from '../../styles/fonts';
 
 export default function NameForm({ navigation }) {
   const theme = useTheme();
-  const { setFirstname, setLastname } = useContext(SignUpContext);
+  const { setFirstname, setLastname } = useContext(OnboardingContext);
   const [localFirst, setLocalFirst] = useState(null);
   const [localLast, setLocalLast] = useState(null);
-  const [validFirst, setValidFirst] = useState(false);
-  const [validLast, setValidLast] = useState(false);
-  const [displayError, setDisplayError] = useState(false);
+  const [firstNameError, setFirstNameError] = useState();
+  const [lastNameError, setLastNameError] = useState();
   const lastNameRef = useRef();
 
-  {
-    /* current implementation only checks if it is an alphabet. We might want to add more*/
-  }
-  const _displayError = () => {
-    setDisplayError(true);
+  // MARU we need to add ability for users to use spaces (not only alphabets)
+  /* current implementation only checks if it is an alphabet. We might want to add more*/
+  const _validateFirstName = () => {
+    string()
+      .matches(/^[A-Za-z ]*$/)
+      .required()
+      .isValidSync(localFirst)
+      ? (lastNameRef.current.focus(), setFirstNameError(null))
+      : setFirstNameError('Cannot contain special characters');
   };
 
-  const handleOnChangeFirst = (localFirstValue) => {
-    setDisplayError(false);
-    setLocalFirst(localFirstValue);
-    if (
-      !string()
-        .matches(/^[A-Za-z]*$/)
-        .required()
-        .isValidSync(localFirstValue)
-    ) {
-      setValidFirst(false);
-      return;
-    }
-    setValidFirst(true);
+  const _validateLastName = () => {
+    string()
+      .matches(/^[A-Za-z ]*$/)
+      .required()
+      .isValidSync(localLast)
+      ? (_continue(), setFirstNameError(null))
+      : setLastNameError('Cannot contain special characters');
   };
-  const handleOnChangeLast = (localLastValue) => {
-    setDisplayError(false);
 
-    setLocalLast(localLastValue);
-    if (
-      !string()
-        .matches(/^[A-Za-z]*$/)
-        .min(1)
-        .isValidSync(localLastValue)
-    ) {
-      setValidLast(false);
-      return;
-    }
-    setValidLast(true);
+  const onChangetextFirst = (textValue) => {
+    setLocalFirst(textValue);
+    setFirstNameError(null);
+  };
+
+  const onChangetextLast = (textValue) => {
+    setLocalLast(textValue);
+    setLastNameError(null);
   };
 
   const _continue = () => {
@@ -83,56 +75,59 @@ export default function NameForm({ navigation }) {
           <View style={{ marginTop: 40 }}>
             <View style={{ paddingBottom: 30 }}>
               <TextField
-                tintColor={
-                  displayError && !validFirst ? ERROR_COLOR : PRIMARY_COLOR
-                }
-                textColor={theme.dark}
-                labelFontSize={20}
-                fontSize={25}
+                value={localFirst}
                 label="First Name"
-                returnKeyType="next"
+                lineWidth={2}
+                disabledLineWidth={2}
+                fontSize={24}
+                labelFontSize={14}
+                tintColor={PRIMARY_COLOR}
+                error={firstNameError}
+                errorColor={ERROR_COLOR}
+                contentInset={{ top: 0, input: 4 }}
+                labelTextStyle={{ fontFamily: TEXT_REGULAR }}
+                titleTextStyle={{ fontFamily: TEXT_REGULAR }}
+                affixTextStyle={{ fontFamily: TEXT_REGULAR }}
                 autoFocus={true}
                 autoCapitalize="words"
                 autoCompleteType="off"
+                autoCorrect={false}
                 keyboardType="ascii-capable"
+                returnKeyType="next"
                 maxLength={30}
                 enablesReturnKeyAutomatically={true}
-                onChangeText={handleOnChangeFirst}
-                value={localFirst}
-                onSubmitEditing={() => lastNameRef.current.focus()}
+                blurOnSubmit={false}
+                onChangeText={onChangetextFirst}
+                onSubmitEditing={() => _validateFirstName()}
               />
-              <Text style={styles.feedbackText}>
-                {validFirst
-                  ? ''
-                  : displayError
-                  ? 'Invalid First name format'
-                  : ''}
-              </Text>
             </View>
             <TextField
-              tintColor={
-                displayError && !validLast ? ERROR_COLOR : PRIMARY_COLOR
-              }
-              textColor={theme.dark}
-              labelFontSize={20}
-              fontSize={25}
-              label="Last Name"
-              returnKeyType="done"
               value={localLast}
+              label="Last Name"
+              lineWidth={2}
+              disabledLineWidth={2}
+              fontSize={24}
+              labelFontSize={14}
+              tintColor={PRIMARY_COLOR}
+              error={lastNameError}
+              errorColor={ERROR_COLOR}
+              contentInset={{ top: 0, input: 4 }}
+              labelTextStyle={{ fontFamily: TEXT_REGULAR }}
+              titleTextStyle={{ fontFamily: TEXT_REGULAR }}
+              affixTextStyle={{ fontFamily: TEXT_REGULAR }}
               autoFocus={false}
               autoCapitalize="words"
               autoCompleteType="off"
+              autoCorrect={false}
               keyboardType="ascii-capable"
+              returnKeyType="done"
               maxLength={30}
               enablesReturnKeyAutomatically={true}
-              onChangeText={handleOnChangeLast}
-              value={localLast}
-              onSubmitEditing={() => _continue()}
-              inputRef={lastNameRef}
+              blurOnSubmit={false}
+              onChangeText={onChangetextLast}
+              onSubmitEditing={() => _validateLastName()}
+              ref={lastNameRef}
             />
-            <Text style={styles.feedbackText}>
-              {validLast ? '' : displayError ? 'Invalid Last name format' : ''}
-            </Text>
           </View>
         </View>
         <View
@@ -140,12 +135,16 @@ export default function NameForm({ navigation }) {
             styles.footer,
             {
               alignItems: 'flex-end',
-              opacity: validFirst && validLast ? 1 : 0.5,
+              opacity: localFirst && localLast ? 1 : 0.5,
             },
           ]}>
           <TouchableOpacity
             style={styles.nextButton}
-            onPress={validFirst && validLast ? _continue : _displayError}
+            onPress={() => {
+              _validateFirstName();
+              _validateLastName();
+              firstNameError && lastNameError ? _continue : null;
+            }}
             activeOpacity={0.7}>
             <Text style={styles.nextButtonText}>Next</Text>
           </TouchableOpacity>

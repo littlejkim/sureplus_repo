@@ -1,14 +1,11 @@
 // public imports
-import React, { useContext, useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
-import { useTheme } from '@react-navigation/native';
-import { TextField } from 'react-native-material-textfield';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import { TextField } from 'rn-material-ui-textfield';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
-import AvailableIcon from '../../assets/images/available.svg';
-import ClearButton from '../../assets/images/unavailable.svg';
 import { string } from 'yup';
 
 export default function UsernameForm({

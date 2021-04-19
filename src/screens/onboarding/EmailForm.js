@@ -2,14 +2,13 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { TextField } from 'react-native-material-textfield';
+import { TextField } from 'rn-material-ui-textfield';
 
 // custom imports
-import { SignUpContext } from '../../screens/SignUpScreen';
+import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import styles from '../../styles/welcome.styles';
 import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
 import { string } from 'yup';
-import { FloatingTextInput } from '../../components/FloatingTextInput';
 
 export default function EmailForm({
   screenHeight,
@@ -18,7 +17,7 @@ export default function EmailForm({
   displayError,
   eraseError,
 }) {
-  const { firstname } = useContext(SignUpContext);
+  const { firstname } = useContext(OnboardingContext);
   const [text, setText] = useState(null);
 
   const theme = useTheme();
