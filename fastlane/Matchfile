@@ -1,11 +1,7 @@
 # frozen_string_literal: true
-source "https://rubygems.org"
 git_url("https://github.com/Sureplus-Dev/moscato_ios_provisioning_profiles.git")
 
 storage_mode("git")
-
-gem "cocoapods"
-gem "fastlane"
 
 type("development") # The default type, can be: appstore, adhoc, enterprise or development
 app_identifier(["io.sureplus"])
