@@ -26,7 +26,6 @@ export default function NameForm({ navigation }) {
   const [lastNameError, setLastNameError] = useState();
   const lastNameRef = useRef();
 
-  // MARU we need to add ability for users to use spaces (not only alphabets)
   /* current implementation only checks if it is an alphabet. We might want to add more*/
   const _validateFirstName = () => {
     string()
@@ -97,7 +96,7 @@ export default function NameForm({ navigation }) {
                 maxLength={30}
                 enablesReturnKeyAutomatically={true}
                 blurOnSubmit={false}
-                onChangeText={(value) => onChangeTextFirst(value)}
+                onChangeText={onChangeTextFirst}
                 onSubmitEditing={() => _validateFirstName()}
               />
             </View>
@@ -124,7 +123,7 @@ export default function NameForm({ navigation }) {
               maxLength={30}
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={false}
-              onChangeText={(value) => onChangeTextLast(value)}
+              onChangeText={onChangeTextLast}
               onSubmitEditing={() => _validateLastName()}
               ref={lastNameRef}
             />
