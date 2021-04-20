@@ -1,5 +1,5 @@
 // public imports
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
 import { TextField } from 'rn-material-ui-textfield';
 
@@ -15,16 +15,26 @@ export default function UsernameForm({
   eraseError,
   validUsername,
   invalidUsername,
+  focusUsername,
+  unfocusUsername,
+  scrollEnd,
+  setScrollEnd,
 }) {
   const [text, setText] = useState(null);
   const [usernameError, setUsernameError] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  useEffect(() => {
+  const textinputRef = useRef();
+  useLayoutEffect(() => {
     displayError ? setUsernameError(errorMsg) : setUsernameError(null);
+    if (focusUsername && scrollEnd) {
+      textinputRef.current.focus();
+      unfocusUsername();
+      setScrollEnd();
+    }
   });
 
   {
-    /*/
+    /*
   For now username checks for 
   1. If it consists only of alphnumerals, underscore and period
   2. checks if its length is at least 6 characters
@@ -100,6 +110,7 @@ export default function UsernameForm({
           returnKeyType="done"
           onChangeText={manageTextInput}
           value={text}
+          ref={textinputRef}
         />
       </View>
     </View>

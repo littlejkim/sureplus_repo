@@ -23,7 +23,7 @@ export default function EmailForm({
 
   const theme = useTheme();
   useEffect(() => {
-    displayError
+    displayError && !string().email().required().isValidSync(text)
       ? setEmailError('Please enter a valid email address')
       : setEmailError(null);
   });
