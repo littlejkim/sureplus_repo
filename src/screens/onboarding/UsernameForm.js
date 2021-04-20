@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { TextField } from 'rn-material-ui-textfield';
+import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -9,13 +10,13 @@ import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
 import { string } from 'yup';
 
 export default function UsernameForm({
-  theme,
   screenHeight,
   displayError,
   eraseError,
   validUsername,
   invalidUsername,
 }) {
+  const theme = useTheme();
   const [text, setText] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   {
@@ -81,19 +82,20 @@ export default function UsernameForm({
           label="Username"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
           tintColor={errorMsg && displayError ? ERROR_COLOR : PRIMARY_COLOR}
-          labelFontSize={20}
-          fontSize={25}
+          lineWidth={2}
+          disabledLineWidth={2}
+          fontSize={24}
+          labelFontSize={14}
           autoCapitalize="none"
-          selectionColor={PRIMARY_COLOR}
           autoCompleteType="off"
           keyboardType="ascii-capable"
           textContentType="none"
-          maxLength={35}
+          maxLength={12}
           autoCorrect={false}
           autoFocus={false}
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically={true}
-          blurOnSubmit={true}
+          blurOnSubmit={false}
           returnKeyType="done"
           onChangeText={manageTextInput}
           value={text}

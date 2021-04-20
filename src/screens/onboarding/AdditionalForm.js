@@ -7,7 +7,6 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from 'react-native';
-import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -23,7 +22,6 @@ export default function AdditionalForm({ navigation }) {
   const [usernameVerified, setUsernameVerified] = useState(false);
   const [displayError, setDisplayError] = useState(false);
   const scrollRef = useRef();
-  const theme = useTheme();
   const _validEmail = () => {
     setEmailVerified(true);
   };
@@ -82,7 +80,6 @@ export default function AdditionalForm({ navigation }) {
           snapToAlignment={'center'}>
           <EmailForm
             screenHeight={viewHeight}
-            theme={theme}
             displayError={displayError}
             eraseError={_eraseError}
             validEmail={_validEmail}
@@ -90,7 +87,6 @@ export default function AdditionalForm({ navigation }) {
           />
           <UsernameForm
             screenHeight={viewHeight}
-            theme={theme}
             displayError={displayError}
             eraseError={_eraseError}
             validUsername={_validUsername}

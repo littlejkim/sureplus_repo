@@ -24,9 +24,8 @@ export default function EmailForm({
   const manageTextInput = (textValue) => {
     eraseError();
     setText(textValue);
-    {
-      /* we can make more checks for emails, but for now used the default library from yup*/
-    }
+
+    /* we can make more checks for emails, but for now used the default library from yup*/
     if (string().email().required().isValidSync(textValue)) {
       validEmail();
     } else {
@@ -50,7 +49,7 @@ export default function EmailForm({
       <Text style={[styles.titleText, { color: theme.colors.title }]}>
         What is your email?
       </Text>
-      <View style={{ marginTop: 40 }}>
+      <View style={{ marginTop: 0 }}>
         <TextField
           label="Email"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
@@ -59,8 +58,10 @@ export default function EmailForm({
               ? ERROR_COLOR
               : PRIMARY_COLOR
           }
-          labelFontSize={20}
-          fontSize={25}
+          lineWidth={2}
+          disabledLineWidth={2}
+          fontSize={24}
+          labelFontSize={14}
           autoCapitalize="none"
           selectionColor={PRIMARY_COLOR}
           autoCompleteType="off"
@@ -71,9 +72,10 @@ export default function EmailForm({
           autoFocus={true}
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically={true}
-          blurOnSubmit={true}
+          blurOnSubmit={false}
           returnKeyType="next"
           onChangeText={manageTextInput}
+          onSubmit
           value={text}
         />
         <Text style={styles.feedbackText}>
