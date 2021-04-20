@@ -26,23 +26,22 @@ export default function NameForm({ navigation }) {
   const [lastNameError, setLastNameError] = useState();
   const lastNameRef = useRef();
 
-  // MARU we need to add ability for users to use spaces (not only alphabets)
-  /* current implementation only checks if it is an alphabet. We might want to add more*/
-  const _validateFirstName = () => {
-    string()
+  const _schemaValidation = (text) => {
+    return string()
       .matches(/^[A-Za-z ]*$/)
       .required()
-      .isValidSync(localFirst)
+      .isValidSync(text);
+  };
+
+  const _validateFirstName = () => {
+    _schemaValidation(localFirst)
       ? (lastNameRef.current.focus(), setFirstNameError(null))
       : setFirstNameError('Cannot contain special characters');
   };
 
   const _validateLastName = () => {
-    string()
-      .matches(/^[A-Za-z ]*$/)
-      .required()
-      .isValidSync(localLast)
-      ? (_continue(), setFirstNameError(null))
+    _schemaValidation(localLast)
+      ? (_continue(), setLastNameError(null))
       : setLastNameError('Cannot contain special characters');
   };
 
@@ -141,9 +140,15 @@ export default function NameForm({ navigation }) {
           <TouchableOpacity
             style={styles.nextButton}
             onPress={() => {
-              _validateFirstName();
-              _validateLastName();
-              firstNameError && lastNameError ? _continue : null;
+              _schemaValidation(localFirst)
+                ? null
+                : setFirstNameError('Cannot contain special characters');
+              _schemaValidation(localLast)
+                ? null
+                : setLastNameError('Cannot contain special characters');
+              _schemaValidation(localFirst) && _schemaValidation(localLast)
+                ? _continue()
+                : null;
             }}
             activeOpacity={0.7}>
             <Text style={styles.nextButtonText}>Next</Text>
