@@ -1,10 +1,9 @@
 // public imports
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Image } from 'react-native';
-import TouchID from 'react-native-touch-id';
+import { StyleSheet } from 'react-native';
 
 // custom imports
-import styles from '../styles/container.styles';
 import { PRIMARY_COLOR } from '../styles/constants';
 
 export default function SplashScreen() {
@@ -12,8 +11,17 @@ export default function SplashScreen() {
     <View style={[styles.container, { backgroundColor: PRIMARY_COLOR }]}>
       <Image
         source={require('../assets/images/logo_single.png')}
-        style={{ height: 80, width: 80 }}
+        style={{ height: 100, width: 100 }}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

@@ -326,6 +326,8 @@ PODS:
     - React-Core
   - react-native-sms (1.11.0):
     - React
+  - react-native-splash-screen (3.2.0):
+    - React
   - react-native-viewpager (5.0.11):
     - React-Core
   - React-RCTActionSheet (0.63.4):
@@ -463,6 +465,7 @@ DEPENDENCIES:
   - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-sms (from `../node_modules/react-native-sms`)
+  - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - "react-native-viewpager (from `../node_modules/@react-native-community/viewpager`)"
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -558,6 +561,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-sms:
     :path: "../node_modules/react-native-sms"
+  react-native-splash-screen:
+    :path: "../node_modules/react-native-splash-screen"
   react-native-viewpager:
     :path: "../node_modules/@react-native-community/viewpager"
   React-RCTActionSheet:
@@ -651,6 +656,7 @@ SPEC CHECKSUMS:
   react-native-restart: a01029aadfe8e71f9e8205fdb17da2f0a4472d50
   react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
   react-native-sms: 31fbb9d6ebb565ad32e409eaf9dc70329936a129
+  react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-viewpager: b99b53127d830885917ef84809c5065edd614a78
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b

@@ -1,5 +1,5 @@
 // public imports
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 

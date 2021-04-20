@@ -49,9 +49,9 @@ export const OnboardingContainer = () => {
 
   const [loginVariation, setLoginVariation] = useState(false);
 
-  // check for variation
+  // retrieve remote config values for signup variation
   useEffect(() => {
-    const variation = remoteConfig().getValue('signup_variation').asBoolean(); // retrieve remote config values for signup variation
+    const variation = remoteConfig().getValue('signup_variation').asBoolean();
     console.log('Setting signup variation to ' + variation.toString());
     variation ? setLoginVariation(true) : setLoginVariation(false);
   }, []);

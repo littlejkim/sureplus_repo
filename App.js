@@ -1,26 +1,26 @@
 // public imports
 import React, { useEffect, useState, useRef } from 'react';
+import { AppState, useColorScheme } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { useColorScheme } from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
+import SplashScreen from 'react-native-splash-screen';
 
 // custom imports
+import Splash from './src/components/Splash';
 import { HomeContainer } from './src/navigation/HomeContainer';
 import { OnboardingContainer } from './src/navigation/OnboardingContainer';
-import { SplashScreen } from './src/screens';
 import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
 import { LightTheme, DarkTheme } from './src/styles/constants';
 import { listMoscatoUsers, listUserDevices } from './src/graphql/queries';
 import { onCreateUserDevice } from './src/graphql/subscriptions';
 
-//guest client routine
-
 export default function App() {
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const colorScheme = useColorScheme(); // used to find user color scheme (dark/light)
   const [user, setUser] = useState(undefined);
-  const [isLoading, setIsLoading] = useState(true);
 
   // firebase navigation references
   const navigationRef = useRef();
@@ -48,10 +48,7 @@ export default function App() {
     // });
   }
 
-  useEffect(() => {
-    // storeUserToken(testUserData);
-    console.log('Initial data loading...');
-
+  function firebaseSetup() {
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage
     remoteConfig().setConfigSettings({
       minimumFetchIntervalMillis: 30,
@@ -72,15 +69,12 @@ export default function App() {
           );
         }
       });
+  }
 
-    // load user token
-    if (isLoading === true) {
-      initalDataLoad().then((response) => setUser(response));
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    }
-  }, [isLoading]);
+  const _handleAppStateChange = (nextAppState) => {
+    appState.current = nextAppState;
+    setAppStateVisible(appState.current);
+  };
 
   // loads initial user token from async storage (userUtils.js)
   const initalDataLoad = async () => {
@@ -90,8 +84,19 @@ export default function App() {
     }
   };
 
-  if (isLoading === true) {
-    return <SplashScreen />;
+  useEffect(() => {
+    AppState.addEventListener('change', _handleAppStateChange);
+    firebaseSetup();
+    initalDataLoad()
+      .then((response) => setUser(response))
+      .then(SplashScreen.hide());
+    return () => {
+      AppState.removeEventListener('change', _handleAppStateChange);
+    };
+  }, []);
+
+  if (appStateVisible !== 'active') {
+    return <Splash />;
   }
   return (
     <NavigationContainer
@@ -108,7 +113,6 @@ export default function App() {
             screen_class: currentScreenName,
           });
         }
-        // Save the current route name for later comparision
         routeNameRef.current = currentScreenName;
       }}
       theme={colorScheme === 'light' ? LightTheme : DarkTheme}>
