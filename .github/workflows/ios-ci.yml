@@ -30,11 +30,11 @@ jobs:
       - name: create macos keychain
         uses: sinoru/actions-setup-keychain@v1.0
 
-      - name: install fastlane & plugins
-        run: cd ios && bundle install && cd ..
-
       - name: homebrew & watchman
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && brew update && brew install watchman
+
+      - name: install fastlane & plugins
+        run: brew install fastlane
 
       - name: yarn install
         run: yarn install
