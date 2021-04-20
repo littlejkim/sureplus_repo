@@ -1,4 +1,5 @@
 name: Build iOS
+
 on:
   push:
     branches:
@@ -8,22 +9,48 @@ on:
   pull_request:
     branches:
       - master
+
 jobs:
-  install-and-test:
+  build-ios:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js
+
+      - name: configure node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
-      - run: npm ci
-      - run: xcode-select -p
-      - run: pod install
-        working-directory: ios
-        name: Install pod dependencies
-      - name: Build iOS (debug)
-        run: "xcodebuild -allowProvisioningUpdates \
-          -workspace ios/sureplus_moscato.xcworkspace \
-          -configuration Debug \
-          -scheme sureplus_moscato"
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: configure ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: create macos keychain
+        uses: sinoru/actions-setup-keychain@v1.0
+
+      - name: install fastlane & plugins
+        run: bundle install
+
+      - name: homebrew & watchman
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && brew update && brew install watchman
+
+      - name: yarn install
+        run: yarn install
+
+      - name: re-pod
+        run: cd ios && pod deintegrate && pod install && cd ..
+
+      - name: fastlane build
+        run: fastlane ios adhoc build
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  MATCH_GIT_ACCOUNT: ${{secrets.MATCH_GIT_ACCOUNT}}
+  MATCH_GIT_BASIC_AUTHORIZATION_USER: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION_USER }}
+  MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+  MATCH_CERT_REPO: ${{secrets.MATCH_CERT_REPO}}
+
+  MATCH_PASSWORD: ${{secrets.MATCH_PASSWORD}} # Match Decrypting Password
