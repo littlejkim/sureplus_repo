@@ -46,12 +46,12 @@ export default function NameForm({ navigation }) {
       : setLastNameError('Cannot contain special characters');
   };
 
-  const onChangetextFirst = (textValue) => {
+  const onChangeTextFirst = (textValue) => {
     setLocalFirst(textValue);
     setFirstNameError(null);
   };
 
-  const onChangetextLast = (textValue) => {
+  const onChangeTextLast = (textValue) => {
     setLocalLast(textValue);
     setLastNameError(null);
   };
@@ -97,7 +97,7 @@ export default function NameForm({ navigation }) {
                 maxLength={30}
                 enablesReturnKeyAutomatically={true}
                 blurOnSubmit={false}
-                onChangeText={onChangetextFirst}
+                onChangeText={(value) => onChangeTextFirst(value)}
                 onSubmitEditing={() => _validateFirstName()}
               />
             </View>
@@ -124,7 +124,7 @@ export default function NameForm({ navigation }) {
               maxLength={30}
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={false}
-              onChangeText={onChangetextLast}
+              onChangeText={(value) => onChangeTextLast(value)}
               onSubmitEditing={() => _validateLastName()}
               ref={lastNameRef}
             />
