@@ -16,8 +16,8 @@ var CryptoJS = require('crypto-js');
 
 // custom imports
 import styles from '../../styles/welcome.styles';
-import { SignUpContext } from '../../screens/SignUpScreen';
-import { MainModal } from '../../components/MainModal';
+import { OnboardingContext } from '../../navigation/OnboardingContainer';
+import { OneButtonModal } from '../../components/OneButtonModal';
 
 export default function PhoneForm({ navigation }) {
   const theme = useTheme();
@@ -31,7 +31,7 @@ export default function PhoneForm({ navigation }) {
   };
 
   // set and get phone number
-  const { phone, setPhone } = useContext(SignUpContext);
+  const { phone, setPhone } = useContext(OnboardingContext);
   const [isLoading, setIsLoading] = useState(false);
 
   // hashing device id
@@ -57,7 +57,7 @@ export default function PhoneForm({ navigation }) {
     })
       .then((res) => {
         console.log('/test/sms: ', res);
-        if (res.statuscode == 200) {
+        if (res.statuscode === 200) {
           console.log('move to rest of onboarding');
           // BUZZ
           // setLoading false once this res has been returned
@@ -78,11 +78,6 @@ export default function PhoneForm({ navigation }) {
 
   // not called if run by emulator (virtual device)
   const _sendText = async () => {
-    // this is temporary timeout
-    // await setTimeout(() => {
-    //   setIsLoading(false);
-    //   console.log('Text successfully sent');
-    // }, 3000);
     _checkForUser();
     // Youngmi look at this for SMS callback
     await SendSMS.send(
@@ -93,6 +88,7 @@ export default function PhoneForm({ navigation }) {
         allowAndroidSendWithoutReadPermission: true, // for android
       },
       (completed, cancelled, error) => {
+        //add all 4 cases of onboarding
         //setIsLoading(false);
         //completed ? navigation.navigate('Name') : setModal(true);
       },
@@ -101,7 +97,7 @@ export default function PhoneForm({ navigation }) {
 
   return (
     <>
-      <MainModal
+      <OneButtonModal
         visible={modal}
         hide={() => setModal(!modal)}
         contents={contents}

@@ -6,14 +6,14 @@ import LinearGradient from 'react-native-linear-gradient';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
-import { SignUpContext } from '../../screens/SignUpScreen';
+import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import AvailableIcon from '../../assets/images/available.svg';
 
 export default function LinkBankCompleteForm({ navigation }) {
   const theme = useTheme();
   const lightGradient = ['rgba(255,255,255,0)', 'rgba(255,255,255,1)'];
   const darkGradient = ['rgba(23,23,27,0)', 'rgba(23,23,27,1)'];
-  const { institutions } = useContext(SignUpContext);
+  const { institutions } = useContext(OnboardingContext);
 
   const subscriptionData = [
     'netflix',
@@ -31,12 +31,6 @@ export default function LinkBankCompleteForm({ navigation }) {
   const _continue = () => {
     navigation.navigate('AdditionalForm');
   };
-
-  //  <Text style={styles.bodyText}>
-  //    institution id: {institutions[0].institution_id} {'\n'}
-  //    institution name: {institutions[0].institution_name} {'\n'}
-  //    public token: {institutions[0].publicToken}
-  //  </Text>;
 
   function _renderItem({ item }) {
     return (

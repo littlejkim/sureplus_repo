@@ -8,7 +8,7 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 
 // custom imports
 import { HomeContainer } from './src/navigation/HomeContainer';
-import { AuthContainer } from './src/navigation/AuthContainer';
+import { OnboardingContainer } from './src/navigation/OnboardingContainer';
 import { SplashScreen } from './src/screens';
 import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
 import { LightTheme, DarkTheme } from './src/styles/constants';
@@ -112,7 +112,7 @@ export default function App() {
         routeNameRef.current = currentScreenName;
       }}
       theme={colorScheme === 'light' ? LightTheme : DarkTheme}>
-      {user == null ? <AuthContainer /> : <HomeContainer />}
+      {user == null ? <OnboardingContainer /> : <HomeContainer />}
     </NavigationContainer>
   );
 }

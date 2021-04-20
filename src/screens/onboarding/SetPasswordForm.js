@@ -11,7 +11,7 @@ import {
 
 // custom imports
 import styles from '../../styles/password.styles';
-import { MainModal } from '../../components/MainModal';
+import { OneButtonModal } from '../../components/OneButtonModal';
 import { LoadingSpinner } from '../../components/LoadingSpinner';
 import { string } from 'yup';
 
@@ -109,7 +109,7 @@ export default function SetPasswordForm({ navigation }) {
     <>
       <StatusBar barStyle={'light-content'} />
       <LoadingSpinner loading={isLoading} />
-      <MainModal
+      <OneButtonModal
         visible={modal}
         hide={() => {
           setModal(!modal);
