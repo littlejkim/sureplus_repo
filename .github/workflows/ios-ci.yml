@@ -30,17 +30,14 @@ jobs:
       - name: create macos keychain
         uses: sinoru/actions-setup-keychain@v1.0
 
+      - name: install fastlane & plugins
+        run: bundle install # need a Gemfile at the project root
+
       - name: homebrew & watchman
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && brew update && brew install watchman
 
-      - name: install fastlane & plugins
-        run: brew install fastlane
-
       - name: yarn install
-        run: yarn install
-
-      - name: re-pod
-        run: cd ios && pod deintegrate && pod install && cd ..
+        run: yarn install # this also include the pod install step -> need to disintegrate?
 
       - name: fastlane build
         run: fastlane ios adhoc build
