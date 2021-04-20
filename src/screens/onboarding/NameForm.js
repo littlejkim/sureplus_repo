@@ -30,7 +30,7 @@ export default function NameForm({ navigation }) {
   /* current implementation only checks if it is an alphabet. We might want to add more*/
   const _validateFirstName = () => {
     string()
-      .matches(/^[A-Za-z]*$/)
+      .matches(/^[A-Za-z ]*$/)
       .required()
       .isValidSync(localFirst)
       ? (lastNameRef.current.focus(), setFirstNameError(null))
@@ -39,11 +39,21 @@ export default function NameForm({ navigation }) {
 
   const _validateLastName = () => {
     string()
-      .matches(/^[A-Za-z]*$/)
+      .matches(/^[A-Za-z ]*$/)
       .required()
       .isValidSync(localLast)
       ? (_continue(), setFirstNameError(null))
       : setLastNameError('Cannot contain special characters');
+  };
+
+  const onChangetextFirst = (textValue) => {
+    setLocalFirst(textValue);
+    setFirstNameError(null);
+  };
+
+  const onChangetextLast = (textValue) => {
+    setLocalLast(textValue);
+    setLastNameError(null);
   };
 
   const _continue = () => {
@@ -87,7 +97,7 @@ export default function NameForm({ navigation }) {
                 maxLength={30}
                 enablesReturnKeyAutomatically={true}
                 blurOnSubmit={false}
-                onChangeText={(value) => setLocalFirst(value)}
+                onChangeText={onChangetextFirst}
                 onSubmitEditing={() => _validateFirstName()}
               />
             </View>
@@ -114,7 +124,7 @@ export default function NameForm({ navigation }) {
               maxLength={30}
               enablesReturnKeyAutomatically={true}
               blurOnSubmit={false}
-              onChangeText={(value) => setLocalLast(value)}
+              onChangeText={onChangetextLast}
               onSubmitEditing={() => _validateLastName()}
               ref={lastNameRef}
             />
@@ -130,8 +140,11 @@ export default function NameForm({ navigation }) {
           ]}>
           <TouchableOpacity
             style={styles.nextButton}
-            disabled={localFirst && localLast ? false : true}
-            onPress={_continue}
+            onPress={() => {
+              _validateFirstName();
+              _validateLastName();
+              firstNameError && lastNameError ? _continue : null;
+            }}
             activeOpacity={0.7}>
             <Text style={styles.nextButtonText}>Next</Text>
           </TouchableOpacity>

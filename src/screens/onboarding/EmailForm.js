@@ -2,6 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import { TextField } from 'rn-material-ui-textfield';
 
 // custom imports
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
@@ -50,16 +51,16 @@ export default function EmailForm({
         What is your email?
       </Text>
       <View style={{ marginTop: 40 }}>
-        <TextInput
-          placeholder="Email"
+        <TextField
+          label="Email"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
-          style={[
-            styles.textInput,
-            {
-              color: theme.colors.mainText,
-              borderBottomColor: displayError ? ERROR_COLOR : PRIMARY_COLOR,
-            },
-          ]}
+          tintColor={
+            !string().email().required().isValidSync(text) && displayError
+              ? ERROR_COLOR
+              : PRIMARY_COLOR
+          }
+          labelFontSize={20}
+          fontSize={25}
           autoCapitalize="none"
           selectionColor={PRIMARY_COLOR}
           autoCompleteType="off"
