@@ -1,5 +1,5 @@
 // public imports
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { TextField } from 'rn-material-ui-textfield';
 
@@ -17,7 +17,12 @@ export default function UsernameForm({
   invalidUsername,
 }) {
   const [text, setText] = useState(null);
+  const [usernameError, setUsernameError] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  useEffect(() => {
+    displayError ? setUsernameError(errorMsg) : setUsernameError(null);
+  });
+
   {
     /*/
   For now username checks for 
@@ -39,20 +44,17 @@ export default function UsernameForm({
         'Usernames can only use letters, numbers, underscores and periods.',
       );
       invalidUsername();
-      displayError ? ERROR_COLOR : PRIMARY_COLOR;
       return;
     }
 
     if (!string().min(6).isValidSync(textValue)) {
       setErrorMsg('Your username should have a minimum of 6 characters.');
       invalidUsername();
-      displayError ? ERROR_COLOR : PRIMARY_COLOR;
       return;
     }
     if (string().matches(/[.]$/).isValidSync(textValue)) {
       setErrorMsg("You can't end your username with as a period");
       invalidUsername();
-      displayError ? ERROR_COLOR : PRIMARY_COLOR;
       return;
     }
     if (
@@ -62,7 +64,6 @@ export default function UsernameForm({
     ) {
       setErrorMsg("You can't have more than one period in a row");
       invalidUsername();
-      displayError ? ERROR_COLOR : PRIMARY_COLOR;
       return;
     }
     setErrorMsg(null);
@@ -80,7 +81,9 @@ export default function UsernameForm({
         <TextField
           label="Username"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
-          tintColor={errorMsg && displayError ? ERROR_COLOR : PRIMARY_COLOR}
+          tintColor={PRIMARY_COLOR}
+          error={usernameError}
+          errorColor={ERROR_COLOR}
           labelFontSize={20}
           fontSize={25}
           autoCapitalize="none"
@@ -98,7 +101,6 @@ export default function UsernameForm({
           onChangeText={manageTextInput}
           value={text}
         />
-        <Text style={styles.feedbackText}>{displayError ? errorMsg : ''}</Text>
       </View>
     </View>
   );
