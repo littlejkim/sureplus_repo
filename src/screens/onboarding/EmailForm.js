@@ -19,12 +19,10 @@ export default function EmailForm({
 }) {
   const { firstname } = useContext(OnboardingContext);
   const [text, setText] = useState(null);
-
   const theme = useTheme();
   const manageTextInput = (textValue) => {
     eraseError();
     setText(textValue);
-
     /* we can make more checks for emails, but for now used the default library from yup*/
     if (string().email().required().isValidSync(textValue)) {
       validEmail();

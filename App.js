@@ -72,8 +72,10 @@ export default function App() {
   }
 
   const _handleAppStateChange = (nextAppState) => {
+    console.log(nextAppState);
     appState.current = nextAppState;
     setAppStateVisible(appState.current);
+    SplashScreen.show();
   };
 
   // loads initial user token from async storage (userUtils.js)
@@ -95,9 +97,6 @@ export default function App() {
     };
   }, []);
 
-  if (appStateVisible !== 'active') {
-    return <Splash />;
-  }
   return (
     <NavigationContainer
       ref={navigationRef}
