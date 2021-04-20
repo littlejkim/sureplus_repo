@@ -29,16 +29,8 @@ export default function WelcomeScreen({ navigation }) {
       </View>
       <View style={styles.footer}>
         <TouchableOpacity
-          style={styles.subButton}
-          onPress={() => navigation.navigate('ChangedNumber')}
-          activeOpacity={0.5}>
-          <Text style={styles.subButtonText}>
-            I’m logging in using a new number &gt;
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
           style={styles.mainButton}
-          onPress={() => navigation.navigate('SignUp')}
+          onPress={() => navigation.navigate('Phone')}
           activeOpacity={0.7}>
           <Text style={styles.mainButtonText}>Get Started</Text>
         </TouchableOpacity>
