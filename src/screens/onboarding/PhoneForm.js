@@ -89,8 +89,8 @@ export default function PhoneForm({ navigation }) {
       },
       (completed, cancelled, error) => {
         //add all 4 cases of onboarding
-        //setIsLoading(false);
-        //completed ? navigation.navigate('Name') : setModal(true);
+        // created temporary bypass for testing
+        completed ? navigation.navigate('Name') : setModal(true);
       },
     );
   };
