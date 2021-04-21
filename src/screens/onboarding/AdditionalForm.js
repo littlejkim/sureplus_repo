@@ -21,7 +21,14 @@ export default function AdditionalForm({ navigation }) {
   const [emailVerified, setEmailVerified] = useState(false);
   const [usernameVerified, setUsernameVerified] = useState(false);
   const [displayError, setDisplayError] = useState(false);
+  const [focusUsername, setFocusUsername] = useState(false);
+  const [scrollEnd, setScrollEnd] = useState(false);
   const scrollRef = useRef();
+<<<<<<< HEAD
+=======
+  const theme = useTheme();
+
+>>>>>>> maro_branch
   const _validEmail = () => {
     setEmailVerified(true);
   };
@@ -42,6 +49,7 @@ export default function AdditionalForm({ navigation }) {
     scrollRef.current.scrollTo({ y: viewHeight, animated: true });
     setShowPrev(true);
     setStep(1);
+    setFocusUsername(true);
   };
 
   const _showPrev = () => {
@@ -58,8 +66,24 @@ export default function AdditionalForm({ navigation }) {
     setDisplayError(false);
   };
 
+  const _unfocusUsername = () => {
+    setFocusUsername(false);
+  };
+
+  const _scrollEndFalse = () => {
+    setScrollEnd(false);
+  };
+
   const _continue = () => {
     navigation.navigate('SetPassword');
+  };
+
+  const isCloseToBottom = ({
+    layoutMeasurement,
+    contentOffset,
+    contentSize,
+  }) => {
+    return layoutMeasurement.height + contentOffset.y >= contentSize.height - 1;
   };
 
   return (
@@ -73,8 +97,13 @@ export default function AdditionalForm({ navigation }) {
         <ScrollView
           ref={scrollRef}
           bounces={false}
-          decelerationRate={0}
+          decelerationRate="normal"
           scrollEnabled={true}
+          onScroll={({ nativeEvent }) => {
+            if (isCloseToBottom(nativeEvent)) {
+              setScrollEnd(true);
+            }
+          }}
           showsVerticalScrollIndicator={false}
           snapToInterval={viewHeight}
           snapToAlignment={'center'}>
@@ -91,6 +120,10 @@ export default function AdditionalForm({ navigation }) {
             eraseError={_eraseError}
             validUsername={_validUsername}
             invalidUsername={_invalidUsername}
+            focusUsername={focusUsername}
+            unfocusUsername={_unfocusUsername}
+            scrollEnd={scrollEnd}
+            setScrollEnd={_scrollEndFalse}
           />
         </ScrollView>
       </View>

@@ -1,6 +1,7 @@
 // public imports
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
 import { useTheme } from '@react-navigation/native';
 
@@ -15,19 +16,43 @@ export default function UsernameForm({
   eraseError,
   validUsername,
   invalidUsername,
+  focusUsername,
+  unfocusUsername,
+  scrollEnd,
+  setScrollEnd,
 }) {
   const theme = useTheme();
   const [text, setText] = useState(null);
+  const [usernameError, setUsernameError] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  {
-    /*/
+  const textinputRef = useRef();
+
+  const theme = useTheme();
+
+  useEffect(() => {
+    displayError ? setUsernameError(errorMsg) : setUsernameError(null);
+    if (focusUsername && scrollEnd) {
+      textinputRef.current.focus();
+      unfocusUsername();
+      setScrollEnd();
+    }
+  }, [
+    errorMsg,
+    setUsernameError,
+    displayError,
+    focusUsername,
+    scrollEnd,
+    setScrollEnd,
+    unfocusUsername,
+  ]);
+
+  /*
   For now username checks for 
   1. If it consists only of alphnumerals, underscore and period
   2. checks if its length is at least 6 characters
   3. checks if it ends with a period
   4. checks if there are more than 2 consecutive periods
 */
-  }
   const manageTextInput = (textValue) => {
     eraseError();
     setText(textValue);
@@ -40,20 +65,17 @@ export default function UsernameForm({
         'Usernames can only use letters, numbers, underscores and periods.',
       );
       invalidUsername();
-      displayError ? ERROR_COLOR : PRIMARY_COLOR;
       return;
     }
 
     if (!string().min(6).isValidSync(textValue)) {
       setErrorMsg('Your username should have a minimum of 6 characters.');
       invalidUsername();
-      displayError ? ERROR_COLOR : PRIMARY_COLOR;
       return;
     }
     if (string().matches(/[.]$/).isValidSync(textValue)) {
       setErrorMsg("You can't end your username with as a period");
       invalidUsername();
-      displayError ? ERROR_COLOR : PRIMARY_COLOR;
       return;
     }
     if (
@@ -63,7 +85,6 @@ export default function UsernameForm({
     ) {
       setErrorMsg("You can't have more than one period in a row");
       invalidUsername();
-      displayError ? ERROR_COLOR : PRIMARY_COLOR;
       return;
     }
     setErrorMsg(null);
@@ -81,11 +102,19 @@ export default function UsernameForm({
         <TextField
           label="Username"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
+<<<<<<< HEAD
           tintColor={errorMsg && displayError ? ERROR_COLOR : PRIMARY_COLOR}
           lineWidth={2}
           disabledLineWidth={2}
           fontSize={24}
           labelFontSize={14}
+=======
+          tintColor={PRIMARY_COLOR}
+          error={usernameError}
+          errorColor={ERROR_COLOR}
+          labelFontSize={20}
+          fontSize={25}
+>>>>>>> maro_branch
           autoCapitalize="none"
           autoCompleteType="off"
           keyboardType="ascii-capable"
@@ -99,8 +128,8 @@ export default function UsernameForm({
           returnKeyType="done"
           onChangeText={manageTextInput}
           value={text}
+          ref={textinputRef}
         />
-        <Text style={styles.feedbackText}>{displayError ? errorMsg : ''}</Text>
       </View>
     </View>
   );

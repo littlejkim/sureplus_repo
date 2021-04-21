@@ -1,6 +1,6 @@
 // public imports
-import React, { useContext, useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
 
@@ -18,12 +18,23 @@ export default function EmailForm({
   eraseError,
 }) {
   const { firstname } = useContext(OnboardingContext);
+  const [emailError, setEmailError] = useState(null);
   const [text, setText] = useState(null);
   const theme = useTheme();
-  const manageTextInput = (textValue) => {
+
+  useEffect(() => {
+    displayError && !string().email().required().isValidSync(text)
+      ? setEmailError('Please enter a valid email address')
+      : setEmailError(null);
+  }, [setEmailError, displayError, text]);
+
+  const onTextInput = (textValue) => {
     eraseError();
     setText(textValue);
+<<<<<<< HEAD
     /* we can make more checks for emails, but for now used the default library from yup*/
+=======
+>>>>>>> maro_branch
     if (string().email().required().isValidSync(textValue)) {
       validEmail();
     } else {
@@ -51,6 +62,7 @@ export default function EmailForm({
         <TextField
           label="Email"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
+<<<<<<< HEAD
           tintColor={
             !string().email().required().isValidSync(text) && displayError
               ? ERROR_COLOR
@@ -60,6 +72,13 @@ export default function EmailForm({
           disabledLineWidth={2}
           fontSize={24}
           labelFontSize={14}
+=======
+          tintColor={PRIMARY_COLOR}
+          error={emailError}
+          errorColor={ERROR_COLOR}
+          labelFontSize={20}
+          fontSize={25}
+>>>>>>> maro_branch
           autoCapitalize="none"
           selectionColor={PRIMARY_COLOR}
           autoCompleteType="off"
@@ -72,17 +91,14 @@ export default function EmailForm({
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={false}
           returnKeyType="next"
+<<<<<<< HEAD
           onChangeText={manageTextInput}
           onSubmit
+=======
+          onChangeText={onTextInput}
+>>>>>>> maro_branch
           value={text}
         />
-        <Text style={styles.feedbackText}>
-          {string().email().required().isValidSync(text)
-            ? ''
-            : displayError
-            ? 'Please enter a valid email address'
-            : ''}
-        </Text>
       </View>
     </View>
   );
