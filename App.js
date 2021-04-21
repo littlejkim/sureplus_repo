@@ -90,9 +90,9 @@ export default function App() {
     }
   };
 
-  if (isLoading === true) {
-    return <SplashScreen />;
-  }
+  // if (isLoading === true) {
+  //   return <SplashScreen />;
+  // }
   return (
     <NavigationContainer
       ref={navigationRef}

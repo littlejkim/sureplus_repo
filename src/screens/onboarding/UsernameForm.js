@@ -1,6 +1,7 @@
 // public imports
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
 
 // custom imports
@@ -9,7 +10,6 @@ import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
 import { string } from 'yup';
 
 export default function UsernameForm({
-  theme,
   screenHeight,
   displayError,
   eraseError,
@@ -24,24 +24,33 @@ export default function UsernameForm({
   const [usernameError, setUsernameError] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const textinputRef = useRef();
-  useLayoutEffect(() => {
+
+  const theme = useTheme();
+
+  useEffect(() => {
     displayError ? setUsernameError(errorMsg) : setUsernameError(null);
     if (focusUsername && scrollEnd) {
       textinputRef.current.focus();
       unfocusUsername();
       setScrollEnd();
     }
-  });
+  }, [
+    errorMsg,
+    setUsernameError,
+    displayError,
+    focusUsername,
+    scrollEnd,
+    setScrollEnd,
+    unfocusUsername,
+  ]);
 
-  {
-    /*
+  /*
   For now username checks for 
   1. If it consists only of alphnumerals, underscore and period
   2. checks if its length is at least 6 characters
   3. checks if it ends with a period
   4. checks if there are more than 2 consecutive periods
 */
-  }
   const manageTextInput = (textValue) => {
     eraseError();
     setText(textValue);

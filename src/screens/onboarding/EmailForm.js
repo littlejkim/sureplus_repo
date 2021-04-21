@@ -1,6 +1,6 @@
 // public imports
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
 
@@ -22,11 +22,12 @@ export default function EmailForm({
   const [text, setText] = useState(null);
 
   const theme = useTheme();
+
   useEffect(() => {
     displayError && !string().email().required().isValidSync(text)
       ? setEmailError('Please enter a valid email address')
       : setEmailError(null);
-  });
+  }, [setEmailError, displayError, text]);
 
   const onTextInput = (textValue) => {
     eraseError();

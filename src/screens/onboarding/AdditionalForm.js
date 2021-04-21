@@ -6,7 +6,6 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   TouchableOpacity,
-  InteractionManager,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -96,7 +95,7 @@ export default function AdditionalForm({ navigation }) {
         <ScrollView
           ref={scrollRef}
           bounces={false}
-          decelerationRate={0}
+          decelerationRate="normal"
           scrollEnabled={true}
           onScroll={({ nativeEvent }) => {
             if (isCloseToBottom(nativeEvent)) {
@@ -108,7 +107,6 @@ export default function AdditionalForm({ navigation }) {
           snapToAlignment={'center'}>
           <EmailForm
             screenHeight={viewHeight}
-            theme={theme}
             displayError={displayError}
             eraseError={_eraseError}
             validEmail={_validEmail}
@@ -116,7 +114,6 @@ export default function AdditionalForm({ navigation }) {
           />
           <UsernameForm
             screenHeight={viewHeight}
-            theme={theme}
             displayError={displayError}
             eraseError={_eraseError}
             validUsername={_validUsername}
