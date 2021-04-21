@@ -26,7 +26,6 @@ export default function AdditionalForm({ navigation }) {
   const [focusEmail, setFocusEmail] = useState(false);
   const [scrollEnd, setScrollEnd] = useState(false);
   const scrollRef = useRef();
-  const theme = useTheme();
 
   const _validEmail = () => {
     setEmailVerified(true);
@@ -102,7 +101,7 @@ export default function AdditionalForm({ navigation }) {
           ref={scrollRef}
           bounces={false}
           decelerationRate="normal"
-          scrollEnabled={true}
+          scrollEnabled={false}
           scrollEventThrottle={0}
           onScroll={({ nativeEvent }) => {
             if (isCloseToBottom(nativeEvent)) {
