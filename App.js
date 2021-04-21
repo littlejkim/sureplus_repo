@@ -5,10 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
-import SplashScreen from 'react-native-splash-screen';
+import RNBootSplash from 'react-native-bootsplash';
 
 // custom imports
-import Splash from './src/components/Splash';
 import { HomeContainer } from './src/navigation/HomeContainer';
 import { OnboardingContainer } from './src/navigation/OnboardingContainer';
 import { fetchUserToken, storeUserToken } from './src/utils/userUtils';
@@ -17,8 +16,6 @@ import { listMoscatoUsers, listUserDevices } from './src/graphql/queries';
 import { onCreateUserDevice } from './src/graphql/subscriptions';
 
 export default function App() {
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const colorScheme = useColorScheme(); // used to find user color scheme (dark/light)
   const [user, setUser] = useState(undefined);
 
@@ -71,13 +68,6 @@ export default function App() {
       });
   }
 
-  const _handleAppStateChange = (nextAppState) => {
-    console.log(nextAppState);
-    appState.current = nextAppState;
-    setAppStateVisible(appState.current);
-    SplashScreen.show();
-  };
-
   // loads initial user token from async storage (userUtils.js)
   const initalDataLoad = async () => {
     const userToken = await fetchUserToken();
@@ -87,22 +77,36 @@ export default function App() {
   };
 
   useEffect(() => {
-    AppState.addEventListener('change', _handleAppStateChange);
     firebaseSetup();
-    initalDataLoad()
-      .then((response) => setUser(response))
-      .then(SplashScreen.hide());
+    initalDataLoad().then((response) => setUser(response));
+    const listener = (state) => {
+      switch (state) {
+        case 'active':
+          return RNBootSplash.hide({ fade: false }).catch((error) => {
+            console.log('hide error', error);
+          });
+        case 'inactive':
+          return RNBootSplash.show({ fade: false }).catch((error) => {
+            console.log('show error', error);
+          });
+      }
+    };
+
+    RNBootSplash.hide({ fade: true })
+      .then(() => AppState.addEventListener('change', listener))
+      .catch((error) => console.error(error));
     return () => {
-      AppState.removeEventListener('change', _handleAppStateChange);
+      AppState.removeEventListener('change', listener);
     };
   }, []);
 
   return (
     <NavigationContainer
       ref={navigationRef}
-      onReady={() =>
-        (routeNameRef.current = navigationRef.current.getCurrentRoute()?.name)
-      }
+      onReady={() => {
+        routeNameRef.current = navigationRef.current.getCurrentRoute()?.name;
+        RNBootSplash.hide();
+      }}
       onStateChange={() => {
         const previousScreenName = routeNameRef.current;
         const currentScreenName = navigationRef.current.getCurrentRoute().name;

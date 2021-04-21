@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
-import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -26,8 +25,6 @@ export default function UsernameForm({
   const [usernameError, setUsernameError] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const textinputRef = useRef();
-
-  const theme = useTheme();
 
   useEffect(() => {
     displayError ? setUsernameError(errorMsg) : setUsernameError(null);
@@ -102,19 +99,11 @@ export default function UsernameForm({
         <TextField
           label="Username"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
-<<<<<<< HEAD
-          tintColor={errorMsg && displayError ? ERROR_COLOR : PRIMARY_COLOR}
-          lineWidth={2}
-          disabledLineWidth={2}
-          fontSize={24}
-          labelFontSize={14}
-=======
           tintColor={PRIMARY_COLOR}
           error={usernameError}
           errorColor={ERROR_COLOR}
           labelFontSize={20}
           fontSize={25}
->>>>>>> maro_branch
           autoCapitalize="none"
           autoCompleteType="off"
           keyboardType="ascii-capable"

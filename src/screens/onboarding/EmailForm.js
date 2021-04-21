@@ -31,10 +31,6 @@ export default function EmailForm({
   const onTextInput = (textValue) => {
     eraseError();
     setText(textValue);
-<<<<<<< HEAD
-    /* we can make more checks for emails, but for now used the default library from yup*/
-=======
->>>>>>> maro_branch
     if (string().email().required().isValidSync(textValue)) {
       validEmail();
     } else {
@@ -62,23 +58,11 @@ export default function EmailForm({
         <TextField
           label="Email"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
-<<<<<<< HEAD
-          tintColor={
-            !string().email().required().isValidSync(text) && displayError
-              ? ERROR_COLOR
-              : PRIMARY_COLOR
-          }
-          lineWidth={2}
-          disabledLineWidth={2}
-          fontSize={24}
-          labelFontSize={14}
-=======
           tintColor={PRIMARY_COLOR}
           error={emailError}
           errorColor={ERROR_COLOR}
           labelFontSize={20}
           fontSize={25}
->>>>>>> maro_branch
           autoCapitalize="none"
           selectionColor={PRIMARY_COLOR}
           autoCompleteType="off"
@@ -91,12 +75,7 @@ export default function EmailForm({
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={false}
           returnKeyType="next"
-<<<<<<< HEAD
-          onChangeText={manageTextInput}
-          onSubmit
-=======
           onChangeText={onTextInput}
->>>>>>> maro_branch
           value={text}
         />
       </View>

@@ -17,8 +17,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* sureplus_moscatoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* sureplus_moscatoTests.m */; };
 		331D6FEC8B91EE216C38EDEA /* libPods-sureplus_moscato.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C641C09F8673BCDC1093A9 /* libPods-sureplus_moscato.a */; };
 		3412B34225ECBADF00CAFE58 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3412B34125ECBADF00CAFE58 /* GoogleService-Info.plist */; };
-		34F5B841262EF10B00E5A25F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34F5B840262EF10B00E5A25F /* Launch Screen.storyboard */; };
-		34F5B842262EF10B00E5A25F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34F5B840262EF10B00E5A25F /* Launch Screen.storyboard */; };
+		34FEB68426302A3A00CD14FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34FEB68326302A3A00CD14FE /* BootSplash.storyboard */; };
+		34FEB68526302A3A00CD14FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34FEB68326302A3A00CD14FE /* BootSplash.storyboard */; };
 		83C3191A868F1B789AFE61D8 /* libPods-sureplus_moscato-sureplus_moscatoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ECDD478B8F42494E78899 /* libPods-sureplus_moscato-sureplus_moscatoTests.a */; };
 		A5AE3FB363904DF28689D385 /* AvenirNextCyr-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC128046C449C589F0A35F /* AvenirNextCyr-Regular.ttf */; };
 		BA4937D82EFF4212B09A4075 /* AvenirNextCyr-Demi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB81CBD37DD844C6BE58FC68 /* AvenirNextCyr-Demi.ttf */; };
@@ -59,7 +59,7 @@
 		2D02E47B1E0B4A5D006451C7 /* sureplus_moscato-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sureplus_moscato-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* sureplus_moscato-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sureplus_moscato-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3412B34125ECBADF00CAFE58 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		34F5B840262EF10B00E5A25F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		34FEB68326302A3A00CD14FE /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = sureplus_moscato/BootSplash.storyboard; sourceTree = "<group>"; };
 		43C6708109000486D5E2D9AE /* Pods-sureplus_moscato-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato-tvOS.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato-tvOS/Pods-sureplus_moscato-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		4F481AE66A3790F33C631A63 /* Pods-sureplus_moscato.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sureplus_moscato.release.xcconfig"; path = "Target Support Files/Pods-sureplus_moscato/Pods-sureplus_moscato.release.xcconfig"; sourceTree = "<group>"; };
 		5DBC128046C449C589F0A35F /* AvenirNextCyr-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirNextCyr-Regular.ttf"; path = "../src/assets/fonts/AvenirNextCyr-Regular.ttf"; sourceTree = "<group>"; };
@@ -134,13 +134,13 @@
 		13B07FAE1A68108700A75B9A /* sureplus_moscato */ = {
 			isa = PBXGroup;
 			children = (
+				34FEB68326302A3A00CD14FE /* BootSplash.storyboard */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				34F5B840262EF10B00E5A25F /* Launch Screen.storyboard */,
 			);
 			name = sureplus_moscato;
 			sourceTree = "<group>";
@@ -365,10 +365,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34F5B841262EF10B00E5A25F /* Launch Screen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				A5AE3FB363904DF28689D385 /* AvenirNextCyr-Regular.ttf in Resources */,
 				DD9C41AC4B2340E8B8812410 /* AvenirNextCyr-Bold.ttf in Resources */,
+				34FEB68426302A3A00CD14FE /* BootSplash.storyboard in Resources */,
 				BA4937D82EFF4212B09A4075 /* AvenirNextCyr-Demi.ttf in Resources */,
 				3412B34225ECBADF00CAFE58 /* GoogleService-Info.plist in Resources */,
 			);
@@ -378,8 +378,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34F5B842262EF10B00E5A25F /* Launch Screen.storyboard in Resources */,
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				34FEB68526302A3A00CD14FE /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

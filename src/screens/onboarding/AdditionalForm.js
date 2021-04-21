@@ -24,11 +24,7 @@ export default function AdditionalForm({ navigation }) {
   const [focusUsername, setFocusUsername] = useState(false);
   const [scrollEnd, setScrollEnd] = useState(false);
   const scrollRef = useRef();
-<<<<<<< HEAD
-=======
-  const theme = useTheme();
 
->>>>>>> maro_branch
   const _validEmail = () => {
     setEmailVerified(true);
   };
@@ -98,7 +94,7 @@ export default function AdditionalForm({ navigation }) {
           ref={scrollRef}
           bounces={false}
           decelerationRate="normal"
-          scrollEnabled={true}
+          scrollEnabled={false}
           onScroll={({ nativeEvent }) => {
             if (isCloseToBottom(nativeEvent)) {
               setScrollEnd(true);
