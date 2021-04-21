@@ -35,7 +35,7 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 var express = require('express');
-var { urlencoded } = require('body-parser');
+var bodyParser = require('body-parser');
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
 
 const gql = require('graphql-tag');
@@ -44,6 +44,7 @@ const {
   onCreateUserDevice,
   listUserDevices,
   onUpdateUserDevice,
+  userByUsername,
 } = require('./mutations.js');
 
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
@@ -68,7 +69,13 @@ let credExpirationDate = new Date('01-01-1970'); // to keep track of if credenti
 
 // declare a new express app
 var app = express();
-app.use(urlencoded({ extended: false }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  }),
+);
+app.use(bodyParser.json());
+
 app.use(awsServerlessExpressMiddleware.eventContext());
 
 // Enable CORS for all methods
@@ -229,6 +236,31 @@ app.post('/sms', async (req, res) => {
   //res.json({ verified: true });
 });
 
+app.post('/username/check', async (req, res) => {
+  // perhaps the param need to be passed from the mutation part?
+  await client.hydrated();
+  //console.log('REQ: ', req);
+  const result = await client
+    .query({
+      query: gql(userByUsername),
+      variables: { userName: req.body.username },
+    })
+    .then(({ data: { userByUsername } }) => {
+      console.log(userByUsername);
+
+      if (userByUsername.items.length === 0) {
+        res.json({ isTaken: false });
+      } else {
+        res.json({ isTaken: true });
+      }
+    })
+    .catch((err) => console.log(err));
+
+  // 1. run admin query to userByUsername, passing username as param
+  // 2. inspect data.userByUsername.items
+  // 3. if length == 0 -> possible username
+});
+
 app.listen(3000, function () {
   console.log('App started');
 });
@@ -236,4 +268,5 @@ app.listen(3000, function () {
 // Export the app object. When executing the application local this does nothing. However,
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
 // this file
+
 module.exports = app;

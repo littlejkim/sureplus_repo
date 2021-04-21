@@ -15,7 +15,7 @@
         "name" : "Query",
         "description" : null,
         "fields" : [ {
-          "name" : "getMoscatoUser",
+          "name" : "getMoscatoBetaUser",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -33,20 +33,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MoscatoUser",
+            "name" : "MoscatoBetaUser",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listMoscatoUsers",
+          "name" : "listMoscatoBetaUsers",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMoscatoUserFilterInput",
+              "name" : "ModelMoscatoBetaUserFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -71,7 +71,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelMoscatoUserConnection",
+            "name" : "ModelMoscatoBetaUserConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -138,6 +138,62 @@
           },
           "isDeprecated" : false,
           "deprecationReason" : null
+        }, {
+          "name" : "userByUsername",
+          "description" : null,
+          "args" : [ {
+            "name" : "userName",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "sortDirection",
+            "description" : null,
+            "type" : {
+              "kind" : "ENUM",
+              "name" : "ModelSortDirection",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "filter",
+            "description" : null,
+            "type" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ModelMoscatoBetaUserFilterInput",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "limit",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "nextToken",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "ModelMoscatoBetaUserConnection",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
         } ],
         "inputFields" : null,
         "interfaces" : [ ],
@@ -145,7 +201,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "MoscatoUser",
+        "name" : "MoscatoBetaUser",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -211,7 +267,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "nickName",
+          "name" : "userName",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -334,7 +390,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelMoscatoUserConnection",
+        "name" : "ModelMoscatoBetaUserConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -345,7 +401,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "MoscatoUser",
+              "name" : "MoscatoBetaUser",
               "ofType" : null
             }
           },
@@ -369,7 +425,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMoscatoUserFilterInput",
+        "name" : "ModelMoscatoBetaUserFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -418,7 +474,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nickName",
+          "name" : "userName",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -461,7 +517,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMoscatoUserFilterInput",
+              "name" : "ModelMoscatoBetaUserFilterInput",
               "ofType" : null
             }
           },
@@ -474,7 +530,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMoscatoUserFilterInput",
+              "name" : "ModelMoscatoBetaUserFilterInput",
               "ofType" : null
             }
           },
@@ -484,7 +540,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMoscatoUserFilterInput",
+            "name" : "ModelMoscatoBetaUserFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1153,11 +1209,30 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
+        "kind" : "ENUM",
+        "name" : "ModelSortDirection",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "ASC",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "DESC",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "possibleTypes" : null
+      }, {
         "kind" : "OBJECT",
         "name" : "Mutation",
         "description" : null,
         "fields" : [ {
-          "name" : "createMoscatoUser",
+          "name" : "createMoscatoBetaUser",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1167,7 +1242,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateMoscatoUserInput",
+                "name" : "CreateMoscatoBetaUserInput",
                 "ofType" : null
               }
             },
@@ -1177,20 +1252,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMoscatoUserConditionInput",
+              "name" : "ModelMoscatoBetaUserConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MoscatoUser",
+            "name" : "MoscatoBetaUser",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateMoscatoUser",
+          "name" : "updateMoscatoBetaUser",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1200,7 +1275,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateMoscatoUserInput",
+                "name" : "UpdateMoscatoBetaUserInput",
                 "ofType" : null
               }
             },
@@ -1210,20 +1285,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMoscatoUserConditionInput",
+              "name" : "ModelMoscatoBetaUserConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MoscatoUser",
+            "name" : "MoscatoBetaUser",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteMoscatoUser",
+          "name" : "deleteMoscatoBetaUser",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1233,7 +1308,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteMoscatoUserInput",
+                "name" : "DeleteMoscatoBetaUserInput",
                 "ofType" : null
               }
             },
@@ -1243,14 +1318,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMoscatoUserConditionInput",
+              "name" : "ModelMoscatoBetaUserConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MoscatoUser",
+            "name" : "MoscatoBetaUser",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1361,7 +1436,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateMoscatoUserInput",
+        "name" : "CreateMoscatoBetaUserInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1414,7 +1489,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nickName",
+          "name" : "userName",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -1495,7 +1570,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMoscatoUserConditionInput",
+        "name" : "ModelMoscatoBetaUserConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1535,7 +1610,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nickName",
+          "name" : "userName",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1578,7 +1653,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMoscatoUserConditionInput",
+              "name" : "ModelMoscatoBetaUserConditionInput",
               "ofType" : null
             }
           },
@@ -1591,7 +1666,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMoscatoUserConditionInput",
+              "name" : "ModelMoscatoBetaUserConditionInput",
               "ofType" : null
             }
           },
@@ -1601,7 +1676,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMoscatoUserConditionInput",
+            "name" : "ModelMoscatoBetaUserConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1611,7 +1686,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateMoscatoUserInput",
+        "name" : "UpdateMoscatoBetaUserInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1664,7 +1739,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nickName",
+          "name" : "userName",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -1718,7 +1793,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteMoscatoUserInput",
+        "name" : "DeleteMoscatoBetaUserInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1922,34 +1997,34 @@
         "name" : "Subscription",
         "description" : null,
         "fields" : [ {
-          "name" : "onCreateMoscatoUser",
+          "name" : "onCreateMoscatoBetaUser",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MoscatoUser",
+            "name" : "MoscatoBetaUser",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateMoscatoUser",
+          "name" : "onUpdateMoscatoBetaUser",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MoscatoUser",
+            "name" : "MoscatoBetaUser",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteMoscatoUser",
+          "name" : "onDeleteMoscatoBetaUser",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MoscatoUser",
+            "name" : "MoscatoBetaUser",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2188,25 +2263,6 @@
         } ],
         "interfaces" : null,
         "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "ENUM",
-        "name" : "ModelSortDirection",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : [ {
-          "name" : "ASC",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "DESC",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
@@ -3021,6 +3077,23 @@
         "onFragment" : false,
         "onField" : false
       }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_auth",
         "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -3087,23 +3160,6 @@
             }
           },
           "defaultValue" : null
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
         } ],
         "onOperation" : false,
         "onFragment" : false,

@@ -46,9 +46,33 @@ const onUpdateUserDevice = /* GraphQL */ `
   }
 `;
 
+const userByUsername = /* GraphQL */ `
+  query UserByUsername(
+    $userName: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelMoscatoUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByUsername(
+      userName: $userName
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+`;
+
 module.exports = {
   createUserDevice,
   onCreateUserDevice,
   listUserDevices,
   onUpdateUserDevice,
+  userByUsername,
 };

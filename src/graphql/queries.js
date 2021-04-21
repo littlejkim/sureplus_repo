@@ -1,15 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getMoscatoUser = /* GraphQL */ `
-  query GetMoscatoUser($id: ID!) {
-    getMoscatoUser(id: $id) {
+export const getMoscatoBetaUser = /* GraphQL */ `
+  query GetMoscatoBetaUser($id: ID!) {
+    getMoscatoBetaUser(id: $id) {
       id
       phoneNumber
       firstName
       lastName
       deviceId
-      nickName
+      userName
       passCode
       plaidToken {
         bankName
@@ -20,20 +20,24 @@ export const getMoscatoUser = /* GraphQL */ `
     }
   }
 `;
-export const listMoscatoUsers = /* GraphQL */ `
-  query ListMoscatoUsers(
-    $filter: ModelMoscatoUserFilterInput
+export const listMoscatoBetaUsers = /* GraphQL */ `
+  query ListMoscatoBetaUsers(
+    $filter: ModelMoscatoBetaUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listMoscatoUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listMoscatoBetaUsers(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
         phoneNumber
         firstName
         lastName
         deviceId
-        nickName
+        userName
         passCode
         plaidToken {
           bankName
@@ -72,6 +76,40 @@ export const listUserDevices = /* GraphQL */ `
         nickname
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const userByUsername = /* GraphQL */ `
+  query UserByUsername(
+    $userName: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelMoscatoBetaUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByUsername(
+      userName: $userName
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        phoneNumber
+        firstName
+        lastName
+        deviceId
+        userName
+        passCode
+        plaidToken {
+          bankName
+          token
+        }
+        updatedAt
+        createdAt
       }
       nextToken
     }
