@@ -1,5 +1,5 @@
 // public imports
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
@@ -16,16 +16,28 @@ export default function EmailForm({
   invalidEmail,
   displayError,
   eraseError,
+  focusEmail,
+  unfocusEmail,
+  scrollEnd,
+  setScrollEnd,
 }) {
   const { firstname } = useContext(OnboardingContext);
   const [emailError, setEmailError] = useState(null);
   const [text, setText] = useState(null);
+  const textinputRef = useRef();
+
   const theme = useTheme();
 
   useEffect(() => {
     displayError && !string().email().required().isValidSync(text)
       ? setEmailError('Please enter a valid email address')
       : setEmailError(null);
+    if (focusEmail && scrollEnd) {
+      console.log('emailfocus');
+      textinputRef.current.focus();
+      unfocusEmail();
+      setScrollEnd();
+    }
   }, [setEmailError, displayError, text]);
 
   const onTextInput = (textValue) => {
@@ -54,8 +66,9 @@ export default function EmailForm({
       <Text style={[styles.titleText, { color: theme.colors.title }]}>
         What is your email?
       </Text>
-      <View style={{ marginTop: 0 }}>
+      <View style={{ marginTop: 40 }}>
         <TextField
+          ref={textinputRef}
           label="Email"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
           tintColor={PRIMARY_COLOR}
@@ -73,7 +86,7 @@ export default function EmailForm({
           autoFocus={true}
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically={true}
-          blurOnSubmit={false}
+          blurOnSubmit={true}
           returnKeyType="next"
           onChangeText={onTextInput}
           value={text}

@@ -20,11 +20,12 @@ export default function UsernameForm({
   scrollEnd,
   setScrollEnd,
 }) {
-  const theme = useTheme();
   const [text, setText] = useState(null);
   const [usernameError, setUsernameError] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const textinputRef = useRef();
+
+  const theme = useTheme();
 
   useEffect(() => {
     displayError ? setUsernameError(errorMsg) : setUsernameError(null);
@@ -105,15 +106,16 @@ export default function UsernameForm({
           labelFontSize={20}
           fontSize={25}
           autoCapitalize="none"
+          selectionColor={PRIMARY_COLOR}
           autoCompleteType="off"
           keyboardType="ascii-capable"
           textContentType="none"
-          maxLength={12}
+          maxLength={35}
           autoCorrect={false}
           autoFocus={false}
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically={true}
-          blurOnSubmit={false}
+          blurOnSubmit={true}
           returnKeyType="done"
           onChangeText={manageTextInput}
           value={text}

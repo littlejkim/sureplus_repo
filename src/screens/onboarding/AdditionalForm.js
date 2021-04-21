@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -22,8 +23,10 @@ export default function AdditionalForm({ navigation }) {
   const [usernameVerified, setUsernameVerified] = useState(false);
   const [displayError, setDisplayError] = useState(false);
   const [focusUsername, setFocusUsername] = useState(false);
+  const [focusEmail, setFocusEmail] = useState(false);
   const [scrollEnd, setScrollEnd] = useState(false);
   const scrollRef = useRef();
+  const theme = useTheme();
 
   const _validEmail = () => {
     setEmailVerified(true);
@@ -52,6 +55,7 @@ export default function AdditionalForm({ navigation }) {
     scrollRef.current.scrollTo({ y: 0, animated: true });
     setShowPrev(false);
     setStep(0);
+    setFocusEmail(true);
   };
 
   const _displayError = () => {
@@ -60,6 +64,10 @@ export default function AdditionalForm({ navigation }) {
 
   const _eraseError = () => {
     setDisplayError(false);
+  };
+
+  const _unfocusEmail = () => {
+    setFocusEmail(false);
   };
 
   const _unfocusUsername = () => {
@@ -94,9 +102,14 @@ export default function AdditionalForm({ navigation }) {
           ref={scrollRef}
           bounces={false}
           decelerationRate="normal"
-          scrollEnabled={false}
+          scrollEnabled={true}
+          scrollEventThrottle={0}
           onScroll={({ nativeEvent }) => {
             if (isCloseToBottom(nativeEvent)) {
+              console.log('scrollend');
+              setScrollEnd(true);
+            }
+            if (nativeEvent.contentOffset.y === 0) {
               setScrollEnd(true);
             }
           }}
@@ -109,6 +122,10 @@ export default function AdditionalForm({ navigation }) {
             eraseError={_eraseError}
             validEmail={_validEmail}
             invalidEmail={_invalidEmail}
+            focusEmail={focusEmail}
+            unfocusEmail={_unfocusEmail}
+            scrollEnd={scrollEnd}
+            setScrollEnd={_scrollEndFalse}
           />
           <UsernameForm
             screenHeight={viewHeight}
