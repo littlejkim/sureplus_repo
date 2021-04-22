@@ -40,7 +40,7 @@ jobs:
         run: yarn install # this also include the pod install step -> need to disintegrate?
 
       - name: fastlane build
-        run: fastlane ios adhoc build
+        run: fastlane ios beta build
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
