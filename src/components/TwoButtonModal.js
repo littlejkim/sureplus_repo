@@ -36,7 +36,7 @@ export const TwoButtonModal = (props) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.mainButton}
-            onPress={props.hide}
+            onPress={props.continue}
             activeOpacity={0.7}>
             <Text
               style={[

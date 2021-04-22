@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
+import { API, Auth } from 'aws-amplify';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -51,7 +52,7 @@ export default function UsernameForm({
   3. checks if it ends with a period
   4. checks if there are more than 2 consecutive periods
 */
-  const manageTextInput = (textValue) => {
+  const manageTextInput = async (textValue) => {
     eraseError();
     setText(textValue);
     if (
@@ -72,7 +73,7 @@ export default function UsernameForm({
       return;
     }
     if (string().matches(/[.]$/).isValidSync(textValue)) {
-      setErrorMsg("You can't end your username with as a period");
+      setErrorMsg("You can't end your username with as a period.");
       invalidUsername();
       return;
     }
@@ -81,10 +82,22 @@ export default function UsernameForm({
         .matches(/^(?!.*?[._]{2})[a-zA-Z0-9_.]+$/)
         .isValidSync(textValue)
     ) {
-      setErrorMsg("You can't have more than one period in a row");
+      setErrorMsg("You can't have more than one period in a row.");
       invalidUsername();
       return;
     }
+    await API.post('twilioapi', '/username/check', {
+      body: { username: textValue },
+    })
+      .then((res) => console.log('/test/sms: ', res.isTaken)) // this value will be boolean
+      .catch((err) => console.log('/test/sms err: ', err));
+
+    if (res.isTaken) {
+      setErrorMsg('A user with that username already exists.');
+      invalidUsername();
+      return;
+    }
+
     setErrorMsg(null);
     validUsername();
   };
