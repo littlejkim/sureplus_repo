@@ -1,16 +1,14 @@
 // public imports
-import React, { useContext, useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
-import { string } from 'yup';
+import { PhoneNumberUtil } from 'google-libphonenumber';
 
 // custom imports
-import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import styles from '../../styles/welcome.styles';
 import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
 import { TwoButtonModal } from '../../components/TwoButtonModal';
-import { set } from 'lodash-es';
 import { TEXT_REGULAR } from '../../styles/fonts';
 
 export default function PreviousNumberForm({ navigation }) {
@@ -18,13 +16,13 @@ export default function PreviousNumberForm({ navigation }) {
   const [visible, setVisible] = useState(false);
   const [localNumber, setLocalNumber] = useState(null);
   const [error, setError] = useState(null);
+  const [focus, setFocus] = useState(false);
   const inputRef = useRef();
-  const PNF = require('google-libphonenumber').PhoneNumberFormat;
-  const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+  const phoneUtil = PhoneNumberUtil.getInstance();
 
   const contents = {
     title: 'Number not found',
-    body: 'Would you like to create a new account instead?',
+    body: 'Would you like to create a new \n account instead?',
     mainButton: 'Create new account',
     subButton: 'Cancel',
   };
@@ -37,13 +35,15 @@ export default function PreviousNumberForm({ navigation }) {
     setVisible(false);
     navigation.navigate('NameForm');
   };
-
+  //We can use a build in formatting method from google-libphonenumber
+  //but the method felt very unstable cause it was prone to crash on
+  //different inputs.
   const _onChange = (textValue) => {
     const strFirstThree = textValue.replace(/[-]/g, '').substring(0, 3);
     const strNextThree = textValue.replace(/[-]/g, '').substring(3, 6);
     const strLastFour = textValue.replace(/[-]/g, '').substring(6, 10);
     const firstHyphen = textValue.length > 3 ? '-' : '';
-    const secondHyphen = textValue.length > 7 ? '-' : '';
+    const secondHyphen = textValue.length > 8 ? '-' : '';
     setLocalNumber(
       `${strFirstThree}${firstHyphen}${strNextThree}${secondHyphen}${strLastFour}`,
     );
@@ -51,12 +51,16 @@ export default function PreviousNumberForm({ navigation }) {
   };
 
   const _onPress = () => {
-    console.log(localNumber);
-    const number = phoneUtil.parseAndKeepRawInput(localNumber, 'US');
+    let number = '';
+    try {
+      number = phoneUtil.parseAndKeepRawInput(localNumber, 'US');
+    } catch (e) {
+      setError('Please enter a valid phone number');
+      return;
+    }
     phoneUtil.isPossibleNumber(number)
-      ? console.log('true')
-      : console.log('false');
-    //setVisible(true);
+      ? (setError(null), setVisible(true))
+      : setError('Please enter a valid phone number');
   };
 
   return (
@@ -72,7 +76,7 @@ export default function PreviousNumberForm({ navigation }) {
             label="Phone Number"
             keyboardAppearance={theme.dark ? 'dark' : 'light'}
             tintColor={PRIMARY_COLOR}
-            baseColor={inputRef.isFocused()}
+            baseColor={focus ? '#000000' : 'rgba(0, 0, 0, 0.38)'}
             labelFontSize={14}
             fontSize={24}
             error={error}
@@ -92,6 +96,8 @@ export default function PreviousNumberForm({ navigation }) {
             onChangeText={_onChange}
             blurOnSubmit={true}
             value={localNumber}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
             prefix="+1"
           />
         </View>
@@ -106,13 +112,14 @@ export default function PreviousNumberForm({ navigation }) {
           styles.footer,
           {
             alignItems: 'flex-end',
-            opacity: 1,
+            opacity: localNumber ? 1 : 0.5,
           },
         ]}>
         <TouchableOpacity
           style={styles.nextButton}
           activeOpacity={0.7}
-          onPress={_onPress}>
+          onPress={_onPress}
+          disabled={localNumber ? false : true}>
           <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>
       </View>
