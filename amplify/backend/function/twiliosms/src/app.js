@@ -45,6 +45,7 @@ const {
   listUserDevices,
   onUpdateUserDevice,
   userByUsername,
+  userByEmail,
 } = require('./mutations.js');
 
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
@@ -263,13 +264,13 @@ app.post('/email/check', async (req, res) => {
   //console.log('REQ: ', req);
   const result = await client
     .query({
-      query: gql(userByUsername),
+      query: gql(userByEmail),
       variables: { email: req.body.email },
     })
-    .then(({ data: { userByUsername } }) => {
-      console.log(userByUsername);
+    .then(({ data: { userByEmail } }) => {
+      console.log(userByEmail);
 
-      if (userByUsername.items.length === 0) {
+      if (userByEmail.items.length === 0) {
         res.json({ isTaken: false });
       } else {
         res.json({ isTaken: true });

@@ -69,10 +69,34 @@ const userByUsername = /* GraphQL */ `
   }
 `;
 
+const userByEmail = /* GraphQL */ `
+  query UserByEmail(
+    $email: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelMoscatoUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByEmail(
+      email: $email
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+      }
+      nextToken
+    }
+  }
+`;
+
 module.exports = {
   createUserDevice,
   onCreateUserDevice,
   listUserDevices,
   onUpdateUserDevice,
   userByUsername,
+  userByEmail,
 };

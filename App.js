@@ -35,9 +35,9 @@ export default function App() {
     //   console.log('error fetching devices', err);
     // }
 
-    API.post('twilioapi', '/username/check', { body: { username: 'test' } })
-      .then((res) => console.log('/username/check: ', res))
-      .catch((err) => console.log('/username/check err: ', err));
+    API.post('twilioapi', '/email/check', { body: { email: 'test@gmail.com' } })
+      .then((res) => console.log('/email/check: ', res))
+      .catch((err) => console.log('/email/check err: ', err));
 
     // API.post('twilioapi', '/test/sms', {
     //   body: { data: 'message' },
@@ -53,7 +53,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    //testAmplifyApi();
+    testAmplifyApi();
     // storeUserToken(testUserData);
     console.log('Initial data loading...');
 
