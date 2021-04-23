@@ -17,17 +17,27 @@ export default function WelcomeScreen({ navigation }) {
           Stress free subscription life
         </Text>
         <Text style={styles.bodyText}>
-          Sureplus pays attention to your subscriptions so you don't have to
+          Sureplus pays attention to your {'\n'}subscriptions so you don't have
+          to
         </Text>
         <Image
-          source={require('../assets/images/get_started.png')}
+          source={require('../assets/images/GetStartedIllustration.png')}
           style={{
+            top: 80,
             width: '100%',
             resizeMode: 'contain',
           }}
         />
       </View>
       <View style={styles.footer}>
+        <TouchableOpacity
+          style={styles.subButton}
+          onPress={() => console.log('already have account')}
+          activeOpacity={0.5}>
+          <Text style={[styles.subButtonText, { color: theme.colors.primary }]}>
+            I already have an account
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.mainButton}
           onPress={() => navigation.navigate('Phone')}

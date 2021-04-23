@@ -6,6 +6,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 
 // custom imports
@@ -22,6 +23,7 @@ export default function AdditionalForm({ navigation }) {
   const [usernameVerified, setUsernameVerified] = useState(false);
   const [displayError, setDisplayError] = useState(false);
   const [focusUsername, setFocusUsername] = useState(false);
+  const [focusEmail, setFocusEmail] = useState(false);
   const [scrollEnd, setScrollEnd] = useState(false);
   const scrollRef = useRef();
 
@@ -52,6 +54,7 @@ export default function AdditionalForm({ navigation }) {
     scrollRef.current.scrollTo({ y: 0, animated: true });
     setShowPrev(false);
     setStep(0);
+    setFocusEmail(true);
   };
 
   const _displayError = () => {
@@ -60,6 +63,10 @@ export default function AdditionalForm({ navigation }) {
 
   const _eraseError = () => {
     setDisplayError(false);
+  };
+
+  const _unfocusEmail = () => {
+    setFocusEmail(false);
   };
 
   const _unfocusUsername = () => {
@@ -95,8 +102,12 @@ export default function AdditionalForm({ navigation }) {
           bounces={false}
           decelerationRate="normal"
           scrollEnabled={false}
+          scrollEventThrottle={0}
           onScroll={({ nativeEvent }) => {
             if (isCloseToBottom(nativeEvent)) {
+              setScrollEnd(true);
+            }
+            if (nativeEvent.contentOffset.y === 0) {
               setScrollEnd(true);
             }
           }}
@@ -109,6 +120,10 @@ export default function AdditionalForm({ navigation }) {
             eraseError={_eraseError}
             validEmail={_validEmail}
             invalidEmail={_invalidEmail}
+            focusEmail={focusEmail}
+            unfocusEmail={_unfocusEmail}
+            scrollEnd={scrollEnd}
+            setScrollEnd={_scrollEndFalse}
           />
           <UsernameForm
             screenHeight={viewHeight}
@@ -123,7 +138,9 @@ export default function AdditionalForm({ navigation }) {
           />
         </ScrollView>
       </View>
-      <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={-20}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+        keyboardVerticalOffset={-35}>
         <View
           style={[
             styles.footer,
