@@ -255,10 +255,27 @@ app.post('/username/check', async (req, res) => {
       }
     })
     .catch((err) => console.log(err));
+});
 
-  // 1. run admin query to userByUsername, passing username as param
-  // 2. inspect data.userByUsername.items
-  // 3. if length == 0 -> possible username
+app.post('/email/check', async (req, res) => {
+  // perhaps the param need to be passed from the mutation part?
+  await client.hydrated();
+  //console.log('REQ: ', req);
+  const result = await client
+    .query({
+      query: gql(userByUsername),
+      variables: { email: req.body.email },
+    })
+    .then(({ data: { userByUsername } }) => {
+      console.log(userByUsername);
+
+      if (userByUsername.items.length === 0) {
+        res.json({ isTaken: false });
+      } else {
+        res.json({ isTaken: true });
+      }
+    })
+    .catch((err) => console.log(err));
 });
 
 app.listen(3000, function () {

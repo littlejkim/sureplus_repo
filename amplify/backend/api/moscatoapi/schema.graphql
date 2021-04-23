@@ -10,12 +10,18 @@ type MoscatoUser
     name: "UserByUsername"
     fields: ["userName", "createdAt"]
     queryField: "userByUsername"
+  )
+  @key(
+    name: "UserByEmail"
+    fields: ["email", "createdAt"]
+    queryField: "userByEmail"
   ) {
   id: ID!
   phoneNumber: String!
   firstName: String
   lastName: String
   deviceId: String
+  email: String
   userName: String
   passCode: String
   plaidToken: [PlaidItem]
