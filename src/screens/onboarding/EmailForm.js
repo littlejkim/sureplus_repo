@@ -33,12 +33,19 @@ export default function EmailForm({
       ? setEmailError('Please enter a valid email address')
       : setEmailError(null);
     if (focusEmail && scrollEnd) {
-      console.log('emailfocus');
       textinputRef.current.focus();
       unfocusEmail();
       setScrollEnd();
     }
-  }, [setEmailError, displayError, text]);
+  }, [
+    setEmailError,
+    displayError,
+    text,
+    focusEmail,
+    scrollEnd,
+    setScrollEnd,
+    unfocusEmail,
+  ]);
 
   const onTextInput = (textValue) => {
     eraseError();

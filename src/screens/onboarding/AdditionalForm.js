@@ -6,8 +6,8 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
-import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -105,7 +105,6 @@ export default function AdditionalForm({ navigation }) {
           scrollEventThrottle={0}
           onScroll={({ nativeEvent }) => {
             if (isCloseToBottom(nativeEvent)) {
-              console.log('scrollend');
               setScrollEnd(true);
             }
             if (nativeEvent.contentOffset.y === 0) {
@@ -139,7 +138,9 @@ export default function AdditionalForm({ navigation }) {
           />
         </ScrollView>
       </View>
-      <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={-20}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+        keyboardVerticalOffset={-35}>
         <View
           style={[
             styles.footer,

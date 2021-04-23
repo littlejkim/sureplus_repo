@@ -1,6 +1,12 @@
 // public imports
 import React, { useState, useRef } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
 import { PhoneNumberUtil } from 'google-libphonenumber';
@@ -64,8 +70,10 @@ export default function PreviousNumberForm({ navigation }) {
   };
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <KeyboardAvoidingView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={-35}>
       <View style={styles.body}>
         <Text style={[styles.titleText, { color: theme.colors.title }]}>
           Enter your previous number.
@@ -106,7 +114,8 @@ export default function PreviousNumberForm({ navigation }) {
         visible={visible}
         contents={contents}
         continue={_continue}
-        hide={hide}></TwoButtonModal>
+        hide={hide}
+      />
       <View
         style={[
           styles.footer,
@@ -123,6 +132,6 @@ export default function PreviousNumberForm({ navigation }) {
           <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
