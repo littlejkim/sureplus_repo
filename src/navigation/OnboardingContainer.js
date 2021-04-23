@@ -14,6 +14,9 @@ import {
   LinkBankCompleteForm,
   AdditionalForm,
   SetPasswordForm,
+  EnterEmailForm,
+  VerificationLinkForm,
+  PreviousPhoneForm,
 } from '../screens/onboarding';
 
 const OnboardingStack = createStackNavigator();
@@ -69,8 +72,16 @@ export const OnboardingContainer = () => {
         }}>
         <OnboardingStack.Screen name="Welcome" component={WelcomeScreen} />
         <OnboardingStack.Screen name="Phone" component={PhoneForm} />
-        <OnboardingStack.Screen name="Name" component={NameForm} />
+        <OnboardingStack.Screen name="Name" component={EnterEmailForm} />
         <OnboardingStack.Screen name="LinkBank" component={LinkBankForm} />
+        <OnboardingStack.Screen
+          name="VerificationLink"
+          component={VerificationLinkForm}
+        />
+        <OnboardingStack.Screen
+          name="PreviousPhone"
+          component={PreviousPhoneForm}
+        />
         <OnboardingStack.Screen
           name="LinkBankComplete"
           component={LinkBankCompleteForm}

@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
+import { API, Auth } from 'aws-amplify';
 
 // custom imports
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
@@ -22,23 +23,24 @@ export default function EmailForm({
   setScrollEnd,
 }) {
   const { firstname } = useContext(OnboardingContext);
-  const [emailError, setEmailError] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [error, setError] = useState(false);
   const [text, setText] = useState(null);
   const textinputRef = useRef();
 
   const theme = useTheme();
 
   useEffect(() => {
-    displayError && !string().email().required().isValidSync(text)
-      ? setEmailError('Please enter a valid email address')
-      : setEmailError(null);
+    displayError && error
+      ? setErrorMsg('Please enter a valid email address')
+      : setErrorMsg(null);
     if (focusEmail && scrollEnd) {
       textinputRef.current.focus();
       unfocusEmail();
       setScrollEnd();
     }
   }, [
-    setEmailError,
+    setErrorMsg,
     displayError,
     text,
     focusEmail,
@@ -47,14 +49,31 @@ export default function EmailForm({
     unfocusEmail,
   ]);
 
+  const _dupCheck = (textValue) => {
+    let check = false;
+    API.post('twilioapi', '/email/check', {
+      body: { email: textValue },
+    })
+      .then((res) => (check = res.isTaken)) // this value will be boolean
+      .catch((err) => console.log('/test/sms err: ', err));
+    return check;
+  };
+
   const onTextInput = (textValue) => {
     eraseError();
     setText(textValue);
-    if (string().email().required().isValidSync(textValue)) {
-      validEmail();
-    } else {
+    if (!string().email().required().isValidSync(textValue)) {
       invalidEmail();
+      setError(true);
+      return;
     }
+    if (_dupCheck(textValue)) {
+      invalidEmail();
+      setError(true);
+      return;
+    }
+    setError(false);
+    validEmail();
   };
 
   return (
@@ -79,7 +98,7 @@ export default function EmailForm({
           label="Email"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
           tintColor={PRIMARY_COLOR}
-          error={emailError}
+          error={errorMsg}
           errorColor={ERROR_COLOR}
           labelFontSize={20}
           fontSize={25}
@@ -90,7 +109,7 @@ export default function EmailForm({
           textContentType="emailAddress"
           maxLength={40}
           autoCorrect={false}
-          autoFocus={true}
+          autoFocus={false}
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={true}

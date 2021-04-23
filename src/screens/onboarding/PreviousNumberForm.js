@@ -78,7 +78,7 @@ export default function PreviousNumberForm({ navigation }) {
         <Text style={[styles.titleText, { color: theme.colors.title }]}>
           Enter your previous number.
         </Text>
-        <View style={{ marginTop: 40 }}>
+        <View style={{ marginTop: 28 }}>
           <TextField
             ref={inputRef}
             label="Phone Number"
@@ -110,12 +110,7 @@ export default function PreviousNumberForm({ navigation }) {
           />
         </View>
       </View>
-      <TwoButtonModal
-        visible={visible}
-        contents={contents}
-        continue={_continue}
-        hide={hide}
-      />
+
       <View
         style={[
           styles.footer,
@@ -132,6 +127,12 @@ export default function PreviousNumberForm({ navigation }) {
           <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>
       </View>
+      <TwoButtonModal
+        visible={visible}
+        contents={contents}
+        continue={_continue}
+        hide={hide}
+      />
     </KeyboardAvoidingView>
   );
 }

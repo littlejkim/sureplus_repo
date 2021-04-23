@@ -83,9 +83,22 @@ export default StyleSheet.create({
     marginBottom: 24,
     borderRadius: 30,
   },
+  subButtonGrey: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    borderRadius: 30,
+  },
   subButtonText: {
     fontSize: 17,
     fontWeight: '600',
+    lineHeight: 22,
+    fontFamily: TEXT_REGULAR,
+  },
+  subButtonTextGrey: {
+    fontSize: 17,
+    fontWeight: '400',
     lineHeight: 22,
     fontFamily: TEXT_REGULAR,
   },

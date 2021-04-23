@@ -45,6 +45,16 @@ export default function UsernameForm({
     unfocusUsername,
   ]);
 
+  const _dupCheck = (textValue) => {
+    let check = false;
+    API.post('twilioapi', '/username/check', {
+      body: { username: textValue },
+    })
+      .then((res) => (check = res.isTaken)) // this value will be boolean
+      .catch((err) => console.log('/test/sms err: ', err));
+    return check;
+  };
+
   /*
   For now username checks for 
   1. If it consists only of alphnumerals, underscore and period
@@ -52,7 +62,7 @@ export default function UsernameForm({
   3. checks if it ends with a period
   4. checks if there are more than 2 consecutive periods
 */
-  const manageTextInput = async (textValue) => {
+  const manageTextInput = (textValue) => {
     eraseError();
     setText(textValue);
     if (
@@ -86,13 +96,7 @@ export default function UsernameForm({
       invalidUsername();
       return;
     }
-    await API.post('twilioapi', '/username/check', {
-      body: { username: textValue },
-    })
-      .then((res) => console.log('/test/sms: ', res.isTaken)) // this value will be boolean
-      .catch((err) => console.log('/test/sms err: ', err));
-
-    if (res.isTaken) {
+    if (_dupCheck(textValue)) {
       setErrorMsg('A user with that username already exists.');
       invalidUsername();
       return;

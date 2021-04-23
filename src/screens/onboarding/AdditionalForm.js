@@ -28,10 +28,12 @@ export default function AdditionalForm({ navigation }) {
   const scrollRef = useRef();
 
   const _validEmail = () => {
+    console.log('hello');
     setEmailVerified(true);
   };
 
   const _invalidEmail = () => {
+    console.log('invalid');
     setEmailVerified(false);
   };
 
