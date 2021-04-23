@@ -35,9 +35,9 @@ export default function App() {
     //   console.log('error fetching devices', err);
     // }
 
-    API.post('twilioapi', '/email/check', { body: { email: 'test@gmail.com' } })
-      .then((res) => console.log('/email/check: ', res))
-      .catch((err) => console.log('/email/check err: ', err));
+    API.post('twilioapi', '/get/user', { body: { deviceId: 'test' } })
+      .then((res) => console.log('/get/user: ', res))
+      .catch((err) => console.log('/get/user err: ', err));
 
     // API.post('twilioapi', '/test/sms', {
     //   body: { data: 'message' },

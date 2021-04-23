@@ -1,17 +1,18 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createMoscatoBetaUser = /* GraphQL */ `
-  mutation CreateMoscatoBetaUser(
-    $input: CreateMoscatoBetaUserInput!
-    $condition: ModelMoscatoBetaUserConditionInput
+export const createMoscatoUser = /* GraphQL */ `
+  mutation CreateMoscatoUser(
+    $input: CreateMoscatoUserInput!
+    $condition: ModelMoscatoUserConditionInput
   ) {
-    createMoscatoBetaUser(input: $input, condition: $condition) {
+    createMoscatoUser(input: $input, condition: $condition) {
       id
       phoneNumber
       firstName
       lastName
       deviceId
+      email
       userName
       passCode
       plaidToken {
@@ -23,17 +24,18 @@ export const createMoscatoBetaUser = /* GraphQL */ `
     }
   }
 `;
-export const updateMoscatoBetaUser = /* GraphQL */ `
-  mutation UpdateMoscatoBetaUser(
-    $input: UpdateMoscatoBetaUserInput!
-    $condition: ModelMoscatoBetaUserConditionInput
+export const updateMoscatoUser = /* GraphQL */ `
+  mutation UpdateMoscatoUser(
+    $input: UpdateMoscatoUserInput!
+    $condition: ModelMoscatoUserConditionInput
   ) {
-    updateMoscatoBetaUser(input: $input, condition: $condition) {
+    updateMoscatoUser(input: $input, condition: $condition) {
       id
       phoneNumber
       firstName
       lastName
       deviceId
+      email
       userName
       passCode
       plaidToken {
@@ -45,17 +47,18 @@ export const updateMoscatoBetaUser = /* GraphQL */ `
     }
   }
 `;
-export const deleteMoscatoBetaUser = /* GraphQL */ `
-  mutation DeleteMoscatoBetaUser(
-    $input: DeleteMoscatoBetaUserInput!
-    $condition: ModelMoscatoBetaUserConditionInput
+export const deleteMoscatoUser = /* GraphQL */ `
+  mutation DeleteMoscatoUser(
+    $input: DeleteMoscatoUserInput!
+    $condition: ModelMoscatoUserConditionInput
   ) {
-    deleteMoscatoBetaUser(input: $input, condition: $condition) {
+    deleteMoscatoUser(input: $input, condition: $condition) {
       id
       phoneNumber
       firstName
       lastName
       deviceId
+      email
       userName
       passCode
       plaidToken {

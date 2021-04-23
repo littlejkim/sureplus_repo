@@ -42,10 +42,10 @@ const gql = require('graphql-tag');
 const {
   createUserDevice,
   onCreateUserDevice,
-  listUserDevices,
-  onUpdateUserDevice,
   userByUsername,
   userByEmail,
+  userByDevice,
+  userByPhone,
 } = require('./mutations.js');
 
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
@@ -277,6 +277,49 @@ app.post('/email/check', async (req, res) => {
       }
     })
     .catch((err) => console.log(err));
+});
+
+app.post('/get/user', async (req, res) => {
+  // perhaps the param need to be passed from the mutation part?
+  await client.hydrated();
+  console.log('REQ BODY:', req.body);
+
+  if ('phoneNumber' in req.body) {
+    console.log('PHONENUMBER');
+    await client
+      .query({
+        query: gql(userByPhone),
+        variables: { phoneNumber: req.body.phoneNumber },
+      })
+      .then(({ data: { userByPhone } }) => {
+        if (userByPhone.items.length === 0) {
+          res.json({ isTaken: false });
+        } else {
+          res.json({ isTaken: true, data: userByPhone.items[0] });
+        }
+      })
+      .catch((err) => console.log(err));
+  } else if ('deviceId' in req.body) {
+    console.log('DEVICEID');
+    await client
+      .query({
+        query: gql(userByDevice),
+        variables: { deviceId: req.body.deviceId },
+      })
+      .then(({ data: { userByDevice } }) => {
+        if (userByDevice.items.length === 0) {
+          res.json({ isTaken: false });
+        } else {
+          res.json({ isTaken: true, data: userByDevice.items[0] });
+        }
+      })
+      .catch((err) => console.log(err));
+  } else {
+    res.json({
+      statuscode: 404,
+      message: 'wrong parameter passed. pass either phoneNumber or deviceId',
+    });
+  }
 });
 
 app.listen(3000, function () {

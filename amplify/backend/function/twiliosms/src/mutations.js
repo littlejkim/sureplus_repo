@@ -92,6 +92,64 @@ const userByEmail = /* GraphQL */ `
   }
 `;
 
+const userByPhone = /* GraphQL */ `
+  query UserByPhone(
+    $phoneNumber: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelMoscatoUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByPhone(
+      phoneNumber: $phoneNumber
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        email
+        deviceId
+        phoneNumber
+        userName
+        lastName
+        firstName
+      }
+      nextToken
+    }
+  }
+`;
+
+const userByDevice = /* GraphQL */ `
+  query UserByDevice(
+    $deviceId: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelMoscatoUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByDevice(
+      deviceId: $deviceId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        email
+        deviceId
+        phoneNumber
+        userName
+        lastName
+        firstName
+      }
+      nextToken
+    }
+  }
+`;
+
 module.exports = {
   createUserDevice,
   onCreateUserDevice,
@@ -99,4 +157,6 @@ module.exports = {
   onUpdateUserDevice,
   userByUsername,
   userByEmail,
+  userByDevice,
+  userByPhone,
 };

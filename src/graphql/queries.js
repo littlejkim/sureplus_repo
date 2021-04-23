@@ -1,14 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getMoscatoBetaUser = /* GraphQL */ `
-  query GetMoscatoBetaUser($id: ID!) {
-    getMoscatoBetaUser(id: $id) {
+export const getMoscatoUser = /* GraphQL */ `
+  query GetMoscatoUser($id: ID!) {
+    getMoscatoUser(id: $id) {
       id
       phoneNumber
       firstName
       lastName
       deviceId
+      email
       userName
       passCode
       plaidToken {
@@ -20,23 +21,20 @@ export const getMoscatoBetaUser = /* GraphQL */ `
     }
   }
 `;
-export const listMoscatoBetaUsers = /* GraphQL */ `
-  query ListMoscatoBetaUsers(
-    $filter: ModelMoscatoBetaUserFilterInput
+export const listMoscatoUsers = /* GraphQL */ `
+  query ListMoscatoUsers(
+    $filter: ModelMoscatoUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listMoscatoBetaUsers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listMoscatoUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         phoneNumber
         firstName
         lastName
         deviceId
+        email
         userName
         passCode
         plaidToken {
@@ -84,13 +82,15 @@ export const listUserDevices = /* GraphQL */ `
 export const userByUsername = /* GraphQL */ `
   query UserByUsername(
     $userName: String
+    $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
-    $filter: ModelMoscatoBetaUserFilterInput
+    $filter: ModelMoscatoUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
     userByUsername(
       userName: $userName
+      createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -102,6 +102,114 @@ export const userByUsername = /* GraphQL */ `
         firstName
         lastName
         deviceId
+        email
+        userName
+        passCode
+        plaidToken {
+          bankName
+          token
+        }
+        updatedAt
+        createdAt
+      }
+      nextToken
+    }
+  }
+`;
+export const userByEmail = /* GraphQL */ `
+  query UserByEmail(
+    $email: String
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelMoscatoUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByEmail(
+      email: $email
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        phoneNumber
+        firstName
+        lastName
+        deviceId
+        email
+        userName
+        passCode
+        plaidToken {
+          bankName
+          token
+        }
+        updatedAt
+        createdAt
+      }
+      nextToken
+    }
+  }
+`;
+export const userByDevice = /* GraphQL */ `
+  query UserByDevice(
+    $deviceId: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelMoscatoUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByDevice(
+      deviceId: $deviceId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        phoneNumber
+        firstName
+        lastName
+        deviceId
+        email
+        userName
+        passCode
+        plaidToken {
+          bankName
+          token
+        }
+        updatedAt
+        createdAt
+      }
+      nextToken
+    }
+  }
+`;
+export const userByPhone = /* GraphQL */ `
+  query UserByPhone(
+    $phoneNumber: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelMoscatoUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByPhone(
+      phoneNumber: $phoneNumber
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        phoneNumber
+        firstName
+        lastName
+        deviceId
+        email
         userName
         passCode
         plaidToken {

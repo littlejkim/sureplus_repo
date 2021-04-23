@@ -1,14 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateMoscatoBetaUser = /* GraphQL */ `
-  subscription OnCreateMoscatoBetaUser {
-    onCreateMoscatoBetaUser {
+export const onCreateMoscatoUser = /* GraphQL */ `
+  subscription OnCreateMoscatoUser {
+    onCreateMoscatoUser {
       id
       phoneNumber
       firstName
       lastName
       deviceId
+      email
       userName
       passCode
       plaidToken {
@@ -20,14 +21,15 @@ export const onCreateMoscatoBetaUser = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateMoscatoBetaUser = /* GraphQL */ `
-  subscription OnUpdateMoscatoBetaUser {
-    onUpdateMoscatoBetaUser {
+export const onUpdateMoscatoUser = /* GraphQL */ `
+  subscription OnUpdateMoscatoUser {
+    onUpdateMoscatoUser {
       id
       phoneNumber
       firstName
       lastName
       deviceId
+      email
       userName
       passCode
       plaidToken {
@@ -39,14 +41,15 @@ export const onUpdateMoscatoBetaUser = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteMoscatoBetaUser = /* GraphQL */ `
-  subscription OnDeleteMoscatoBetaUser {
-    onDeleteMoscatoBetaUser {
+export const onDeleteMoscatoUser = /* GraphQL */ `
+  subscription OnDeleteMoscatoUser {
+    onDeleteMoscatoUser {
       id
       phoneNumber
       firstName
       lastName
       deviceId
+      email
       userName
       passCode
       plaidToken {

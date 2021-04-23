@@ -31,6 +31,14 @@
                 "open": true
             },
             "policyResourceName": "/email/check"
+        },
+        {
+            "name": "/get/user",
+            "lambdaFunction": "twiliosms",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/get/user"
         }
     ],
     "resourceName": "twilioapi",
@@ -56,5 +64,5 @@
             ]
         }
     ],
-    "uuid": "6b4497bc"
+    "uuid": "a79ccfe3"
 }

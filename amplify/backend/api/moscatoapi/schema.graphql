@@ -15,6 +15,12 @@ type MoscatoUser
     name: "UserByEmail"
     fields: ["email", "createdAt"]
     queryField: "userByEmail"
+  )
+  @key(name: "UserByDevice", fields: ["deviceId"], queryField: "userByDevice")
+  @key(
+    name: "UserByPhone"
+    fields: ["phoneNumber"]
+    queryField: "userByPhone"
   ) {
   id: ID!
   phoneNumber: String!
