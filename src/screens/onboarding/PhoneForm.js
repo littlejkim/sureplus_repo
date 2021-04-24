@@ -90,7 +90,7 @@ export default function PhoneForm({ navigation }) {
       (completed, cancelled, error) => {
         //add all 4 cases of onboarding
         // created temporary bypass for testing
-        completed ? navigation.navigate('Name') : setModal(true);
+        completed ? navigation.navigate('ReturningUser') : setModal(true);
       },
     );
   };

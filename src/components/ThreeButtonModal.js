@@ -5,7 +5,6 @@ import Modal from 'react-native-modal';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import { PRIMARY_COLOR } from '../styles/constants';
 import { TEXT_REGULAR } from '../styles/fonts';
 
 /* USAGE
@@ -16,9 +15,7 @@ export const ThreeButtonModal = (props) => {
   return (
     <Modal
       isVisible={props.visible}
-      animationIn="fadeIn"
       animationInTiming={250}
-      animationOut="fadeOut"
       animationOutTiming={250}>
       <View
         style={[
