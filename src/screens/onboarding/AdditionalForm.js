@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
+import { string } from 'yup';
+import { API } from 'aws-amplify';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -19,31 +21,15 @@ export default function AdditionalForm({ navigation }) {
   const [viewHeight, setViewHeight] = useState();
   const [showPrev, setShowPrev] = useState(false);
   const [step, setStep] = useState(0);
-  const [emailVerified, setEmailVerified] = useState(false);
-  const [usernameVerified, setUsernameVerified] = useState(false);
-  const [displayError, setDisplayError] = useState(false);
   const [focusUsername, setFocusUsername] = useState(false);
   const [focusEmail, setFocusEmail] = useState(false);
   const [scrollEnd, setScrollEnd] = useState(false);
+  const [emailText, setEmailText] = useState('');
+  const [emailErrorMsg, setEmailErrorMsg] = useState('');
+  const [usernameText, setUsernameText] = useState('');
+  const [usernameErrorMsg, setUsernameErrorMsg] = useState('');
+
   const scrollRef = useRef();
-
-  const _validEmail = () => {
-    console.log('hello');
-    setEmailVerified(true);
-  };
-
-  const _invalidEmail = () => {
-    console.log('invalid');
-    setEmailVerified(false);
-  };
-
-  const _validUsername = () => {
-    setUsernameVerified(true);
-  };
-
-  const _invalidUsername = () => {
-    setUsernameVerified(false);
-  };
 
   const _showNext = () => {
     scrollRef.current.scrollTo({ y: viewHeight, animated: true });
@@ -57,14 +43,6 @@ export default function AdditionalForm({ navigation }) {
     setShowPrev(false);
     setStep(0);
     setFocusEmail(true);
-  };
-
-  const _displayError = () => {
-    setDisplayError(true);
-  };
-
-  const _eraseError = () => {
-    setDisplayError(false);
   };
 
   const _unfocusEmail = () => {
@@ -91,6 +69,68 @@ export default function AdditionalForm({ navigation }) {
     return layoutMeasurement.height + contentOffset.y >= contentSize.height - 1;
   };
 
+  const _onPressEmail = async () => {
+    console.log(emailText);
+    if (!string().email().required().isValidSync(emailText)) {
+      setEmailErrorMsg('Please enter a valid email address');
+      return;
+    }
+    await API.post('twilioapi', '/email/check', {
+      body: { email: emailText },
+    })
+      .then((res) =>
+        res.isTaken
+          ? (console.log('true'),
+            setEmailErrorMsg(
+              'There already is a sureplus account associated with this email.',
+            ))
+          : _showNext(),
+      )
+      .catch((err) => console.log('/test/sms err: ', err));
+  };
+
+  const _onPressUsername = async () => {
+    console.log(usernameText);
+    if (
+      !string()
+        .matches(/^[ A-Za-z0-9_.]*$/)
+        .isValidSync(usernameText)
+    ) {
+      setUsernameErrorMsg(
+        'Usernames can only use letters, numbers, underscores and periods.',
+      );
+      return;
+    }
+    if (!string().min(6).isValidSync(usernameText)) {
+      setUsernameErrorMsg(
+        'Your username should have a minimum of 6 characters.',
+      );
+      return;
+    }
+    if (string().matches(/[.]$/).isValidSync(usernameText)) {
+      setUsernameErrorMsg("You can't end your username with as a period.");
+      return;
+    }
+    if (
+      !string()
+        .matches(/^(?!.*?[._]{2})[a-zA-Z0-9_.]+$/)
+        .isValidSync(usernameText)
+    ) {
+      setUsernameErrorMsg("You can't have more than one period in a row.");
+      return;
+    }
+    await API.post('twilioapi', '/username/check', {
+      body: { username: usernameText },
+    })
+      .then((res) =>
+        res.isTaken
+          ? (console.log('true'),
+            setUsernameErrorMsg('The following username is already in use.'))
+          : _continue(),
+      )
+      .catch((err) => console.log('/test/sms err: ', err));
+  };
+
   return (
     <View style={styles.container}>
       <View
@@ -106,9 +146,11 @@ export default function AdditionalForm({ navigation }) {
           scrollEnabled={false}
           scrollEventThrottle={0}
           onScroll={({ nativeEvent }) => {
+            //Scroll to bottom
             if (isCloseToBottom(nativeEvent)) {
               setScrollEnd(true);
             }
+            //Scroll to top
             if (nativeEvent.contentOffset.y === 0) {
               setScrollEnd(true);
             }
@@ -118,25 +160,23 @@ export default function AdditionalForm({ navigation }) {
           snapToAlignment={'center'}>
           <EmailForm
             screenHeight={viewHeight}
-            displayError={displayError}
-            eraseError={_eraseError}
-            validEmail={_validEmail}
-            invalidEmail={_invalidEmail}
             focusEmail={focusEmail}
             unfocusEmail={_unfocusEmail}
             scrollEnd={scrollEnd}
             setScrollEnd={_scrollEndFalse}
+            setEmailText={setEmailText}
+            emailErrorMsg={emailErrorMsg}
+            setEmailErrorMsg={setEmailErrorMsg}
           />
           <UsernameForm
             screenHeight={viewHeight}
-            displayError={displayError}
-            eraseError={_eraseError}
-            validUsername={_validUsername}
-            invalidUsername={_invalidUsername}
             focusUsername={focusUsername}
             unfocusUsername={_unfocusUsername}
             scrollEnd={scrollEnd}
             setScrollEnd={_scrollEndFalse}
+            setUsernameText={setUsernameText}
+            usernameErrorMsg={usernameErrorMsg}
+            setUsernameErrorMsg={setUsernameErrorMsg}
           />
         </ScrollView>
       </View>
@@ -165,14 +205,14 @@ export default function AdditionalForm({ navigation }) {
           {step ? (
             <TouchableOpacity
               style={styles.nextButton}
-              onPress={usernameVerified ? _continue : _displayError}
+              onPress={_onPressUsername}
               activeOpacity={0.7}>
               <Text style={styles.nextButtonText}>Next</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.nextButton}
-              onPress={emailVerified ? _showNext : _displayError}
+              onPress={_onPressEmail}
               activeOpacity={0.7}>
               <Text style={styles.nextButtonText}>Next</Text>
             </TouchableOpacity>
@@ -182,3 +222,4 @@ export default function AdditionalForm({ navigation }) {
     </View>
   );
 }
+//emailVerified ? _showNext : _displayError

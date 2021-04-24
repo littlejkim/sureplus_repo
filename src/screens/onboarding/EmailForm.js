@@ -13,67 +13,30 @@ import { string } from 'yup';
 
 export default function EmailForm({
   screenHeight,
-  validEmail,
-  invalidEmail,
-  displayError,
-  eraseError,
   focusEmail,
   unfocusEmail,
   scrollEnd,
   setScrollEnd,
+  setEmailText,
+  emailErrorMsg,
+  setEmailErrorMsg,
 }) {
   const { firstname } = useContext(OnboardingContext);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [error, setError] = useState(false);
-  const [text, setText] = useState(null);
   const textinputRef = useRef();
 
   const theme = useTheme();
 
   useEffect(() => {
-    displayError && error
-      ? setErrorMsg('Please enter a valid email address')
-      : setErrorMsg(null);
     if (focusEmail && scrollEnd) {
       textinputRef.current.focus();
       unfocusEmail();
       setScrollEnd();
     }
-  }, [
-    setErrorMsg,
-    displayError,
-    text,
-    focusEmail,
-    scrollEnd,
-    setScrollEnd,
-    unfocusEmail,
-  ]);
+  }, [focusEmail, scrollEnd, setScrollEnd, unfocusEmail]);
 
-  const _dupCheck = (textValue) => {
-    let check = false;
-    API.post('twilioapi', '/email/check', {
-      body: { email: textValue },
-    })
-      .then((res) => (check = res.isTaken)) // this value will be boolean
-      .catch((err) => console.log('/test/sms err: ', err));
-    return check;
-  };
-
-  const onTextInput = (textValue) => {
-    eraseError();
-    setText(textValue);
-    if (!string().email().required().isValidSync(textValue)) {
-      invalidEmail();
-      setError(true);
-      return;
-    }
-    if (_dupCheck(textValue)) {
-      invalidEmail();
-      setError(true);
-      return;
-    }
-    setError(false);
-    validEmail();
+  const onTextInput = async (textValue) => {
+    setEmailText(textValue);
+    setEmailErrorMsg(null);
   };
 
   return (
@@ -98,7 +61,7 @@ export default function EmailForm({
           label="Email"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
           tintColor={PRIMARY_COLOR}
-          error={errorMsg}
+          error={emailErrorMsg}
           errorColor={ERROR_COLOR}
           labelFontSize={20}
           fontSize={25}
@@ -115,7 +78,6 @@ export default function EmailForm({
           blurOnSubmit={true}
           returnKeyType="next"
           onChangeText={onTextInput}
-          value={text}
         />
       </View>
     </View>
