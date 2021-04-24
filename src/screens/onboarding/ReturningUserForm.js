@@ -19,13 +19,13 @@ export default function ReturningUserForm({ navigation }) {
           Are you a returning user?
         </Text>
         <Text style={styles.bodyText}>
-          The device is already registered {'/n'} in our system.
+          Your device is already registered{'\n'}in our system.
         </Text>
       </View>
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.subButton}
-          onPress={() => navigation.navigate('NameForm')}
+          onPress={() => navigation.navigate('Name')}
           activeOpacity={0.5}>
           <Text style={[styles.subButtonText, { color: theme.colors.primary }]}>
             No, I'm new here
@@ -33,7 +33,7 @@ export default function ReturningUserForm({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.mainButton}
-          onPress={() => navigation.navigate('PreviousNumberForm')}
+          onPress={() => navigation.navigate('PreviousNumber')}
           activeOpacity={0.7}>
           <Text style={styles.mainButtonText}>Continue as Jinje</Text>
         </TouchableOpacity>

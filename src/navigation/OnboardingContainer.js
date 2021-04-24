@@ -1,5 +1,5 @@
 // public imports
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import remoteConfig from '@react-native-firebase/remote-config';
 
@@ -15,7 +15,7 @@ import {
   SetPasswordForm,
   EnterEmailForm,
   VerificationLinkForm,
-  PreviousPhoneForm,
+  PreviousNumberForm,
   ReturningUserForm,
 } from '../screens/onboarding';
 
