@@ -17,7 +17,7 @@ export default function UsernameForm({
   setUsernameText,
   usernameErrorMsg,
   setUsernameErrorMsg,
-  _onPressUsername,
+  _onSubmitEditing,
 }) {
   const textinputRef = useRef();
 
@@ -67,7 +67,7 @@ export default function UsernameForm({
           blurOnSubmit={true}
           returnKeyType="done"
           onChangeText={_onTextchange}
-          _onSubmitEditing={_onPressUsername()}
+          _onSubmitEditing={_onSubmitEditing()}
         />
       </View>
     </View>

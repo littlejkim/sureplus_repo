@@ -37,22 +37,22 @@ export default function EnterEmailForm({ route, navigation }) {
 
   const _onPress = async () => {
     console.log(previousNumber);
-    /*setDisplayError(true);
+    setDisplayError(true);
     if (text) {
       if (errorMsg) {
         return;
       }
       navigation.navigate('VerificationLink');
     }
-    return;*/
-    await API.post('twilioapi', '/get/user', {
+    return;
+    /*await API.post('twilioapi', '/get/user', {
       body: { phoneNumber: '111-111-1111' },
     }) //p
       .then((res) => {
         console.log('/get/user: ', res.isTaken);
         console.log('/get/user: ', res.data); // will contain all user
       }) // this value will be boolean
-      .catch((err) => console.log('/get/user err: ', err));
+      .catch((err) => console.log('/get/user err: ', err));*/
   };
 
   return (
