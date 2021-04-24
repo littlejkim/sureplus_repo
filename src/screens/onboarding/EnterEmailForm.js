@@ -10,16 +10,18 @@ import {
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
 import { string } from 'yup';
+import { API } from 'aws-amplify';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
 import { TEXT_REGULAR } from '../../styles/fonts';
 
-export default function EnterEmailForm({ navigation }) {
+export default function EnterEmailForm({ route, navigation }) {
   const [errorMsg, setErrorMsg] = useState(null);
   const [displayError, setDisplayError] = useState(false);
   const [text, setText] = useState(null);
+  const previousNumber = route.params.previousNumber;
   const theme = useTheme();
 
   const onTextInput = (textValue) => {
@@ -33,7 +35,8 @@ export default function EnterEmailForm({ navigation }) {
     return;
   };
 
-  const _onPress = () => {
+  const _onPress = async () => {
+    console.log(previousNumber);
     setDisplayError(true);
     if (text) {
       if (errorMsg) {
@@ -42,6 +45,14 @@ export default function EnterEmailForm({ navigation }) {
       navigation.navigate('VerificationLink');
     }
     return;
+    /*await API.post('twilioapi', '/get/user', {
+      body: { phoneNumber: '111-111-1111' },
+    }) //p
+      .then((res) => {
+        console.log('/get/user: ', res.isTaken);
+        console.log('/get/user: ', res.data); // will contain all user
+      }) // this value will be boolean
+      .catch((err) => console.log('/get/user err: ', err));*/
   };
 
   return (

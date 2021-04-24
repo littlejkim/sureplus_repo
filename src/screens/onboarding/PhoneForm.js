@@ -93,7 +93,7 @@ export default function PhoneForm({ navigation }) {
         allowAndroidSendWithoutReadPermission: true, // for android
       },
       (completed, cancelled, error) => {
-        //add all 4 cases of onboarding
+        // ERROR MODAL (message sending cancelled by user)
       },
     );
   };

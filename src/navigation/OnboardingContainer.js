@@ -15,7 +15,7 @@ import {
   SetPasswordForm,
   EnterEmailForm,
   VerificationLinkForm,
-  PreviousNumberForm,
+  PreviousPhoneForm,
   ReturningUserForm,
 } from '../screens/onboarding';
 

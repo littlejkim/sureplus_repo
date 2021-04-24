@@ -39,7 +39,7 @@ export default function PreviousNumberForm({ navigation }) {
 
   const _continue = () => {
     setVisible(false);
-    navigation.navigate('NameForm');
+    navigation.navigate('EnterEmail', { previousNumber: localNumber });
   };
   //We can use a build in formatting method from google-libphonenumber
   //but the method felt very unstable cause it was prone to crash on

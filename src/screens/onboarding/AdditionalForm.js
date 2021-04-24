@@ -79,10 +79,9 @@ export default function AdditionalForm({ navigation }) {
     })
       .then((res) =>
         res.isTaken
-          ? (console.log('true'),
-            setEmailErrorMsg(
+          ? setEmailErrorMsg(
               'There already is a sureplus account associated with this email.',
-            ))
+            )
           : _showNext(),
       )
       .catch((err) => console.log('/test/sms err: ', err));
@@ -165,6 +164,7 @@ export default function AdditionalForm({ navigation }) {
             setEmailText={setEmailText}
             emailErrorMsg={emailErrorMsg}
             setEmailErrorMsg={setEmailErrorMsg}
+            _onSubmitEditing={_onPressEmail}
           />
           <UsernameForm
             screenHeight={viewHeight}
@@ -175,6 +175,7 @@ export default function AdditionalForm({ navigation }) {
             setUsernameText={setUsernameText}
             usernameErrorMsg={usernameErrorMsg}
             setUsernameErrorMsg={setUsernameErrorMsg}
+            _onSubmitEditing={_onPressUsername}
           />
         </ScrollView>
       </View>

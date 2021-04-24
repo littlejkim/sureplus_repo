@@ -20,6 +20,7 @@ export default function EmailForm({
   setEmailText,
   emailErrorMsg,
   setEmailErrorMsg,
+  _onSubmitEditing,
 }) {
   const { firstname } = useContext(OnboardingContext);
   const textinputRef = useRef();
@@ -77,6 +78,7 @@ export default function EmailForm({
           blurOnSubmit={true}
           returnKeyType="next"
           onChangeText={onTextInput}
+          onSubmitEditing={_onSubmitEditing()}
         />
       </View>
     </View>

@@ -17,6 +17,7 @@ export default function UsernameForm({
   setUsernameText,
   usernameErrorMsg,
   setUsernameErrorMsg,
+  _onSubmitEditing,
 }) {
   const textinputRef = useRef();
   const theme = useTheme();
@@ -65,6 +66,7 @@ export default function UsernameForm({
           blurOnSubmit={true}
           returnKeyType="done"
           onChangeText={_onTextchange}
+          _onSubmitEditing={_onSubmitEditing()}
         />
       </View>
     </View>
