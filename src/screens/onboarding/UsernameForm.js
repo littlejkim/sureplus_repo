@@ -19,7 +19,6 @@ export default function UsernameForm({
   setUsernameErrorMsg,
 }) {
   const textinputRef = useRef();
-
   const theme = useTheme();
 
   useEffect(() => {

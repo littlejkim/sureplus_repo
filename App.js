@@ -1,6 +1,6 @@
 // public imports
 import React, { useEffect, useState, useRef } from 'react';
-import { AppState, useColorScheme } from 'react-native';
+import { StatusBar, AppState, useColorScheme } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
 import remoteConfig from '@react-native-firebase/remote-config';
@@ -119,6 +119,9 @@ export default function App() {
         routeNameRef.current = currentScreenName;
       }}
       theme={colorScheme === 'light' ? LightTheme : DarkTheme}>
+      <StatusBar
+        barStyle={colorScheme === 'light' ? 'light-content' : 'dark-content'}
+      />
       {user == null ? <OnboardingContainer /> : <HomeContainer />}
     </NavigationContainer>
   );

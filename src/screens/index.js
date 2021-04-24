@@ -3,10 +3,8 @@ import WelcomeScreen from './WelcomeScreen';
 import DiscoverScreen from './DiscoverScreen';
 import GroupsScreen from './GroupsScreen';
 import SignUpScreen from './SignUpScreen';
-import ChangedNumberScreen from './ChangedNumberScreen';
 import ReportScreen from './ReportScreen';
 import WalletScreen from './WalletScreen';
-import PasswordScreen from './PasswordScreen';
 
 export {
   HomeScreen,
@@ -14,8 +12,6 @@ export {
   DiscoverScreen,
   GroupsScreen,
   SignUpScreen,
-  ChangedNumberScreen,
   ReportScreen,
   WalletScreen,
-  PasswordScreen,
 };

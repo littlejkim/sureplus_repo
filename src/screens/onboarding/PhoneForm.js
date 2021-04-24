@@ -44,7 +44,12 @@ export default function PhoneForm({ navigation }) {
     setIsLoading(true);
     // bypass SMS auth if virtual device (emulator)
     DeviceInfo.isEmulator().then((isEmulator) => {
-      isEmulator ? navigation.navigate('Name') : _sendText();
+      isEmulator ? navigation.navigate('AccountRecovery') : _sendText();
+      // case 1: navigation.navigate('NewUser')
+      // case 2: navigation.navigate('ExistingUser')
+      // case 3: navigation.navigate('DifferentPhoneNumber')
+      // case 4: navigation.navigate('DifferentDeviceId')
+      // case 5: navigation.navigate('AccountRecovery')
     });
   };
 
@@ -57,20 +62,20 @@ export default function PhoneForm({ navigation }) {
     })
       .then((res) => {
         console.log('/test/sms: ', res);
+        setIsLoading(false);
         if (res.statuscode === 200) {
-          console.log('move to rest of onboarding');
           // BUZZ
-          // setLoading false once this res has been returned
           // check statuscode to see which one has been
-          setIsLoading(false);
-          navigation.navigate('Name');
+          // case 1: navigation.navigate('NewUser')
+          // case 2: navigation.navigate('ExistingUser')
+          // case 3: navigation.navigate('DifferentPhoneNumber')
+          // case 4: navigation.navigate('DifferentDeviceId')
+          // case 5: navigation.navigate('AccountRecovery')
         }
       })
       .catch((err) => {
         console.log('/test/sms err: ', err);
-        setIsLoading(false);
-        // this shouldnt navigate to Name but show a error prompt based on the err message
-        navigation.navigate('Name');
+        // ERROR MODAL (no response from server)
       });
 
     //navigation.navigate('Name');
@@ -89,8 +94,6 @@ export default function PhoneForm({ navigation }) {
       },
       (completed, cancelled, error) => {
         //add all 4 cases of onboarding
-        // created temporary bypass for testing
-        completed ? navigation.navigate('Name') : setModal(true);
       },
     );
   };

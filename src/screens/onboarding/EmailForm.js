@@ -23,7 +23,6 @@ export default function EmailForm({
 }) {
   const { firstname } = useContext(OnboardingContext);
   const textinputRef = useRef();
-
   const theme = useTheme();
 
   useEffect(() => {

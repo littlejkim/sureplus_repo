@@ -70,7 +70,6 @@ export default function AdditionalForm({ navigation }) {
   };
 
   const _onPressEmail = async () => {
-    console.log(emailText);
     if (!string().email().required().isValidSync(emailText)) {
       setEmailErrorMsg('Please enter a valid email address');
       return;
@@ -90,7 +89,6 @@ export default function AdditionalForm({ navigation }) {
   };
 
   const _onPressUsername = async () => {
-    console.log(usernameText);
     if (
       !string()
         .matches(/^[ A-Za-z0-9_.]*$/)
@@ -101,7 +99,7 @@ export default function AdditionalForm({ navigation }) {
       );
       return;
     }
-    if (!string().min(6).isValidSync(usernameText)) {
+    if (!string().min(4).isValidSync(usernameText)) {
       setUsernameErrorMsg(
         'Your username should have a minimum of 6 characters.',
       );
