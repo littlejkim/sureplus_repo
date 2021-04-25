@@ -10,11 +10,11 @@ import {
 } from 'react-native';
 
 // custom imports
-import styles from '../styles/password.styles';
-import { OneButtonModal } from '../components/OneButtonModal';
-import { LoadingSpinner } from '../components/LoadingSpinner';
+import styles from '../../styles/password.styles';
+import { OneButtonModal } from '../../components/OneButtonModal';
+import { LoadingSpinner } from '../../components/LoadingSpinner';
 
-export default function PasswordScreen(props) {
+export default function EnterPasswordForm({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
   const savedPassword = [1, 2, 3, 4]; // temporary password check
   const [password, setPassword] = useState([]);
@@ -50,14 +50,11 @@ export default function PasswordScreen(props) {
   useEffect(() => {
     if (password.length === savedPassword.length) {
       password.every((val, index) => val === savedPassword[index])
-        ? (setIsLoading(true),
-          setTimeout(() => {
-            props.authentication();
-          }, 2000))
+        ? console.log('correct password')
         : setModal(true);
     }
     return () => setIsLoading(false);
-  }, [props, password, savedPassword]);
+  }, [password, savedPassword]);
 
   return (
     <>
@@ -128,7 +125,7 @@ export default function PasswordScreen(props) {
               ) : index === 11 ? (
                 <TouchableOpacity style={styles.item} onPress={_deletePassword}>
                   <Image
-                    source={require('../assets/images/delete.png')}
+                    source={require('../../assets/images/delete.png')}
                     style={{ aspectRatio: 0.3, resizeMode: 'contain' }}
                   />
                 </TouchableOpacity>
@@ -153,7 +150,7 @@ export default function PasswordScreen(props) {
           activeOpacity={0.7}
           onPress={() => console.log('Pressed Face ID')}>
           <Image
-            source={require('../assets/images/check.png')}
+            source={require('../../assets/images/check.png')}
             style={{
               height: '20%',
               resizeMode: 'contain',

@@ -5,52 +5,55 @@ import Modal from 'react-native-modal';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
-import { PRIMARY_COLOR } from '../styles/constants';
 import { TEXT_REGULAR } from '../styles/fonts';
 
 /* USAGE
 params: title, body, mainButton, subButton
 */
-export const TwoButtonModal = (props) => {
+export const ThreeButtonModal = (props) => {
   const theme = useTheme();
   return (
     <Modal
       isVisible={props.visible}
-      animationIn="fadeIn"
       animationInTiming={250}
-      animationOut="fadeOut"
       animationOutTiming={250}>
       <View
         style={[
           styles.container,
           { backgroundColor: theme.colors.background },
         ]}>
-        <View style={styles.bodyContainer}>
-          <Text style={[styles.title, { color: theme.colors.title }]}>
-            {props.contents.title}
-          </Text>
-          <Text style={[styles.bodyText, { color: theme.colors.title }]}>
-            {props.contents.body}
-          </Text>
-        </View>
-        <View style={styles.buttonContainer}>
+        <View>
           <TouchableOpacity
-            style={styles.mainButton}
+            style={styles.topButton}
             onPress={props.continue}
             activeOpacity={0.7}>
-            <Text
-              style={[
-                styles.buttonText,
-                { fontWeight: '600', color: PRIMARY_COLOR },
-              ]}>
-              {props.contents.mainButton}
+            <Text style={[styles.text, { color: theme.colors.title }]}>
+              {props.contents.topText}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.subButton}
+            style={styles.bottomButton}
+            onPress={props.continue}
+            activeOpacity={0.7}>
+            <Text style={[styles.text, { color: theme.colors.title }]}>
+              {props.contents.bottomText}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View>
+        <View
+          style={[
+            styles.cancelContainer,
+            { backgroundColor: theme.colors.background },
+          ]}>
+          <TouchableOpacity
+            style={styles.cancelButton}
             onPress={props.hide}
             activeOpacity={0.7}>
-            <Text style={styles.buttonText}>{props.contents.subButton}</Text>
+            <Text style={styles.cancelButtonText}>
+              {props.contents.subButton}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -62,44 +65,38 @@ export const styles = StyleSheet.create({
   container: {
     borderRadius: 14,
     justifyContent: 'space-between',
+    top: 284,
   },
-  title: {
-    paddingBottom: 5,
+  cancelContainer: {
+    borderRadius: 14,
+    justifyContent: 'space-between',
+    top: 298,
+  },
+  text: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 17,
     fontFamily: TEXT_REGULAR,
-    lineHeight: 27.32,
+    lineHeight: 22,
     fontWeight: '600',
   },
-  bodyText: {
-    textAlign: 'center',
-    fontFamily: TEXT_REGULAR,
-    fontSize: 17,
-    fontWeight: '400',
-    lineHeight: 23,
+  topButton: {
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  bodyContainer: {
-    paddingHorizontal: 32,
-    paddingVertical: 25,
-  },
-  buttonContainer: {
-    flexDirection: 'column',
-  },
-  mainButton: {
+  bottomButton: {
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopColor: '#ededed',
     borderTopWidth: 0.25,
   },
-  subButton: {
+  cancelButton: {
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopColor: '#ededed',
-    borderTopWidth: 0.25,
   },
-  buttonText: {
+  cancelButtonText: {
     fontFamily: TEXT_REGULAR,
     fontWeight: '400',
     color: 'black',

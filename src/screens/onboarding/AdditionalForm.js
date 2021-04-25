@@ -6,8 +6,10 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { string } from 'yup';
+import { API } from 'aws-amplify';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
@@ -19,49 +21,111 @@ export default function AdditionalForm({ navigation }) {
   const [viewHeight, setViewHeight] = useState();
   const [showPrev, setShowPrev] = useState(false);
   const [step, setStep] = useState(0);
-  const [emailVerified, setEmailVerified] = useState(false);
-  const [usernameVerified, setUsernameVerified] = useState(false);
-  const [displayError, setDisplayError] = useState(false);
+  const [focusUsername, setFocusUsername] = useState(false);
+  const [focusEmail, setFocusEmail] = useState(false);
+  const [scrollEnd, setScrollEnd] = useState(false);
+  const [emailText, setEmailText] = useState('');
+  const [emailErrorMsg, setEmailErrorMsg] = useState('');
+  const [usernameText, setUsernameText] = useState('');
+  const [usernameErrorMsg, setUsernameErrorMsg] = useState('');
+
   const scrollRef = useRef();
-  const theme = useTheme();
-  const _validEmail = () => {
-    setEmailVerified(true);
-  };
-
-  const _invalidEmail = () => {
-    setEmailVerified(false);
-  };
-
-  const _validUsername = () => {
-    setUsernameVerified(true);
-  };
-
-  const _invalidUsername = () => {
-    setUsernameVerified(false);
-  };
 
   const _showNext = () => {
     scrollRef.current.scrollTo({ y: viewHeight, animated: true });
     setShowPrev(true);
     setStep(1);
+    setFocusUsername(true);
   };
 
   const _showPrev = () => {
     scrollRef.current.scrollTo({ y: 0, animated: true });
     setShowPrev(false);
     setStep(0);
+    setFocusEmail(true);
   };
 
-  const _displayError = () => {
-    setDisplayError(true);
+  const _unfocusEmail = () => {
+    setFocusEmail(false);
   };
 
-  const _eraseError = () => {
-    setDisplayError(false);
+  const _unfocusUsername = () => {
+    setFocusUsername(false);
+  };
+
+  const _scrollEndFalse = () => {
+    setScrollEnd(false);
   };
 
   const _continue = () => {
     navigation.navigate('SetPassword');
+  };
+
+  const isCloseToBottom = ({
+    layoutMeasurement,
+    contentOffset,
+    contentSize,
+  }) => {
+    return layoutMeasurement.height + contentOffset.y >= contentSize.height - 1;
+  };
+
+  const _onPressEmail = async () => {
+    if (!string().email().required().isValidSync(emailText)) {
+      setEmailErrorMsg('Please enter a valid email address');
+      return;
+    }
+    await API.post('twilioapi', '/email/check', {
+      body: { email: emailText },
+    })
+      .then((res) =>
+        res.isTaken
+          ? setEmailErrorMsg(
+              'There already is a sureplus account associated with this email.',
+            )
+          : _showNext(),
+      )
+      .catch((err) => console.log('/test/sms err: ', err));
+  };
+
+  const _onPressUsername = async () => {
+    if (
+      !string()
+        .matches(/^[ A-Za-z0-9_.]*$/)
+        .isValidSync(usernameText)
+    ) {
+      setUsernameErrorMsg(
+        'Usernames can only use letters, numbers, underscores and periods.',
+      );
+      return;
+    }
+    if (!string().min(4).isValidSync(usernameText)) {
+      setUsernameErrorMsg(
+        'Your username should have a minimum of 6 characters.',
+      );
+      return;
+    }
+    if (string().matches(/[.]$/).isValidSync(usernameText)) {
+      setUsernameErrorMsg("You can't end your username with as a period.");
+      return;
+    }
+    if (
+      !string()
+        .matches(/^(?!.*?[._]{2})[a-zA-Z0-9_.]+$/)
+        .isValidSync(usernameText)
+    ) {
+      setUsernameErrorMsg("You can't have more than one period in a row.");
+      return;
+    }
+    await API.post('twilioapi', '/username/check', {
+      body: { username: usernameText },
+    })
+      .then((res) =>
+        res.isTaken
+          ? (console.log('true'),
+            setUsernameErrorMsg('The following username is already in use.'))
+          : _continue(),
+      )
+      .catch((err) => console.log('/test/sms err: ', err));
   };
 
   return (
@@ -75,30 +139,49 @@ export default function AdditionalForm({ navigation }) {
         <ScrollView
           ref={scrollRef}
           bounces={false}
-          decelerationRate={0}
-          scrollEnabled={true}
+          decelerationRate="normal"
+          scrollEnabled={false}
+          scrollEventThrottle={0}
+          onScroll={({ nativeEvent }) => {
+            //Scroll to bottom
+            if (isCloseToBottom(nativeEvent)) {
+              setScrollEnd(true);
+            }
+            //Scroll to top
+            if (nativeEvent.contentOffset.y === 0) {
+              setScrollEnd(true);
+            }
+          }}
           showsVerticalScrollIndicator={false}
           snapToInterval={viewHeight}
           snapToAlignment={'center'}>
           <EmailForm
             screenHeight={viewHeight}
-            theme={theme}
-            displayError={displayError}
-            eraseError={_eraseError}
-            validEmail={_validEmail}
-            invalidEmail={_invalidEmail}
+            focusEmail={focusEmail}
+            unfocusEmail={_unfocusEmail}
+            scrollEnd={scrollEnd}
+            setScrollEnd={_scrollEndFalse}
+            setEmailText={setEmailText}
+            emailErrorMsg={emailErrorMsg}
+            setEmailErrorMsg={setEmailErrorMsg}
+            _onSubmitEditing={_onPressEmail}
           />
           <UsernameForm
             screenHeight={viewHeight}
-            theme={theme}
-            displayError={displayError}
-            eraseError={_eraseError}
-            validUsername={_validUsername}
-            invalidUsername={_invalidUsername}
+            focusUsername={focusUsername}
+            unfocusUsername={_unfocusUsername}
+            scrollEnd={scrollEnd}
+            setScrollEnd={_scrollEndFalse}
+            setUsernameText={setUsernameText}
+            usernameErrorMsg={usernameErrorMsg}
+            setUsernameErrorMsg={setUsernameErrorMsg}
+            _onSubmitEditing={_onPressUsername}
           />
         </ScrollView>
       </View>
-      <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={-20}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+        keyboardVerticalOffset={-35}>
         <View
           style={[
             styles.footer,
@@ -121,14 +204,14 @@ export default function AdditionalForm({ navigation }) {
           {step ? (
             <TouchableOpacity
               style={styles.nextButton}
-              onPress={usernameVerified ? _continue : _displayError}
+              onPress={_onPressUsername}
               activeOpacity={0.7}>
               <Text style={styles.nextButtonText}>Next</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               style={styles.nextButton}
-              onPress={emailVerified ? _showNext : _displayError}
+              onPress={_onPressEmail}
               activeOpacity={0.7}>
               <Text style={styles.nextButtonText}>Next</Text>
             </TouchableOpacity>
@@ -138,3 +221,4 @@ export default function AdditionalForm({ navigation }) {
     </View>
   );
 }
+//emailVerified ? _showNext : _displayError

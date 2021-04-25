@@ -1,8 +1,9 @@
 // public imports
-import React, { useContext, useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import { View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
+import { API, Auth } from 'aws-amplify';
 
 // custom imports
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
@@ -12,26 +13,30 @@ import { string } from 'yup';
 
 export default function EmailForm({
   screenHeight,
-  validEmail,
-  invalidEmail,
-  displayError,
-  eraseError,
+  focusEmail,
+  unfocusEmail,
+  scrollEnd,
+  setScrollEnd,
+  setEmailText,
+  emailErrorMsg,
+  setEmailErrorMsg,
+  _onSubmitEditing,
 }) {
   const { firstname } = useContext(OnboardingContext);
-  const [text, setText] = useState(null);
-
+  const textinputRef = useRef();
   const theme = useTheme();
-  const manageTextInput = (textValue) => {
-    eraseError();
-    setText(textValue);
-    {
-      /* we can make more checks for emails, but for now used the default library from yup*/
+
+  useEffect(() => {
+    if (focusEmail && scrollEnd) {
+      textinputRef.current.focus();
+      unfocusEmail();
+      setScrollEnd();
     }
-    if (string().email().required().isValidSync(textValue)) {
-      validEmail();
-    } else {
-      invalidEmail();
-    }
+  }, [focusEmail, scrollEnd, setScrollEnd, unfocusEmail]);
+
+  const onTextInput = async (textValue) => {
+    setEmailText(textValue);
+    setEmailErrorMsg(null);
   };
 
   return (
@@ -52,13 +57,12 @@ export default function EmailForm({
       </Text>
       <View style={{ marginTop: 40 }}>
         <TextField
+          ref={textinputRef}
           label="Email"
           keyboardAppearance={theme.dark ? 'dark' : 'light'}
-          tintColor={
-            !string().email().required().isValidSync(text) && displayError
-              ? ERROR_COLOR
-              : PRIMARY_COLOR
-          }
+          tintColor={PRIMARY_COLOR}
+          error={emailErrorMsg}
+          errorColor={ERROR_COLOR}
           labelFontSize={20}
           fontSize={25}
           autoCapitalize="none"
@@ -68,21 +72,14 @@ export default function EmailForm({
           textContentType="emailAddress"
           maxLength={40}
           autoCorrect={false}
-          autoFocus={true}
+          autoFocus={false}
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={true}
           returnKeyType="next"
-          onChangeText={manageTextInput}
-          value={text}
+          onChangeText={onTextInput}
+          onSubmitEditing={_onSubmitEditing()}
         />
-        <Text style={styles.feedbackText}>
-          {string().email().required().isValidSync(text)
-            ? ''
-            : displayError
-            ? 'Please enter a valid email address'
-            : ''}
-        </Text>
       </View>
     </View>
   );
