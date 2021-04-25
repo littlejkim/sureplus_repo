@@ -67,30 +67,54 @@ export const OnboardingContainer = () => {
     <OnboardingContext.Provider value={value}>
       <OnboardingStack.Navigator
         initialRouteName="Welcome"
-        headerMode="float"
+        headerMode="screen"
         screenOptions={{
           headerTitle: '',
           headerBackTitleVisible: false,
           headerTransparent: true,
         }}>
-        <OnboardingStack.Screen name="Welcome" component={WelcomeScreen} />
+        <OnboardingStack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
         <OnboardingStack.Screen name="Phone" component={PhoneForm} />
-        <OnboardingStack.Screen name="NewUser" component={NewUserFlow} />
+        <OnboardingStack.Screen
+          name="NewUser"
+          component={NewUserFlow}
+          options={{
+            headerShown: false,
+          }}
+        />
         <OnboardingStack.Screen
           name="ExistingUser"
           component={ExistingUserFlow}
+          options={{
+            headerShown: false,
+          }}
         />
         <OnboardingStack.Screen
           name="DifferentPhoneNumber"
           component={DifferentPhoneNumberFlow}
+          options={{
+            headerShown: false,
+          }}
         />
         <OnboardingStack.Screen
           name="DifferentDeviceId"
           component={DifferentDeviceIdFlow}
+          options={{
+            headerShown: false,
+          }}
         />
         <OnboardingStack.Screen
           name="AccountRecovery"
           component={AccountRecoveryFlow}
+          options={{
+            headerShown: false,
+          }}
         />
       </OnboardingStack.Navigator>
     </OnboardingContext.Provider>
@@ -101,7 +125,6 @@ export const OnboardingContainer = () => {
 function NewUserFlow() {
   return (
     <NewUserStack.Navigator
-      headerMode="none"
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,
@@ -123,7 +146,6 @@ function NewUserFlow() {
 function ExistingUserFlow() {
   return (
     <ExistingUserStack.Navigator
-      headerMode="none"
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,
@@ -146,7 +168,6 @@ function ExistingUserFlow() {
 function DifferentPhoneNumberFlow() {
   return (
     <DifferentPhoneNumberStack.Navigator
-      headerMode="none"
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,
@@ -180,7 +201,6 @@ function DifferentPhoneNumberFlow() {
 function DifferentDeviceIdFlow() {
   return (
     <DifferentDeviceIdStack.Navigator
-      headerMode="none"
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,
@@ -210,7 +230,6 @@ function DifferentDeviceIdFlow() {
 function AccountRecoveryFlow() {
   return (
     <AccountRecoveryStack.Navigator
-      headerMode="none"
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,

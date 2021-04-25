@@ -72,7 +72,7 @@ export default function EmailForm({
           textContentType="emailAddress"
           maxLength={40}
           autoCorrect={false}
-          autoFocus={false}
+          autoFocus={true}
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={true}
