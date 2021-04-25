@@ -1,0 +1,53 @@
+name: Build iOS
+
+on:
+  push:
+    branches:
+      - master
+      - amplify
+      - maro_branch
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: configure node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: configure ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: create macos keychain
+        uses: sinoru/actions-setup-keychain@v1.0
+
+      - name: install fastlane & plugins
+        run: bundle install # need a Gemfile at the project root
+
+      - name: homebrew & watchman
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && brew update && brew install watchman
+
+      - name: yarn install
+        run: yarn install # this also include the pod install step -> need to disintegrate?
+
+      - name: fastlane build
+        run: fastlane ios beta build
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  MATCH_GIT_ACCOUNT: ${{secrets.MATCH_GIT_ACCOUNT}}
+  MATCH_GIT_BASIC_AUTHORIZATION_USER: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION_USER }}
+  MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+  MATCH_CERT_REPO: ${{secrets.MATCH_CERT_REPO}}
+
+  MATCH_PASSWORD: ${{secrets.MATCH_PASSWORD}} # Match Decrypting Password

@@ -9,7 +9,8 @@ export const onCreateMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
-      nickName
+      email
+      userName
       passCode
       plaidToken {
         bankName
@@ -28,7 +29,8 @@ export const onUpdateMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
-      nickName
+      email
+      userName
       passCode
       plaidToken {
         bankName
@@ -47,7 +49,8 @@ export const onDeleteMoscatoUser = /* GraphQL */ `
       firstName
       lastName
       deviceId
-      nickName
+      email
+      userName
       passCode
       plaidToken {
         bankName
