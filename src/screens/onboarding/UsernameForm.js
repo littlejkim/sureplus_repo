@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
+import { API } from 'aws-amplify';
 
 // custom imports
 import styles from '../../styles/welcome.styles';

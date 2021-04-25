@@ -29,7 +29,7 @@ export default function WelcomeScreen({ navigation }) {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.subButton}
-          onPress={() => console.log('already have account')}
+          onPress={() => console.log('Already have account')}
           activeOpacity={0.5}>
           <Text style={[styles.subButtonText, { color: theme.colors.primary }]}>
             I already have an account

@@ -4,13 +4,31 @@ type PlaidItem {
 }
 
 # Need to store hashed version of the passcode
-type MoscatoUser @model {
+type MoscatoUser
+  @model
+  @key(
+    name: "UserByUsername"
+    fields: ["userName", "createdAt"]
+    queryField: "userByUsername"
+  )
+  @key(
+    name: "UserByEmail"
+    fields: ["email", "createdAt"]
+    queryField: "userByEmail"
+  )
+  @key(name: "UserByDevice", fields: ["deviceId"], queryField: "userByDevice")
+  @key(
+    name: "UserByPhone"
+    fields: ["phoneNumber"]
+    queryField: "userByPhone"
+  ) {
   id: ID!
   phoneNumber: String!
   firstName: String
   lastName: String
   deviceId: String
-  nickName: String
+  email: String
+  userName: String
   passCode: String
   plaidToken: [PlaidItem]
   updatedAt: AWSDateTime

@@ -28,15 +28,7 @@ export const HomeCarousel = () => {
   const carouselRef = useRef(null);
 
   const renderItem = ({ item, index }, parallaxProps) => {
-    return (
-      <View style={styles.item}>
-        <Image
-          source={item.src}
-          containerStyle={styles.imageContainer}
-          style={styles.image}
-        />
-      </View>
-    );
+    return <Image source={item.src} containerStyle={styles.imageContainer} />;
   };
 
   return (
@@ -52,7 +44,7 @@ export const HomeCarousel = () => {
         autoplayInterval={3000}
         loop={true}
         inactiveSlideScale={0.8}
-        inactiveSlideOpacity={0.9}
+        inactiveSlideOpacity={0.85}
         firstItem={2}
       />
     </View>
@@ -65,15 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  item: {
-    height: 168,
-  },
   imageContainer: {
-    flex: 1,
     marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
-  },
-  image: {
-    height: 170,
-    width: 170,
   },
 });
