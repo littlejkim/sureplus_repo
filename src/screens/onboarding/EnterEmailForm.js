@@ -1,5 +1,5 @@
 // public imports
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -19,10 +19,26 @@ import { TEXT_REGULAR } from '../../styles/fonts';
 
 export default function EnterEmailForm({ route, navigation }) {
   const [errorMsg, setErrorMsg] = useState(null);
+  const [email, setEmail] = useState(null);
   const [displayError, setDisplayError] = useState(false);
   const [text, setText] = useState(null);
   const previousNumber = route.params.previousNumber;
   const theme = useTheme();
+
+  useEffect(() => {
+    let teststring = '';
+    let trig = false;
+    async function fetchEmail() {
+      await API.post('twilioapi', '/get/user', {
+        body: { phoneNumber: previousNumber },
+      }) //p
+        .then((res) =>
+          res.isTaken ? setEmail(res.data.email) : console.log('hello'),
+        ) // this value will be boolean
+        .catch((err) => console.log('/get/user err: ', err));
+    }
+    fetchEmail();
+  }, [previousNumber]); // Only re-run the effect if count changes
 
   const onTextInput = (textValue) => {
     setDisplayError(false);
@@ -80,7 +96,7 @@ export default function EnterEmailForm({ route, navigation }) {
             labelTextStyle={{ fontFamily: TEXT_REGULAR }}
             titleTextStyle={{ fontFamily: TEXT_REGULAR }}
             affixTextStyle={{ fontFamily: TEXT_REGULAR }}
-            placeholder="m***@****.**"
+            placeholder={email}
             autoCapitalize="none"
             selectionColor={PRIMARY_COLOR}
             autoCompleteType="off"

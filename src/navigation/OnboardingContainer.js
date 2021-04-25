@@ -129,6 +129,10 @@ function ExistingUserFlow() {
         headerBackTitleVisible: false,
         headerTransparent: true,
       }}>
+      <ExistingUserStack.Screen
+        name="ReturningUser"
+        component={ReturningUserForm}
+      />
       <ExistingUserStack.Screen name="EnterEmail" component={EnterEmailForm} />
       <ExistingUserStack.Screen
         name="VerificationLink"

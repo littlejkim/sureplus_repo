@@ -43,8 +43,9 @@ export default function PhoneForm({ navigation }) {
   const _continue = () => {
     setIsLoading(true);
     // bypass SMS auth if virtual device (emulator)
+    setPhone('111-111-1111');
     DeviceInfo.isEmulator().then((isEmulator) => {
-      isEmulator ? navigation.navigate('NewUser') : _sendText();
+      isEmulator ? navigation.navigate('ExistingUser') : _sendText();
       // case 1: navigation.navigate('NewUser')
       // case 2: navigation.navigate('ExistingUser')
       // case 3: navigation.navigate('DifferentPhoneNumber')
