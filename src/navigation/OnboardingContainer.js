@@ -101,18 +101,19 @@ export const OnboardingContainer = () => {
 function NewUserFlow() {
   return (
     <NewUserStack.Navigator
-      headerMode="float"
+      headerMode="none"
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,
         headerTransparent: true,
       }}>
-      <NewUserStack.Screen name="Name" component={AdditionalForm} />
+      <NewUserStack.Screen name="Name" component={NameForm} />
       <NewUserStack.Screen name="LinkBank" component={LinkBankForm} />
       <NewUserStack.Screen
         name="LinkBankComplete"
         component={LinkBankCompleteForm}
       />
+      <NewUserStack.Screen name="AdditionalForm" component={AdditionalForm} />
       <NewUserStack.Screen name="SetPassword" component={SetPasswordForm} />
     </NewUserStack.Navigator>
   );
