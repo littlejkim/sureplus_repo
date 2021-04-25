@@ -25,18 +25,22 @@ export default function App() {
 
   // testing appsync api call without any @auth directive -> works
   async function testAmplifyApi() {
-    try {
-      const deviceData = await API.graphql(graphqlOperation(listUserDevices));
-      console.log('deviceData', deviceData.data.listUserDevices);
-    } catch (err) {
-      console.log('error fetching devices', err);
-    }
+    // try {
+    //   const deviceData = await API.graphql(graphqlOperation(listUserDevices));
+    //   console.log('deviceData', deviceData.data.listUserDevices);
+    // } catch (err) {
+    //   console.log('error fetching devices', err);
+    // }
 
-    API.post('twilioapi', '/test/sms', {
-      body: { data: 'message' },
-    })
-      .then((res) => console.log('/test/sms: ', res))
-      .catch((err) => console.log('/test/sms err: ', err));
+    API.post('twilioapi', '/get/user', { body: { deviceId: 'test' } })
+      .then((res) => console.log('/get/user: ', res))
+      .catch((err) => console.log('/get/user err: ', err));
+
+    // API.post('twilioapi', '/test/sms', {
+    //   body: { data: 'message' },
+    // })
+    //   .then((res) => console.log('/test/sms: ', res))
+    //   .catch((err) => console.log('/test/sms err: ', err));
 
     // await API.graphql(graphqlOperation(onCreateUserDevice)).subscribe({
     //   next: ({ provider, value }) =>
