@@ -88,16 +88,17 @@ export default function AdditionalForm({ navigation }) {
   };
 
   const _onPressUsername = async () => {
-    if (
-      !string()
-        .matches(/^[ A-Za-z0-9_.]*$/)
-        .isValidSync(usernameText)
-    ) {
-      setUsernameErrorMsg(
-        'Usernames can only use letters, numbers, underscores and periods.',
-      );
-      return;
-    }
+    if (usernameText)
+      if (
+        !string()
+          .matches(/^[ A-Za-z0-9_.]*$/)
+          .isValidSync(usernameText)
+      ) {
+        setUsernameErrorMsg(
+          'Usernames can only use letters, numbers, underscores and periods.',
+        );
+        return;
+      }
     if (!string().min(4).isValidSync(usernameText)) {
       setUsernameErrorMsg(
         'Your username should have a minimum of 6 characters.',

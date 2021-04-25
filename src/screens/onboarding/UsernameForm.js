@@ -66,7 +66,7 @@ export default function UsernameForm({
           blurOnSubmit={true}
           returnKeyType="done"
           onChangeText={_onTextchange}
-          _onSubmitEditing={_onSubmitEditing()}
+          _onSubmitEditing={() => _onSubmitEditing()}
         />
       </View>
     </View>

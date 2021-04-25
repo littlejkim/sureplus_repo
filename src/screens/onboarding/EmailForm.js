@@ -78,7 +78,7 @@ export default function EmailForm({
           blurOnSubmit={true}
           returnKeyType="next"
           onChangeText={onTextInput}
-          onSubmitEditing={_onSubmitEditing()}
+          onSubmitEditing={() => _onSubmitEditing()}
         />
       </View>
     </View>
