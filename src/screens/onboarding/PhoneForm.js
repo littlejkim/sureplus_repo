@@ -56,7 +56,8 @@ export default function PhoneForm({ navigation }) {
     // bypass SMS auth if virtual device (emulator)
 
     DeviceInfo.isEmulator().then(async (isEmulator) => {
-      setPhone('111-111-1111');
+      _setCase(0);
+      /*setPhone('111-111-1111');
       await API.post('twilioapi', '/get/user', {
         body: { phoneNumber: phone },
       }) //p
@@ -66,12 +67,11 @@ export default function PhoneForm({ navigation }) {
               setLastname(res.data.lastName),
               setUsername(res.data.userName),
               setEmail(res.data.email),
-              setUsername(res.data.userName),
-              _setCase(2))
+              setUsername(res.data.userName),)
             : console.log('hello'),
         ) // this value will be boolean
-        .catch((err) => console.log('/get/user err: ', err));
-      isEmulator ? navigation.navigate('DifferentPhoneNumber') : _sendText();
+        .catch((err) => console.log('/get/user err: ', err));*/
+      isEmulator ? navigation.navigate('NewUser') : _sendText();
       // case 1: navigation.navigate('NewUser')
       // case 2: navigation.navigate('ExistingUser')
       // case 3: navigation.navigate('DifferentPhoneNumber')

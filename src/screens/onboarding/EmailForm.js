@@ -46,20 +46,24 @@ export default function EmailForm({
 
   return (
     <View style={{ height: screenHeight }}>
-      <Text
-        style={[
-          styles.bodyText,
-          { color: theme.dark ? 'white' : 'black', marginBottom: 52 },
-        ]}>
-        <Text>Hi </Text>
-        <Text style={{ color: PRIMARY_COLOR, fontWeight: '600' }}>
-          {firstname}, {'\n'}
+      <View>
+        <Text
+          style={[
+            styles.bodyText,
+            { color: theme.dark ? 'white' : 'black', marginBottom: 52 },
+          ]}>
+          <Text>Hi </Text>
+          <Text style={{ color: PRIMARY_COLOR, fontWeight: '600' }}>
+            {firstname}, {'\n'}
+          </Text>
+          <Text>
+            Please complete your sign up to review your subscriptions!
+          </Text>
         </Text>
-        <Text>Please complete your sign up to review your subscriptions!</Text>
-      </Text>
-      <Text style={[styles.titleText, { color: theme.colors.title }]}>
-        What is your email?
-      </Text>
+        <Text style={[styles.titleText, { color: theme.colors.title }]}>
+          What is your email?
+        </Text>
+      </View>
       <View style={{ marginTop: 40 }}>
         <TextField
           ref={textinputRef}
@@ -77,7 +81,6 @@ export default function EmailForm({
           textContentType="emailAddress"
           maxLength={40}
           autoCorrect={false}
-          autoFocus={true}
           clearButtonMode={isLoading ? null : 'while-editing'}
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={true}
