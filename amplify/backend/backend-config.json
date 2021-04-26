@@ -18,6 +18,11 @@
           ]
         }
       ]
+    },
+    "nodemailer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "auth": {
@@ -51,6 +56,14 @@
         {
           "category": "function",
           "resourceName": "twiliosms",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "nodemailer",
           "attributes": [
             "Name",
             "Arn"

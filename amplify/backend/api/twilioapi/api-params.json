@@ -39,6 +39,14 @@
                 "open": true
             },
             "policyResourceName": "/get/user"
+        },
+        {
+            "name": "/verify/email",
+            "lambdaFunction": "nodemailer",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/verify/email"
         }
     ],
     "resourceName": "twilioapi",
@@ -46,6 +54,9 @@
     "functionArns": [
         {
             "lambdaFunction": "twiliosms"
+        },
+        {
+            "lambdaFunction": "nodemailer"
         }
     ],
     "privacy": {
@@ -62,7 +73,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "nodemailer",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "a79ccfe3"
+    "uuid": "2fc8993d"
 }
