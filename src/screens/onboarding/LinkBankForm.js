@@ -1,6 +1,12 @@
 // public imports
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { PlaidLink } from 'react-native-plaid-link-sdk';
 import DeviceInfo from 'react-native-device-info';
@@ -81,10 +87,26 @@ export default function LinkBankForm({ navigation }) {
             Connect your bank to view subscriptions.
           </Text>
           <Text style={styles.bodyText}>
-            We analyze your bank statement to track down subscriptions.
+            We analyze your bank statement to track {'\n'}down subscriptions.
           </Text>
+          <Image
+            source={require('../../assets/images/GetStartedIllustration.png')}
+            style={{
+              top: 80,
+              width: '100%',
+              resizeMode: 'contain',
+            }}
+          />
         </View>
         <View style={styles.footer}>
+          <TouchableOpacity
+            style={styles.subButtonGrey}
+            onPress={() => console.log('is this safe pressed')}
+            activeOpacity={0.5}>
+            <Text style={[styles.subButtonTextGrey, { color: '#6B7583' }]}>
+              Is this safe?
+            </Text>
+          </TouchableOpacity>
           {isLoading ? (
             <View
               style={[

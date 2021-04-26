@@ -31,7 +31,18 @@ export default function PhoneForm({ navigation }) {
   };
 
   // set and get phone number
-  const { phone, setPhone } = useContext(OnboardingContext);
+  const {
+    phone,
+    setPhone,
+    firstname,
+    setFirstname,
+    setLastname,
+    setInstitutions,
+    setEmail,
+    setUsername,
+    setPassword,
+    _setCase,
+  } = useContext(OnboardingContext);
   const [isLoading, setIsLoading] = useState(false);
 
   // hashing device id
@@ -43,9 +54,24 @@ export default function PhoneForm({ navigation }) {
   const _continue = () => {
     setIsLoading(true);
     // bypass SMS auth if virtual device (emulator)
-    setPhone('111-111-1111');
-    DeviceInfo.isEmulator().then((isEmulator) => {
-      isEmulator ? navigation.navigate('ExistingUser') : _sendText();
+
+    DeviceInfo.isEmulator().then(async (isEmulator) => {
+      setPhone('111-111-1111');
+      await API.post('twilioapi', '/get/user', {
+        body: { phoneNumber: phone },
+      }) //p
+        .then((res) =>
+          res.isTaken
+            ? (setFirstname(res.data.firstName),
+              setLastname(res.data.lastName),
+              setUsername(res.data.userName),
+              setEmail(res.data.email),
+              setUsername(res.data.userName),
+              _setCase(2))
+            : console.log('hello'),
+        ) // this value will be boolean
+        .catch((err) => console.log('/get/user err: ', err));
+      isEmulator ? navigation.navigate('DifferentPhoneNumber') : _sendText();
       // case 1: navigation.navigate('NewUser')
       // case 2: navigation.navigate('ExistingUser')
       // case 3: navigation.navigate('DifferentPhoneNumber')

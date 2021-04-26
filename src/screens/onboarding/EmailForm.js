@@ -1,6 +1,6 @@
 // public imports
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
 import { API, Auth } from 'aws-amplify';
@@ -21,6 +21,7 @@ export default function EmailForm({
   emailErrorMsg,
   setEmailErrorMsg,
   _onSubmitEditing,
+  isLoading,
 }) {
   const { firstname } = useContext(OnboardingContext);
   const textinputRef = useRef();
@@ -37,6 +38,10 @@ export default function EmailForm({
   const onTextInput = async (textValue) => {
     setEmailText(textValue);
     setEmailErrorMsg(null);
+  };
+
+  const _activityInidcator = () => {
+    <ActivityIndicator size="small" color="#ACB5BE" />;
   };
 
   return (
@@ -73,12 +78,25 @@ export default function EmailForm({
           maxLength={40}
           autoCorrect={false}
           autoFocus={true}
-          clearButtonMode="while-editing"
+          clearButtonMode={isLoading ? null : 'while-editing'}
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={true}
           returnKeyType="next"
           onChangeText={onTextInput}
           onSubmitEditing={() => _onSubmitEditing()}
+          labelOffset={10}
+          renderRightAccessory={() =>
+            isLoading ? (
+              <View style={{ width: 38, height: 27 }}>
+                <ActivityIndicator
+                  size="small"
+                  color="#ACB5BE"
+                  justifyContent="center"
+                  alignItems="center"
+                />
+              </View>
+            ) : null
+          }
         />
       </View>
     </View>

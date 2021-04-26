@@ -1,5 +1,5 @@
 // public imports
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import {
   View,
   Text,
@@ -16,6 +16,7 @@ import styles from '../../styles/welcome.styles';
 import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
 import { TwoButtonModal } from '../../components/TwoButtonModal';
 import { TEXT_REGULAR } from '../../styles/fonts';
+import { OnboardingContext } from '../../navigation/OnboardingContainer';
 
 export default function PreviousNumberForm({ navigation }) {
   const theme = useTheme();
@@ -25,6 +26,7 @@ export default function PreviousNumberForm({ navigation }) {
   const [focus, setFocus] = useState(false);
   const inputRef = useRef();
   const phoneUtil = PhoneNumberUtil.getInstance();
+  const { phone } = useContext(OnboardingContext);
 
   const contents = {
     title: 'Number not found',
@@ -33,14 +35,15 @@ export default function PreviousNumberForm({ navigation }) {
     subButton: 'Cancel',
   };
 
+  const _continue = () => {
+    setVisible(false);
+    navigation.navigate('NewUser');
+  };
+
   const hide = () => {
     setVisible(false);
   };
 
-  const _continue = () => {
-    setVisible(false);
-    navigation.navigate('EnterEmail', { previousNumber: localNumber });
-  };
   //We can use a build in formatting method from google-libphonenumber
   //but the method felt very unstable cause it was prone to crash on
   //different inputs.
@@ -64,9 +67,12 @@ export default function PreviousNumberForm({ navigation }) {
       setError('Please enter a valid phone number');
       return;
     }
-    phoneUtil.isPossibleNumber(number)
-      ? (setError(null), setVisible(true))
-      : setError('Please enter a valid phone number');
+    const trueNumber = phoneUtil.isPossibleNumber(number);
+    if (trueNumber) {
+      localNumber === phone
+        ? navigation.navigate('EnterEmail')
+        : (setError(null), setVisible(true));
+    }
   };
 
   return (

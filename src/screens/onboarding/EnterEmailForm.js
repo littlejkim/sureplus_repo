@@ -1,5 +1,5 @@
 // public imports
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   Text,
@@ -16,59 +16,66 @@ import { API } from 'aws-amplify';
 import styles from '../../styles/welcome.styles';
 import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
 import { TEXT_REGULAR } from '../../styles/fonts';
+import { OnboardingContext } from '../../navigation/OnboardingContainer';
 
-export default function EnterEmailForm({ route, navigation }) {
+export default function EnterEmailForm({ navigation }) {
   const [errorMsg, setErrorMsg] = useState(null);
-  const [email, setEmail] = useState(null);
+  const [localEmail, setLocalEmail] = useState(null);
+  const [displayEmail, setDisplayEmail] = useState(true);
   const [displayError, setDisplayError] = useState(false);
   const [text, setText] = useState(null);
-  const previousNumber = route.params.previousNumber;
   const theme = useTheme();
+  const { email } = useContext(OnboardingContext);
+
+  //masking function
+  const _setEmail = (email) => {
+    let test = email;
+    let int = 0;
+    test = test.split('').map((x) => {
+      int++;
+      if (int == 1 || int == 2) {
+        return x;
+      } else {
+        if (x == '@') {
+          int = 1;
+          return x;
+        }
+        if (x == '.') {
+          return x;
+        }
+        x = '*';
+        return x;
+      }
+    });
+    setLocalEmail(test.toString().replace(/[,]/g, ''));
+  };
 
   useEffect(() => {
-    let teststring = '';
-    let trig = false;
-    async function fetchEmail() {
-      await API.post('twilioapi', '/get/user', {
-        body: { phoneNumber: previousNumber },
-      }) //p
-        .then((res) =>
-          res.isTaken ? setEmail(res.data.email) : console.log('hello'),
-        ) // this value will be boolean
-        .catch((err) => console.log('/get/user err: ', err));
-    }
-    fetchEmail();
-  }, [previousNumber]); // Only re-run the effect if count changes
+    _setEmail(email);
+  }, [email]); // Only re-run the effect if count changes
 
   const onTextInput = (textValue) => {
     setDisplayError(false);
     setText(textValue);
     if (!string().email().required().isValidSync(textValue)) {
       setErrorMsg('Please enter a valid email address');
+    }
+    if (email != textValue) {
+      setErrorMsg('Please enter your previous email');
     } else {
       setErrorMsg('');
     }
     return;
   };
 
-  const _onPress = async () => {
-    console.log(previousNumber);
+  const _onPress = () => {
     setDisplayError(true);
-    if (text) {
-      if (errorMsg) {
-        return;
-      }
+    if (errorMsg) {
+      return;
+    } else {
       navigation.navigate('VerificationLink');
     }
     return;
-    /*await API.post('twilioapi', '/get/user', {
-      body: { phoneNumber: '111-111-1111' },
-    }) //p
-      .then((res) => {
-        console.log('/get/user: ', res.isTaken);
-        console.log('/get/user: ', res.data); // will contain all user
-      }) // this value will be boolean
-      .catch((err) => console.log('/get/user err: ', err));*/
   };
 
   return (
@@ -96,17 +103,18 @@ export default function EnterEmailForm({ route, navigation }) {
             labelTextStyle={{ fontFamily: TEXT_REGULAR }}
             titleTextStyle={{ fontFamily: TEXT_REGULAR }}
             affixTextStyle={{ fontFamily: TEXT_REGULAR }}
-            placeholder={email}
+            placeholder={displayEmail ? localEmail : ''}
             autoCapitalize="none"
             selectionColor={PRIMARY_COLOR}
             autoCompleteType="off"
             keyboardType="email-address"
             textContentType="none"
             autoCorrect={false}
-            autoFocus={true}
             onChangeText={onTextInput}
             clearButtonMode="while-editing"
             blurOnSubmit={true}
+            onFocus={() => setDisplayEmail(false)}
+            onBlur={() => setDisplayEmail(true)}
           />
         </View>
       </View>

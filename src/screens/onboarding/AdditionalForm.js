@@ -28,6 +28,7 @@ export default function AdditionalForm({ navigation }) {
   const [emailErrorMsg, setEmailErrorMsg] = useState('');
   const [usernameText, setUsernameText] = useState('');
   const [usernameErrorMsg, setUsernameErrorMsg] = useState('');
+  const [isLoading, setIsLoading] = useState('');
 
   const scrollRef = useRef();
 
@@ -74,6 +75,7 @@ export default function AdditionalForm({ navigation }) {
       setEmailErrorMsg('Please enter a valid email address');
       return;
     }
+    setIsLoading(true);
     await API.post('twilioapi', '/email/check', {
       body: { email: emailText },
     })
@@ -85,6 +87,7 @@ export default function AdditionalForm({ navigation }) {
           : _showNext(),
       )
       .catch((err) => console.log('/test/sms err: ', err));
+    setIsLoading(false);
   };
 
   const _onPressUsername = async () => {
@@ -117,6 +120,7 @@ export default function AdditionalForm({ navigation }) {
       setUsernameErrorMsg("You can't have more than one period in a row.");
       return;
     }
+    setIsLoading(true);
     await API.post('twilioapi', '/username/check', {
       body: { username: usernameText },
     })
@@ -127,6 +131,7 @@ export default function AdditionalForm({ navigation }) {
           : _continue(),
       )
       .catch((err) => console.log('/test/sms err: ', err));
+    setIsLoading(false);
   };
 
   return (
@@ -166,6 +171,7 @@ export default function AdditionalForm({ navigation }) {
             emailErrorMsg={emailErrorMsg}
             setEmailErrorMsg={setEmailErrorMsg}
             _onSubmitEditing={_onPressEmail}
+            isLoading={isLoading}
           />
           <UsernameForm
             screenHeight={viewHeight}
@@ -177,6 +183,7 @@ export default function AdditionalForm({ navigation }) {
             usernameErrorMsg={usernameErrorMsg}
             setUsernameErrorMsg={setUsernameErrorMsg}
             _onSubmitEditing={_onPressUsername}
+            isLoading={isLoading}
           />
         </ScrollView>
       </View>
@@ -222,4 +229,3 @@ export default function AdditionalForm({ navigation }) {
     </View>
   );
 }
-//emailVerified ? _showNext : _displayError

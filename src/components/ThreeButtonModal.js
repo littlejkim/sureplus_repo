@@ -25,7 +25,7 @@ export const ThreeButtonModal = (props) => {
         <View>
           <TouchableOpacity
             style={styles.topButton}
-            onPress={props.continue}
+            onPress={props.resend}
             activeOpacity={0.7}>
             <Text style={[styles.text, { color: theme.colors.title }]}>
               {props.contents.topText}
@@ -33,7 +33,7 @@ export const ThreeButtonModal = (props) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.bottomButton}
-            onPress={props.continue}
+            onPress={props.back}
             activeOpacity={0.7}>
             <Text style={[styles.text, { color: theme.colors.title }]}>
               {props.contents.bottomText}
@@ -49,7 +49,7 @@ export const ThreeButtonModal = (props) => {
           ]}>
           <TouchableOpacity
             style={styles.cancelButton}
-            onPress={props.hide}
+            onPress={props.cancel}
             activeOpacity={0.7}>
             <Text style={styles.cancelButtonText}>
               {props.contents.subButton}

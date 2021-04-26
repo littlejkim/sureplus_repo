@@ -59,6 +59,7 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
   bodyText: {
+    color: 'white',
     textAlign: 'center',
     fontFamily: TEXT_REGULAR,
     fontSize: 17,

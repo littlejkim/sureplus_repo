@@ -38,6 +38,8 @@ export const OnboardingContainer = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [_case, _setCase] = useState(''); //determine which case we are on
+  const [oldUser, setOldUser] = useState(''); //see if user pressed "I already have an account"
   const value = {
     phone,
     setPhone,
@@ -53,6 +55,10 @@ export const OnboardingContainer = () => {
     setUsername,
     password,
     setPassword,
+    _case,
+    _setCase,
+    oldUser,
+    setOldUser,
   };
 
   // retrieve remote config values for signup variation

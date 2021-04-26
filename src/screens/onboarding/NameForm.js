@@ -58,7 +58,7 @@ export default function NameForm({ navigation }) {
   const _continue = () => {
     setFirstname(localFirst);
     setLastname(localLast);
-    navigation.navigate('LinkBank');
+    navigation.navigate('AdditionalForm');
   };
 
   return (

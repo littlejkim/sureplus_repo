@@ -1,6 +1,6 @@
 // public imports
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
 import { API } from 'aws-amplify';
@@ -19,6 +19,7 @@ export default function UsernameForm({
   usernameErrorMsg,
   setUsernameErrorMsg,
   _onSubmitEditing,
+  isLoading,
 }) {
   const textinputRef = useRef();
   const theme = useTheme();
@@ -62,12 +63,24 @@ export default function UsernameForm({
           maxLength={35}
           autoCorrect={false}
           autoFocus={false}
-          clearButtonMode="while-editing"
+          clearButtonMode={isLoading ? null : 'while-editing'}
           enablesReturnKeyAutomatically={true}
           blurOnSubmit={true}
           returnKeyType="done"
           onChangeText={_onTextchange}
           _onSubmitEditing={() => _onSubmitEditing()}
+          renderRightAccessory={() =>
+            isLoading ? (
+              <View style={{ width: 38, height: 27 }}>
+                <ActivityIndicator
+                  size="small"
+                  color="#ACB5BE"
+                  justifyContent="center"
+                  alignItems="center"
+                />
+              </View>
+            ) : null
+          }
         />
       </View>
     </View>

@@ -11,27 +11,18 @@ import { PRIMARY_COLOR } from '../../styles/constants';
 import { TEXT_REGULAR } from '../../styles/fonts';
 
 export default function ReturningUserForm({ navigation }) {
-  const { phone, setPhone } = useContext(OnboardingContext);
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [username, setUsername] = useState('');
-
+  const { firstname, lastname, username, _case } = useContext(
+    OnboardingContext,
+  );
   const theme = useTheme();
-
-  useEffect(() => {
-    API.post('twilioapi', '/get/user', {
-      body: { phoneNumber: phone },
-    }) //p
-      .then((res) =>
-        res.isTaken
-          ? (setFirstname(res.data.firstName),
-            setLastname(res.data.lastName),
-            setUsername(res.data.userName))
-          : console.log('hello'),
-      ) // this value will be boolean
-      .catch((err) => console.log('/get/user err: ', err));
-  }, [phone]); // Only re-run the effect if count changes
-
+  const pressContinue = () => {
+    if (_case === 2) {
+      navigation.navigate('PreviousNumber');
+    }
+    if (_case === 3) {
+      navigation.navigate('EnterEmail');
+    }
+  };
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}
@@ -98,9 +89,7 @@ export default function ReturningUserForm({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.mainButton}
-          onPress={() =>
-            navigation.navigate('EnterEmail', { previousNumber: phone })
-          }
+          onPress={() => pressContinue()}
           activeOpacity={0.7}>
           <Text style={styles.mainButtonText}>Continue as {firstname}</Text>
         </TouchableOpacity>

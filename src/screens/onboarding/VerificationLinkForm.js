@@ -22,14 +22,18 @@ export default function EnterEmailForm({ navigation }) {
     bottomText: 'Edit email address',
     subButton: 'Cancel',
   };
-  const hide = () => {
+  const cancel = () => {
     setVisible(false);
+  };
+  const resend = () => {
+    setVisible(false);
+    console.log('resend link');
+  };
+  const back = () => {
+    setVisible(false);
+    navigation.navigate('EnterEmail');
   };
 
-  const _continue = () => {
-    setVisible(false);
-    navigation.navigate('NameForm');
-  };
   const theme = useTheme();
 
   const _onPress = () => {
@@ -71,8 +75,9 @@ export default function EnterEmailForm({ navigation }) {
       <ThreeButtonModal
         visible={visible}
         contents={contents}
-        continue={_continue}
-        hide={hide}
+        resend={resend}
+        back={back}
+        cancel={cancel}
       />
     </KeyboardAvoidingView>
   );
