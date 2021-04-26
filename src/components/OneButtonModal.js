@@ -1,6 +1,6 @@
 // public imports
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTheme } from '@react-navigation/native';
 
@@ -14,6 +14,38 @@ params: title, body, mainButton
 export const OneButtonModal = (props) => {
   const theme = useTheme();
 
+  const _renderButton = () => {
+    return (
+      <TouchableOpacity
+        style={styles.button}
+        onPress={props.hide}
+        activeOpacity={0.7}>
+        <Text style={styles.buttonText}>{props.contents.mainButton}</Text>
+      </TouchableOpacity>
+    );
+  };
+  const _renderContent = () => {
+    return (
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: theme.colors.background },
+        ]}>
+        <View style={styles.bodyContainer}>
+          <Text>
+            <Text style={[styles.title, { color: theme.colors.title }]}>
+              {props.contents.title}
+            </Text>
+            <Text style={[styles.bodyText, { color: theme.colors.title }]}>
+              {props.contents.body}
+            </Text>
+          </Text>
+        </View>
+        {_renderButton()}
+      </View>
+    );
+  };
+
   return (
     <Modal
       isVisible={props.visible}
@@ -21,26 +53,7 @@ export const OneButtonModal = (props) => {
       animationInTiming={250}
       animationOut="fadeOut"
       animationOutTiming={250}>
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: theme.colors.background },
-        ]}>
-        <View style={styles.bodyContainer}>
-          <Text style={[styles.title, { color: theme.colors.title }]}>
-            {props.contents.title}
-          </Text>
-          <Text style={[styles.bodyText, { color: theme.colors.title }]}>
-            {props.contents.body}
-          </Text>
-        </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={props.hide}
-          activeOpacity={0.7}>
-          <Text style={styles.buttonText}>{props.contents.mainButton}</Text>
-        </TouchableOpacity>
-      </View>
+      {_renderContent()}
     </Modal>
   );
 };
@@ -48,7 +61,6 @@ export const OneButtonModal = (props) => {
 export const styles = StyleSheet.create({
   container: {
     borderRadius: 14,
-    justifyContent: 'space-between',
   },
   title: {
     paddingBottom: 5,

@@ -98,6 +98,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopColor: '#ededed',
     borderTopWidth: 0.25,
+    backgroundColor: 'black',
   },
   buttonText: {
     fontFamily: TEXT_REGULAR,
