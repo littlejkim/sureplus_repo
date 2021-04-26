@@ -31,7 +31,7 @@ export default function PhoneForm({ navigation }) {
   };
 
   // set and get phone number
-  const { phone, setPhone } = useContext(OnboardingContext);
+  const { phone, setPhone, setOnboardingCase } = useContext(OnboardingContext);
   const [isLoading, setIsLoading] = useState(false);
 
   // hashing device id
@@ -45,11 +45,11 @@ export default function PhoneForm({ navigation }) {
     // bypass SMS auth if virtual device (emulator)
     DeviceInfo.isEmulator().then((isEmulator) => {
       isEmulator ? navigation.navigate('NewUser') : _sendText();
-      // case 1: navigation.navigate('NewUser')
-      // case 2: navigation.navigate('ExistingUser')
-      // case 3: navigation.navigate('DifferentPhoneNumber')
-      // case 4: navigation.navigate('DifferentDeviceId')
-      // case 5: navigation.navigate('AccountRecovery')
+      // case 1: navigation.navigate('NewUser') > setOnboardingCase(1)
+      // case 2: navigation.navigate('ExistingUser') > setOnboardingCase(2)
+      // case 3: navigation.navigate('DifferentPhoneNumber') > setOnboardingCase(3)
+      // case 4: navigation.navigate('DifferentDeviceId') > setOnboardingCase(4)
+      // case 5: navigation.navigate('AccountRecovery') > setOnboardingCase(5)
     });
   };
 
