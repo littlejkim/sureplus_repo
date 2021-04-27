@@ -19,7 +19,9 @@ import { TEXT_REGULAR } from '../../styles/fonts';
 
 export default function NameForm({ navigation }) {
   const theme = useTheme();
-  const { setFirstname, setLastname } = useContext(OnboardingContext);
+  const { setFirstname, setLastname, _case, firstname, lastname } = useContext(
+    OnboardingContext,
+  );
   const [localFirst, setLocalFirst] = useState(null);
   const [localLast, setLocalLast] = useState(null);
   const [firstNameError, setFirstNameError] = useState();
@@ -34,9 +36,11 @@ export default function NameForm({ navigation }) {
   };
 
   const _validateFirstName = () => {
-    _schemaValidation(localFirst)
-      ? (lastNameRef.current.focus(), setFirstNameError(null))
-      : setFirstNameError('Cannot contain special characters');
+    if (_case === 0) {
+      _schemaValidation(localFirst)
+        ? (lastNameRef.current.focus(), setFirstNameError(null))
+        : setFirstNameError('Cannot contain special characters');
+    }
   };
 
   const _validateLastName = () => {

@@ -38,7 +38,7 @@ export const OnboardingContainer = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [_case, _setCase] = useState(''); //determine which case we are on
+  const [onboardingCase, setOnboardingCase] = useState(0);
   const [oldUser, setOldUser] = useState(''); //see if user pressed "I already have an account"
   const value = {
     phone,
@@ -55,8 +55,8 @@ export const OnboardingContainer = () => {
     setUsername,
     password,
     setPassword,
-    _case,
-    _setCase,
+    onboardingCase,
+    setOnboardingCase,
     oldUser,
     setOldUser,
   };
@@ -87,6 +87,7 @@ export const OnboardingContainer = () => {
           }}
         />
         <OnboardingStack.Screen name="Phone" component={PhoneForm} />
+        <OnboardingStack.Screen name="Name" component={NameForm} />
         <OnboardingStack.Screen
           name="NewUser"
           component={NewUserFlow}
@@ -136,7 +137,6 @@ function NewUserFlow() {
         headerBackTitleVisible: false,
         headerTransparent: true,
       }}>
-      <NewUserStack.Screen name="Name" component={NameForm} />
       <NewUserStack.Screen name="LinkBank" component={LinkBankForm} />
       <NewUserStack.Screen
         name="LinkBankComplete"

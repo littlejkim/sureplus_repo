@@ -57,20 +57,22 @@ export default function PhoneForm({ navigation }) {
 
     DeviceInfo.isEmulator().then(async (isEmulator) => {
       _setCase(0);
-      /*setPhone('111-111-1111');
-      await API.post('twilioapi', '/get/user', {
-        body: { phoneNumber: phone },
-      }) //p
-        .then((res) =>
-          res.isTaken
-            ? (setFirstname(res.data.firstName),
-              setLastname(res.data.lastName),
-              setUsername(res.data.userName),
-              setEmail(res.data.email),
-              setUsername(res.data.userName),)
-            : console.log('hello'),
-        ) // this value will be boolean
-        .catch((err) => console.log('/get/user err: ', err));*/
+      if (_case != 0) {
+        setPhone('111-111-1111');
+        await API.post('twilioapi', '/get/user', {
+          body: { phoneNumber: phone },
+        }) //p
+          .then((res) =>
+            res.isTaken
+              ? (setFirstname(res.data.firstName),
+                setLastname(res.data.lastName),
+                setUsername(res.data.userName),
+                setEmail(res.data.email),
+                setUsername(res.data.userName))
+              : console.log('hello'),
+          ) // this value will be boolean
+          .catch((err) => console.log('/get/user err: ', err));
+      }
       isEmulator ? navigation.navigate('NewUser') : _sendText();
       // case 1: navigation.navigate('NewUser')
       // case 2: navigation.navigate('ExistingUser')
