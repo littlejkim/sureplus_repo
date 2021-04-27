@@ -61,6 +61,7 @@
     "react-native-svg-transformer": "^0.14.3",
     "react-native-tab-view": "^3.0.1",
     "react-native-touch-id": "^4.4.1",
+    "react-native-webview": "^11.4.2",
     "rn-material-ui-textfield": "^1.0.3",
     "yup": "^0.32.9"
   },

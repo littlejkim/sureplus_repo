@@ -30,7 +30,7 @@ const AccountRecoveryStack = createStackNavigator(); // case 5 : existing user (
 export const OnboardingContext = createContext();
 
 export const OnboardingContainer = () => {
-  //  context values (phone, name, email, password)
+  const [onboardingCase, setOnboardingCase] = useState(0);
   const [phone, setPhone] = useState('');
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -38,9 +38,10 @@ export const OnboardingContainer = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [onboardingCase, setOnboardingCase] = useState(0);
   const [oldUser, setOldUser] = useState(''); //see if user pressed "I already have an account"
   const value = {
+    onboardingCase,
+    setOnboardingCase,
     phone,
     setPhone,
     firstname,
@@ -55,8 +56,6 @@ export const OnboardingContainer = () => {
     setUsername,
     password,
     setPassword,
-    onboardingCase,
-    setOnboardingCase,
     oldUser,
     setOldUser,
   };

@@ -41,7 +41,8 @@ export default function PhoneForm({ navigation }) {
     setEmail,
     setUsername,
     setPassword,
-    _setCase,
+    onboardingCase,
+    setOnboardingCase,
   } = useContext(OnboardingContext);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,8 +57,8 @@ export default function PhoneForm({ navigation }) {
     // bypass SMS auth if virtual device (emulator)
 
     DeviceInfo.isEmulator().then(async (isEmulator) => {
-      _setCase(0);
-      if (_case != 0) {
+      setOnboardingCase(0);
+      if (onboardingCase != 0) {
         setPhone('111-111-1111');
         await API.post('twilioapi', '/get/user', {
           body: { phoneNumber: phone },

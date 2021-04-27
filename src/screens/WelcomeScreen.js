@@ -28,7 +28,6 @@ export default function WelcomeScreen({ navigation }) {
         </View>
         <HomeCarousel />
       </View>
-
       <View style={styles.footer}>
         <Pressable
           style={{
