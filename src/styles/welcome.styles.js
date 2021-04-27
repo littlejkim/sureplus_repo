@@ -7,7 +7,7 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    paddingHorizontal: 24,
+    paddingHorizontal: 24 * 1.1,
     marginTop: 106,
   },
   footer: {
@@ -36,6 +36,14 @@ export default StyleSheet.create({
     fontWeight: '400',
     lineHeight: 19,
     letterSpacing: 0.0012,
+  },
+  dateContainer: {
+    borderWidth: 2,
+    width: 48,
+    height: 58,
+    borderColor: '#EFEFF4',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   inputContainer: {
     marginTop: 40,

@@ -11,15 +11,14 @@ import { PRIMARY_COLOR } from '../../styles/constants';
 import { TEXT_REGULAR } from '../../styles/fonts';
 
 export default function ReturningUserForm({ navigation }) {
-  const { firstname, lastname, username, _case } = useContext(
+  const { firstname, lastname, username, onboardingCase } = useContext(
     OnboardingContext,
   );
   const theme = useTheme();
   const pressContinue = () => {
-    if (_case === 2) {
+    if (onboardingCase === 2) {
       navigation.navigate('PreviousNumber');
-    }
-    if (_case === 3) {
+    } else {
       navigation.navigate('EnterEmail');
     }
   };

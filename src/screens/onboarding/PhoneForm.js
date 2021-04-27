@@ -74,7 +74,7 @@ export default function PhoneForm({ navigation }) {
           ) // this value will be boolean
           .catch((err) => console.log('/get/user err: ', err));
       }
-      isEmulator ? navigation.navigate('NewUser') : _sendText();
+      isEmulator ? navigation.navigate('Name') : _sendText();
       // case 1: navigation.navigate('NewUser')
       // case 2: navigation.navigate('ExistingUser')
       // case 3: navigation.navigate('DifferentPhoneNumber')

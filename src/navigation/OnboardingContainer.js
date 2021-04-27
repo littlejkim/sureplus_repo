@@ -17,6 +17,7 @@ import {
   VerificationLinkForm,
   PreviousNumberForm,
   ReturningUserForm,
+  DateofBirthForm,
 } from '../screens/onboarding';
 
 const OnboardingStack = createStackNavigator();
@@ -77,6 +78,7 @@ export const OnboardingContainer = () => {
           headerTitle: '',
           headerBackTitleVisible: false,
           headerTransparent: true,
+          headerLeftContainerStyle: { marginLeft: 8 },
         }}>
         <OnboardingStack.Screen
           name="Welcome"
@@ -86,7 +88,17 @@ export const OnboardingContainer = () => {
           }}
         />
         <OnboardingStack.Screen name="Phone" component={PhoneForm} />
-        <OnboardingStack.Screen name="Name" component={NameForm} />
+        <OnboardingStack.Screen
+          name="Name"
+          component={NameForm}
+          options={() => ({
+            headerLeft: () => null,
+          })}
+        />
+        <OnboardingStack.Screen
+          name="DateofBirth"
+          component={DateofBirthForm}
+        />
         <OnboardingStack.Screen
           name="NewUser"
           component={NewUserFlow}

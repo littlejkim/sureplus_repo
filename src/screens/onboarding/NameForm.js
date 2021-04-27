@@ -16,6 +16,7 @@ import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import { string } from 'yup';
 import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
 import { TEXT_REGULAR } from '../../styles/fonts';
+import { constant } from 'lodash-es';
 
 export default function NameForm({ navigation }) {
   const theme = useTheme();
@@ -72,9 +73,9 @@ export default function NameForm({ navigation }) {
     if (onboardingCase === 0) {
       setFirstname(localFirst);
       setLastname(localLast);
-    } else {
+      navigation.navigate('DateofBirth');
     }
-    navigation.navigate('AdditionalForm');
+    if (onboardingCase === 1) navigation.navigate('ReturningUser');
   };
 
   return (
