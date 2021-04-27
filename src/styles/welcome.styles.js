@@ -80,7 +80,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 24,
+    marginBottom: 8,
     borderRadius: 30,
   },
   subButtonGrey: {
@@ -94,6 +94,7 @@ export default StyleSheet.create({
     fontSize: 17,
     fontWeight: '600',
     lineHeight: 22,
+    marginVertical: 17,
     fontFamily: TEXT_REGULAR,
   },
   subButtonTextGrey: {

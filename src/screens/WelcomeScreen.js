@@ -5,7 +5,6 @@ import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../styles/welcome.styles';
-import { TEXT_REGULAR } from '../styles/fonts';
 
 import { HomeCarousel } from '../components/HomeCarousel';
 import { OnboardingContext } from '../navigation/OnboardingContainer';
@@ -30,27 +29,15 @@ export default function WelcomeScreen({ navigation }) {
       </View>
       <View style={styles.footer}>
         <Pressable
-          style={{
-            backgroundColor: oldUser ? '#F7F7F7' : 'white',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: 8,
-            borderRadius: 30,
-          }}
+          style={[
+            styles.subButton,
+            { backgroundColor: oldUser ? '#F7F7F7' : 'white' },
+          ]}
           onPressIn={() => setOldUser(true)}
           onPressOut={() => setOldUser(false)}
           onPress={() => navigation.navigate('Phone')}
           TouchableOpacity={1.0}>
-          <Text
-            style={{
-              color: theme.colors.primary,
-              fontSize: 17,
-              fontWeight: '600',
-              lineHeight: 22,
-              marginVertical: 17,
-              fontFamily: TEXT_REGULAR,
-            }}>
+          <Text style={[styles.subButtonText, { color: theme.colors.primary }]}>
             I already have an account
           </Text>
         </Pressable>
