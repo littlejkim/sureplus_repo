@@ -1,6 +1,6 @@
 // public imports
 import React, { useEffect, useContext } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Pressable } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
@@ -30,7 +30,7 @@ export default function WelcomeScreen({ navigation }) {
       </View>
 
       <View style={styles.footer}>
-        <TouchableOpacity
+        <Pressable
           style={{
             backgroundColor: oldUser ? '#F7F7F7' : 'white',
             flexDirection: 'row',
@@ -39,8 +39,10 @@ export default function WelcomeScreen({ navigation }) {
             marginBottom: 8,
             borderRadius: 30,
           }}
-          onPress={() => (setOldUser(true), navigation.navigate('Phone'))}
-          activeOpacity={0.5}>
+          onPressIn={() => setOldUser(true)}
+          onPressOut={() => setOldUser(false)}
+          onPress={() => navigation.navigate('Phone')}
+          TouchableOpacity={1.0}>
           <Text
             style={{
               color: theme.colors.primary,
@@ -52,7 +54,7 @@ export default function WelcomeScreen({ navigation }) {
             }}>
             I already have an account
           </Text>
-        </TouchableOpacity>
+        </Pressable>
         <TouchableOpacity
           style={styles.mainButton}
           onPress={() => (setOldUser(false), navigation.navigate('Phone'))}

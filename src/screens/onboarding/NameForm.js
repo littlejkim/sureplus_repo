@@ -19,9 +19,14 @@ import { TEXT_REGULAR } from '../../styles/fonts';
 
 export default function NameForm({ navigation }) {
   const theme = useTheme();
-  const { setFirstname, setLastname, _case, firstname, lastname } = useContext(
-    OnboardingContext,
-  );
+  const {
+    setFirstname,
+    setLastname,
+    onboardingCase,
+    setOnboardingCase,
+    firstname,
+    lastname,
+  } = useContext(OnboardingContext);
   const [localFirst, setLocalFirst] = useState(null);
   const [localLast, setLocalLast] = useState(null);
   const [firstNameError, setFirstNameError] = useState();
@@ -36,14 +41,18 @@ export default function NameForm({ navigation }) {
   };
 
   const _validateFirstName = () => {
-    if (_case === 0) {
-      _schemaValidation(localFirst)
-        ? (lastNameRef.current.focus(), setFirstNameError(null))
-        : setFirstNameError('Cannot contain special characters');
+    if (onboardingCase != 0 && localFirst != firstname) {
+      setOnboardingCase(0);
     }
+    _schemaValidation(localFirst)
+      ? (lastNameRef.current.focus(), setFirstNameError(null))
+      : setFirstNameError('Cannot contain special characters');
   };
 
   const _validateLastName = () => {
+    if (onboardingCase != 0 && localLast != lastname) {
+      setOnboardingCase(0);
+    }
     _schemaValidation(localLast)
       ? (_continue(), setLastNameError(null))
       : setLastNameError('Cannot contain special characters');
@@ -60,8 +69,11 @@ export default function NameForm({ navigation }) {
   };
 
   const _continue = () => {
-    setFirstname(localFirst);
-    setLastname(localLast);
+    if (onboardingCase === 0) {
+      setFirstname(localFirst);
+      setLastname(localLast);
+    } else {
+    }
     navigation.navigate('AdditionalForm');
   };
 
