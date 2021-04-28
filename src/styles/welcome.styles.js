@@ -11,7 +11,7 @@ export default StyleSheet.create({
     marginTop: 106,
   },
   footer: {
-    marginBottom: Platform.OS === 'ios' ? 51 : 31,
+    marginBottom: Platform.OS === 'ios' ? 50 : 30,
     paddingHorizontal: 20,
   },
   titleText: {

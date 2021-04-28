@@ -1,11 +1,10 @@
 // public imports
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Pressable } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../styles/welcome.styles';
-
 import { HomeCarousel } from '../components/HomeCarousel';
 import { OnboardingContext } from '../navigation/OnboardingContainer';
 
@@ -35,7 +34,7 @@ export default function WelcomeScreen({ navigation }) {
           ]}
           onPressIn={() => setOldUser(true)}
           onPressOut={() => setOldUser(false)}
-          onPress={() => navigation.navigate('Phone')}
+          onPress={() => setModal(true)}
           TouchableOpacity={1.0}>
           <Text style={[styles.subButtonText, { color: theme.colors.primary }]}>
             I already have an account
