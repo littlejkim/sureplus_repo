@@ -34,7 +34,7 @@ export default function WelcomeScreen({ navigation }) {
           ]}
           onPressIn={() => setOldUser(true)}
           onPressOut={() => setOldUser(false)}
-          onPress={() => setModal(true)}
+          onPress={() => navigation.navigate('Phone')}
           TouchableOpacity={1.0}>
           <Text style={[styles.subButtonText, { color: theme.colors.primary }]}>
             I already have an account
