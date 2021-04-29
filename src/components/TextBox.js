@@ -1,6 +1,6 @@
 // public imports
-import React, { useRef, useState, forwardRef } from 'react';
-import { View, TextInput, StyleSheet, Image } from 'react-native';
+import React, { forwardRef } from 'react';
+import { View, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // custom imports
@@ -11,7 +11,6 @@ import { PRIMARY_COLOR } from '../styles/constants';
 export const TextBox = forwardRef(
   ({ changeDate, index, _maxLength, _placeholder }, boxRef) => {
     const theme = useTheme();
-    const [boxDate, setBoxDate] = useState(false);
     return (
       <View style={styles.dateContainer}>
         <TextInput
@@ -30,7 +29,6 @@ export const TextBox = forwardRef(
           lineheight={32}
           onChangeText={(date) => {
             changeDate(index, date);
-            setBoxDate(date);
             date.length === _maxLength
               ? boxRef.current[index + 2].focus()
               : console.log('false');

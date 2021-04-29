@@ -7,19 +7,13 @@ import {
   Platform,
   KeyboardAvoidingView,
   TextInput,
-  StyleSheet,
-  Image,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { TextField } from 'rn-material-ui-textfield';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
-import { string } from 'yup';
-import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
-import { TEXT_REGULAR } from '../../styles/fonts';
-import { constant, property } from 'lodash-es';
+import { PRIMARY_COLOR } from '../../styles/constants';
 import { TextBox } from '../../components/TextBox';
 
 export default function DateofBirthForm({ navigation }) {
@@ -31,12 +25,10 @@ export default function DateofBirthForm({ navigation }) {
   // Shame on me to write code like this, but I didn't know any other way to do this right.
   // Maybe I'll improve on this later - Marsh
   const [month, date, year] = new Date().toLocaleDateString('en-US').split('/');
-  const localDate = [0, 0, 0];
   const boxRef = useRef([]);
 
   const isValidDate = (text) => {
     let dateString = `${_month}/${_day}/${text}`;
-    console.log(dateString);
     setValid(false);
     if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) return false;
 
@@ -62,47 +54,6 @@ export default function DateofBirthForm({ navigation }) {
     //need process to check for duplicate emails
   };
 
-  const _continue = () => {
-    if (onboardingCase === 0) {
-      setFirstname(localFirst);
-      setLastname(localLast);
-      navigation.navigate('NewUser');
-    }
-    if (onboardingCase === 1) navigation.navigate('AdditionalForm');
-  };
-
-  const getMonth = (month) => {
-    switch (month) {
-      case '0':
-        return 'January';
-      case '1':
-        return 'February';
-      case '3':
-        return 'March';
-      case '4':
-        return 'April';
-      case '5':
-        return 'May';
-      case '6':
-        return 'June';
-      case '7':
-        return 'July';
-      case '8':
-        return 'August';
-      case '9':
-        return 'September';
-      case '10':
-        return 'October';
-      case '11':
-        return 'November';
-      case '12':
-        return 'December';
-      default:
-        console.log('Error');
-    }
-    return;
-  };
-
   const digitExtend = (month) => {
     if (month.toString().length == 1) {
       return '0' + month.toString();
@@ -111,7 +62,7 @@ export default function DateofBirthForm({ navigation }) {
   };
 
   const _onPress = () => {
-    /*if (onboardingCase === 0) {
+    if (onboardingCase === 0) {
       //set birthday for onboardingcontext
       navigation.navigate('LinkBank');
     } else {
@@ -126,7 +77,7 @@ export default function DateofBirthForm({ navigation }) {
       } else {
         navigation.navigate('ReturningUser');
       }
-    }*/
+    }
   };
 
   const changeDate = (index, date) => {
