@@ -133,6 +133,7 @@ export default function DateofBirthForm({ navigation }) {
                   _maxLength={2}
                   _placeholder="MM"
                   ref={boxRef}
+                  setValid={setValid}
                 />
               </View>
             </View>
@@ -151,6 +152,7 @@ export default function DateofBirthForm({ navigation }) {
                   _maxLength={2}
                   _placeholder="DD"
                   ref={boxRef}
+                  setValid={setValid}
                 />
               </View>
             </View>
@@ -177,6 +179,7 @@ export default function DateofBirthForm({ navigation }) {
                     _maxLength={4}
                     clearTextOnFocus={true}
                     onChangeText={(text) => {
+                      setValid(false);
                       text.length === 4
                         ? (boxRef.current[3].blur(), isValidDate(text))
                         : console.log('false');

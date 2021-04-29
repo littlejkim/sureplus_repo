@@ -9,7 +9,7 @@ import { PRIMARY_COLOR } from '../styles/constants';
 
 // bottom modal (need to customize)
 export const TextBox = forwardRef(
-  ({ changeDate, index, _maxLength, _placeholder }, boxRef) => {
+  ({ changeDate, index, _maxLength, _placeholder, setValid }, boxRef) => {
     const theme = useTheme();
     return (
       <View style={styles.dateContainer}>
@@ -29,6 +29,7 @@ export const TextBox = forwardRef(
           lineheight={32}
           onChangeText={(date) => {
             changeDate(index, date);
+            setValid(false);
             date.length === _maxLength
               ? boxRef.current[index + 2].focus()
               : console.log('false');
