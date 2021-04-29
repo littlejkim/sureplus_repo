@@ -13,19 +13,34 @@ params: title, body, mainButton, subButton
 */
 export const TwoButtonModal = (props) => {
   const theme = useTheme();
-  return (
-    <Modal
-      isVisible={props.visible}
-      animationIn="fadeIn"
-      animationInTiming={250}
-      animationOut="fadeOut"
-      animationOutTiming={250}>
+
+  const _renderButton = () => {
+    return (
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.mainButton}
+          onPress={props.mainButtonAction}
+          activeOpacity={0.7}>
+          <Text style={styles.mainButtonText}>{props.contents.mainButton}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.subButton}
+          onPress={props.subButtonAction}
+          activeOpacity={0.7}>
+          <Text style={styles.subButtonText}>{props.contents.subButton}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const _renderContent = () => {
+    return (
       <View
         style={[
           styles.container,
           { backgroundColor: theme.colors.background },
         ]}>
-        <View style={styles.bodyContainer}>
+        <View style={styles.content}>
           <Text style={[styles.title, { color: theme.colors.title }]}>
             {props.contents.title}
           </Text>
@@ -33,27 +48,19 @@ export const TwoButtonModal = (props) => {
             {props.contents.body}
           </Text>
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.mainButton}
-            onPress={props.continue}
-            activeOpacity={0.7}>
-            <Text
-              style={[
-                styles.buttonText,
-                { fontWeight: '600', color: PRIMARY_COLOR },
-              ]}>
-              {props.contents.mainButton}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.subButton}
-            onPress={props.hide}
-            activeOpacity={0.7}>
-            <Text style={styles.buttonText}>{props.contents.subButton}</Text>
-          </TouchableOpacity>
-        </View>
+        {_renderButton()}
       </View>
+    );
+  };
+  return (
+    <Modal
+      style={{ marginBottom: 0 }}
+      isVisible={props.visible}
+      animationIn="fadeIn"
+      animationInTiming={300}
+      animationOut="fadeOut"
+      animationOutTiming={300}>
+      {_renderContent()}
     </Modal>
   );
 };
@@ -61,7 +68,10 @@ export const TwoButtonModal = (props) => {
 export const styles = StyleSheet.create({
   container: {
     borderRadius: 14,
-    justifyContent: 'space-between',
+  },
+  content: {
+    paddingHorizontal: 32,
+    paddingVertical: 25,
   },
   title: {
     paddingBottom: 5,
@@ -72,38 +82,39 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
   bodyText: {
+    color: 'white',
     textAlign: 'center',
     fontFamily: TEXT_REGULAR,
     fontSize: 17,
     fontWeight: '400',
     lineHeight: 23,
   },
-  bodyContainer: {
-    paddingHorizontal: 32,
-    paddingVertical: 25,
-  },
-  buttonContainer: {
-    flexDirection: 'column',
-  },
   mainButton: {
-    height: 60,
+    height: 58,
+    borderBottomLeftRadius: 14,
+    borderBottomRightRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopColor: '#ededed',
-    borderTopWidth: 0.25,
+    borderTopWidth: 1,
+  },
+  mainButtonText: {
+    color: PRIMARY_COLOR,
+    fontFamily: TEXT_REGULAR,
+    fontWeight: '600',
+    lineHeight: 22,
+    fontSize: 17,
   },
   subButton: {
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopColor: '#ededed',
-    borderTopWidth: 0.25,
-    backgroundColor: 'black',
+    borderTopWidth: 0.3,
   },
-  buttonText: {
+  subButtonText: {
     fontFamily: TEXT_REGULAR,
     fontWeight: '400',
-    color: 'black',
     lineHeight: 22,
     fontSize: 17,
   },

@@ -11,7 +11,7 @@ export default StyleSheet.create({
     marginTop: 106,
   },
   footer: {
-    marginBottom: Platform.OS === 'ios' ? 51 : 31,
+    marginBottom: Platform.OS === 'ios' ? 50 : 30,
     paddingHorizontal: 20,
   },
   titleText: {
@@ -85,7 +85,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 24,
+    marginBottom: 8,
     borderRadius: 30,
   },
   subButtonGrey: {
@@ -99,6 +99,7 @@ export default StyleSheet.create({
     fontSize: 17,
     fontWeight: '600',
     lineHeight: 22,
+    marginVertical: 17,
     fontFamily: TEXT_REGULAR,
   },
   subButtonTextGrey: {

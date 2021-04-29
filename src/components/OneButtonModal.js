@@ -17,13 +17,14 @@ export const OneButtonModal = (props) => {
   const _renderButton = () => {
     return (
       <TouchableOpacity
-        style={styles.button}
+        style={styles.mainButton}
         onPress={props.hide}
         activeOpacity={0.7}>
-        <Text style={styles.buttonText}>{props.contents.mainButton}</Text>
+        <Text style={styles.mainButtonText}>{props.contents.mainButton}</Text>
       </TouchableOpacity>
     );
   };
+
   const _renderContent = () => {
     return (
       <View
@@ -31,14 +32,12 @@ export const OneButtonModal = (props) => {
           styles.container,
           { backgroundColor: theme.colors.background },
         ]}>
-        <View style={styles.bodyContainer}>
-          <Text>
-            <Text style={[styles.title, { color: theme.colors.title }]}>
-              {props.contents.title}
-            </Text>
-            <Text style={[styles.bodyText, { color: theme.colors.title }]}>
-              {props.contents.body}
-            </Text>
+        <View style={styles.content}>
+          <Text style={[styles.title, { color: theme.colors.title }]}>
+            {props.contents.title}
+          </Text>
+          <Text style={[styles.bodyText, { color: theme.colors.title }]}>
+            {props.contents.body}
           </Text>
         </View>
         {_renderButton()}
@@ -48,11 +47,12 @@ export const OneButtonModal = (props) => {
 
   return (
     <Modal
+      style={{ marginBottom: 0 }}
       isVisible={props.visible}
       animationIn="fadeIn"
-      animationInTiming={250}
+      animationInTiming={300}
       animationOut="fadeOut"
-      animationOutTiming={250}>
+      animationOutTiming={300}>
       {_renderContent()}
     </Modal>
   );
@@ -61,6 +61,10 @@ export const OneButtonModal = (props) => {
 export const styles = StyleSheet.create({
   container: {
     borderRadius: 14,
+  },
+  content: {
+    paddingHorizontal: 32,
+    paddingVertical: 25,
   },
   title: {
     paddingBottom: 5,
@@ -78,11 +82,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     lineHeight: 23,
   },
-  bodyContainer: {
-    paddingHorizontal: 32,
-    paddingVertical: 25,
-  },
-  button: {
+  mainButton: {
     height: 58,
     borderBottomLeftRadius: 14,
     borderBottomRightRadius: 14,
@@ -90,7 +90,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: PRIMARY_COLOR,
   },
-  buttonText: {
+  mainButtonText: {
     fontFamily: TEXT_REGULAR,
     fontWeight: '600',
     color: 'white',
