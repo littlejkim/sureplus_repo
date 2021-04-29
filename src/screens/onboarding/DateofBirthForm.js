@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   TextInput,
   StyleSheet,
+  Image,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
@@ -19,19 +20,22 @@ import { string } from 'yup';
 import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
 import { TEXT_REGULAR } from '../../styles/fonts';
 import { constant, property } from 'lodash-es';
+import { TextBox } from '../../components/TextBox';
 
 export default function DateofBirthForm({ navigation }) {
   const theme = useTheme();
   const { firstname, onboardingCase } = useContext(OnboardingContext);
   const [valid, setValid] = useState(false);
+  const [_month, _setMonth] = useState(null);
+  const [_day, _setDay] = useState(null);
   // Shame on me to write code like this, but I didn't know any other way to do this right.
   // Maybe I'll improve on this later - Marsh
   const [month, date, year] = new Date().toLocaleDateString('en-US').split('/');
-  const localDate = [0, 0, 0, 0, 0, 0];
+  const localDate = [0, 0, 0];
   const boxRef = useRef([]);
 
-  const isValidDate = () => {
-    let dateString = `${localDate[0]}${localDate[1]}/${localDate[2]}${localDate[3]}/20${localDate[4]}${localDate[5]}`;
+  const isValidDate = (text) => {
+    let dateString = `${_month}/${_day}/${text}`;
     console.log(dateString);
     setValid(false);
     if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) return false;
@@ -98,14 +102,16 @@ export default function DateofBirthForm({ navigation }) {
     }
     return;
   };
+
   const digitExtend = (month) => {
     if (month.toString().length == 1) {
       return '0' + month.toString();
     }
     return month.toString();
   };
+
   const _onPress = () => {
-    if (onboardingCase === 0) {
+    /*if (onboardingCase === 0) {
       //set birthday for onboardingcontext
       navigation.navigate('LinkBank');
     } else {
@@ -120,8 +126,18 @@ export default function DateofBirthForm({ navigation }) {
       } else {
         navigation.navigate('ReturningUser');
       }
+    }*/
+  };
+
+  const changeDate = (index, date) => {
+    if (index === 0) {
+      _setMonth(date);
+    }
+    if (index === 1) {
+      _setDay(date);
     }
   };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -132,153 +148,91 @@ export default function DateofBirthForm({ navigation }) {
           Hi {firstname},{'\n'}what is your date of birth?
         </Text>
         <Text style={styles.bodyText}>
-          For {getMonth(month)} {date}, {year} enter {digitExtend(month)}{' '}
-          {digitExtend(date)} {year.charAt(2)}
-          {year.charAt(3)}.
+          e.g. {digitExtend(month)}/{digitExtend(date)}/{year}.
         </Text>
-
         <View
           style={{
             flex: 1,
-            flexDirection: 'row',
+            flexDirection: 'column',
             marginTop: 64,
+            justifyContent: 'center',
+            //marginRight: 38,
+            marginRight: 22,
           }}>
-          <View style={{ flexDirection: 'row', flex: 1 }}>
-            <View style={styles.dateContainer}>
-              <TextInput
-                ref={(el) => (boxRef.current[1] = el)}
-                keyboardAppearance={theme.dark ? 'dark' : 'light'}
-                tintColor={PRIMARY_COLOR}
-                fontSize={24}
-                height={32}
-                width={22}
-                placeholder="M"
-                textAlign="center"
-                selectionColor={PRIMARY_COLOR}
-                keyboardType="number-pad"
-                autoFocus={true}
-                maxLength={1}
-                clearTextOnFocus={true}
-                onChangeText={(text) => {
-                  localDate[0] = text;
-                  text ? boxRef.current[2].focus() : console.log('false');
-                }}
-              />
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              //marginLeft: 53,
+              //marginRight: 38,
+            }}>
+            <View
+              style={{
+                flexDirection: 'column',
+                flex: 1,
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}>
+              <Text style={{ fontSize: 14, color: '#ACB5BE' }}>Month</Text>
+              <View style={{ flexDirection: 'row', top: 16 }}>
+                <TextBox
+                  changeDate={changeDate}
+                  index={0}
+                  _maxLength={2}
+                  _placeholder="MM"
+                  ref={boxRef}
+                />
+              </View>
             </View>
             <View
-              style={StyleSheet.compose(styles.dateContainer, {
-                marginLeft: 4,
-              })}>
-              <TextInput
-                ref={(el) => (boxRef.current[2] = el)}
-                keyboardAppearance={theme.dark ? 'dark' : 'light'}
-                tintColor={PRIMARY_COLOR}
-                fontSize={24}
-                height={32}
-                width={22}
-                placeholder="M"
-                textAlign="center"
-                selectionColor={PRIMARY_COLOR}
-                keyboardType="number-pad"
-                maxLength={1}
-                clearTextOnFocus={true}
-                onChangeText={(text) => {
-                  localDate[1] = text;
-                  text ? boxRef.current[3].focus() : console.log('false');
-                }}
-              />
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', flex: 1 }}>
-            <View style={styles.dateContainer}>
-              <TextInput
-                ref={(el) => (boxRef.current[3] = el)}
-                keyboardAppearance={theme.dark ? 'dark' : 'light'}
-                tintColor={PRIMARY_COLOR}
-                fontSize={24}
-                height={32}
-                width={22}
-                placeholder="D"
-                textAlign="center"
-                selectionColor={PRIMARY_COLOR}
-                keyboardType="number-pad"
-                maxLength={1}
-                clearTextOnFocus={true}
-                onChangeText={(text) => {
-                  localDate[2] = text;
-                  text ? boxRef.current[4].focus() : console.log('false');
-                }}
-              />
+              style={{
+                flexDirection: 'column',
+                flex: 1,
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}>
+              <Text style={{ fontSize: 14, color: '#ACB5BE' }}>Day</Text>
+              <View style={{ flexDirection: 'row', top: 16 }}>
+                <TextBox
+                  changeDate={changeDate}
+                  index={1}
+                  _maxLength={2}
+                  _placeholder="DD"
+                  ref={boxRef}
+                />
+              </View>
             </View>
             <View
-              style={StyleSheet.compose(styles.dateContainer, {
-                marginLeft: 4,
-              })}>
-              <TextInput
-                ref={(el) => (boxRef.current[4] = el)}
-                keyboardAppearance={theme.dark ? 'dark' : 'light'}
-                tintColor={PRIMARY_COLOR}
-                fontSize={24}
-                height={32}
-                width={22}
-                placeholder="D"
-                textAlign="center"
-                selectionColor={PRIMARY_COLOR}
-                keyboardType="number-pad"
-                maxLength={1}
-                clearTextOnFocus={true}
-                onChangeText={(text) => {
-                  localDate[3] = text;
-                  text ? boxRef.current[5].focus() : console.log('false');
-                }}
-              />
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', flex: 1 }}>
-            <View style={styles.dateContainer}>
-              <TextInput
-                ref={(el) => (boxRef.current[5] = el)}
-                keyboardAppearance={theme.dark ? 'dark' : 'light'}
-                tintColor={PRIMARY_COLOR}
-                fontSize={24}
-                height={32}
-                width={22}
-                placeholder="Y"
-                textAlign="center"
-                selectionColor={PRIMARY_COLOR}
-                keyboardType="number-pad"
-                maxLength={1}
-                clearTextOnFocus={true}
-                onChangeText={(text) => {
-                  localDate[4] = text;
-                  text ? boxRef.current[6].focus() : console.log('false');
-                }}
-              />
-            </View>
-            <View
-              style={StyleSheet.compose(styles.dateContainer, {
-                marginLeft: 4,
-              })}>
-              <TextInput
-                ref={(el) => (boxRef.current[6] = el)}
-                keyboardAppearance={theme.dark ? 'dark' : 'light'}
-                tintColor={PRIMARY_COLOR}
-                fontSize={24}
-                height={32}
-                width={22}
-                placeholder="Y"
-                textAlign="center"
-                selectionColor={PRIMARY_COLOR}
-                keyboardType="number-pad"
-                maxLength={1}
-                clearTextOnFocus={true}
-                onChangeText={(text) => {
-                  localDate[5] = text;
-                  text
-                    ? (boxRef.current[6].blur(), isValidDate())
-                    : console.log('false');
-                }}
-              />
+              style={{
+                flexDirection: 'column',
+                flex: 1,
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}>
+              <Text style={{ fontSize: 14, color: '#ACB5BE' }}>Year</Text>
+              <View style={{ flexDirection: 'row', top: 16 }}>
+                <View style={styles.dateContainer}>
+                  <TextInput
+                    ref={(el) => (boxRef.current[3] = el)}
+                    keyboardAppearance={theme.dark ? 'dark' : 'light'}
+                    tintColor={PRIMARY_COLOR}
+                    fontSize={24}
+                    width={24 * 4}
+                    textAlign="center"
+                    selectionColor={PRIMARY_COLOR}
+                    keyboardType="number-pad"
+                    placeholder="YYYY"
+                    _maxLength={4}
+                    clearTextOnFocus={true}
+                    onChangeText={(text) => {
+                      text.length === 4
+                        ? (boxRef.current[3].blur(), isValidDate(text))
+                        : console.log('false');
+                    }}
+                  />
+                </View>
+              </View>
             </View>
           </View>
         </View>

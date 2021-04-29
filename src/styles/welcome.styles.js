@@ -38,12 +38,9 @@ export default StyleSheet.create({
     letterSpacing: 0.0012,
   },
   dateContainer: {
-    borderWidth: 2,
-    width: 48,
-    height: 58,
-    borderColor: '#EFEFF4',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 60,
   },
   inputContainer: {
     marginTop: 40,
