@@ -1,5 +1,5 @@
 // public imports
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, Pressable } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
