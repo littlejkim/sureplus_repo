@@ -91,7 +91,7 @@ export default function AdditionalForm({ navigation }) {
   };
 
   const _onPressUsername = async () => {
-    if (usernameText)
+    if (usernameText) {
       if (
         !string()
           .matches(/^[ A-Za-z0-9_.]*$/)
@@ -102,36 +102,38 @@ export default function AdditionalForm({ navigation }) {
         );
         return;
       }
-    if (!string().min(4).isValidSync(usernameText)) {
-      setUsernameErrorMsg(
-        'Your username should have a minimum of 6 characters.',
-      );
-      return;
+      if (!string().min(4).isValidSync(usernameText)) {
+        setUsernameErrorMsg(
+          'Your username should have a minimum of 6 characters.',
+        );
+        return;
+      }
+      if (string().matches(/[.]$/).isValidSync(usernameText)) {
+        setUsernameErrorMsg("You can't end your username with as a period.");
+        return;
+      }
+      if (
+        !string()
+          .matches(/^(?!.*?[._]{2})[a-zA-Z0-9_.]+$/)
+          .isValidSync(usernameText)
+      ) {
+        setUsernameErrorMsg("You can't have more than one period in a row.");
+        return;
+      }
+
+      setIsLoading(true);
+      await API.post('twilioapi', '/username/check', {
+        body: { username: usernameText },
+      })
+        .then((res) =>
+          res.isTaken
+            ? (console.log('true'),
+              setUsernameErrorMsg('The following username is already in use.'))
+            : _continue(),
+        )
+        .catch((err) => console.log('/test/sms err: ', err));
+      setIsLoading(false);
     }
-    if (string().matches(/[.]$/).isValidSync(usernameText)) {
-      setUsernameErrorMsg("You can't end your username with as a period.");
-      return;
-    }
-    if (
-      !string()
-        .matches(/^(?!.*?[._]{2})[a-zA-Z0-9_.]+$/)
-        .isValidSync(usernameText)
-    ) {
-      setUsernameErrorMsg("You can't have more than one period in a row.");
-      return;
-    }
-    setIsLoading(true);
-    await API.post('twilioapi', '/username/check', {
-      body: { username: usernameText },
-    })
-      .then((res) =>
-        res.isTaken
-          ? (console.log('true'),
-            setUsernameErrorMsg('The following username is already in use.'))
-          : _continue(),
-      )
-      .catch((err) => console.log('/test/sms err: ', err));
-    setIsLoading(false);
   };
 
   return (
@@ -193,6 +195,7 @@ export default function AdditionalForm({ navigation }) {
         <View
           style={[
             styles.footer,
+            // eslint-disable-next-line react-native/no-inline-styles
             {
               position: 'absolute',
               bottom: 0,

@@ -10,6 +10,7 @@ import VerificationLinkForm from './VerificationLinkForm';
 import PreviousNumberForm from './PreviousNumberForm';
 import ReturningUserForm from './ReturningUserForm';
 import DateofBirthForm from './DateofBirthForm';
+import LoginCompleteForm from './LoginCompleteForm';
 export {
   PhoneForm,
   NameForm,
@@ -23,4 +24,5 @@ export {
   PreviousNumberForm,
   ReturningUserForm,
   DateofBirthForm,
+  LoginCompleteForm,
 };

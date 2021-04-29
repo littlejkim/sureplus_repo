@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
 import React, { useState } from 'react';
 import {

@@ -1,13 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Platform, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { API } from 'aws-amplify';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
-import { PRIMARY_COLOR } from '../../styles/constants';
 import { TEXT_REGULAR } from '../../styles/fonts';
 
 export default function ReturningUserForm({ navigation }) {

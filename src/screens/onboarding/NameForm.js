@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -16,7 +17,6 @@ import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import { string } from 'yup';
 import { ERROR_COLOR, PRIMARY_COLOR } from '../../styles/constants';
 import { TEXT_REGULAR } from '../../styles/fonts';
-import { constant } from 'lodash-es';
 
 export default function NameForm({ navigation }) {
   const theme = useTheme();
@@ -42,7 +42,7 @@ export default function NameForm({ navigation }) {
   };
 
   const _validateFirstName = () => {
-    if (onboardingCase != 0 && localFirst != firstname) {
+    if (onboardingCase !== 0 && localFirst !== firstname) {
       setOnboardingCase(0);
     }
     _schemaValidation(localFirst)
@@ -51,7 +51,7 @@ export default function NameForm({ navigation }) {
   };
 
   const _validateLastName = () => {
-    if (onboardingCase != 0 && localLast != lastname) {
+    if (onboardingCase !== 0 && localLast !== lastname) {
       setOnboardingCase(0);
     }
     _schemaValidation(localLast)
@@ -75,7 +75,9 @@ export default function NameForm({ navigation }) {
       setLastname(localLast);
       navigation.navigate('DateofBirth');
     }
-    if (onboardingCase === 1) navigation.navigate('ReturningUser');
+    if (onboardingCase === 1) {
+      navigation.navigate('ReturningUser');
+    }
   };
 
   return (

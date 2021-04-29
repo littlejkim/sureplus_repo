@@ -1,7 +1,6 @@
 // public imports
 import React, { useState, createContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import remoteConfig from '@react-native-firebase/remote-config';
 
 // custom imports
 import { WelcomeScreen } from '../screens';
@@ -18,6 +17,7 @@ import {
   PreviousNumberForm,
   ReturningUserForm,
   DateofBirthForm,
+  LoginCompleteForm,
 } from '../screens/onboarding';
 
 const OnboardingStack = createStackNavigator();
@@ -134,6 +134,10 @@ export const OnboardingContainer = () => {
             headerShown: false,
           }}
         />
+        <OnboardingStack.Screen
+          name="LoginComplete"
+          component={LoginCompleteForm}
+        />
       </OnboardingStack.Navigator>
     </OnboardingContext.Provider>
   );
@@ -160,9 +164,10 @@ function NewUserFlow() {
 }
 //      <NewUserStack.Screen name="AdditionalForm" component={AdditionalForm} />
 // Case 2: existing user (same phone number, same deviceid)
-function ExistingUserFlow() {
+function ExistingUserFlow({ oldUser }) {
   return (
     <ExistingUserStack.Navigator
+      initialRouteName={oldUser ? 'ReturningUser' : 'EnterEmail'}
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,

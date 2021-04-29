@@ -1,15 +1,14 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { TextField } from 'rn-material-ui-textfield';
-import { API, Auth } from 'aws-amplify';
 
 // custom imports
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import styles from '../../styles/welcome.styles';
 import { PRIMARY_COLOR, ERROR_COLOR } from '../../styles/constants';
-import { string } from 'yup';
 
 export default function EmailForm({
   screenHeight,
@@ -38,10 +37,6 @@ export default function EmailForm({
   const onTextInput = async (textValue) => {
     setEmailText(textValue);
     setEmailErrorMsg(null);
-  };
-
-  const _activityInidcator = () => {
-    <ActivityIndicator size="small" color="#ACB5BE" />;
   };
 
   return (

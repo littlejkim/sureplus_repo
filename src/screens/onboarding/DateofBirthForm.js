@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -18,7 +19,7 @@ import { TextBox } from '../../components/TextBox';
 
 export default function DateofBirthForm({ navigation }) {
   const theme = useTheme();
-  const { firstname, onboardingCase } = useContext(OnboardingContext);
+  const { firstname, onboardingCase, oldUser } = useContext(OnboardingContext);
   const [valid, setValid] = useState(false);
   const [_month, _setMonth] = useState(null);
   const [_day, _setDay] = useState(null);
@@ -30,47 +31,68 @@ export default function DateofBirthForm({ navigation }) {
   const isValidDate = (text) => {
     let dateString = `${_month}/${_day}/${text}`;
     setValid(false);
-    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) return false;
+    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) {
+      return false;
+    }
 
     // Parse the date parts to integers
     var parts = dateString.split('/');
-    var day = parseInt(parts[1], 10);
-    var month = parseInt(parts[0], 10);
-    var year = parseInt(parts[2], 10);
+    var day_ = parseInt(parts[1], 10);
+    var month_ = parseInt(parts[0], 10);
+    var year_ = parseInt(parts[2], 10);
 
     // Check the ranges of month and year
-    if (year < 1000 || year > 3000 || month == 0 || month > 12) return false;
+    if (year_ < 1900 || month_ === 0 || month_ > 12) {
+      return false;
+    }
+
+    if (year_ >= year) {
+      return false;
+    } else {
+      if (year_ === year) {
+        if (month_ >= month) {
+          return false;
+        } else {
+          if (month_ === month) {
+            if (day_ >= date) {
+              return false;
+            }
+          }
+        }
+      }
+    }
 
     var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     // Adjust for leap years
-    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+    if (year_ % 400 === 0 || (year_ % 100 !== 0 && year_ % 4 === 0)) {
       monthLength[1] = 29;
+    }
 
     // Check the range of the day
-    if (!day > 0 || !day <= monthLength[month - 1]) {
+    if (day_ > 0 && day_ <= monthLength[month - 1]) {
       setValid(true);
     }
     //need process to check for duplicate emails
   };
 
-  const digitExtend = (month) => {
-    if (month.toString().length == 1) {
-      return '0' + month.toString();
+  const digitExtend = (text) => {
+    if (text.toString().length === 1) {
+      return '0' + text.toString();
     }
-    return month.toString();
+    return text.toString();
   };
 
   const _onPress = () => {
     if (onboardingCase === 0) {
       //set birthday for onboardingcontext
-      navigation.navigate('LinkBank');
+      navigation.navigate('NewUser');
     } else {
       //try matching
+      navigation.navigate('ExistingUser');
       if (oldUser) {
-        //
         if (onboardingCase === 3) {
-          navigation.navigate('PreviousNumber');
+          navigation.navigate('DifferentPhoneNumber');
         } else {
           navigation.navigate('EnterEmail');
         }
@@ -80,6 +102,7 @@ export default function DateofBirthForm({ navigation }) {
     }
   };
 
+  // eslint-disable-next-line no-shadow
   const changeDate = (index, date) => {
     if (index === 0) {
       _setMonth(date);
