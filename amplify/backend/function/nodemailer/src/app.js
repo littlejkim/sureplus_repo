@@ -45,10 +45,25 @@ app.post('/verify/email', async function (req, res) {
   // 3. need to enable in app usage mode for the gmail emailing automation
   console.log('SEND FROM: ', process.env.USER);
 
+  //TODO
+  // 1. Supply subject field to mailOptions
+  // 2. get Dynamic Link via Firebase -> linking with intent
+  // 3. apply email alias
+
+  // transporter.use(
+  //   'compile',
+  //   hbs({
+  //     viewEngine: 'express-handlebars',
+  //     viewPath: './views/',
+  //   }),
+  // );
+
   let mailOptions = {
-    from: 'no-reply-email@sureplus.io',
+    from: 'user-authentication@sureplus.io',
     to: req.body.email,
     text: 'ITS WORKING!',
+    subject: req.body.subject,
+    //template: 'index',
   };
 
   await transporter.sendMail(mailOptions, function (err, info) {
