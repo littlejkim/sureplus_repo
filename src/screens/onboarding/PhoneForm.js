@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
 import React, { useContext, useState } from 'react';
 import {
@@ -57,8 +58,8 @@ export default function PhoneForm({ navigation }) {
     // bypass SMS auth if virtual device (emulator)
 
     DeviceInfo.isEmulator().then(async (isEmulator) => {
-      setOnboardingCase(0);
-      if (onboardingCase != 0) {
+      setOnboardingCase(1);
+      if (true) {
         setPhone('111-111-1111');
         await API.post('twilioapi', '/get/user', {
           body: { phoneNumber: phone },
@@ -68,9 +69,8 @@ export default function PhoneForm({ navigation }) {
               ? (setFirstname(res.data.firstName),
                 setLastname(res.data.lastName),
                 setUsername(res.data.userName),
-                setEmail(res.data.email),
-                setUsername(res.data.userName))
-              : console.log('hello'),
+                setEmail(res.data.email))
+              : console.log("couldn{'}t bring in data "),
           ) // this value will be boolean
           .catch((err) => console.log('/get/user err: ', err));
       }

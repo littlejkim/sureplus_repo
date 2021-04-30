@@ -15,6 +15,7 @@ export default function ReturningUserForm({ navigation }) {
   );
   const theme = useTheme();
   const pressContinue = () => {
+    console.log(onboardingCase);
     if (onboardingCase === 2) {
       navigation.navigate('PreviousNumber');
     } else {

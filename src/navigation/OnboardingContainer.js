@@ -88,13 +88,7 @@ export const OnboardingContainer = () => {
           }}
         />
         <OnboardingStack.Screen name="Phone" component={PhoneForm} />
-        <OnboardingStack.Screen
-          name="Name"
-          component={NameForm}
-          options={() => ({
-            headerLeft: () => null,
-          })}
-        />
+        <OnboardingStack.Screen name="Name" component={NameForm} />
         <OnboardingStack.Screen
           name="DateofBirth"
           component={DateofBirthForm}
@@ -137,6 +131,9 @@ export const OnboardingContainer = () => {
         <OnboardingStack.Screen
           name="LoginComplete"
           component={LoginCompleteForm}
+          options={{
+            headerShown: false,
+          }}
         />
       </OnboardingStack.Navigator>
     </OnboardingContext.Provider>
@@ -167,7 +164,7 @@ function NewUserFlow() {
 function ExistingUserFlow({ oldUser }) {
   return (
     <ExistingUserStack.Navigator
-      initialRouteName={oldUser ? 'ReturningUser' : 'EnterEmail'}
+      initialRouteName={oldUser ? 'EnterEmail' : 'ReturningUser'}
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,

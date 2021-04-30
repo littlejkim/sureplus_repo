@@ -73,11 +73,8 @@ export default function NameForm({ navigation }) {
     if (onboardingCase === 0) {
       setFirstname(localFirst);
       setLastname(localLast);
-      navigation.navigate('DateofBirth');
     }
-    if (onboardingCase === 1) {
-      navigation.navigate('ReturningUser');
-    }
+    navigation.navigate('DateofBirth');
   };
 
   return (

@@ -86,11 +86,13 @@ export default function DateofBirthForm({ navigation }) {
   const _onPress = () => {
     if (onboardingCase === 0) {
       //set birthday for onboardingcontext
+      console.log('Hello');
       navigation.navigate('NewUser');
     } else {
       //try matching
+      console.log('Hello');
       navigation.navigate('ExistingUser');
-      if (oldUser) {
+      /*if (oldUser) {
         if (onboardingCase === 3) {
           navigation.navigate('DifferentPhoneNumber');
         } else {
@@ -98,7 +100,7 @@ export default function DateofBirthForm({ navigation }) {
         }
       } else {
         navigation.navigate('ReturningUser');
-      }
+      }*/
     }
   };
 
