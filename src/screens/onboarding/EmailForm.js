@@ -21,8 +21,8 @@ export default function EmailForm({
   setEmailErrorMsg,
   _onSubmitEditing,
   isLoading,
+  scrollUp,
 }) {
-  const { firstname } = useContext(OnboardingContext);
   const textinputRef = useRef();
   const theme = useTheme();
 
@@ -40,21 +40,11 @@ export default function EmailForm({
   };
 
   return (
-    <View style={{ height: screenHeight }}>
+    <View
+      style={{
+        height: screenHeight,
+      }}>
       <View>
-        <Text
-          style={[
-            styles.bodyText,
-            { color: theme.dark ? 'white' : 'black', marginBottom: 52 },
-          ]}>
-          <Text>Hi </Text>
-          <Text style={{ color: PRIMARY_COLOR, fontWeight: '600' }}>
-            {firstname}, {'\n'}
-          </Text>
-          <Text>
-            Please complete your sign up to review your subscriptions!
-          </Text>
-        </Text>
         <Text style={[styles.titleText, { color: theme.colors.title }]}>
           What is your email?
         </Text>
@@ -82,7 +72,7 @@ export default function EmailForm({
           returnKeyType="next"
           onChangeText={onTextInput}
           onSubmitEditing={() => _onSubmitEditing()}
-          labelOffset={10}
+          onFocus={() => scrollUp()}
           renderRightAccessory={() =>
             isLoading ? (
               <View style={{ width: 38, height: 27 }}>

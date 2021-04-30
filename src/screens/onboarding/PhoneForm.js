@@ -58,11 +58,11 @@ export default function PhoneForm({ navigation }) {
     // bypass SMS auth if virtual device (emulator)
 
     DeviceInfo.isEmulator().then(async (isEmulator) => {
-      setOnboardingCase(1);
-      if (true) {
+      setOnboardingCase(0);
+      if (onboardingCase !== 0) {
         setPhone('111-111-1111');
         await API.post('twilioapi', '/get/user', {
-          body: { phoneNumber: phone },
+          body: { phoneNumber: '111-111-1111' },
         }) //p
           .then((res) =>
             res.isTaken

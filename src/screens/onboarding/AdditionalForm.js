@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import {
   View,
   Text,
@@ -10,14 +11,18 @@ import {
 } from 'react-native';
 import { string } from 'yup';
 import { API } from 'aws-amplify';
+import { useTheme } from '@react-navigation/native';
 
 // custom imports
 import styles from '../../styles/welcome.styles';
 import EmailForm from './EmailForm';
 import UsernameForm from './UsernameForm';
 import UpArrow from '../../assets/images/up_arrow.svg';
+import { OnboardingContext } from '../../navigation/OnboardingContainer';
+import { PRIMARY_COLOR } from '../../styles/constants';
 
 export default function AdditionalForm({ navigation }) {
+  const { firstname } = useContext(OnboardingContext);
   const [viewHeight, setViewHeight] = useState();
   const [showPrev, setShowPrev] = useState(false);
   const [step, setStep] = useState(0);
@@ -29,18 +34,22 @@ export default function AdditionalForm({ navigation }) {
   const [usernameText, setUsernameText] = useState('');
   const [usernameErrorMsg, setUsernameErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState('');
-
+  const theme = useTheme();
   const scrollRef = useRef();
 
+  const _scrollUp = () => {
+    scrollRef.current.scrollTo({ y: 121.0, animated: true });
+  };
+
   const _showNext = () => {
-    scrollRef.current.scrollTo({ y: viewHeight, animated: true });
+    scrollRef.current.scrollTo({ y: viewHeight + 121.0, animated: true });
     setShowPrev(true);
     setStep(1);
     setFocusUsername(true);
   };
 
   const _showPrev = () => {
-    scrollRef.current.scrollTo({ y: 0, animated: true });
+    scrollRef.current.scrollTo({ y: 121.0, animated: true });
     setShowPrev(false);
     setStep(0);
     setFocusEmail(true);
@@ -156,13 +165,28 @@ export default function AdditionalForm({ navigation }) {
               setScrollEnd(true);
             }
             //Scroll to top
-            if (nativeEvent.contentOffset.y === 0) {
+            if (nativeEvent.contentOffset.y === 121.0) {
               setScrollEnd(true);
             }
           }}
           showsVerticalScrollIndicator={false}
           snapToInterval={viewHeight}
           snapToAlignment={'center'}>
+          <View style={{ height: 121.0 }}>
+            <Text
+              style={[
+                styles.bodyText,
+                { color: theme.dark ? 'white' : 'black', marginBottom: 52 },
+              ]}>
+              <Text>Hi </Text>
+              <Text style={{ color: PRIMARY_COLOR, fontWeight: '600' }}>
+                {firstname}, {'\n'}
+              </Text>
+              <Text>
+                Please complete your sign up to review your subscriptions!
+              </Text>
+            </Text>
+          </View>
           <EmailForm
             screenHeight={viewHeight}
             focusEmail={focusEmail}
@@ -174,6 +198,7 @@ export default function AdditionalForm({ navigation }) {
             setEmailErrorMsg={setEmailErrorMsg}
             _onSubmitEditing={_onPressEmail}
             isLoading={isLoading}
+            scrollUp={_scrollUp}
           />
           <UsernameForm
             screenHeight={viewHeight}
@@ -195,7 +220,6 @@ export default function AdditionalForm({ navigation }) {
         <View
           style={[
             styles.footer,
-            // eslint-disable-next-line react-native/no-inline-styles
             {
               position: 'absolute',
               bottom: 0,

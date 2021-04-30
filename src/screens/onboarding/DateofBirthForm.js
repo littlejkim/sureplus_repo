@@ -19,7 +19,7 @@ import { TextBox } from '../../components/TextBox';
 
 export default function DateofBirthForm({ navigation }) {
   const theme = useTheme();
-  const { firstname, onboardingCase, oldUser } = useContext(OnboardingContext);
+  const { firstname, onboardingCase } = useContext(OnboardingContext);
   const [valid, setValid] = useState(false);
   const [_month, _setMonth] = useState(null);
   const [_day, _setDay] = useState(null);

@@ -144,6 +144,7 @@ export const OnboardingContainer = () => {
 function NewUserFlow() {
   return (
     <NewUserStack.Navigator
+      initialRouteName="AdditionalForm"
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,

@@ -19,9 +19,11 @@ import { ThreeButtonModal } from '../../components/ThreeButtonModal';
 export default function EnterEmailForm({ navigation }) {
   const [visible, setVisible] = useState(false);
   const contents = {
-    topText: 'Resend Link',
-    bottomText: 'Edit email address',
-    subButton: 'Cancel',
+    title: 'Error',
+    body: 'Unsuccessful sending text message to this number. Please try again!',
+    mainButton: 'Resend Link',
+    subButton: 'Edit email address',
+    cancelButton: 'Cancel',
   };
   const cancel = () => {
     setVisible(false);
@@ -32,7 +34,7 @@ export default function EnterEmailForm({ navigation }) {
   };
   const back = () => {
     setVisible(false);
-    navigation.navigate('EnterEmail');
+    navigation.navigate('LoginComplete');
   };
 
   const theme = useTheme();
@@ -76,9 +78,9 @@ export default function EnterEmailForm({ navigation }) {
       <ThreeButtonModal
         visible={visible}
         contents={contents}
-        resend={resend}
-        back={back}
-        cancel={cancel}
+        mainButtonAction={resend}
+        subButtonAction={back}
+        hide={cancel}
       />
     </KeyboardAvoidingView>
   );
