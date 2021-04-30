@@ -23,7 +23,7 @@
         },
         "nodemailer": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
-          "s3Key": "amplify-builds/nodemailer-545468622f4a70733063-build.zip"
+          "s3Key": "amplify-builds/nodemailer-516d677862342b7a3434-build.zip"
         }
       },
       "auth": {

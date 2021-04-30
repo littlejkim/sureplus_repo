@@ -63,14 +63,29 @@ export default function PhoneForm({ navigation }) {
       .then((res) => {
         console.log('/test/sms: ', res);
         setIsLoading(false);
-        if (res.statuscode === 200) {
-          // BUZZ
-          // check statuscode to see which one has been
-          // case 1: navigation.navigate('NewUser')
-          // case 2: navigation.navigate('ExistingUser')
-          // case 3: navigation.navigate('DifferentPhoneNumber')
-          // case 4: navigation.navigate('DifferentDeviceId')
-          // case 5: navigation.navigate('AccountRecovery')
+
+        switch (res.statuscode) {
+          case 200:
+            navigation.navigate('NewUser');
+            break;
+          case 201:
+            navigation.navigate('ExistingUser');
+            break;
+          case 202:
+            navigation.navigate('DifferentPhoneNumber');
+            break;
+          case 203:
+            navigation.navigate('DifferentDeviceId');
+            break;
+          case 204:
+            navigation.navigate('AccountRecovery');
+            break;
+          case 400:
+            //Pop Up Message from res.message, res.title
+            break;
+          default:
+            //Internal Server Error Message, Contact Support -> Very Unlikely but
+            break;
         }
       })
       .catch((err) => {
