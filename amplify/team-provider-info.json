@@ -20,6 +20,10 @@
         "AdminQueries3c22cfa4": {
           "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
           "s3Key": "amplify-builds/AdminQueries3c22cfa4-6c3843614468536d5937-build.zip"
+        },
+        "nodemailer": {
+          "deploymentBucketName": "amplify-sureplusmoscato-moscatodev-175838-deployment",
+          "s3Key": "amplify-builds/nodemailer-516d677862342b7a3434-build.zip"
         }
       },
       "auth": {

@@ -37,9 +37,11 @@ export default function App() {
     //   console.log('error fetching devices', err);
     // }
 
-    API.post('twilioapi', '/get/user', { body: { deviceId: 'test' } })
-      .then((res) => console.log('/get/user: ', res))
-      .catch((err) => console.log('/get/user err: ', err));
+    API.post('twilioapi', '/verify/email', {
+      body: { email: 'immabe77@gmail.com', subject: 'Welcome to Sureplus!' },
+    })
+      .then((res) => console.log('/verify/email: ', res))
+      .catch((err) => console.log('/verify/email err: ', err));
 
     // API.post('twilioapi', '/test/sms', {
     //   body: { data: 'message' },
@@ -53,6 +55,10 @@ export default function App() {
     //   error: (error) => console.log('ERROR: ', error),
     // });
   }
+
+  // useEffect(() => {
+  //   testAmplifyApi();
+  // }, []);
 
   function firebaseSetup() {
     // set cache length to 30 milliseconds for testing purposes (only on dev), reference: https://rnfirebase.io/remote-config/usage
