@@ -146,7 +146,7 @@ export default function App() {
         <StatusBar
           barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
         />
-        {user == null ? <OnboardingContainer /> : <HomeContainer />}
+        {user != null ? <OnboardingContainer /> : <HomeContainer />}
       </NavigationContainer>
     </View>
   );

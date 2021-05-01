@@ -102,14 +102,10 @@ function GroupsStackScreen() {
 }
 
 export const HomeContainer = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const theme = useTheme();
-  if (isAuthenticated === false) {
-    return <PasswordScreen authentication={() => setIsAuthenticated(true)} />;
-  }
+
   return (
     <Host>
-      <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
       <Tab.Navigator
         initialRouteName="Home"
         tabBarOptions={theme.dark ? darkBarStyle : lightBarStyle}>
