@@ -1,7 +1,6 @@
 // public imports
 import React, { useState, createContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import remoteConfig from '@react-native-firebase/remote-config';
 
 // custom imports
 import { WelcomeScreen } from '../screens';
@@ -17,6 +16,8 @@ import {
   VerificationLinkForm,
   PreviousNumberForm,
   ReturningUserForm,
+  DateofBirthForm,
+  LoginCompleteForm,
 } from '../screens/onboarding';
 
 const OnboardingStack = createStackNavigator();
@@ -77,6 +78,7 @@ export const OnboardingContainer = () => {
           headerTitle: '',
           headerBackTitleVisible: false,
           headerTransparent: true,
+          headerLeftContainerStyle: { marginLeft: 8 },
         }}>
         <OnboardingStack.Screen
           name="Welcome"
@@ -87,6 +89,10 @@ export const OnboardingContainer = () => {
         />
         <OnboardingStack.Screen name="Phone" component={PhoneForm} />
         <OnboardingStack.Screen name="Name" component={NameForm} />
+        <OnboardingStack.Screen
+          name="DateofBirth"
+          component={DateofBirthForm}
+        />
         <OnboardingStack.Screen
           name="NewUser"
           component={NewUserFlow}
@@ -122,6 +128,13 @@ export const OnboardingContainer = () => {
             headerShown: false,
           }}
         />
+        <OnboardingStack.Screen
+          name="LoginComplete"
+          component={LoginCompleteForm}
+          options={{
+            headerShown: false,
+          }}
+        />
       </OnboardingStack.Navigator>
     </OnboardingContext.Provider>
   );
@@ -131,6 +144,7 @@ export const OnboardingContainer = () => {
 function NewUserFlow() {
   return (
     <NewUserStack.Navigator
+      initialRouteName="AdditionalForm"
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,
@@ -148,9 +162,10 @@ function NewUserFlow() {
 }
 //      <NewUserStack.Screen name="AdditionalForm" component={AdditionalForm} />
 // Case 2: existing user (same phone number, same deviceid)
-function ExistingUserFlow() {
+function ExistingUserFlow({ oldUser }) {
   return (
     <ExistingUserStack.Navigator
+      initialRouteName={oldUser ? 'EnterEmail' : 'ReturningUser'}
       screenOptions={{
         headerTitle: '',
         headerBackTitleVisible: false,

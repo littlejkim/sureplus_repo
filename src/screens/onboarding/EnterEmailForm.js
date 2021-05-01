@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
 import React, { useState, useEffect, useContext } from 'react';
 import {
@@ -33,14 +34,14 @@ export default function EnterEmailForm({ navigation }) {
     let int = 0;
     test = test.split('').map((x) => {
       int++;
-      if (int == 1 || int == 2) {
+      if (int === 1 || int === 2) {
         return x;
       } else {
-        if (x == '@') {
+        if (x === '@') {
           int = 1;
           return x;
         }
-        if (x == '.') {
+        if (x === '.') {
           return x;
         }
         x = '*';
@@ -60,7 +61,7 @@ export default function EnterEmailForm({ navigation }) {
     if (!string().email().required().isValidSync(textValue)) {
       setErrorMsg('Please enter a valid email address');
     }
-    if (email != textValue) {
+    if (email !== textValue) {
       setErrorMsg('Please enter your previous email');
     } else {
       setErrorMsg('');
@@ -69,13 +70,19 @@ export default function EnterEmailForm({ navigation }) {
   };
 
   const _onPress = () => {
-    setDisplayError(true);
+    /*setDisplayError(true);
     if (errorMsg) {
       return;
     } else {
       navigation.navigate('VerificationLink');
-    }
-    return;
+    }*/
+    /*API.post('twilioapi', '/verify/email', {
+      body: { email: 'mhanhan123@gmail.com', subject: 'Welcome to Sureplus!' },
+    })
+      .then((res) => console.log('/verify/email: ', res))
+      .catch((err) => console.log('/verify/email err: ', err));
+    return;*/
+    navigation.navigate('VerificationLink');
   };
 
   return (

@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 // public imports
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -41,7 +42,7 @@ export default function NameForm({ navigation }) {
   };
 
   const _validateFirstName = () => {
-    if (onboardingCase != 0 && localFirst != firstname) {
+    if (onboardingCase !== 0 && localFirst !== firstname) {
       setOnboardingCase(0);
     }
     _schemaValidation(localFirst)
@@ -50,7 +51,7 @@ export default function NameForm({ navigation }) {
   };
 
   const _validateLastName = () => {
-    if (onboardingCase != 0 && localLast != lastname) {
+    if (onboardingCase !== 0 && localLast !== lastname) {
       setOnboardingCase(0);
     }
     _schemaValidation(localLast)
@@ -72,9 +73,8 @@ export default function NameForm({ navigation }) {
     if (onboardingCase === 0) {
       setFirstname(localFirst);
       setLastname(localLast);
-    } else {
     }
-    navigation.navigate('AdditionalForm');
+    navigation.navigate('DateofBirth');
   };
 
   return (

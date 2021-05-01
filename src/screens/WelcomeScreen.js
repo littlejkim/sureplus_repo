@@ -1,5 +1,7 @@
+/* eslint-disable no-sequences */
+/* eslint-disable react-native/no-inline-styles */
 // public imports
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, TouchableOpacity, Pressable } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -9,8 +11,11 @@ import { HomeCarousel } from '../components/HomeCarousel';
 import { OnboardingContext } from '../navigation/OnboardingContainer';
 
 export default function WelcomeScreen({ navigation }) {
-  const { oldUser, setOldUser } = useContext(OnboardingContext);
+  const { setOldUser } = useContext(OnboardingContext);
+  const [background, setBackground] = useState(false);
+
   const theme = useTheme();
+
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -30,11 +35,14 @@ export default function WelcomeScreen({ navigation }) {
         <Pressable
           style={[
             styles.subButton,
-            { backgroundColor: oldUser ? '#F7F7F7' : 'white' },
+            { backgroundColor: background ? '#F7F7F7' : 'white' },
           ]}
-          onPressIn={() => setOldUser(true)}
-          onPressOut={() => setOldUser(false)}
-          onPress={() => navigation.navigate('Phone')}
+          onPressIn={() => setBackground(true)}
+          onPressOut={() => setBackground(false)}
+          onPress={() => {
+            setOldUser(true);
+            navigation.navigate('Phone');
+          }}
           TouchableOpacity={1.0}>
           <Text style={[styles.subButtonText, { color: theme.colors.primary }]}>
             I already have an account
