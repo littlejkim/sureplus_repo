@@ -15,7 +15,7 @@ import { useTheme } from '@react-navigation/native';
 import styles from '../../styles/welcome.styles';
 import { OnboardingContext } from '../../navigation/OnboardingContainer';
 import { PRIMARY_COLOR } from '../../styles/constants';
-import { TextBox } from '../../components/TextBox';
+import { DateTextBox } from '../../components/DateTextBox';
 
 export default function DateofBirthForm({ navigation }) {
   const theme = useTheme();
@@ -152,7 +152,7 @@ export default function DateofBirthForm({ navigation }) {
               }}>
               <Text style={{ fontSize: 14, color: '#ACB5BE' }}>Month</Text>
               <View style={{ flexDirection: 'row', top: 16 }}>
-                <TextBox
+                <DateTextBox
                   changeDate={changeDate}
                   index={0}
                   _maxLength={2}
@@ -171,7 +171,7 @@ export default function DateofBirthForm({ navigation }) {
               }}>
               <Text style={{ fontSize: 14, color: '#ACB5BE' }}>Day</Text>
               <View style={{ flexDirection: 'row', top: 16 }}>
-                <TextBox
+                <DateTextBox
                   changeDate={changeDate}
                   index={1}
                   _maxLength={2}

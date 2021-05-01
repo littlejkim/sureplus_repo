@@ -13,7 +13,9 @@ import { OnboardingContext } from '../navigation/OnboardingContainer';
 export default function WelcomeScreen({ navigation }) {
   const { setOldUser } = useContext(OnboardingContext);
   const [background, setBackground] = useState(false);
+
   const theme = useTheme();
+
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}>

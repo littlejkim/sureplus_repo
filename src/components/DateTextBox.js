@@ -8,7 +8,7 @@ import styles from '../styles/welcome.styles';
 import { PRIMARY_COLOR } from '../styles/constants';
 
 // bottom modal (need to customize)
-export const TextBox = forwardRef(
+export const DateTextBox = forwardRef(
   ({ changeDate, index, _maxLength, _placeholder, setValid }, boxRef) => {
     const theme = useTheme();
     return (
@@ -39,4 +39,4 @@ export const TextBox = forwardRef(
     );
   },
 );
-export default TextBox;
+export default DateTextBox;
